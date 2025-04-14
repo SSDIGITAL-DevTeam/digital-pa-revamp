@@ -2,7 +2,6 @@
 import Image from "next/image"
 
 // image asset
-import BalancingImage from '@/assets/our-services/webp/balancing-hunt.webp'
 import dayjs from "dayjs"
 import { useEffect, useState } from "react"
 import { Input } from "@/components/ui/input"
@@ -14,7 +13,6 @@ import { axiosInstance } from "@/lib/axios"
 
 import PageArticles from "./_components/PageArticles"
 import ListCategories from "./_components/ListCategories"
-import { favoriteData } from "./_components/DummyData"
 import ButtonCategory from "./_components/ButtonCategory"
 import Link from "next/link"
 import BlogContent from "@/components/partials/Blog/BlogContent"

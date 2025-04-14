@@ -8,12 +8,6 @@ import PageArticles from "../../_components/PageArticles";
 import ListCategories from "../../_components/ListCategories";
 // import { pageData } from "../../_components/DummyData";
 import { axiosInstance } from "@/lib/axios";
-const categories = [
-    "All",
-    "Marketing",
-    "SEO",
-    "Content Marketing",
-]
 
 export default function SearchPage() {
     const [search, setSearch] = useState("")
