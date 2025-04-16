@@ -15,6 +15,8 @@ export const user = mysqlTable('user', {
   refreshToken: text('refresh_token'),
   role: varchar('role', { length: 50 }).notNull(),
   features: json('features').notNull(),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+  updatedAt: timestamp('updated_at').defaultNow().notNull(),
 });
 
 export const blogCategory = mysqlTable('blog_category', {

@@ -1,7 +1,8 @@
 export default function BlogContent({ content, className }: { content: string; className?:string }) {
+
     return (
       <div
-        className={`prose lg:prose-lg max-w-none body-parser !leading-[150%] ${className}`}
+        className={`prose lg:prose-lg max-w-none body-parser !leading-[120%] ${className}`}
         dangerouslySetInnerHTML={{ __html: content }}
       />
     );

@@ -10,8 +10,9 @@ import { failedToast } from "@/utils/toast";
 import { Button } from "@/components/ui/button";
 import PaginationComponents from "@/components/partials/pagination/Pagination";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Input } from "@/components/ui/input";
-import SelectField from "@/components/partials/form/SelectField";
+import { downloadCSV } from "@/utils/convertToCSV";
+// import { Input } from "@/components/ui/input";
+// import SelectField from "@/components/partials/form/SelectField";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 interface CustomJwtPayload extends JwtPayload {
   name: string;
@@ -56,7 +57,7 @@ const reducer = (state: any, action: any) => {
 export default function Page(): JSX.Element {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [page, setPage] = useState<number>(1);
-  const [filter, setFilter] = useState("All Time");
+  const [filter, setFilter] = useState<string | undefined>(undefined);
 
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -88,16 +89,16 @@ export default function Page(): JSX.Element {
 
   useEffect(() => {
     fetchAllData();
-  }, []);
+  }, [filter, page]);
 
   const fetchAllData = async () => {
     try {
       const endpoints = [
-        { url: "/role", params: { page, limit: 5 } },
-        { url: "/blog", params: { status: "Published" } },
-        { url: "/blog", params: { status: "Archived" } },
-        { url: "/blog", params: { status: "Draft" } },
-        { url: "/blog-category" },
+        { url: "/user", params: { page, limit: 5, createdAt: filter } },
+        { url: "/blog", params: { limit: 1, status: "Published", createdAt: filter } },
+        { url: "/blog", params: { limit: 1, status: "Archived", createdAt: filter } },
+        { url: "/blog", params: { limit: 1, status: "Draft", createdAt: filter } },
+        { url: "/blog-category", params: { limit: 1, createdAt: filter } },
       ];
 
       const responses = await Promise.all(
@@ -129,14 +130,16 @@ export default function Page(): JSX.Element {
     totalBlogCategories, loading, error,
   } = state;
 
-  if (loading) return <p className="text-center"></p>;
-  if (loading) failedToast(
-    <p className="text-xl font-semibold text-red-900">Failed</p>,
-    <p className="text-xs text-red-300 mt-2">{
-      error || "Error processing data"
-    }
-    </p>
-  );
+  // console.log({state})
+
+  // if (loading) return <p className="text-center"></p>;
+  // if (loading) failedToast(
+  //   <p className="text-xl font-semibold text-red-900">Failed</p>,
+  //   <p className="text-xs text-red-300 mt-2">{
+  //     error || "Error processing data"
+  //   }
+  //   </p>
+  // );
 
   const BlockCard: React.FC<BlockCardProps> = ({ text, value, className, logo }) => (
     <div
@@ -151,12 +154,12 @@ export default function Page(): JSX.Element {
     </div>
   );
 
-  const SelectFilter = ({ data }: { data: { value: string, title: string }[] }) => {
+  const SelectFilter = ({ data }: { data: { value: string | undefined, title: string }[] }) => {
     return (
       <Select onValueChange={(value) => setFilter(value)} value={filter}
       >
         <SelectTrigger className="p-2 h-10 text-sm font-semibold rounded-sm border-0 shadow-sm">
-          <SelectValue placeholder="All Time" />
+          <SelectValue placeholder="" />
         </SelectTrigger>
         <SelectContent>
           {data.map((item: any, index: number) => (
@@ -169,13 +172,15 @@ export default function Page(): JSX.Element {
     )
   }
 
-
   const filterDate = [
     { value: "today", title: "Today" },
     { value: "week", title: "This Week" },
     { value: "month", title: "This Month" },
     { value: "year", title: "This Year" },
+    { value: undefined, title: "All Time" },
   ]
+
+  // console.log(users)
   return (
     <main className="w-full flex flex-col gap-12 pb-20">
       <Header title="Admin Dashboard" />
@@ -185,7 +190,7 @@ export default function Page(): JSX.Element {
           <div className="flex flex-col gap-4 w-full">
             <h1 className="text-xl font-semibold">Total Leads</h1>
             <div className="w-[50%] h-36">
-              <BlockCard text={`Total Per-${filter}`} value={totalUsers} />
+              <BlockCard text={`Total Per-${filter || "All Time"}`} value={totalUsers} />
             </div>
           </div>
           <div className="flex gap-4 w-[50%] items-center">
@@ -210,7 +215,7 @@ export default function Page(): JSX.Element {
       >
         <div className="flex justify-between items-center">
           <h2 className="text-xl">Current Leads</h2>
-          <Button variant={"destructive"} className="flex items-center gap-2"> <ArrowUpRightFromCircle className="max-h-5 max-w-5" />Export Data</Button>
+          <Button onClick={() => downloadCSV(users, 'data.csv')} variant={"destructive"} className="flex items-center gap-2"> <ArrowUpRightFromCircle className="max-h-5 max-w-5" />Export Data</Button>
         </div>
         <table className="w-full border-collapse">
           <thead className="w-full">
@@ -224,13 +229,13 @@ export default function Page(): JSX.Element {
           </thead>
           <tbody>
             {users.map((user: any) => {
-              const formatFeatures = user.features.map((feature: any) => feature).join(", ");
+              const formatFeatures = user.user.features.map((feature: any) => feature).join(", ");
               return (
-                <tr key={user.id} className="border-b">
-                  <td className="px-4 py-2">{user.name}</td>
-                  <td className="px-4 py-2">{user.email}</td>
-                  <td className="px-4 py-2">{user.role}</td>
-                  <td className="px-4 py-2">{user.status}</td>
+                <tr key={user.user.id} className="border-b">
+                  <td className="px-4 py-2">{user.user.name}</td>
+                  <td className="px-4 py-2">{user.user.email}</td>
+                  <td className="px-4 py-2">{user.user.role}</td>
+                  <td className="px-4 py-2">{user.user.status}</td>
                   <td className="px-4 py-2">{formatFeatures}</td>
                 </tr>
               );

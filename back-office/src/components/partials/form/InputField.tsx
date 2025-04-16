@@ -36,7 +36,7 @@ const InputField = ({
       control={control}
       render={({ field }) => (
         <FormItem className="w-full">
-          <FormLabel className="capitalize font-semibold mb-2 text-base">{name}</FormLabel>
+          <FormLabel className="capitalize font-semibold mb-2 text-base">{label}</FormLabel>
           {desc && <FormDescription>{desc}</FormDescription>}
           <FormControl className="w-full">
             <Input

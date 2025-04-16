@@ -7,7 +7,7 @@ import {
     findBlogByTitle,
     findBlogById,
     insertBlog,
-    findBlogBySlug
+    findBlogBySlug,
 } from './blog.repository.js'
 import dayjs from 'dayjs'
 import 'dayjs/locale/id.js'
@@ -19,7 +19,7 @@ import { fileURLToPath } from 'url'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
-import { asc, desc, ilike, and, or, eq, like, sql } from 'drizzle-orm'
+import { asc, desc, ilike, and, or, eq, like, sql, gte } from 'drizzle-orm'
 import { blog, blogCategory, user } from '../../drizzle/schema.js'
 
 export const getAllBlogs = async (filters) => {
@@ -32,19 +32,22 @@ export const getAllBlogs = async (filters) => {
             search,
             favorite,
             categoryId,
+            createdAt
         } = filters
+        // console.log(filters)
 
         const skip = (page - 1) * limit
 
         const whereConditions = []
+        let newFavorite = favorite
+        if(typeof favorite === 'string') newFavorite = favorite === 'true'
 
         if (status !== undefined) whereConditions.push(eq(blog.status, status))
-        if (categoryId !== undefined){
+        if (categoryId !== undefined) {
             whereConditions.push(eq(blog.categoryId, categoryId))
-
         }
         if (favorite !== undefined)
-            whereConditions.push(eq(blog.favorite, favorite))
+            whereConditions.push(eq(blog.favorite, newFavorite))
 
         if (search) {
             const keyword = `%${search.toLowerCase()}%`
@@ -58,6 +61,30 @@ export const getAllBlogs = async (filters) => {
             whereConditions.push(or(...searchFilters))
         }
 
+        if (createdAt) {
+            let dateFrom;
+            const now = dayjs();
+
+            switch (createdAt) {
+                case 'today':
+                    dateFrom = now.startOf('day').toDate();
+                    break;
+                case 'this_week':
+                    dateFrom = now.startOf('week').toDate();
+                    break;
+                case 'this_month':
+                    dateFrom = now.startOf('month').toDate();
+                    break;
+                default:
+                    dateFrom = null;
+            }
+
+            if (dateFrom) {
+                whereConditions.push(gte(blog.createdAt, dateFrom));
+            }
+        }
+
+
         const where = whereConditions.length
             ? and(...whereConditions)
             : undefined
@@ -70,7 +97,7 @@ export const getAllBlogs = async (filters) => {
         const { datas, total } = await findAllBlogs(skip, limit, where, order)
 
         const totalPages = Math.ceil(total / limit)
-
+        // console.log({ datas, total, totalPages })
         return {
             data: datas,
             pagination: {
@@ -87,7 +114,7 @@ export const getAllBlogs = async (filters) => {
 
 export const getBlogById = async (id) => {
     try {
-        const blog = await findBlogById(id) || await findBlogBySlug(id)
+        const blog = (await findBlogById(id)) || (await findBlogBySlug(id))
         return blog
     } catch (error) {
         throw new Error(error.message)
@@ -115,46 +142,55 @@ export const createBlog = async (payload) => {
 
 export const deleteBlogById = async (id) => {
     try {
-        const blog = await getBlogById(id)
-        if (!blog) {
+        const blog = await findBlogById(id)
+        if (blog == null) {
             throw new Error('Blog with that ID not found')
         }
-        const imagePath = path.join(__dirname, '../../upload', blog.image)
+        const imagePath = path.join(__dirname, '../../upload', blog.blog.image)
         if (fs.existsSync(imagePath)) {
             fs.unlinkSync(imagePath)
         }
         await deleteBlog(id)
     } catch (error) {
+        console.log(error)
         throw new Error(error.message)
     }
 }
 
 export const updateQueue = async (id, payload) => {
     try {
-        const queue = await findQueueById(id)
+        const queue = await findBlogById(id)
         if (!queue) {
-            throw new Error('Blog dengan Id tersebut tidak ditemukan')
+            throw new Error('Blog not found')
         }
 
         const { image, favorite } = payload
+        console.log(queue)
         if (image) {
             const imagePath = path.join(__dirname, '../../upload', queue.image)
             if (fs.existsSync(imagePath)) {
                 fs.unlinkSync(imagePath)
             }
         }
+
+        
         let newFavorite = favorite
 
         if (typeof favorite === 'string') {
             newFavorite = favorite === 'true'
         }
+        // console.log({newFavorite});
 
-        const response = await getAllQueueByFavorite({ favorite: true })
-
-        if (favorite === true && response.length >= 3) {
-            throw new Error('Maksimal 3 blog favorit')
+        const response = await findAllBlogs(0, 10, eq(blog.favorite, true), [
+            desc(blog.createdAt),
+        ])
+        // console.log(queue)
+        if (queue.blog.status !== 'Published' && newFavorite === true) {
+            throw new Error('Blog must be published first')
         }
-
+        if (newFavorite === true && response.datas.length >= 3 && queue.blog.favorite === false) {
+            throw new Error('You can only favorite up to 3 blogs')
+        }
         await editQueue(id, { ...payload, favorite: newFavorite })
     } catch (error) {
         throw new Error(error.message)

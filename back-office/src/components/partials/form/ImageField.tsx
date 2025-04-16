@@ -72,11 +72,11 @@ const ImageField = ({
                             alt="Preview"
                             width={500}
                             height={500}
-                            className="h-72 w-full object-cover"
+                            className="object-contain"
                         />
                     ) : (
                         <div className="h-72 w-full flex items-center justify-center bg-gray-100 text-gray-400">
-                            No Image
+                            Upload Image
                         </div>
                     )}
 

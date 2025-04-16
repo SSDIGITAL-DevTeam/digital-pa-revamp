@@ -46,6 +46,8 @@ export default async function Page({ params }: Readonly<{ params: { slug: string
             }
         });
         const relatedBlogs = res.data.data as BlogDetailResponse[];
+        // console.log(data.blog.content)
+        
 
         const formattedDate = dayjs(data.blog.createdAt).format("MMM DD, YYYY");
         return (
@@ -69,12 +71,12 @@ export default async function Page({ params }: Readonly<{ params: { slug: string
                         <CopyLinkButton />
                     </div>
                 </section>
-                <section className="max-w-4xl mx-auto flex flex-col gap-12">
+                <section className="max-w-4xl mx-auto flex flex-col gap-8">
                     <h3 className="text-sm lg:text-base font-normal px-6 py-3 bg-primary text-white rounded-lg w-fit">{data.blogCategory.name}</h3>
                     <div className="w-full object-contain rounded-2xl">
                         <Image src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/uploads/${data.blog.image}`} width={1920} height={1080} alt={data.blog.title} className="rounded-2xl" />
                     </div>
-                    <BlogContent content={data.blog.content} className="!leading-[150%] text-sm lg:text-base" />
+                    <BlogContent content={data.blog.content} className="!leading-[150%] text-sm lg:text-base blog-prose" />
                 </section>
                 <section className="max-w-4xl mx-auto flex flex-col gap-12">
                     <h2 className="text-primary text-3xl">Related Posts</h2>
@@ -82,14 +84,14 @@ export default async function Page({ params }: Readonly<{ params: { slug: string
                         {
                             relatedBlogs.map((blog) => (
                                 <div key={blog.blog.slug} className="w-full rounded-xl border-[1px] border-gray-300 shadow-sm bg-white">
-                                    <div className="w-full h-full">
-                                        <Image src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/uploads/${blog.blog.image}`} width={1920} height={1080} alt={data.blog.title} className="rounded-xl" />
+                                    <div className="w-full h-[300px]">
+                                        <Image src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/uploads/${blog.blog.image}`} width={1920} height={1080} alt={data.blog.title} className="rounded-xl object-cover w-full h-full object-top" />
                                     </div>
                                     <div className="p-6 flex flex-col gap-4 py-12">
                                         <h4 className="line-clamp-2">
                                             {blog.blog.title}
                                         </h4>
-                                        <BlogContent content={blog.blog.content} className="!leading-[150%] text-sm lg:text-base text-gray-600" />
+                                        <BlogContent content={blog.blog.content} className="!leading-[150%] text-sm lg:text-base text-gray-600 line-clamp-5 custom-prose" />
                                     </div>
 
                                 </div>

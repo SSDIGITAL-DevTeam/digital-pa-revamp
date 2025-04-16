@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Table,
   TableHeader,
@@ -12,64 +12,74 @@ import { ChevronDown, ChevronUp } from "lucide-react";
 interface TableProps {
   headings: string[];
   data: any;
+  setSort: (sort: { key: string; direction: boolean }) => void;
+  sort: { key: string; direction: boolean };
 }
 
-const TableComponents: React.FC<TableProps> = ({ headings, data }) => {
-  const [sortConfig, setSortConfig] = useState<{
-    key: string;
-    direction: "asc" | "desc";
-  } | null>(null);
-
-  const sortedData = [...data].sort((a, b) => {
-    if (!sortConfig) return 0;
-
-    const { key, direction } = sortConfig;
-    const valueA = a[key];
-    const valueB = b[key];
-
-    if (typeof valueA === "number" && typeof valueB === "number") {
-      return direction === "asc" ? valueA - valueB : valueB - valueA;
-    }
-
-    return direction === "asc"
-      ? String(valueA).localeCompare(String(valueB))
-      : String(valueB).localeCompare(String(valueA));
-  });
-
-  const handleSort = (key: string) => {
-    setSortConfig((prev) =>
-      prev?.key === key
-        ? { key, direction: prev.direction === "asc" ? "desc" : "asc" }
-        : { key, direction: "asc" }
-    );
-  };
-
+const TableComponents: React.FC<TableProps> = ({ headings, data, setSort, sort }) => {
+  // const [sort, setSort] = useState({
+  //   key : "",
+  //   direction : true
+  // });
   const checkStatus = (status: string) => {
     return (
       <span
-      className={`py-1 px-3 rounded-lg text-xs flex items-center gap-2 w-fit
-        ${
-          status === "Active" || status === "Published"
+        className={`py-1 px-3 rounded-lg text-xs flex items-center gap-2 w-fit
+        ${status === "Active" || status === "Published"
             ? "bg-green-100 text-green-700"
             : status === "Archived"
-            ? "bg-red-100 text-red-700"
-            : "bg-yellow-100 text-yellow-700"
-        }
+              ? "bg-red-100 text-red-700"
+              : "bg-yellow-100 text-yellow-700"
+          }
       `}
-    >
-      <span
-        className={`h-2 w-2 rounded-full ${
-          status === "Active" || status === "Published"
-            ? "bg-green-700"
-            : status === "Archived"
-            ? "bg-red-700"
-            : "bg-yellow-700"
-        }`}
-      />
-      {status}
-    </span>
-    
-  )}
+      >
+        <span
+          className={`h-2 w-2 rounded-full ${status === "Active" || status === "Published"
+              ? "bg-green-700"
+              : status === "Archived"
+                ? "bg-red-700"
+                : "bg-yellow-700"
+            }`}
+        />
+        {status}
+      </span>
+
+    )
+  }
+
+  const handleSort = (key: string, direction: boolean) => {
+    // console.log(key, direction)
+    switch (key) {
+      case "Status":
+        setSort({ key: "status", direction });
+        break;
+      case "Blog Name":
+        setSort({ key: "title", direction });
+        break;
+      case "Category":
+        setSort({ key: "categoryId", direction });
+        break;
+      case "Category Name":
+        setSort({ key: "name", direction });
+        break;
+      case "Created At":
+        setSort({ key: "createdAt", direction });
+        break;
+      default:
+        break;
+    }
+  }
+
+  const headingKeyMap: Record<string, string> = {
+    "Status": "status",
+    "Blog Name": "title",
+    "Category": "categoryId",
+    "Category Name": "name",
+    "Created At": "createdAt",
+  };
+  
+
+  // console.log({ data })
 
   return (
     <Table>
@@ -78,13 +88,13 @@ const TableComponents: React.FC<TableProps> = ({ headings, data }) => {
           {headings.map((heading) => (
             <TableHead
               key={heading}
-              onClick={() => handleSort(heading)}
+              onClick={() => handleSort(heading, !sort.direction)}
               className="cursor-pointer select-none text-red-900 hover:text-red-700"
             >
               {heading}{" "}
-              {sortConfig?.key === heading && (
+              {sort?.key === headingKeyMap[heading] && (
                 <span className="ml-1 inline-block">
-                  {sortConfig.direction === "asc" ? (
+                  {sort?.direction === true ? (
                     <ChevronUp size={10} />
                   ) : (
                     <ChevronDown size={10} />
@@ -96,7 +106,7 @@ const TableComponents: React.FC<TableProps> = ({ headings, data }) => {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {sortedData.map((row, rowIndex) => (
+        {data.map((row: any, rowIndex: number) => (
           <TableRow key={rowIndex}>
             {headings.map((key) => (
               <TableCell key={`${rowIndex}-${key}`} className="p-2">

@@ -7,7 +7,7 @@ router.get("/", async (req, res) => {
     try {
         const token = req.cookies.refreshToken;
         if (!token) {
-            console.log("Tidak ada token");
+            console.log("Token not found");
             throw new Error(401)
         }
         const accessToken = await verifyRefreshToken(token)

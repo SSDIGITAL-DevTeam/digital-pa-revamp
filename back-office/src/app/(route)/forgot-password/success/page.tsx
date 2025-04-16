@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import InputField from "@/components/partials/form/InputField";
 import { useRouter } from "next/navigation";
 import { failedToast} from "@/utils/toast";
-import { useAuthStore } from "@/app/store/login";
+import { useAuthStore } from "@/store/login";
 import Image from "next/image";
 import { axiosInstance } from "@/lib/axios";
 import loginImage from '@/asset/logo/webp/asset-logo-with-text.webp'

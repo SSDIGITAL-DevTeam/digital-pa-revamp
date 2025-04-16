@@ -8,7 +8,7 @@ router.post("/", async (req, res) => {
     try {
         const { email, password } = req.body;
         if (!email || !password) {
-            throw new Error("Data tidak lengkap");
+            throw new Error("Data is not complete");
         }
         const { accessToken, refreshToken } = await loginUser(req.body)
         res.cookie("refreshToken", refreshToken, {

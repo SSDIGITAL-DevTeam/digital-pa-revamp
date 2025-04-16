@@ -15,7 +15,7 @@ import {
 import Logo from "@/asset/logo/webp/asset-logo-with-text.webp"
 import Image from "next/image"
 import { useEffect, useState } from "react"
-import { useAuthStore } from "@/app/store/login"
+import { useAuthStore } from "@/store/login"
 import { jwtDecode } from "jwt-decode"
 import { features } from "process"
 
@@ -44,7 +44,7 @@ const items = [
   {
     feature: "role",
     title: "Profile",
-    url: "/user",
+    url: "/profile",
     icon: User,
   },
 ]
@@ -55,9 +55,15 @@ export function Sidebarcomponents() {
   const router = useRouter()
   const [hasToken, setHasToken] = useState<boolean | null>(null)
   const tokenName = useAuthStore((state) => state.name);
-  const features = useAuthStore((state) => state.features);
-
-
+  // const id = useAuthStore((state) => state.id);
+  // const role = useAuthStore((state) => state.role);
+  // const features = useAuthStore((state) => state.features);
+  const setToken = useAuthStore((state) => state.setToken);
+  const protectedRoutes = [
+    "dashboard",
+    "blog",
+    "profile",
+  ]
   useEffect(() => {
     if (tokenName) {
       setHasToken(true);
@@ -65,18 +71,14 @@ export function Sidebarcomponents() {
     }
 
     const token = sessionStorage.getItem("token");
-    if (!token) {
+    if (!token && protectedRoutes.includes(pathname.split("/")[1])) {
       router.push("/login");
-    } else {
+    } else if (token) {
+      setToken(token);
       setHasToken(true);
     }
-  }, [tokenName]);
+  }, [tokenName, pathname]);
   if (!hasToken) return null;
-
-  // const filteredItems = items
-  //   .filter(
-  //     (group) => group.feature === "dashboard" || features.includes(group.feature)
-  //   )
 
   return (
     <Sidebar>
@@ -91,14 +93,14 @@ export function Sidebarcomponents() {
               <div key={i}>
                 <SidebarGroupContent>
                   <SidebarMenu>
-                        <SidebarMenuItem>
-                          <SidebarMenuButton asChild className={`${pathname.startsWith(d.url) && "rounded-xl bg-red-700 font-semibold text-white"}`}>
-                            <a href={d.url} className="flex gap-2 items-center">
-                              <d.icon size={15} />
-                              <p>{d.title}</p>
-                            </a>
-                          </SidebarMenuButton>
-                        </SidebarMenuItem>
+                    <SidebarMenuItem>
+                      <SidebarMenuButton asChild className={`${pathname.startsWith(d.url) && "rounded-xl bg-red-700 font-semibold text-white"}`}>
+                        <a href={d.url} className="flex gap-2 items-center">
+                          <d.icon size={15} />
+                          <p>{d.title}</p>
+                        </a>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
                   </SidebarMenu>
                 </SidebarGroupContent>
               </div>

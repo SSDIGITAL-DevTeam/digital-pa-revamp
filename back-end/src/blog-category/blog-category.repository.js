@@ -48,32 +48,25 @@ export const findAllBlogCats = async (skip, limit, where, orderBy) => {
     // }
 };
 
-export const findBlogCatByTitle = async (name) => {
+export const findBlogCatByName = async (name) => {
     try {
-        const data = await prisma.blogCategory.findUnique({
-            where: { name }
-        });
-        return data;
+        let baseQuery = db
+            .select({
+                blogCategory,
+            })
+            .from(blogCategory)
+            .leftJoin(blog, eq(blog.categoryId, blogCategory.id))
+            .where(eq(blogCategory.name, name))
+            .limit(1)
+        const datas = await baseQuery
+        return datas
     } catch (error) {
-        console.log(error)
-        throw new Error("Kesalahan mengambil data berdasarkan nama");
+        console.log('GET / error: ', error)
+        throw new Error('Error fetching all blog categories by title')
     }
 }
 
 export const findBlogCatById = async (where) => {
-    // try {
-    //     const data = await prisma.blogCategory.findUnique({
-    //         where: { id },
-    //         include:{
-    //             blogs:true
-    //         }
-    //     });
-    //     return data;
-    // } catch (error) {
-    //     console.error("Error fetching Category by ID:", error);
-    //     throw new Error("Kesalahan mengambil data berdasarkan ID");
-    // }
-
     try {
         let baseQuery = db
             .select({
@@ -82,25 +75,9 @@ export const findBlogCatById = async (where) => {
             })
             .from(blogCategory)
             .leftJoin(blog, eq(blog.categoryId, blogCategory.id))
-            // .leftJoin(user, eq(blog.userId, user.id))
 
         if (where) baseQuery = baseQuery.where(where)
-        // if (orderBy) baseQuery = baseQuery.orderBy(...orderBy)
-
-        const datas = await baseQuery
-        // .limit(limit).offset(skip)
-
-        // const totalQuery = db
-        //     .select({ count: count() })
-        //     .from(blogCategory)
-        //     // .leftJoin(blogCategory, eq(blog.categoryId, blogCategory.id))
-        //     // .leftJoin(user, eq(blog.userId, user.id))
-
-        // if (where) totalQuery.where(where)
-
-        // const [{ count: total }] = await totalQuery
-
-        // return { datas, total }
+        const datas = await baseQuery.limit(1)
         return datas
     } catch (error) {
         console.log('GET / error: ', error)
@@ -146,7 +123,7 @@ export const findBlogCatBySlug = async (where) => {
 
 export const insertBlogCat = async (data) => {
     try {
-        console.log("insertBlogCat data: ", data);
+        // console.log("insertBlogCat data: ", data);
         await db.insert(blogCategory).values(data);
     } catch (error) {
         console.error('POST / error: ',error)
@@ -156,23 +133,18 @@ export const insertBlogCat = async (data) => {
 
 export const deleteBlogCat = async (id) => {
     try {
-        await prisma.blogCategory.delete({
-            where: { id },
-        });
+        await db.delete(blogCategory).where(eq(blogCategory.id, id))
     } catch (error) {
         console.log(error)
-        throw new Error("Kesalahan dalam penghapusan Blog category");
+        throw new Error("Delete blog category unsuccessfully");
     }
 };
 
 export const editBlogCat = async (id, data) => {
     try {
-        await prisma.blogCategory.update({
-            where: { id },
-            data
-        });
+       await db.update(blogCategory).set(data).where(eq(blogCategory.id, id))
     } catch (error) {
         console.log(error)
-        throw new Error("Kesalahan dalam mengubah Blog category");
+        throw new Error("Change blog category unsuccessfully");
     }
 };

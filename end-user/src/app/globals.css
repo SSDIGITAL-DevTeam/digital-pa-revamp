@@ -61,9 +61,9 @@
         @apply font-heading text-lg font-semibold;
     }
 
-    p {
+    /* p {
         @apply font-body !leading-[150%];
-    }
+    } */
 
     .service-active-scroll {
         @apply border-l-8 border-l-primary;
@@ -95,6 +95,62 @@
         --chart-5: 340 75% 55%;
     }
 }
+
+.custom-prose h3 {
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 170% !important;
+
+  }
+.custom-prose p {
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 150% !important;
+  }
+
+.blog-prose h3 {
+    font-weight: 400;
+    font-size: 1.5rem;
+    line-height: 170% !important;
+        display: inline-block;
+        margin-bottom: 25px;
+        margin-top: 25px;
+
+  }
+.blog-prose p {
+    font-weight: 300;
+    font-size: 1.1rem;
+    line-height: 150% !important;
+    display: inline-block;
+    margin-bottom: 15px;
+  }
+  
+  /* RESPONSIVE STYLING */
+@media (max-width: 768px) {
+    .blog-prose h3 {
+      font-size: 1.25rem;
+      margin-bottom: 20px;
+      margin-top: 20px;
+    }
+  
+    .blog-prose p {
+      font-size: 1rem;
+      margin-bottom: 12px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .blog-prose h3 {
+      font-size: 1.125rem;
+      margin-bottom: 18px;
+      margin-top: 18px;
+    }
+  
+    .blog-prose p {
+      font-size: 0.95rem;
+      margin-bottom: 14px;
+    }
+  }
 
 /* scrollbar */
 ::-webkit-scrollbar {

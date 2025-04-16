@@ -66,14 +66,14 @@ app.use("/uploads", express.static(__dirname + "/../upload"));
 app.use("/api/auth/refresh-token", refreshToken);
 app.use("/api/auth/login", loginController);
 app.use("/api/auth/logout", logoutController);
-app.use("/api/v1/service-category",verifyToken, ServiceCatController);
+// app.use("/api/v1/service-category",verifyToken, ServiceCatController);
 app.use("/api/v1/user", UserController);
-app.use("/api/v1/plan", verifyToken,ServicePlanController);
-app.use("/api/v1/meta",verifyToken, MetaController);
-app.use("/api/v1/page",verifyToken, PageController);
+// app.use("/api/v1/plan", verifyToken,ServicePlanController);
+// app.use("/api/v1/meta",verifyToken, MetaController);
+// app.use("/api/v1/page",verifyToken, PageController);
 app.use("/api/v1/order", OrderController);
 app.use("/api/v1/blog-category", BlogCategoryController);
 app.use("/api/v1/blog", upload.single("image"), BlogController);
 
 
-app.listen(PORT, () => console.log(`Server Running On Port ${PORT}`));
+app.listen(PORT, '0.0.0.0', () => console.log(`Server Running On Port ${PORT}`));

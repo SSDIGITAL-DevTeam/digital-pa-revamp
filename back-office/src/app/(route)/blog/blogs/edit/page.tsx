@@ -2,7 +2,7 @@
 import FormBlog from "@/components/layout/form/FormBlog";
 import Header from "@/components/layout/header/Header";
 import { axiosInstance } from "@/lib/axios";
-import axios from "axios";
+// import axios from "axios";
 import { useSearchParams } from "next/navigation";
 import React, { useEffect } from "react";
 
@@ -25,13 +25,15 @@ const AddPage = () => {
           )
         ])
         setData(category.data.data);
-        setDefaultValue(value.data);
+        setDefaultValue(value.data.blog);
       } catch (error) {
         console.error(error);
       }
     };
     fetchCategory();
   }, [query]);
+
+  // console.log({defaultValue})
 
   return (
     <main className="w-full flex flex-col gap-12 pb-12">

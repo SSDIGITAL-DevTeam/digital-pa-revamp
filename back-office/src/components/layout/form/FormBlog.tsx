@@ -13,9 +13,10 @@ import { failedToast, successToast } from "@/utils/toast";
 import BlogField from "@/components/partials/form/BlogField";
 import SelectField from "@/components/partials/form/SelectField";
 import ImageField from "@/components/partials/form/ImageField";
-import { useAuthStore } from "@/app/store/login";
+import { useAuthStore } from "@/store/login";
 import { withAuth } from "@/hoc/withAuth";
 import { axiosInstance } from "@/lib/axios";
+import { Key } from "lucide-react";
 
 const blogStatus = [
     "Published",
@@ -88,7 +89,7 @@ const FormBlog = ({ defaultValue, data }: { defaultValue?: any, data: any }) => 
 
     useEffect(() => {
         if (defaultValue?.image) {
-            setPreviewUrl(`http://localhost:3006/uploads/${defaultValue.image}`);
+            setPreviewUrl(`${process.env.NEXT_PUBLIC_IMAGE_API_URL}/${defaultValue.image}`);
         }
     }, [defaultValue]);
 
@@ -97,10 +98,12 @@ const FormBlog = ({ defaultValue, data }: { defaultValue?: any, data: any }) => 
     const blogCategory = data
         .map((c: any) => {
             return {
-                value: c.id,
-                title: c.name
+                // Key: c.id,
+                value: c.blogCategory.id,
+                title: c.blogCategory.name
             }
         })
+
     const handleInput = handleSubmit(async (value) => {
         try {
             const formData = new FormData();
@@ -109,7 +112,7 @@ const FormBlog = ({ defaultValue, data }: { defaultValue?: any, data: any }) => 
             formData.append("status", value.status);
             formData.append("favorite", String(value.favorite));
             formData.append("categoryId", value.categoryId);
-            formData.append("roleId", id);
+            formData.append("userId", id);
             if (imageFile) {
                 formData.append("image", imageFile);
             }
@@ -117,6 +120,8 @@ const FormBlog = ({ defaultValue, data }: { defaultValue?: any, data: any }) => 
             const url = defaultValue
                 ? `/blog/${defaultValue.id}`
                 : `/blog`;
+
+                // console.log({formData})
             const method = defaultValue ? axiosInstance.patch : axiosInstance.post;
             const response = await method(url, formData, {
                 headers: { "Content-Type": "multipart/form-data" },
@@ -131,6 +136,7 @@ const FormBlog = ({ defaultValue, data }: { defaultValue?: any, data: any }) => 
             );
             router.push("/blog/blogs");
         } catch (error: any) {
+            // console.log(error);
             failedToast(
                 <p className="text-xl font-semibold text-red-900">Failed</p>,
                 <p className="text-xs text-red-300 mt-2">{

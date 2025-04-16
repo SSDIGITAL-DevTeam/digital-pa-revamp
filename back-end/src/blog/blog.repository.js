@@ -129,23 +129,18 @@ export const insertBlog = async (data) => {
 
 export const deleteBlog = async (id) => {
     try {
-        await prisma.blog.delete({
-            where: { id },
-        })
+        await db.delete(blog).where(eq(blog.id, id))
     } catch (error) {
-        console.log(error)
-        throw new Error('Kesalahan menghapus blog')
+        console.error('DELETE / error: ', error)
+        throw new Error('Error deleting blog')
     }
 }
 
 export const editQueue = async (id, data) => {
     try {
-        await prisma.blog.update({
-            where: { id },
-            data,
-        })
+        await db.update(blog).set(data).where(eq(blog.id, id))
     } catch (error) {
         console.log(error)
-        throw new Error('Kesalahan mengubah blog')
+        throw new Error('Blog edit unsuccessfully')
     }
 }

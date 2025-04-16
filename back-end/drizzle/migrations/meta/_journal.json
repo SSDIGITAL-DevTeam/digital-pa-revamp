@@ -8,6 +8,13 @@
       "when": 1743050429565,
       "tag": "0000_plain_exiles",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1744689714656,
+      "tag": "0001_bright_runaways",
+      "breakpoints": true
     }
   ]
 }

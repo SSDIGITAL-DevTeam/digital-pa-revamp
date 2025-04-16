@@ -21,6 +21,7 @@ type Props = {
 
 export function DialogCategory({ children, refetch, data }: Props) {
     const [open, setOpen] = useState<boolean>(false)
+    // console.log({data})
     return (
         <Dialog onOpenChange={setOpen} open={open}>
             <DialogTrigger asChild>
@@ -28,7 +29,7 @@ export function DialogCategory({ children, refetch, data }: Props) {
             </DialogTrigger>
             <DialogContent className="sm:max-w-[40vw] gap-8">
                 <DialogHeader>
-                    <DialogTitle>Add Category</DialogTitle>
+                    <DialogTitle>{data ? "Edit Category" : "Add Category"}</DialogTitle>
                     <DialogDescription className="hidden">Category</DialogDescription>
                 </DialogHeader>
                 <FormComponents setOpen={setOpen} setRefetch={refetch} defaultValue={data}/>

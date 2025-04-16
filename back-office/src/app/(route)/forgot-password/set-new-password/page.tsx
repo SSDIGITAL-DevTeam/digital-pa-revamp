@@ -9,14 +9,13 @@ import { Button } from "@/components/ui/button";
 import InputField from "@/components/partials/form/InputField";
 import { useRouter } from "next/navigation";
 import { failedToast} from "@/utils/toast";
-import { useAuthStore } from "@/app/store/login";
+import { useAuthStore } from "@/store/login";
 import Image from "next/image";
 import { axiosInstance } from "@/lib/axios";
 import loginImage from '@/asset/logo/webp/asset-logo-with-text.webp'
 
 const dataSchema = z.object({
     email: z.string().email().nonempty(),
-    password: z.string(),
 });
 
 type DataSchema = z.infer<typeof dataSchema>;
@@ -26,10 +25,8 @@ const LoginPage = () => {
         resolver: zodResolver(dataSchema),
         defaultValues: {
             email: "",
-            password: ""
         }
     });
-    const setToken = useAuthStore((state) => state.setToken)
 
     const { handleSubmit, control, reset, watch } = form;
 
@@ -38,12 +35,10 @@ const LoginPage = () => {
     const handleInput = handleSubmit(async (value) => {
         try {
             const response = await axiosInstance.post(
-                `${process.env.NEXT_PUBLIC_AUTH_API_URL}/login`,
+                `${process.env.NEXT_PUBLIC_AUTH_API_URL}/forgot-password`,
                 value
             );
-            sessionStorage.setItem("token", response.data.accessToken);
-            setToken(response.data.accessToken)
-            router.push("/dashboard");
+            router.push("/forgot-password/set-new-password/success");
         } catch (error: any) {
             failedToast(
                 <p className="text-xl font-semibold text-red-900">Failed</p>,

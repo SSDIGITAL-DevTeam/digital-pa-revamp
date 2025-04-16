@@ -76,6 +76,7 @@ export default function Insights() {
                             params: {
                                 status: "Published",
                                 favorite: true,
+                                limit : 3
                             }
                         }),
                         axiosInstance.get('/blog', {
@@ -111,7 +112,7 @@ export default function Insights() {
 
     // console.log({ categories });
     // console.log({ blog });
-    // console.log({ favBlog });
+    console.log({ favBlog });
     // console.log({"panjang" : favBlog.length });
     // console.log({ categories });
     // if (favBlog[0] === undefined) return <div>Loading...</div>
@@ -131,13 +132,13 @@ export default function Insights() {
                         <Link href={`/insights/${favBlog[0].blog.slug}`} className="w-full rounded-md border-[1px] border-gray-300 shadow-md flex flex-col md:flex-row">
                             <div className="flex w-full h-full">
                                 <div className="w-full md:w-[48vw] md:h-[50vh] relative">
-                                    <Image src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/uploads/${favBlog[0].blog.image}`} alt="favorite blog 1" width={1920} height={1080} className="md:object-cover w-full h-full" quality={100} />
+                                    <Image src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/uploads/${favBlog[0].blog.image}`} alt="favorite blog 1" width={1920} height={1080} className="md:object-cover md:object-top w-full h-full" quality={100} />
                                     <ButtonCategory cat={favBlog[0].blogCategory.name} />
                                 </div>
                             </div>
                             <div className="h-full flex justify-center md:items-center flex-col gap-5 w-full my-auto p-8 lg:px-14 md:py-0">
-                                <h2 className="!leading-[120%] text-xl md:text-3xl font-semibold">{favBlog[0].blog.title}</h2>
-                                <BlogContent content={favBlog[0].blog.content} className="line-clamp-2 text-gray-500" />
+                                <h2 className="!leading-[130%] text-xl md:text-3xl font-semibold line-clamp-3">{favBlog[0].blog.title}</h2>
+                                <BlogContent content={favBlog[0].blog.content} className="line-clamp-2 text-gray-500 custom-prose" />
                                 <div className="flex gap-3 w-full items-center">
                                     <div className="h-10 md:h-12 aspect-square rounded-full bg-gray-300 flex items-center justify-center">{favBlog[0].user.name.charAt(0).toUpperCase()}</div>
                                     <div className="flex flex-col gap-1">
@@ -151,14 +152,14 @@ export default function Insights() {
                         <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-8">
                             {
                                 favBlog.slice(1, 3).map((d: any, i: number) => (
-                                    <Link href={`/insights/${d.blog.slug}`} key={`favorite-insights-${i + 1}`} className="w-full md:h-[62vh] rounded-lg border-[1px] border-gray-300 shadow-md">
+                                    <Link href={`/insights/${d.blog.slug}`} key={`favorite-insights-${i + 1}`} className="w-full rounded-lg border-[1px] border-gray-300 shadow-md">
                                         <div className="w-full relative">
-                                            <Image src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/uploads/${d.blog.image}`} alt={`favorite blog ${i + 2}`} width={1920} height={1080} className="md:object-cover w-full rounded-t-lg md:h-[40vh]" quality={100} />
+                                            <Image src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/uploads/${d.blog.image}`} alt={`favorite blog ${i + 2}`} width={1920} height={1080} className="md:object-cover md:object-top w-full rounded-t-lg md:h-[40vh]" quality={100} />
                                             <ButtonCategory cat={d.blogCategory.name} />
                                         </div>
                                         <div className="my-10 px-10 flex flex-col gap-4 justify-center">
-                                            <h2 className="!leading-[120%] text-xl font-semibold">{d.blog.title}</h2>
-                                            <BlogContent content={d.blog.content} className="line-clamp-2 text-gray-500" />
+                                            <h2 className="!leading-[130%] text-xl font-semibold line-clamp-3">{d.blog.title}</h2>
+                                            <BlogContent content={d.blog.content} className="line-clamp-2 text-gray-500 custom-prose" />
                                             <div className="flex gap-3 w-full items-center">
                                                 <div className="h-10 md:h-12 aspect-square rounded-full bg-gray-300 flex items-center justify-center">{d.user.name.charAt(0).toUpperCase()}</div>
                                                 <div className="flex flex-col gap-1">
@@ -177,7 +178,7 @@ export default function Insights() {
 
             <section className="lg:max-w-7xl lg:mx-auto w-full py-12 px-10 md:px-20 lg:px-5 flex flex-col gap-8 items-center justify-center ">
                 <div className="flex flex-col lg:flex-row gap-y-5 w-full justify-between items-center border-b-2 border-gray-300 pb-12">
-                    <h1 className="text-3xl">Latest Articles</h1>
+                    <h1 className="text-2xl md:text-3xl">Latest Articles</h1>
                     <ListCategories list={categories} activeCategory={activeCategory || "all"} setActiveCategory={setActiveCategory} />
                 </div>
                 <PageArticles data={blog} />

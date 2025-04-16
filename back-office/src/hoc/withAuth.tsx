@@ -1,6 +1,6 @@
 "use client";
 
-import { useAuthStore } from "@/app/store/login";
+import { useAuthStore } from "@/store/login";
 import { useRouter, usePathname } from "next/navigation";
 import { useEffect } from "react";
 import { jwtDecode } from "jwt-decode";
@@ -14,7 +14,7 @@ export function withAuth(Component: any) {
     useEffect(() => {
       const token = typeof window !== "undefined" ? sessionStorage.getItem("token") : null;
       const features = [
-        "role",
+        "profile",
         "dashboard",
         "role",
         "blog",

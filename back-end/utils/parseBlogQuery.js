@@ -7,6 +7,7 @@ export function parseBlogQuery(query) {
       search,
       orderBy,
       categoryId,
+      createdAt
     } = query;
   
     const parsedPage = Math.max(parseInt(page) || 1, 1);
@@ -26,10 +27,11 @@ export function parseBlogQuery(query) {
       page: parsedPage,
       limit: parsedLimit,
       status: status ?? undefined,
-      favorite: favorite === "true",
+      favorite,
       search: search ?? undefined,
       orderBy: orderByParams.length > 0 ? orderByParams : undefined,
       categoryId: categoryId ?? undefined,
+      createdAt : createdAt ?? undefined
     };
   }
   

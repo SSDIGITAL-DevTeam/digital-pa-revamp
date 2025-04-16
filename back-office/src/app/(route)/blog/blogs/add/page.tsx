@@ -13,10 +13,12 @@ const AddPage = () => {
         "/blog-category",
         {params : {status : true}}
       );
+
       setData(res.data.data);
     };
     fetchCategory();
   }, []);
+// console.log(data);
 
   return (
     <main className="w-full flex flex-col gap-12 pb-12">
