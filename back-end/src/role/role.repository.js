@@ -72,6 +72,7 @@ export const findUserById = async (id) => {
                 },
             })
             .from(user)
+            .where(eq(user.id, id))
         const data = await baseQuery.limit(1)
 
         return data
@@ -156,9 +157,7 @@ export const insertUser = async (data) => {
 
 export const deleteUser = async (id) => {
     try {
-        await prisma.role.delete({
-            where: { id },
-        })
+        await db.delete(user).where(eq(user.id, id))
     } catch (error) {
         console.log(error)
         throw new Error('Kesalahan dalam penghapusan role')
@@ -170,6 +169,6 @@ export const editUser = async (id, data) => {
         await db.update(user).set(data).where(eq(user.id, id))
     } catch (error) {
         console.log(error)
-        throw new Error('Edit role unsuccessfully')
+        throw new Error('Edit user unsuccessfully')
     }
 }

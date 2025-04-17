@@ -1,11 +1,11 @@
 import Image from "next/image"
 
 // components
-import Hero from '@/app/our-services/ads-campaign/_components/Hero'
+import Hero from '@/app/our-services/_components/Hero'
 import ConsultationButton from "@/components/partials/Button/Consultation"
-import FormJoin from "../_components/FormJoin"
-import ProvenExperience from "../_components/ProvenExperience"
-import OurBrands from "../_components/OurBrandPartner"
+import FormJoin from "../../_components/FormJoin"
+import ProvenExperience from "../../_components/ProvenExperience"
+import OurBrands from "../../_components/OurBrandPartner"
 import ListSection from "../../_components/ListSection"
 import FlyingSection from "../../_components/FlyingSection"
 
@@ -20,7 +20,7 @@ import BalancingImage from '@/assets/our-services/webp/balancing-hunt.webp'
 import ChooseUsImage from '@/assets/our-services/webp/why-choose-us.webp'
 import UnderstandingImage from '@/assets/our-services/webp/understanding.webp'
 import SEOCopywriterImage from '@/assets/our-services/webp/seo-copywriting.webp'
-import Header from "../_components/Header"
+import Header from "../../_components/Header"
 import GridSection from "../../_components/GridSection"
 
 type SemCampaign = {

@@ -11,7 +11,7 @@ import { user } from '../../drizzle/schema.js'
 import { and, eq, gte } from 'drizzle-orm'
 import dayjs from 'dayjs'
 
-const encryptPassword = async (password) => {
+export const encryptPassword = async (password) => {
     const salt = await genSalt(10)
     const hashPassword = await hash(password, salt)
     return hashPassword

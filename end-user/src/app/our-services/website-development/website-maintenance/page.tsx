@@ -1,8 +1,8 @@
 //component asset
-import Hero from '@/app/our-services/ads-campaign/_components/Hero'
-import OurBrands from "../../ads-campaign/_components/OurBrandPartner"
-import ProvenExperience from "../../ads-campaign/_components/ProvenExperience"
-import FormJoin from "../../ads-campaign/_components/FormJoin"
+import Hero from '@/app/our-services/_components/Hero'
+import OurBrands from "../../_components/OurBrandPartner"
+import ProvenExperience from "../../_components/ProvenExperience"
+import FormJoin from "../../_components/FormJoin"
 import FlyingSection from "../../_components/FlyingSection"
 import LeftHeader from "../../_components/LeftHeader"
 

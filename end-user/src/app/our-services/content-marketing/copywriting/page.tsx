@@ -17,12 +17,12 @@ import GraphIcon from "@/assets/our-services/svg/graph.svg"
 import RankIcon from "@/assets/our-services/svg/rank.svg"
 
 //components
-import Hero from '@/app/our-services/ads-campaign/_components/Hero'
-import OurBrands from "../../ads-campaign/_components/OurBrandPartner"
-import ProvenExperience from "../../ads-campaign/_components/ProvenExperience"
-import FormJoin from "../../ads-campaign/_components/FormJoin"
+import Hero from '@/app/our-services/_components/Hero'
+import OurBrands from "../../_components/OurBrandPartner"
+import ProvenExperience from "../../_components/ProvenExperience"
+import FormJoin from "../../_components/FormJoin"
 import FlyingSection from "../../_components/FlyingSection"
-import Header from "../../ads-campaign/_components/Header"
+import Header from "../../_components/Header"
 import LeftHeader from "../../_components/LeftHeader"
 
 const copywritingServices: { title: string, image: string; }[] = [

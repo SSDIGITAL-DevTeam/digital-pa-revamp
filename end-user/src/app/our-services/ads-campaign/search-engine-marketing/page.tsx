@@ -1,13 +1,13 @@
 import Image from "next/image"
 
 //components
-import Hero from '@/app/our-services/ads-campaign/_components/Hero'
+import Hero from '@/app/our-services/_components/Hero'
 import ConsultationButton from "@/components/partials/Button/Consultation"
-import FAQ from "../_components/FAQ"
-import FormJoin from "../_components/FormJoin"
-import ProvenExperience from "../_components/ProvenExperience"
-import OurBrands from "../_components/OurBrandPartner"
-import Header from "../_components/Header"
+import FAQ from "../../_components/FAQ"
+import FormJoin from "../../_components/FormJoin"
+import ProvenExperience from "../../_components/ProvenExperience"
+import OurBrands from "../../_components/OurBrandPartner"
+import Header from "../../_components/Header"
 
 //image asset
 import HeroImage from '@/assets/our-services/webp/hero.webp'

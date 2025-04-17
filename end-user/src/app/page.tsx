@@ -5,7 +5,7 @@ import BrandPartners from './_components/BrandPartners'
 import MarketingSkillSets from './_components/MarketingSkillSets'
 import OurServices from './_components/OurServices/OurServices'
 import Particle from '@/components/partials/ParticleJs/Particle'
-import FAQ from './our-services/ads-campaign/_components/FAQ'
+import FAQ from './our-services/_components/FAQ'
 
 export default function Home() {
     return (

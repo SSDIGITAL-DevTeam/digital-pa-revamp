@@ -5,13 +5,13 @@ import ConsiderInfographicImage from '@/assets/our-services/webp/ic/consider-usi
 import InhouseExpertImage from '@/assets/our-services/webp/seo-copywriting.webp'
 
 //components
-import Hero from '@/app/our-services/ads-campaign/_components/Hero'
-import OurBrands from "../../ads-campaign/_components/OurBrandPartner"
-import ProvenExperience from "../../ads-campaign/_components/ProvenExperience"
-import FormJoin from "../../ads-campaign/_components/FormJoin"
+import Hero from '@/app/our-services/_components/Hero'
+import OurBrands from "../../_components/OurBrandPartner"
+import ProvenExperience from "../../_components/ProvenExperience"
+import FormJoin from "../../_components/FormJoin"
 import FlyingSection from "../../_components/FlyingSection"
 import LeftHeader from "../../_components/LeftHeader"
-import Header from "../../ads-campaign/_components/Header"
+import Header from "../../_components/Header"
 import GridSection from "../../_components/GridSection"
 
 import InfographicContent1 from '@/assets/our-services/webp/ic/infographic-showcase-1.webp'

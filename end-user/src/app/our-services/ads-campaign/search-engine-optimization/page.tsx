@@ -7,13 +7,13 @@ import AffordableGrowthIcon from "@/assets/our-services/svg/affordable-growth.sv
 import GenerateLeadsIcon from "@/assets/our-services/svg/generate-more-leads.svg"
 import EstablishIcon from "@/assets/our-services/svg/establish.svg"
 
-import Hero from '@/app/our-services/ads-campaign/_components/Hero'
+import Hero from '@/app/our-services/_components/Hero'
 import ConsultationButton from "@/components/partials/Button/Consultation"
-import FAQ from "../_components/FAQ"
-import OurBrands from "../_components/OurBrandPartner"
-import FormJoin from "../_components/FormJoin"
-import ProvenExperience from "../_components/ProvenExperience"
-import Header from "../_components/Header"
+import FAQ from "../../_components/FAQ"
+import OurBrands from "../../_components/OurBrandPartner"
+import FormJoin from "../../_components/FormJoin"
+import ProvenExperience from "../../_components/ProvenExperience"
+import Header from "../../_components/Header"
 import FlyingSection from "../../_components/FlyingSection"
 import ListSection from "../../_components/ListSection"
 

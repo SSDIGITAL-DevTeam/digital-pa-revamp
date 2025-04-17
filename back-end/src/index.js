@@ -1,29 +1,33 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
-import path from "path";
+// import path from "path";
 import helmet from "helmet";
 import cookieParser from "cookie-parser";
 // import http from 'http'
 // import rateLimit from 'express-rate-limit'
 
 //new
-import ServiceCatController from "./service-category/service-category.controller.js";
+// import ServiceCatController from "./service-category/service-category.controller.js";
 import UserController from "./role/role.controller.js";
-import ServicePlanController from "./service-plan/service-plan.controller.js";
-import MetaController from "./meta/meta.controller.js";
-import PageController from "./pages/pages.controller.js";
+// import ServicePlanController from "./service-plan/service-plan.controller.js";
+// import MetaController from "./meta/meta.controller.js";
+// import PageController from "./pages/pages.controller.js";
 import OrderController from "./order/order.controller.js";
 import BlogController from "./blog/blog.controller.js";
+import leadController from "./lead/lead.controller.js";
 import BlogCategoryController from "./blog-category/blog-category.controller.js";
 
 //authentications
 import loginController from "./auth/login/login.controller.js";
+// import forgotPasswordController from "./auth/forgot-password/forgot-password.controller.js";
+import forgotPasswordController from "./auth/forgot-password/forgot-password.controller.js";
+import resetPasswordController from "./auth/reset-password/reset-password.controller.js";
 import refreshToken from "./auth/refresh-token/refresh.controller.js";
 import logoutController from "./auth/logout/logout.controller.js";
 
 // middlewares
-import verifyToken from "./middleware/verify.token.js";
+// import verifyToken from "./middleware/verify.token.js";
 import { upload } from "./middleware/uploadImage.js";
 
 dotenv.config();
@@ -35,14 +39,14 @@ const allowedOrigins = process.env.ORIGIN.split(",");
 app.use(
   cors({
     credentials: true,
-    // origin: function (origin, callback) {
-    //   if (!origin || allowedOrigins.includes(origin)) {
-    //     callback(null, true);
-    //   } else {
-    //     callback(new Error("Not allowed by CORS"));
-    //   }
-    // },
-    origin: "*",
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    // origin: "*",
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })
@@ -66,8 +70,11 @@ app.use("/uploads", express.static(__dirname + "/../upload"));
 app.use("/api/auth/refresh-token", refreshToken);
 app.use("/api/auth/login", loginController);
 app.use("/api/auth/logout", logoutController);
-// app.use("/api/v1/service-category",verifyToken, ServiceCatController);
+app.use("/api/auth/forgot-password", forgotPasswordController);
+app.use("/api/auth/reset-password", resetPasswordController);
 app.use("/api/v1/user", UserController);
+app.use("/api/v1/lead", leadController);
+// app.use("/api/v1/service-category",verifyToken, ServiceCatController);
 // app.use("/api/v1/plan", verifyToken,ServicePlanController);
 // app.use("/api/v1/meta",verifyToken, MetaController);
 // app.use("/api/v1/page",verifyToken, PageController);
@@ -76,4 +83,4 @@ app.use("/api/v1/blog-category", BlogCategoryController);
 app.use("/api/v1/blog", upload.single("image"), BlogController);
 
 
-app.listen(PORT, '0.0.0.0', () => console.log(`Server Running On Port ${PORT}`));
+app.listen(PORT, () => console.log(`Server Running On Port ${PORT}`));
