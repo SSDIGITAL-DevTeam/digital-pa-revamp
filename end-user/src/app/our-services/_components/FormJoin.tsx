@@ -1,51 +1,68 @@
 "use client"
-import { ChangeEvent, FormEvent, useState } from "react";
 import Header from "./Header";
-import { PhoneInput } from 'react-international-phone'
-import 'react-international-phone/style.css'
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
-import axios from "axios";
 import { useForm } from "react-hook-form";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+import { Form } from "@/components/ui/form";
 import FieldInput from "@/components/partials/Field/FieldInput";
-import CustomPhoneInput from "@/components/partials/PhoneInput";
 import FieldPhoneInput from "@/components/partials/Field/FieldPhoneInput";
 import { axiosInstance } from "@/lib/axios";
+import FieldSelect from "@/components/partials/Field/FieldDropdown";
+import { useState } from "react";
+
+const businessCategories = [
+    'Automotive',
+    'Business Support & Supplies',
+    'Computers & Electronics',
+    'Construction & Contractors',
+    'Education',
+    'Entertainment',
+    'Food & Dining',
+    'Health & Medicine',
+    'Home & Garden',
+    'Legal & Financial',
+    'Manufacturing, Wholesale, Distribution',
+    'Merchants (Retail)',
+    'Miscellaneous',
+    'Personal Care & Services',
+    'Real Estate',
+    'Travel & Transportation',
+]
 
 const formData = z.object({
     name: z.string().nonempty(),
     email: z.string().email().nonempty(),
     phone: z.string().nonempty().min(4, "Please enter a valid phone number"),
-    bussiness: z.string().nonempty(),
+    business: z.string().nonempty(),
     message: z.string().nonempty(),
 })
 
 type FormData = z.infer<typeof formData>
 
 export default function FormJoin() {
+    const [isLoading, setIsLoading] = useState(false);
     const form = useForm<FormData>({
         defaultValues: {
             name: "",
             email: "",
             phone: "",
-            bussiness: "",
+            business: "",
             message: "",
         },
         resolver: zodResolver(formData),
     });
-    const { handleSubmit, control, reset, getValues } = form
+    const { handleSubmit, control, reset } = form
 
-    const handleInput = handleSubmit(async (value) => {
+    const handleInput = handleSubmit( async(value) => {
+        setIsLoading(true)
         try {
-            const response = await axiosInstance.post("/leads", value);
+            const response = await axiosInstance.post("/lead", {...value, from : "join"});
             console.log("Success:", response.data.message);
-        } catch (error) {
+        } catch (error :any) {
             console.error("Error:", error);
         }
         finally {
+            setIsLoading(false)
             reset()
         }
     })
@@ -59,13 +76,13 @@ export default function FormJoin() {
                         <FieldInput control={control} label="Name" name="name" />
                         <FieldInput control={control} label="Email" name="email" />
                         <FieldPhoneInput control={control} label="Phone Number" name="phone" />
-                        <FieldInput control={control} label="Bussiness" name="bussiness" />
+                        <FieldSelect control={control} label="Business Category" name="business" value={businessCategories} />
                         <div className="lg:col-span-2">
                             <FieldInput control={control} label="Message" name="message" type={"textarea"} />
                         </div>
 
                         <div className="flex justify-end w-full lg:col-span-2">
-                            <button type="submit" className="rounded-md border-2 text-white border-white bg-primary py-3 px-5 lg:px-16 w-fit ">Send Message</button>
+                            <button disabled={isLoading} type="submit" className=" disabled:bg-red-950/40 disabled:cursor-wait rounded-md border-2 text-white border-white bg-primary py-3 px-5 lg:px-16 w-fit "> {isLoading ? "Sending..." : "Send Message"}</button>
                         </div>
                     </form>
                 </Form>

@@ -47,27 +47,14 @@ export const blog = mysqlTable('blog', {
 });
 
 
-export const order = mysqlTable('order', {
+export const lead = mysqlTable('lead', {
   id: varchar('id', { length: 36 }).primaryKey().$defaultFn(() => uuidv4()),
-  amount: text('amount').notNull(),
-  bussiness: varchar('bussiness', { length: 255 }).notNull(),
-  date: varchar('date', { length: 50 }).notNull(),
-  email: varchar('email', { length: 255 }).notNull(),
-  message: text('message').notNull(),
   name: varchar('name', { length: 255 }).notNull(),
-  phoneNumber: varchar('phone_number', { length: 50 }).notNull(),
-  time: varchar('time', { length: 50 }).notNull(),
+  email: varchar('email', { length: 255 }).notNull(),
+  phone: varchar('phone', { length: 50 }).notNull(),
+  business: varchar('business', { length: 255 }).notNull(),
+  message: text('message').notNull(),
+  from: varchar('from', { length: 50 }).notNull(),
   createdAt: timestamp('created_at').defaultNow().notNull(),
   updatedAt: timestamp('updated_at').defaultNow().notNull(),
 });
-
-export const blogRelations = relations(blog, ({ one }) => ({
-  blogCategory: one(blogCategory, {
-    fields: [blog.categoryId],
-    references: [blogCategory.id],
-  }),
-  user: one(user, {
-    fields: [blog.userId],
-    references: [user.id],
-  }),
-}));

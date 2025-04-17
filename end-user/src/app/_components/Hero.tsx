@@ -16,9 +16,9 @@ export default function Hero(): JSX.Element {
                     Think of us as your Personal Assistant that manages your
                     digital marketing stuffs
                 </p>
-                <Link href={"/contact-us"}> 
-                <button className='mt-8 relative bg-primary  cursor-pointer hover:shadow-primary/60 hover:shadow-md py-4 px-20 w-fit text-center font-semibold text-white rounded-lg duration-300 transition-all'> Boost Your Sales
-                </button>
+                <Link href={"/contact-us"} className='z-50'>
+                    <button className='mt-8 relative bg-primary  cursor-pointer hover:shadow-primary/60 hover:shadow-md py-4 px-20 w-fit text-center font-semibold text-white rounded-lg duration-300 transition-all'> Boost Your Sales
+                    </button>
                 </Link>
             </div>
         </div>

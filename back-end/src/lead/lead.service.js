@@ -3,10 +3,10 @@
 import {
     deleteBlog,
     editQueue,
-    findAllBlogs,
+    findAllLeads,
     findBlogByTitle,
     findBlogById,
-    insertBlog,
+    insertLead,
     findBlogBySlug,
 } from './lead.repository.js'
 import dayjs from 'dayjs'
@@ -20,18 +20,15 @@ import { fileURLToPath } from 'url'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 import { asc, desc, ilike, and, or, eq, like, sql, gte } from 'drizzle-orm'
-import { blog, blogCategory, user } from '../../drizzle/schema.js'
+import { blog, blogCategory, lead, user } from '../../drizzle/schema.js'
 
-export const getAllBlogs = async (filters) => {
+export const getAllLeads = async (filters) => {
     try {
         const {
             page = 1,
             limit = 10,
-            status,
             orderBy,
             search,
-            favorite,
-            categoryId,
             createdAt
         } = filters
         // console.log(filters)
@@ -39,23 +36,16 @@ export const getAllBlogs = async (filters) => {
         const skip = (page - 1) * limit
 
         const whereConditions = []
-        let newFavorite = favorite
-        if(typeof favorite === 'string') newFavorite = favorite === 'true'
-
-        if (status !== undefined) whereConditions.push(eq(blog.status, status))
-        if (categoryId !== undefined) {
-            whereConditions.push(eq(blog.categoryId, categoryId))
-        }
-        if (favorite !== undefined)
-            whereConditions.push(eq(blog.favorite, newFavorite))
 
         if (search) {
             const keyword = `%${search.toLowerCase()}%`
 
             const searchFilters = [
-                like(blog.title, keyword),
-                like(user.name, keyword),
-                like(blog.status, keyword),
+                like(lead.name, keyword),
+                like(lead.email, keyword),
+                like(lead.phone, keyword),
+                like(lead.business, keyword),
+                like(lead.message, keyword),
             ]
 
             whereConditions.push(or(...searchFilters))
@@ -94,7 +84,7 @@ export const getAllBlogs = async (filters) => {
             const direction = item[field]
             return direction === 'desc' ? desc(blog[field]) : asc(blog[field])
         })
-        const { datas, total } = await findAllBlogs(skip, limit, where, order)
+        const { datas, total } = await findAllLeads(skip, limit, where, order)
 
         const totalPages = Math.ceil(total / limit)
         // console.log({ datas, total, totalPages })
@@ -121,22 +111,13 @@ export const getBlogById = async (id) => {
     }
 }
 
-export const createBlog = async (payload) => {
+export const createLead = async (payload) => {
     try {
-        const existingBlog = await findBlogByTitle(payload.title)
-        if (existingBlog) {
-            throw new Error('Title already exists')
-        }
 
-        const slug = payload.title
-            .toLowerCase()
-            .replace(/[^a-z0-9]+/g, '-')
-            .replace(/^-+|-+$/g, '')
-
-        await insertBlog({ ...payload, slug })
+        await insertLead(payload)
     } catch (error) {
         console.error('POST / error:', error)
-        throw new Error(error.message || 'Error inserting blog')
+        throw new Error(error.message || 'Error inserting lead')
     }
 }
 
@@ -181,7 +162,7 @@ export const updateQueue = async (id, payload) => {
         }
         // console.log({newFavorite});
 
-        const response = await findAllBlogs(0, 10, eq(blog.favorite, true), [
+        const response = await findAllLeads(0, 10, eq(blog.favorite, true), [
             desc(blog.createdAt),
         ])
         // console.log(queue)

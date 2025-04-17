@@ -1,7 +1,7 @@
 import { PhoneInput } from "react-international-phone";
+import "react-international-phone/style.css"
+
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { Control } from "react-hook-form";
 
 type Props = {
@@ -24,7 +24,8 @@ export default function FieldPhoneInput({ control, name, label, type }: Props) {
                             defaultCountry='sg'
                             value={field.value}
                             onChange={field.onChange}
-                            inputClassName="!flex !items-center !text-base !h-12 !rounded-e-md w-full bg-blue-900"
+
+                            inputClassName="!flex !items-center !text-base !h-12 !rounded-e-md w-full"
                             style={
                                 {
                                     '--react-international-phone-flag-width': '24px',

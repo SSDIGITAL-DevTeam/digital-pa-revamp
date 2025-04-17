@@ -8,19 +8,13 @@ import cookieParser from "cookie-parser";
 // import rateLimit from 'express-rate-limit'
 
 //new
-// import ServiceCatController from "./service-category/service-category.controller.js";
 import UserController from "./role/role.controller.js";
-// import ServicePlanController from "./service-plan/service-plan.controller.js";
-// import MetaController from "./meta/meta.controller.js";
-// import PageController from "./pages/pages.controller.js";
-import OrderController from "./order/order.controller.js";
 import BlogController from "./blog/blog.controller.js";
 import leadController from "./lead/lead.controller.js";
 import BlogCategoryController from "./blog-category/blog-category.controller.js";
 
 //authentications
 import loginController from "./auth/login/login.controller.js";
-// import forgotPasswordController from "./auth/forgot-password/forgot-password.controller.js";
 import forgotPasswordController from "./auth/forgot-password/forgot-password.controller.js";
 import resetPasswordController from "./auth/reset-password/reset-password.controller.js";
 import refreshToken from "./auth/refresh-token/refresh.controller.js";
@@ -75,10 +69,6 @@ app.use("/api/auth/reset-password", resetPasswordController);
 app.use("/api/v1/user", UserController);
 app.use("/api/v1/lead", leadController);
 // app.use("/api/v1/service-category",verifyToken, ServiceCatController);
-// app.use("/api/v1/plan", verifyToken,ServicePlanController);
-// app.use("/api/v1/meta",verifyToken, MetaController);
-// app.use("/api/v1/page",verifyToken, PageController);
-app.use("/api/v1/order", OrderController);
 app.use("/api/v1/blog-category", BlogCategoryController);
 app.use("/api/v1/blog", upload.single("image"), BlogController);
 

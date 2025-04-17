@@ -4,27 +4,14 @@
 
 import prisma from '../../lib/prisma.js'
 import { db } from '../../drizzle/db.js'
-import { blog, blogCategory, user } from '../../drizzle/schema.js'
+import { blog, blogCategory, lead, user } from '../../drizzle/schema.js'
 import { eq, count } from 'drizzle-orm'
 
-export const findAllBlogs = async (skip, limit, where, orderBy) => {
+export const findAllLeads = async (skip, limit, where, orderBy) => {
     try {
         let baseQuery = db
-            .select({
-                blog: blog,
-                user: {
-                    id: user.id,
-                    name: user.name,
-                },
-                blogCategory: {
-                    id: blogCategory.id,
-                    name: blogCategory.name,
-                    slug: blogCategory.slug,
-                },
-            })
-            .from(blog)
-            .leftJoin(blogCategory, eq(blog.categoryId, blogCategory.id))
-            .leftJoin(user, eq(blog.userId, user.id))
+            .select({lead})
+            .from(lead)
 
         if (where) baseQuery = baseQuery.where(where)
         if (orderBy) baseQuery = baseQuery.orderBy(...orderBy)
@@ -33,9 +20,7 @@ export const findAllBlogs = async (skip, limit, where, orderBy) => {
 
         const totalQuery = db
             .select({ count: count() })
-            .from(blog)
-            .leftJoin(blogCategory, eq(blog.categoryId, blogCategory.id))
-            .leftJoin(user, eq(blog.userId, user.id))
+            .from(lead)
 
         if (where) totalQuery.where(where)
 
@@ -44,7 +29,7 @@ export const findAllBlogs = async (skip, limit, where, orderBy) => {
         return { datas, total }
     } catch (error) {
         console.log('GET / error: ', error)
-        throw new Error('Error fetching all blogs')
+        throw new Error('Error fetching all leads')
     }
 }
 
@@ -118,12 +103,12 @@ export const findBlogByTitle = async (title) => {
     }
 }
 
-export const insertBlog = async (data) => {
+export const insertLead = async (data) => {
     try {
-        await db.insert(blog).values(data)
+        await db.insert(lead).values(data)
     } catch (error) {
         console.error('POST / error: ', error)
-        throw new Error('Error inserting blog')
+        throw new Error('Error inserting lead')
     }
 }
 

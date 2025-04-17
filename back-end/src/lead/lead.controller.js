@@ -1,20 +1,47 @@
 import express from 'express'
 import {
-    createBlog,
+    createLead,
     deleteBlogById,
-    getAllBlogs,
-    getBlogById,
+    getAllLeads,
+    // getLeadById,
     updateQueue,
 } from './lead.service.js'
-import { parseBlogQuery } from '../../utils/parseBlogQuery.js'
 
 const router = express.Router()
 
 router.get('/', async (req, res) => {
     try {
-        const filters = parseBlogQuery(req.query)
-        const data = await getAllBlogs(filters)
-        // console.log(filters);
+        let {
+            page = 1,
+            limit = 10,
+            orderBy,
+            search,
+            createdAt,
+        } = req.query
+        page = Math.max(parseInt(page) || 1, 1)
+        limit = Math.max(parseInt(limit) || 10, 1)
+
+        let orderByParams = []
+        if (orderBy) {
+            orderByParams = String(orderBy)
+                .split(',')
+                .map((order) => {
+                    const [field, dir] = order.split(':')
+                    return { [field]: dir === 'desc' ? 'desc' : 'asc' }
+                })
+        }
+
+        const filters = {
+            page,
+            limit,
+            search,
+            orderBy: orderByParams,
+            createdAt,
+        }
+        // const data = await getAllBlogCat(filters)
+        // res.status(200).json(data)
+
+        const data = await getAllLeads(filters)
         res.status(200).json(data)
     } catch (error) {
         console.error('GET / error:', error)
@@ -25,7 +52,7 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
     try {
         const id = req.params.id
-        const data = await getBlogById(id)
+        const data = await getLeadById(id)
         res.status(200).json(data)
     } catch (error) {
         console.error('GET /:id error:', error)
@@ -35,37 +62,22 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
     try {
-        const { title, content, status, favorite, categoryId, userId } =
+        const { name, email, phone, business, message, from } =
             req.body
 
-        if (!req.file || !req.file.filename) {
-            return res.status(400).json({ error: 'Image is required' })
-        }
-        console.log(req.body)
         if (
-            !title?.trim() ||
-            !content?.trim() ||
-            !status?.trim() ||
-            categoryId === undefined ||
-            userId === undefined ||
-            favorite === undefined
+            !name?.trim() ||
+            !email?.trim() ||
+            !phone?.trim() ||
+            !business?.trim() ||
+            !message?.trim() ||
+            !from?.trim()
         ) {
             return res.status(400).json({ error: 'All fields are required' })
         }
+        await createLead(req.body)
 
-        const blogData = {
-            title: title.trim(),
-            content: content.trim(),
-            status: status.trim(),
-            favorite: favorite === 'true',
-            categoryId,
-            userId,
-            image: req.file.filename,
-        }
-
-        await createBlog(blogData)
-
-        res.status(201).json({ message: 'Blog created successfully' })
+        res.status(201).json({ message: 'Lead created successfully' })
     } catch (error) {
         console.error('POST / error:', error)
         res.status(400).json({ error: error.message })

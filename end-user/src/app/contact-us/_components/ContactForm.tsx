@@ -2,6 +2,7 @@
 
 import CustomPhoneInput from '@/components/partials/PhoneInput/CustomPhoneInput'
 import { failToast, successToast } from '@/config/toastConfig'
+import { axiosInstance } from '@/lib/axios'
 import { Button, Input, Textarea, Select, SelectItem } from '@nextui-org/react'
 import { FormEvent, JSX, useState } from 'react'
 import { toast } from 'sonner'
@@ -50,30 +51,31 @@ export default function ContactForm(): JSX.Element {
 
         setIsSending(true)
 
-        const formData = new FormData(e.currentTarget)
-        formData.append('phone', `+${phone.replaceAll('+', '')}`)
-
+        const form = e.currentTarget as HTMLFormElement & {
+            name: HTMLInputElement
+            email: HTMLInputElement
+            business_category: HTMLSelectElement
+            message: HTMLTextAreaElement
+        }
+        
+        const formData = {
+            name: form.name.value,
+            email: form.email.value,
+            phone: `+${phone.replaceAll('+', '')}`,
+            business: form.business_category.value,
+            message: form.message.value,
+            from : "contact"
+        }
         try {
-            const res = await fetch(
-                `${process.env.NEXT_PUBLIC_API_URL}/mail/contact`,
-                {
-                    method: 'POST',
-                    headers: {
-                        Accept: 'application/json',
-                    },
-                    body: formData,
-                },
-            )
+            const res = await axiosInstance.post("/lead", formData);
 
-            if (!res.ok) {
-                setErrorMessages((await res.json()) as ErrorMessage)
+            if (res.status !== 201) {
+                setErrorMessages(res.data.error as ErrorMessage)
 
                 toast.error('Opps, Something went wrong.', failToast)
 
                 return
             }
-
-            const data = await res.json()
 
             const formReset = e.target as HTMLFormElement
             formReset.reset()
@@ -82,7 +84,7 @@ export default function ContactForm(): JSX.Element {
             setErrorMessages({} as ErrorMessage)
 
             toast.success(
-                data?.message || 'Your message has been sent.',
+                'Your message has been sent.',
                 successToast,
             )
         } catch (error) {

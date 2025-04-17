@@ -28,12 +28,13 @@ interface BlockCardProps {
 }
 
 const initialState = {
-  users: [],
   totalUsers: 0,
   publishedBlogs: 0,
   takedownBlogs: 0,
   draftBlogs: 0,
   totalBlogCategories: 0,
+  leads: [],
+  totalLeads: {total : 0, totalPages : 0},
   loading: true,
   error: null,
 };
@@ -76,7 +77,7 @@ export default function Page(): JSX.Element {
 
 
   const handleNext = () => {
-    if (users && page < totalUsers) {
+    if (leads && page < totalLeads.totalPages) {
       handleChangePage(page + 1);
     }
   };
@@ -99,6 +100,7 @@ export default function Page(): JSX.Element {
         { url: "/blog", params: { limit: 1, status: "Archived", createdAt: filter } },
         { url: "/blog", params: { limit: 1, status: "Draft", createdAt: filter } },
         { url: "/blog-category", params: { limit: 1, createdAt: filter } },
+        { url: "/lead", params: { page, limit: 5, createdAt: filter } },
       ];
 
       const responses = await Promise.all(
@@ -115,7 +117,8 @@ export default function Page(): JSX.Element {
           takedownBlogs: responses[2].data.pagination.total,
           draftBlogs: responses[3].data.pagination.total,
           totalBlogCategories: responses[4].data.pagination.total,
-          users: responses[0].data.data,
+          leads: responses[5].data.data,
+          totalLeads: responses[5].data.pagination,
         },
       });
     } catch (error: any) {
@@ -125,12 +128,10 @@ export default function Page(): JSX.Element {
 
 
   const {
-    users, totalUsers,
+    totalUsers,
     publishedBlogs, takedownBlogs, draftBlogs,
-    totalBlogCategories, loading, error,
+    totalBlogCategories,leads, totalLeads, loading, error,
   } = state;
-
-  // console.log({state})
 
   // if (loading) return <p className="text-center"></p>;
   // if (loading) failedToast(
@@ -215,7 +216,7 @@ export default function Page(): JSX.Element {
       >
         <div className="flex justify-between items-center">
           <h2 className="text-xl">Current Leads</h2>
-          <Button onClick={() => downloadCSV(users, 'data.csv')} variant={"destructive"} className="flex items-center gap-2"> <ArrowUpRightFromCircle className="max-h-5 max-w-5" />Export Data</Button>
+          <Button onClick={() => downloadCSV(leads, 'data.csv')} variant={"destructive"} className="flex items-center gap-2"> <ArrowUpRightFromCircle className="max-h-5 max-w-5" />Export Data</Button>
         </div>
         <table className="w-full border-collapse">
           <thead className="w-full">
@@ -228,15 +229,15 @@ export default function Page(): JSX.Element {
             </tr>
           </thead>
           <tbody>
-            {users.map((user: any) => {
-              const formatFeatures = user.user.features.map((feature: any) => feature).join(", ");
+            {leads.map((lead: any) => {
+              // const formatFeatures = lead.lead.features.map((feature: any) => feature).join(", ");
               return (
-                <tr key={user.user.id} className="border-b">
-                  <td className="px-4 py-2">{user.user.name}</td>
-                  <td className="px-4 py-2">{user.user.email}</td>
-                  <td className="px-4 py-2">{user.user.role}</td>
-                  <td className="px-4 py-2">{user.user.status}</td>
-                  <td className="px-4 py-2">{formatFeatures}</td>
+                <tr key={lead.lead.id} className="border-b">
+                  <td className="px-4 py-2">{lead.lead.name}</td>
+                  <td className="px-4 py-2">{lead.lead.email}</td>
+                  <td className="px-4 py-2">{lead.lead.phone}</td>
+                  <td className="px-4 py-2">{lead.lead.business}</td>
+                  <td className="px-4 py-2">{lead.lead.message}</td>
                 </tr>
               );
             })}
@@ -248,9 +249,9 @@ export default function Page(): JSX.Element {
           handlePrev={handlePrevious}
           page={page}
           setPage={handleChangePage}
-          totalPage={totalUsers || 1}
-          totalData={totalUsers || 1}
-          currentData={users.length}
+          totalPage={totalLeads.totalPages || 1}
+          totalData={totalLeads.total || 1}
+          currentData={leads.length}
         />
 
       </section>
