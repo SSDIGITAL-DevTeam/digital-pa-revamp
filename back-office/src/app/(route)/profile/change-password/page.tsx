@@ -10,7 +10,7 @@ import Header from "@/components/layout/header/Header";
 import { failedToast, successToast } from "@/utils/toast";
 import { axiosInstance } from "@/lib/axios";
 import { useRouter } from "next/navigation";
-import { jwtDecode } from "jwt-decode";
+import { jwtDecode, JwtPayload } from "jwt-decode";
 import InputField from "@/components/partials/form/InputField";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -53,8 +53,8 @@ export default function ChangePasswordPage() {
         const fetchToken = () => {
             const token = sessionStorage.getItem("token");
             if (!token) return null
-            const { id } = jwtDecode(token);
-            setId(id);
+            const decoded = jwtDecode<JwtPayload>(token);
+            setId(decoded.id);
         }
         fetchToken()
     }, [])
