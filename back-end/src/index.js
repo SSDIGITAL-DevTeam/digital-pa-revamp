@@ -10,7 +10,7 @@ import cookieParser from "cookie-parser";
 //new
 import UserController from "./role/role.controller.js";
 import BlogController from "./blog/blog.controller.js";
-import leadController from "./lead/lead.controller.js";
+import LeadController from "./lead/lead.controller.js";
 import BlogCategoryController from "./blog-category/blog-category.controller.js";
 
 //authentications
@@ -67,7 +67,7 @@ app.use("/api/auth/logout", logoutController);
 app.use("/api/auth/forgot-password", forgotPasswordController);
 app.use("/api/auth/reset-password", resetPasswordController);
 app.use("/api/v1/user", UserController);
-app.use("/api/v1/lead", leadController);
+app.use("/api/v1/lead", LeadController);
 // app.use("/api/v1/service-category",verifyToken, ServiceCatController);
 app.use("/api/v1/blog-category", BlogCategoryController);
 app.use("/api/v1/blog", upload.single("image"), BlogController);
