@@ -42,8 +42,10 @@ export default function DataPage() {
     const fetchToken = () => {
       const token = sessionStorage.getItem("token");
       if (!token) return null
-      const { email } = jwtDecode(token);
-      setEmail(email);
+      const decoded = jwtDecode(token) as any;
+      if (decoded?.email) {
+        setEmail(email);
+      }
     }
     fetchToken()
   }, [])
