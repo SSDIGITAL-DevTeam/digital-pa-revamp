@@ -54,7 +54,10 @@ export default function ChangePasswordPage() {
             const token = sessionStorage.getItem("token");
             if (!token) return null
             const decoded = jwtDecode(token) as JwtPayload;
-            setId(decoded.id);
+            if (decoded.id) {
+                setId(decoded.id);
+            }
+
         }
         fetchToken()
     }, [])
