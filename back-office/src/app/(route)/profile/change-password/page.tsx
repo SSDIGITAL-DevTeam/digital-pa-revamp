@@ -9,11 +9,7 @@ import TableComponents from "@/components/partials/table/TableComponents";
 import Header from "@/components/layout/header/Header";
 import { failedToast, successToast } from "@/utils/toast";
 import { axiosInstance } from "@/lib/axios";
-import { useRouter, useSearchParams } from "next/navigation";
-import PaginationComponents from "@/components/partials/pagination/Pagination";
-import { init } from "next/dist/compiled/webpack/webpack";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
+import { useRouter } from "next/navigation";
 import { jwtDecode } from "jwt-decode";
 import InputField from "@/components/partials/form/InputField";
 import { useForm } from "react-hook-form";
@@ -26,11 +22,6 @@ type Pagination = {
     perPage: number;
     total: number;
     totalPages: number;
-};
-
-type CategoryType = {
-    data: [];
-    pagination: Pagination;
 };
 
 const dataSchema = z.object({
