@@ -176,7 +176,7 @@ export default function NextUINavbar() {
                         className='font-semibold bg-white border-[2px] border-primary text-primary hover:bg-primary hover:text-white'
                         size='lg'
                         as={Link}
-                        href={process.env.NEXT_PUBLIC_SUBDOMAIN_URL}
+                        href={process.env.NEXT_PUBLIC_API_SIGNIN}
                         radius='sm'
                         target="_blank"
                         rel="noopener noreferrer"
@@ -202,7 +202,7 @@ export default function NextUINavbar() {
                         className='font-semibold bg-white border-[2px] border-primary text-primary hover:bg-primary hover:text-white'
                         size='lg'
                         as={Link}
-                        href={process.env.NEXT_PUBLIC_SUBDOMAIN_URL}
+                        href={process.env.NEXT_PUBLIC_API_SIGNIN}
                         radius='sm'
                         target="_blank"
                         rel="noopener noreferrer"
