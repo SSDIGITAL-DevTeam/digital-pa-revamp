@@ -5,31 +5,6 @@
 import { count, eq } from 'drizzle-orm'
 import { db } from '../../drizzle/db.js'
 import { user } from '../../drizzle/schema.js'
-import prisma from '../../lib/prisma.js'
-
-// export const findAllUsers = async (skip, limit, where, orderBy) => {
-//     try {
-//         const datas = await prisma.user.findMany({
-//             skip,
-//             take: limit,
-//             where,
-//             orderBy,
-//             select: {
-//                 id: true,
-//                 name: true,
-//                 email: true,
-//                 status: true,
-//                 role: true,
-//                 features: true,
-//             },
-//         })
-//         const total = await prisma.user.count({ where })
-//         return { datas, total }
-//     } catch (error) {
-//         console.log(error)
-//         throw new Error('Kesalahan mengambil semua role')
-//     }
-// }
 
 export const findAllUsers = async (skip, limit, where, orderBy) => {
     try {
@@ -81,26 +56,6 @@ export const findUserById = async (id) => {
         throw new Error('Error fetching user by id')
     }
 }
-// export const findUserById = async (id) => {
-//     try {
-//         const user = await prisma.user.findUnique({
-//             where: { id },
-//             select: {
-//                 id: true,
-//                 name: true,
-//                 email: true,
-//                 password: true,
-//                 status: true,
-//                 role: true,
-//                 features: true,
-//             },
-//         })
-//         return user
-//     } catch (error) {
-//         console.log(error)
-//         throw new Error('Kesalahan pencarian role berdasarkan id')
-//     }
-// }
 
 export const findUserByEmail = async (email) => {
     try {

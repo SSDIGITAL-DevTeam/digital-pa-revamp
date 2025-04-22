@@ -33,14 +33,14 @@ const allowedOrigins = process.env.ORIGIN.split(",");
 app.use(
   cors({
     credentials: true,
-    origin: function (origin, callback) {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
-    // origin: "*",
+    // origin: function (origin, callback) {
+    //   if (!origin || allowedOrigins.includes(origin)) {
+    //     callback(null, true);
+    //   } else {
+    //     callback(new Error("Not allowed by CORS"));
+    //   }
+    // },
+    origin: "*",
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })
@@ -73,4 +73,5 @@ app.use("/api/v1/blog-category", BlogCategoryController);
 app.use("/api/v1/blog", upload.single("image"), BlogController);
 
 
-app.listen(PORT, () => console.log(`Server Running On Port ${PORT}`));
+const server = app.listen(PORT, () => console.log(`Server Running On Port ${PORT}`));
+export default server;

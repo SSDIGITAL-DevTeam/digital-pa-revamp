@@ -2,7 +2,6 @@
 //dapat menggunakan orm atau query raw
 //supaya untuk mengganti ORM tinggal ganti pada file ini aja kok
 
-import prisma from '../../lib/prisma.js'
 import { db } from '../../drizzle/db.js'
 import { blog, blogCategory, user } from '../../drizzle/schema.js'
 import { eq, count } from 'drizzle-orm'

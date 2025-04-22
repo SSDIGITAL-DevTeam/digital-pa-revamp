@@ -1,7 +1,6 @@
 import { count, eq } from "drizzle-orm";
 import { db } from "../../drizzle/db.js";
 import { blog, blogCategory } from "../../drizzle/schema.js";
-import prisma from "../../lib/prisma.js";
 
 export const findAllBlogCats = async (skip, limit, where, orderBy) => {
     try {
@@ -33,19 +32,6 @@ export const findAllBlogCats = async (skip, limit, where, orderBy) => {
             console.log('GET / error: ', error)
             throw new Error('Error fetching all blog categories')
         }
-    // try {
-    //     const datas = await prisma.blogCategory.findMany({
-    //         skip,
-    //         take: limit,
-    //         where,
-    //         orderBy,
-    //     });
-    //     const total = await prisma.blogCategory.count({ where });
-    //     return { datas, total };
-    // } catch (error) {
-    //     console.log(error);
-    //     throw new Error("Kesalahan mengambil seluruh data blog category");
-    // }
 };
 
 export const findBlogCatByName = async (name) => {
