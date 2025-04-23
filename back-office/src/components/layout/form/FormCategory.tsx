@@ -12,8 +12,8 @@ import { axiosInstance } from "@/lib/axios";
 import SwitchField from "@/components/partials/form/SwitchField";
 
 const dataSchema = z.object({
-  name: z.string().nonempty(),
-  status: z.boolean(),
+  name: z.string().nonempty().max(100).min(3),
+  status: z.boolean()
 });
 
 type DataSchema = z.infer<typeof dataSchema>;
@@ -30,7 +30,7 @@ const FormComponents = ({ defaultValue, setOpen, setRefetch }: Props) => {
     resolver: zodResolver(dataSchema),
     defaultValues: {
       name: "",
-      status: true,
+      status: true
     },
   });
   const { handleSubmit, control, reset } = form;

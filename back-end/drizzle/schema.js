@@ -1,6 +1,6 @@
+import { relations } from 'drizzle-orm';
 import { mysqlTable, varchar, mysqlEnum, json, timestamp, boolean, text } from 'drizzle-orm/mysql-core';
 import { v4 as uuidv4 } from 'uuid';
-import { relations } from "drizzle-orm";
 
 // Enums
 export const planStatusEnum = mysqlEnum('plan_status', ['Draft', 'Active', 'NonActive']);

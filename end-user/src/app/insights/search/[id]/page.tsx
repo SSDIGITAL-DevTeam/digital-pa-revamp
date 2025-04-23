@@ -18,7 +18,7 @@ export default function SearchPage() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const { id } = useParams();
-    const searchName = id?.toString();
+    const searchName = decodeURIComponent(id?.toString());
     const [activeCategory, setActiveCategory] = useState<string | undefined>(undefined);
 
     useEffect(() => {
@@ -58,6 +58,7 @@ export default function SearchPage() {
                         params: {
                             page,
                             limit: 6,
+                            search: searchName,
                             status: "Published",
                             categoryId : activeCategory
                         }
@@ -85,15 +86,15 @@ export default function SearchPage() {
     return (
         <main className="bg-white py-10 lg:py-0">
             <section className="lg:max-w-7xl  lg:mx-auto w-full px-8 md:px-20 lg:px-5 lg:pt-20 flex lg:flex-row flex-col gap-y-5 lg:justify-between md:items-center">
-                <h1 className="text-primary text-3xl md:max-w-full max-w-[200px] !leading-[150%]">RESULT FOR <span className="text-black">&quot;{searchName}&quot;</span></h1>
-                <div className="flex gap-2 items-center p-2 border-[1px] border-gray-300 rounded-md">
+                <h1 className="text-primary text-2xl lg:text-3xl md:max-w-full max-w-[200px] !leading-[150%]">RESULT FOR <span className="text-black">&quot;{searchName}&quot;</span></h1>
+                <div className="flex gap-2 items-center p-1 md:p-2 border-[1px] border-gray-300 rounded-md">
                     <Input type="text" onChange={(e) => setSearch(e.target.value)} placeholder="Search for Articles" />
                     <Button className="font-semibold" onClick={handleSearch}>Search</Button>
                 </div>
             </section>
             <section className="lg:max-w-7xl lg:mx-auto w-full py-12 px-10 md:px-20 lg:px-5 flex flex-col gap-8 items-center justify-center ">
                 <div className="flex flex-col gap-y-5 lg:flex-row w-full lg:justify-between lg:items-center border-b-2 border-gray-300 pb-12">
-                    <h1 className="text-2xl lg:text-3xl">{defPage.total} Articles</h1>
+                    <h1 className="font-semibold text-gray-900 text-xl lg:text-3xl">{defPage.total} Articles</h1>
                     <ListCategories list={categories} activeCategory={activeCategory} setActiveCategory={setActiveCategory} />
                 </div>
                 <PageArticles data={blog} />

@@ -1,0 +1,607 @@
+{
+	"info": {
+		"_postman_id": "5de95dd7-0188-428b-9e2e-e4a3bbd8576c",
+		"name": "Digital-PA Documentation",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "43074922"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Find All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{NEXT_PUBLIC_API_URL}}/user",
+							"host": [
+								"{{NEXT_PUBLIC_API_URL}}"
+							],
+							"path": [
+								"user"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "3",
+									"disabled": true
+								},
+								{
+									"key": "status",
+									"value": "Active",
+									"disabled": true
+								},
+								{
+									"key": "search",
+									"value": "name",
+									"disabled": true
+								},
+								{
+									"key": "orderBy",
+									"value": "status:asc,name:desc",
+									"disabled": true
+								},
+								{
+									"key": "createdAt",
+									"value": "today",
+									"description": "e.g : today, week, month, year",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find One",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{NEXT_PUBLIC_API_URL}}/user/{{id-user-digitalpa}}"
+					},
+					"response": []
+				},
+				{
+					"name": "Insert",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"test-user\",\r\n    \"email\": \"test-user@gmail.com\",\r\n    \"password\": \"123\",\r\n    \"status\": \"Active\",\r\n    \"role\": \"Admin\",\r\n    \"features\": [\r\n        \"role\",\r\n        \"services\",\r\n        \"blog\",\r\n        \"meta\"\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{NEXT_PUBLIC_API_URL}}/user"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "{{NEXT_PUBLIC_API_URL}}/user/{{id-user-digitalpa}}"
+					},
+					"response": []
+				},
+				{
+					"name": "Edit",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"test-user2\",\r\n    \"email\": \"test-user@gmail.com\",\r\n    \"status\": \"Active\",\r\n    \"password\" : \"123\",\r\n    \"newPassword\" :\"12345\", //optional \r\n    \"role\": \"Admin\",\r\n    \"features\": [\r\n        \"role\",\r\n        \"services\",\r\n        \"blog\",\r\n        \"meta\"\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{NEXT_PUBLIC_API_URL}}/user/{{id-user-digitalpa}}"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"test-user@gmail.com\",\r\n    \"password\": \"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{NEXT_PUBLIC_AUTH_API_URL}}/login"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Change Password",
+			"item": [
+				{
+					"name": "Forgot Password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"test-user@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{NEXT_PUBLIC_AUTH_API_URL}}/forgot-password"
+					},
+					"response": []
+				},
+				{
+					"name": "Reset Password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"token\" : \"sdfsdfsdf\", \r\n    \"newPassword\" : \"121314\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{NEXT_PUBLIC_AUTH_API_URL}}/reset-password"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Logout",
+			"item": [
+				{
+					"name": "Logout",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{NEXT_PUBLIC_AUTH_API_URL}}/logout"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Refresh Token",
+			"item": [
+				{
+					"name": "Refresh Token",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{NEXT_PUBLIC_AUTH_API_URL}}/refresh-token"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Blog Category",
+			"item": [
+				{
+					"name": "Find All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{NEXT_PUBLIC_API_URL}}/blog-category",
+							"host": [
+								"{{NEXT_PUBLIC_API_URL}}"
+							],
+							"path": [
+								"blog-category"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "3",
+									"disabled": true
+								},
+								{
+									"key": "status",
+									"value": "false",
+									"description": "boolean",
+									"disabled": true
+								},
+								{
+									"key": "search",
+									"value": "name",
+									"disabled": true
+								},
+								{
+									"key": "orderBy",
+									"value": "status:asc,name:desc",
+									"disabled": true
+								},
+								{
+									"key": "createdAt",
+									"value": "today",
+									"description": "e.g : today, week, month, year",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find One",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{NEXT_PUBLIC_API_URL}}/blog-category/{{id-category-digitalpa}}"
+					},
+					"response": []
+				},
+				{
+					"name": "Insert",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Blog Baru nih 3\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{NEXT_PUBLIC_API_URL}}/blog-category"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "{{NEXT_PUBLIC_API_URL}}/blog-category/{{id-category-digitalpa}}"
+					},
+					"response": []
+				},
+				{
+					"name": "Edit",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Blog Baru nih 4\",\r\n    \"status\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{NEXT_PUBLIC_API_URL}}/blog-category/{{id-category-digitalpa}}"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Blog",
+			"item": [
+				{
+					"name": "Find All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{NEXT_PUBLIC_API_URL}}/blog",
+							"host": [
+								"{{NEXT_PUBLIC_API_URL}}"
+							],
+							"path": [
+								"blog"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "3",
+									"disabled": true
+								},
+								{
+									"key": "status",
+									"value": "Active",
+									"disabled": true
+								},
+								{
+									"key": "search",
+									"value": "name",
+									"disabled": true
+								},
+								{
+									"key": "orderBy",
+									"value": "status:asc,name:desc",
+									"disabled": true
+								},
+								{
+									"key": "createdAt",
+									"value": "today",
+									"description": "e.g : today, week, month, year",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find One",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{NEXT_PUBLIC_API_URL}}/blog/{{id-blog-digitalpa}}"
+					},
+					"response": []
+				},
+				{
+					"name": "Insert",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Testing 2",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "<h3 class=\\\"\\\" data-start=\\\"88\\\" data-end=\\\"142\\\"><strong data-start=\\\"92\\\" data-end=\\\"142\\\">AI: Mengubah Wajah Dunia Bisnis di Era Digital</strong></h3>\\r\\n<p class=\\\"\\\" data-start=\\\"144\\\" data-end=\\\"551\\\">Kecerdasan Buatan (AI) kini bukan lagi sekadar topik futuristik, melainkan bagian dari strategi nyata dalam dunia bisnis modern. Teknologi ini memungkinkan perusahaan mengotomatisasi proses, menganalisis data dalam jumlah besar, dan membuat keputusan lebih cepat dan akurat. Dari chatbot layanan pelanggan hingga prediksi tren pasar, AI telah menjadi alat yang sangat berharga bagi berbagai sektor industri.</p>\\r\\n<p class=\\\"\\\" data-start=\\\"553\\\" data-end=\\\"898\\\">Salah satu kekuatan utama AI adalah kemampuannya mempelajari pola perilaku konsumen. Dengan machine learning, sistem dapat memahami preferensi pelanggan dan memberikan rekomendasi yang lebih personal. Hal ini membuat pengalaman pelanggan menjadi lebih relevan dan memuaskan, yang pada akhirnya berdampak positif terhadap loyalitas dan penjualan.</p>\\r\\n<p class=\\\"\\\" data-start=\\\"900\\\" data-end=\\\"1218\\\">Namun, adopsi AI juga memerlukan pendekatan strategis. Perusahaan harus mempertimbangkan aspek etika, keamanan data, dan kesiapan tim dalam menggunakan teknologi ini. Dengan implementasi yang tepat, <span style=\\\"background-color: #3598db;\\\">AI bukan hanya menjadi alat bantu</span>, tetapi mitra cerdas yang membawa efisiensi dan keunggulan kompetitif jangka panjang.</p>",
+									"type": "text"
+								},
+								{
+									"key": "favorite",
+									"value": "true",
+									"type": "text"
+								},
+								{
+									"key": "categoryId",
+									"value": "020d1efb-d578-4da8-af0e-511c5db46cad",
+									"type": "text"
+								},
+								{
+									"key": "userId",
+									"value": "20f99ee2-7259-4b9d-8fb5-790f2696baaa",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "postman-cloud:///1f0008d4-43a1-4010-b20c-88139dd0d64c"
+								}
+							]
+						},
+						"url": "{{NEXT_PUBLIC_API_URL}}/blog"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "{{NEXT_PUBLIC_API_URL}}/blog/{{id-blog-digitalpa}}"
+					},
+					"response": []
+				},
+				{
+					"name": "Edit",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Testing 2",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "<h3 class=\\\"\\\" data-start=\\\"88\\\" data-end=\\\"142\\\"><strong data-start=\\\"92\\\" data-end=\\\"142\\\">AI: Mengubah Wajah Dunia Bisnis di Era Digital</strong></h3>\\r\\n<p class=\\\"\\\" data-start=\\\"144\\\" data-end=\\\"551\\\">Kecerdasan Buatan (AI) kini bukan lagi sekadar topik futuristik, melainkan bagian dari strategi nyata dalam dunia bisnis modern. Teknologi ini memungkinkan perusahaan mengotomatisasi proses, menganalisis data dalam jumlah besar, dan membuat keputusan lebih cepat dan akurat. Dari chatbot layanan pelanggan hingga prediksi tren pasar, AI telah menjadi alat yang sangat berharga bagi berbagai sektor industri.</p>\\r\\n<p class=\\\"\\\" data-start=\\\"553\\\" data-end=\\\"898\\\">Salah satu kekuatan utama AI adalah kemampuannya mempelajari pola perilaku konsumen. Dengan machine learning, sistem dapat memahami preferensi pelanggan dan memberikan rekomendasi yang lebih personal. Hal ini membuat pengalaman pelanggan menjadi lebih relevan dan memuaskan, yang pada akhirnya berdampak positif terhadap loyalitas dan penjualan.</p>\\r\\n<p class=\\\"\\\" data-start=\\\"900\\\" data-end=\\\"1218\\\">Namun, adopsi AI juga memerlukan pendekatan strategis. Perusahaan harus mempertimbangkan aspek etika, keamanan data, dan kesiapan tim dalam menggunakan teknologi ini. Dengan implementasi yang tepat, <span style=\\\"background-color: #3598db;\\\">AI bukan hanya menjadi alat bantu</span>, tetapi mitra cerdas yang membawa efisiensi dan keunggulan kompetitif jangka panjang.</p>",
+									"type": "text"
+								},
+								{
+									"key": "favorite",
+									"value": "true",
+									"type": "text"
+								},
+								{
+									"key": "categoryId",
+									"value": "020d1efb-d578-4da8-af0e-511c5db46cad",
+									"type": "text"
+								},
+								{
+									"key": "userId",
+									"value": "20f99ee2-7259-4b9d-8fb5-790f2696baaa",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "Archived",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{NEXT_PUBLIC_API_URL}}/blog/{{id-blog-digitalpa}}"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Lead",
+			"item": [
+				{
+					"name": "Find All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{NEXT_PUBLIC_API_URL}}/lead",
+							"host": [
+								"{{NEXT_PUBLIC_API_URL}}"
+							],
+							"path": [
+								"lead"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "3",
+									"disabled": true
+								},
+								{
+									"key": "search",
+									"value": "meedan",
+									"disabled": true
+								},
+								{
+									"key": "orderBy",
+									"value": "name:asc,phone:asc",
+									"disabled": true
+								},
+								{
+									"key": "createdAt",
+									"value": "today",
+									"description": "e.g : today, week, month, year",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find One",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{NEXT_PUBLIC_API_URL}}/lead/{{id-lead-digitalpa}}"
+					},
+					"response": []
+				},
+				{
+					"name": "Insert",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Test User\",\r\n    \"email\": \"test-user@gmail.com\",\r\n    \"phone\": \"+6536536356\",\r\n    \"business\": \"Construction & Contractors\",\r\n    \"message\": \"I need help\",\r\n    \"from\": \"contact\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{NEXT_PUBLIC_API_URL}}/lead"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "{{NEXT_PUBLIC_API_URL}}/lead/{{id-lead-digitalpa}}"
+					},
+					"response": []
+				},
+				{
+					"name": "Edit",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Test User 2\",\r\n    \"email\": \"test-user@gmail.com\",\r\n    \"phone\": \"+6536536356\",\r\n    \"business\": \"Construction & Contractors\",\r\n    \"message\": \"I need your help\",\r\n    \"from\": \"contact\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{NEXT_PUBLIC_API_URL}}/lead/{{id-lead-digitalpa}}"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

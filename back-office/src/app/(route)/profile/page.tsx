@@ -24,11 +24,6 @@ type Pagination = {
   totalPages: number;
 };
 
-type CategoryType = {
-  data: [];
-  pagination: Pagination;
-};
-
 export default function DataPage() {
   const [email, setEmail] = useState<string | undefined>(undefined);
   const logout = useAuthStore((state) => state.clearUser);
@@ -44,7 +39,7 @@ export default function DataPage() {
       if (!token) return null
       const decoded = jwtDecode(token) as any;
       if (decoded?.email) {
-        setEmail(email);
+        setEmail(decoded.email);
       }
     }
     fetchToken()
@@ -56,6 +51,8 @@ export default function DataPage() {
     logout();
     window.location.reload();
   }
+
+  console.log(email)
 
   return (
     <main className="w-full flex flex-col gap-12">

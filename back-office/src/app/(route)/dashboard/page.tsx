@@ -28,7 +28,6 @@ interface BlockCardProps {
 }
 
 const initialState = {
-  totalUsers: 0,
   publishedBlogs: 0,
   takedownBlogs: 0,
   draftBlogs: 0,
@@ -95,7 +94,6 @@ export default function Page(): JSX.Element {
   const fetchAllData = async () => {
     try {
       const endpoints = [
-        { url: "/user", params: { page, limit: 5, createdAt: filter } },
         { url: "/blog", params: { limit: 1, status: "Published", createdAt: filter } },
         { url: "/blog", params: { limit: 1, status: "Archived", createdAt: filter } },
         { url: "/blog", params: { limit: 1, status: "Draft", createdAt: filter } },
@@ -112,13 +110,12 @@ export default function Page(): JSX.Element {
       dispatch({
         type: "FETCH_SUCCESS",
         payload: {
-          totalUsers: responses[0].data.pagination.total,
-          publishedBlogs: responses[1].data.pagination.total,
-          takedownBlogs: responses[2].data.pagination.total,
-          draftBlogs: responses[3].data.pagination.total,
-          totalBlogCategories: responses[4].data.pagination.total,
-          leads: responses[5].data.data,
-          totalLeads: responses[5].data.pagination,
+          publishedBlogs: responses[0].data.pagination.total,
+          takedownBlogs: responses[1].data.pagination.total,
+          draftBlogs: responses[2].data.pagination.total,
+          totalBlogCategories: responses[3].data.pagination.total,
+          leads: responses[4].data.data,
+          totalLeads: responses[4].data.pagination,
         },
       });
     } catch (error: any) {
@@ -128,11 +125,11 @@ export default function Page(): JSX.Element {
 
 
   const {
-    totalUsers,
     publishedBlogs, takedownBlogs, draftBlogs,
     totalBlogCategories,leads, totalLeads, loading, error,
   } = state;
 
+  console.log({state})
   // if (loading) return <p className="text-center"></p>;
   // if (loading) failedToast(
   //   <p className="text-xl font-semibold text-red-900">Failed</p>,
@@ -191,7 +188,7 @@ export default function Page(): JSX.Element {
           <div className="flex flex-col gap-4 w-full">
             <h1 className="text-xl font-semibold">Total Leads</h1>
             <div className="w-[50%] h-36">
-              <BlockCard text={`Total Per-${filter || "All Time"}`} value={totalUsers} />
+              <BlockCard text={`Total Per-${filter || "All Time"}`} value={totalLeads.total} />
             </div>
           </div>
           <div className="flex gap-4 w-[50%] items-center">
@@ -232,12 +229,12 @@ export default function Page(): JSX.Element {
             {leads.map((lead: any) => {
               // const formatFeatures = lead.lead.features.map((feature: any) => feature).join(", ");
               return (
-                <tr key={lead.lead.id} className="border-b">
-                  <td className="px-4 py-2">{lead.lead.name}</td>
-                  <td className="px-4 py-2">{lead.lead.email}</td>
-                  <td className="px-4 py-2">{lead.lead.phone}</td>
-                  <td className="px-4 py-2">{lead.lead.business}</td>
-                  <td className="px-4 py-2">{lead.lead.message}</td>
+                <tr key={lead.id} className="border-b">
+                  <td className="px-4 py-2">{lead.name}</td>
+                  <td className="px-4 py-2">{lead.email}</td>
+                  <td className="px-4 py-2">{lead.phone}</td>
+                  <td className="px-4 py-2">{lead.business}</td>
+                  <td className="px-4 py-2">{lead.message}</td>
                 </tr>
               );
             })}

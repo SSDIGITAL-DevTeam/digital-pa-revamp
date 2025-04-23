@@ -28,7 +28,7 @@ type CategoryType = {
 };
 
 export default function DataPage() {
-  const [packages, setPackages] = useState<CategoryType | null>(null);
+  const [packages, setBlogCategory] = useState<CategoryType | null>(null);
   const [page, setPage] = useState<number>(1);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [refetch, setRefetch] = useState<boolean>(false);
@@ -72,7 +72,7 @@ export default function DataPage() {
   const handleDialog = async (id: string) => {
     try {
       const response = await axiosInstance.get(`/blog-category/${id}`);
-      setValue(response.data[0].blogCategory);
+      setValue(response.data);
     } catch (error) {
       console.error("Failed to fetch data:", error);
     }
@@ -84,7 +84,7 @@ export default function DataPage() {
         const response = await axiosInstance.get("/blog-category", {
           params: { limit: 4, page, search: searchQuery, orderBy: `${sort.key}:${sort.direction ? "desc" : "asc"}` },
         });
-        setPackages(response.data);
+        setBlogCategory(response.data);
       } catch (error: any) {
         setErr(error.response?.data?.error || error.response?.statusText || "Error fetching data");
       }
@@ -111,29 +111,21 @@ export default function DataPage() {
 
   const headings = ["Category Name", "Created At", "Status", "Action"];
   const data = packages?.data.map((item: any) => ({
-    "Category Name": item.blogCategory.name,
-    "Status": (item.blogCategory.status ? "Active" : "Non Active"),
-    "Created At": dayjs(item.blogCategory.createdAt).format("DD-MM-YYYY HH:mm"),
+    "Category Name": item.name,
+    "Status": (item.status ? "Active" : "Non Active"),
+    "Created At": dayjs(item.createdAt).format("DD-MM-YYYY HH:mm"),
     "Action": (
       <div className="flex items-center gap-5">
         <DialogCategory refetch={setRefetch} data={value} >
-          <Pencil color="red" size={15} className="cursor-pointer" onClick={() => handleDialog(item.blogCategory.id)} />
+          <Pencil color="red" size={15} className="cursor-pointer" onClick={() => handleDialog(item.id)} />
         </DialogCategory>
-        <button onClick={() => handleDelete(item.blogCategory.id)} className="text-red-500">
+        <button onClick={() => handleDelete(item.id)} className="text-red-500">
           <Trash color="red" size={15} />
         </button>
       </div>
     ),
   }));
 
-
-
-  // const filteredData = data?.filter((row: any) =>
-  //   headings.some((key) =>
-  //     String(row[key]).toLowerCase().includes(searchQuery.toLowerCase())
-  //   )
-  // );
-  // console.log({headings})
   return (
     <main className="w-full flex flex-col gap-12">
       <Header title={"Blog Category"} />

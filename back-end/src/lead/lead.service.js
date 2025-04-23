@@ -1,25 +1,18 @@
 //functionya re-usable
 
 import {
-    deleteBlog,
-    editQueue,
     findAllLeads,
-    findBlogByTitle,
-    findBlogById,
     insertLead,
-    findBlogBySlug,
+    findLeadById,
+    editLead,
+    deleteLead
 } from './lead.repository.js'
 import dayjs from 'dayjs'
 import 'dayjs/locale/id.js'
 
 dayjs.locale('id') // Set locale ke bahasa Indonesia
-import fs from 'fs'
-import path from 'path'
-import { fileURLToPath } from 'url'
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
-import { asc, desc, ilike, and, or, eq, like, sql, gte } from 'drizzle-orm'
+import { asc, desc, ilike, and, or, eq, like, sql, gte, is } from 'drizzle-orm'
 import { blog, blogCategory, lead, user } from '../../drizzle/schema.js'
 
 export const getAllLeads = async (filters) => {
@@ -31,7 +24,6 @@ export const getAllLeads = async (filters) => {
             search,
             createdAt
         } = filters
-        // console.log(filters)
 
         const skip = (page - 1) * limit
 
@@ -46,6 +38,7 @@ export const getAllLeads = async (filters) => {
                 like(lead.phone, keyword),
                 like(lead.business, keyword),
                 like(lead.message, keyword),
+                like(lead.from, keyword),
             ]
 
             whereConditions.push(or(...searchFilters))
@@ -70,7 +63,7 @@ export const getAllLeads = async (filters) => {
             }
 
             if (dateFrom) {
-                whereConditions.push(gte(blog.createdAt, dateFrom));
+                whereConditions.push(gte(lead.createdAt, dateFrom));
             }
         }
 
@@ -82,7 +75,7 @@ export const getAllLeads = async (filters) => {
         const order = (orderBy || []).map((item) => {
             const field = Object.keys(item)[0]
             const direction = item[field]
-            return direction === 'desc' ? desc(blog[field]) : asc(blog[field])
+            return direction === 'desc' ? desc(lead[field]) : asc(lead[field])
         })
         const { datas, total } = await findAllLeads(skip, limit, where, order)
 
@@ -98,14 +91,19 @@ export const getAllLeads = async (filters) => {
             },
         }
     } catch (error) {
+        console.log(error)
         throw new Error(error.message)
     }
 }
 
-export const getBlogById = async (id) => {
+export const getLeadById = async (id) => {
     try {
-        const blog = (await findBlogById(id)) || (await findBlogBySlug(id))
-        return blog
+        let where = eq(lead.id, id)
+        const leadData = await findLeadById(where)
+        if(!leadData) {
+            throw new Error('Lead not found')
+        }
+        return leadData
     } catch (error) {
         throw new Error(error.message)
     }
@@ -113,66 +111,33 @@ export const getBlogById = async (id) => {
 
 export const createLead = async (payload) => {
     try {
-
         await insertLead(payload)
     } catch (error) {
-        console.error('POST / error:', error)
-        throw new Error(error.message || 'Error inserting lead')
-    }
-}
-
-export const deleteBlogById = async (id) => {
-    try {
-        const blog = await findBlogById(id)
-        if (blog == null) {
-            throw new Error('Blog with that ID not found')
-        }
-        const imagePath = path.join(__dirname, '../../upload', blog.blog.image)
-        if (fs.existsSync(imagePath)) {
-            fs.unlinkSync(imagePath)
-        }
-        await deleteBlog(id)
-    } catch (error) {
-        console.log(error)
         throw new Error(error.message)
     }
 }
 
-export const updateQueue = async (id, payload) => {
+export const deleteLeadById = async (id) => {
     try {
-        const queue = await findBlogById(id)
-        if (!queue) {
-            throw new Error('Blog not found')
+        let where = eq(lead.id, id)
+        const isLeadExist = await findLeadById(where)
+        if (!isLeadExist) {
+            throw new Error('Lead not found')
         }
+        await deleteLead(id)
+    } catch (error) {
+        throw new Error(error.message)
+    }
+}
 
-        const { image, favorite } = payload
-        console.log(queue)
-        if (image) {
-            const imagePath = path.join(__dirname, '../../upload', queue.image)
-            if (fs.existsSync(imagePath)) {
-                fs.unlinkSync(imagePath)
-            }
+export const updateLead = async (id, payload) => {
+    try {
+        const where = eq(lead.id, id)
+        const isLeadExist = await findLeadById(where)
+        if (!isLeadExist) {
+            throw new Error('Lead not found')
         }
-
-        
-        let newFavorite = favorite
-
-        if (typeof favorite === 'string') {
-            newFavorite = favorite === 'true'
-        }
-        // console.log({newFavorite});
-
-        const response = await findAllLeads(0, 10, eq(blog.favorite, true), [
-            desc(blog.createdAt),
-        ])
-        // console.log(queue)
-        if (queue.blog.status !== 'Published' && newFavorite === true) {
-            throw new Error('Blog must be published first')
-        }
-        if (newFavorite === true && response.datas.length >= 3 && queue.blog.favorite === false) {
-            throw new Error('You can only favorite up to 3 blogs')
-        }
-        await editQueue(id, { ...payload, favorite: newFavorite })
+        await editLead(id, payload)
     } catch (error) {
         throw new Error(error.message)
     }

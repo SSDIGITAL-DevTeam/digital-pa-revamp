@@ -8,7 +8,7 @@ import cookieParser from "cookie-parser";
 // import rateLimit from 'express-rate-limit'
 
 //new
-import UserController from "./role/role.controller.js";
+import UserController from "./user/user.controller.js";
 import BlogController from "./blog/blog.controller.js";
 import LeadController from "./lead/lead.controller.js";
 import BlogCategoryController from "./blog-category/blog-category.controller.js";
@@ -33,14 +33,14 @@ const allowedOrigins = process.env.ORIGIN.split(",");
 app.use(
   cors({
     credentials: true,
-    // origin: function (origin, callback) {
-    //   if (!origin || allowedOrigins.includes(origin)) {
-    //     callback(null, true);
-    //   } else {
-    //     callback(new Error("Not allowed by CORS"));
-    //   }
-    // },
-    origin: "*",
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    // origin: "*",
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })

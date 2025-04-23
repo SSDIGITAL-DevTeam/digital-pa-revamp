@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken'
-import { editUser, findUserByEmail } from '../../role/role.repository.js'
+import { editUser, findUserByEmail } from '../../user/user.repository.js'
 import { compare } from 'bcrypt'
 
 export const loginUser = async (data) => {
@@ -17,7 +17,7 @@ export const loginUser = async (data) => {
         
         
         const payload = { id, name, role, email, features }
-        console.log(payload)
+        
         const isPassword = await compare(inputPassword, password)
         if (!isPassword) {
             throw new Error('Password does not match')

@@ -35,20 +35,17 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
     try {
-        const { title, content, status, favorite, categoryId, userId } =
+        const { title, content, categoryId, userId } =
             req.body
 
         if (!req.file || !req.file.filename) {
             return res.status(400).json({ error: 'Image is required' })
         }
-        console.log(req.body)
         if (
             !title?.trim() ||
             !content?.trim() ||
-            !status?.trim() ||
             categoryId === undefined ||
-            userId === undefined ||
-            favorite === undefined
+            userId === undefined
         ) {
             return res.status(400).json({ error: 'All fields are required' })
         }
@@ -56,8 +53,6 @@ router.post('/', async (req, res) => {
         const blogData = {
             title: title.trim(),
             content: content.trim(),
-            status: status.trim(),
-            favorite: favorite === 'true',
             categoryId,
             userId,
             image: req.file.filename,

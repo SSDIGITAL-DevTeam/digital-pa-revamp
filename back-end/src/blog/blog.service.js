@@ -8,6 +8,7 @@ import {
     findBlogById,
     insertBlog,
     findBlogBySlug,
+    checkBlogFavorite,
 } from './blog.repository.js'
 import dayjs from 'dayjs'
 import 'dayjs/locale/id.js'
@@ -54,7 +55,7 @@ export const getAllBlogs = async (filters) => {
 
             const searchFilters = [
                 like(blog.title, keyword),
-                like(user.name, keyword),
+                like(blog.content, keyword),
                 like(blog.status, keyword),
             ]
 
@@ -89,6 +90,7 @@ export const getAllBlogs = async (filters) => {
             ? and(...whereConditions)
             : undefined
 
+
         const order = (orderBy || []).map((item) => {
             const field = Object.keys(item)[0]
             const direction = item[field]
@@ -114,7 +116,9 @@ export const getAllBlogs = async (filters) => {
 
 export const getBlogById = async (id) => {
     try {
-        const blog = (await findBlogById(id)) || (await findBlogBySlug(id))
+        let blog = await findBlogById(id) 
+        if(!blog) blog = await findBlogBySlug(id)
+        if(!blog) throw new Error('Blog not found')
         return blog
     } catch (error) {
         throw new Error(error.message)
@@ -133,7 +137,7 @@ export const createBlog = async (payload) => {
             .replace(/[^a-z0-9]+/g, '-')
             .replace(/^-+|-+$/g, '')
 
-        await insertBlog({ ...payload, slug })
+        await insertBlog({ ...payload, slug, status : "Published", favorite: false })
     } catch (error) {
         console.error('POST / error:', error)
         throw new Error(error.message || 'Error inserting blog')
@@ -146,7 +150,7 @@ export const deleteBlogById = async (id) => {
         if (blog == null) {
             throw new Error('Blog with that ID not found')
         }
-        const imagePath = path.join(__dirname, '../../upload', blog.blog.image)
+        const imagePath = path.join(__dirname, '../../upload', blog.image)
         if (fs.existsSync(imagePath)) {
             fs.unlinkSync(imagePath)
         }
@@ -159,21 +163,19 @@ export const deleteBlogById = async (id) => {
 
 export const updateQueue = async (id, payload) => {
     try {
-        const queue = await findBlogById(id)
-        if (!queue) {
+        const blog = await findBlogById(id)
+        if (!blog) {
             throw new Error('Blog not found')
         }
 
         const { image, favorite } = payload
-        console.log(queue)
         if (image) {
-            const imagePath = path.join(__dirname, '../../upload', queue.image)
+            const imagePath = path.join(__dirname, '../../upload', blog.image)
             if (fs.existsSync(imagePath)) {
                 fs.unlinkSync(imagePath)
             }
         }
-
-        
+        // console.log(payload)
         let newFavorite = favorite
 
         if (typeof favorite === 'string') {
@@ -181,18 +183,17 @@ export const updateQueue = async (id, payload) => {
         }
         // console.log({newFavorite});
 
-        const response = await findAllBlogs(0, 10, eq(blog.favorite, true), [
-            desc(blog.createdAt),
-        ])
-        // console.log(queue)
-        if (queue.blog.status !== 'Published' && newFavorite === true) {
+        const totalBlogFavorite = await checkBlogFavorite()
+        
+        if (blog.status !== 'Published' && newFavorite === true) {
             throw new Error('Blog must be published first')
         }
-        if (newFavorite === true && response.datas.length >= 3 && queue.blog.favorite === false) {
+        if (newFavorite === true && totalBlogFavorite >= 3 && blog.favorite === false) {
             throw new Error('You can only favorite up to 3 blogs')
         }
         await editQueue(id, { ...payload, favorite: newFavorite })
     } catch (error) {
+        console.log(error)
         throw new Error(error.message)
     }
 }

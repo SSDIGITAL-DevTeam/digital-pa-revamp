@@ -5,7 +5,7 @@ import {
   getAllUsers,
   getUserById,
   updateUser,
-} from "./role.service.js";
+} from "./user.service.js";
 
 const router = express.Router();
 
@@ -16,6 +16,7 @@ router.get("/", async (req, res) => {
 
     page = Math.max(parseInt(page) || 1, 1);
     limit = Math.max(parseInt(limit) || 10, 1);
+    console.log(req.query)
 
     let orderByParams = [];
     if (orderBy) {
@@ -68,7 +69,7 @@ router.delete("/:id", async (req, res) => {
     const id = req.params.id;
 
     await deleteUserById(id);
-    res.status(200).json({ message: "Berhasil Menghapus Role" });
+    res.status(200).json({ message: "User deleted successfully" });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }

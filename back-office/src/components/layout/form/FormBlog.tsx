@@ -99,8 +99,8 @@ const FormBlog = ({ defaultValue, data }: { defaultValue?: any, data: any }) => 
         .map((c: any) => {
             return {
                 // Key: c.id,
-                value: c.blogCategory.id,
-                title: c.blogCategory.name
+                value: c.id,
+                title: c.name
             }
         })
 

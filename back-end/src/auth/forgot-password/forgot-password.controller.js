@@ -1,7 +1,7 @@
 import express from 'express'
 import jwt from 'jsonwebtoken'
 import { sendResetEmail } from '../../../utils/mail.js'
-import { findUserByEmail } from '../../role/role.repository.js'
+import { findUserByEmail } from '../../user/user.repository.js'
 
 const router = express.Router()
 
@@ -22,15 +22,12 @@ router.post('/', async (req, res) => {
             }
         )
 
-        const resetLink = `http://localhost:3000/reset-password?token=${token}`
+        const resetLink = `${process.env.RESET_LINK_URL}?token=${token}`
 
         await sendResetEmail(user.email, resetLink)
 
         res.status(200).json({ message: 'Password reset link sent to email' })
 
-        // await createBlog(blogData)
-
-        // res.status(201).json({ message: 'Blog created successfully' })
     } catch (error) {
         console.error('POST / reset-password error:', error)
         res.status(400).json({ error: error.message })

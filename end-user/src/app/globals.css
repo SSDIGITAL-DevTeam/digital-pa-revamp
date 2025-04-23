@@ -97,16 +97,30 @@
 }
 
 .custom-prose h3 {
-    font-weight: 300;
-    font-size: 1rem;
-    line-height: 170% !important;
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 170% !important;
+}
 
-  }
 .custom-prose p {
-    font-weight: 300;
-    font-size: 1rem;
-    line-height: 150% !important;
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 150% !important;
+}
+
+/* Tambahkan media query untuk mobile */
+@media (max-width: 640px) {
+  .custom-prose h3 {
+    font-size: 0.875rem; /* Lebih kecil untuk mobile */
+    line-height: 160% !important;
   }
+
+  .custom-prose p {
+    font-size: 0.875rem;
+    line-height: 145% !important;
+  }
+}
+
 
 .blog-prose h3 {
     font-weight: 400;

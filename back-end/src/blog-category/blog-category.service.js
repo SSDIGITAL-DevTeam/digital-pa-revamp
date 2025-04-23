@@ -6,7 +6,6 @@ import {
     insertBlogCat,
     deleteBlogCat,
     editBlogCat,
-    findBlogCatBySlug,
 } from './blog-category.repository.js'
 import { blogCategory } from '../../drizzle/schema.js'
 import dayjs from 'dayjs'
@@ -96,38 +95,17 @@ export const getAllBlogCat = async (filters) => {
     }
 }
 
-// export const getBlogCatByTitle = async (name) => {
-//     try {
-//         const data =
-//             (await findBlogCatByName(name)) || (await findBlogCatBySlug(name))
-//         return data
-//     } catch (error) {
-//         throw new Error(error.message)
-//     }
-// }
-
-export const getBlogCatById = async (id, filters) => {
+export const getBlogCatById = async (id) => {
     try {
-        const { status } = filters
-        const whereConditions = []
-
-        if (status !== undefined)
-            whereConditions.push(
-                eq(
-                    blogCategory.status,
-                    typeof status === 'boolean' ? status : status === 'true'
-                )
-            )
-
-        whereConditions.push(
-            eq(blogCategory.id, id)
-        )
-
-        const where = whereConditions.length
-            ? and(...whereConditions)
-            : undefined
-
+        let where = eq(blogCategory.id, id)
         let data = await findBlogCatById(where)
+        if (!data) {
+            where = eq(blogCategory.slug, id)
+            data = await findBlogCatById(where)
+        }
+        if(!data) {
+            throw new Error('Blog Category is not found')
+        }
         return data
     } catch (error) {
         throw new Error(error.message)
@@ -136,16 +114,15 @@ export const getBlogCatById = async (id, filters) => {
 
 export const createBlogCat = async (payload) => {
     try {
-        const checkName = await findBlogCatByName(payload.name);
-        // console.log(checkName)
-        if (checkName.length > 0) {
+        const isBlogCategoryExist = await findBlogCatByName(payload.name);
+        if (isBlogCategoryExist) {
           throw new Error("Category with this name already exists");
         }
         const slug = payload.name
             .toLowerCase()
             .replace(/[^a-z0-9]+/g, '-')
             .replace(/^-+|-+$/g, '')
-        const data = await insertBlogCat({ ...payload, slug })
+        const data = await insertBlogCat({ ...payload, slug, status: true })
         return data
     } catch (error) {
         throw new Error(error.message)
@@ -154,7 +131,11 @@ export const createBlogCat = async (payload) => {
 
 export const deleteBlogCatById = async (id) => {
     try {
-        await findBlogCatById(id)
+        let where = eq(blogCategory.id, id)
+        const isBlogCategoryExist = await findBlogCatById(where)
+        if (!isBlogCategoryExist) {
+            throw new Error('Blog Category is not found')
+        }
         await deleteBlogCat(id)
     } catch (error) {
         throw new Error(error.message)
@@ -163,8 +144,9 @@ export const deleteBlogCatById = async (id) => {
 
 export const updateBlogCat = async (id, payload) => {
     try {
-        const data = await findBlogCatById(id)
-        if (!data) {
+        let where = eq(blogCategory.id, id)
+        const isBlogCategoryExist = await findBlogCatById(where)
+        if (!isBlogCategoryExist) {
             throw new Error('Blog Category is not found')
         }
         const newSlug = payload.name

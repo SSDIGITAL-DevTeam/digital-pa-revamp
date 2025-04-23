@@ -8,27 +8,28 @@ import { eq, count } from 'drizzle-orm'
 
 export const findAllBlogs = async (skip, limit, where, orderBy) => {
     try {
-        let baseQuery = db
-            .select({
-                blog: blog,
-                user: {
-                    id: user.id,
-                    name: user.name,
+        let datas = await db.query.blog.findMany({
+            with: {
+                category: {
+                    columns: {
+                        id: true,
+                        name: true,
+                        slug: true,
+                        status: true
+                    }
                 },
-                blogCategory: {
-                    id: blogCategory.id,
-                    name: blogCategory.name,
-                    slug: blogCategory.slug,
+                author: {
+                    columns: {
+                        id: true,
+                        name: true,
+                    }
                 },
-            })
-            .from(blog)
-            .leftJoin(blogCategory, eq(blog.categoryId, blogCategory.id))
-            .leftJoin(user, eq(blog.userId, user.id))
-
-        if (where) baseQuery = baseQuery.where(where)
-        if (orderBy) baseQuery = baseQuery.orderBy(...orderBy)
-
-        const datas = await baseQuery.limit(limit).offset(skip)
+            },
+            where,
+            limit,
+            offset : skip,
+            orderBy
+        })
 
         const totalQuery = db
             .select({ count: count() })
@@ -46,56 +47,73 @@ export const findAllBlogs = async (skip, limit, where, orderBy) => {
         throw new Error('Error fetching all blogs')
     }
 }
+export const checkBlogFavorite = async () => {
+    try {
+        const totalFavorite = db
+            .select({ count: count() })
+            .from(blog)
+            .where(eq(blog.favorite, true))
+
+        const [{ count: total }] = await totalFavorite
+
+        return total
+    } catch (error) {
+        console.log('GET / error: ', error)
+        throw new Error('Error fetching all blogs')
+    }
+}
 
 export const findBlogById = async (blogId) => {
     try {
-        const selectedBlog = await db
-            .select({
-                blog: blog,
-                user: {
-                    id: user.id,
-                    name: user.name,
+        let data = await db.query.blog.findFirst({
+            with: {
+                category: {
+                    columns: {
+                        id: true,
+                        name: true,
+                        slug: true,
+                        status: true
+                    }
                 },
-                blogCategory: {
-                    id: blogCategory.id,
-                    name: blogCategory.name,
-                    slug: blogCategory.slug,
+                author: {
+                    columns: {
+                        id: true,
+                        name: true,
+                    }
                 },
-            })
-            .from(blog)
-            .leftJoin(blogCategory, eq(blog.categoryId, blogCategory.id))
-            .leftJoin(user, eq(blog.userId, user.id))
-            .where(eq(blog.id, blogId))
-            .limit(1)
+            },
+            where : eq(blog.id, blogId)
+        })
 
-        return selectedBlog[0] || null
+        return data
     } catch (error) {
         console.error('GET by ID / error: ', error)
         throw new Error('Error fetching blog by ID')
     }
 }
-export const findBlogBySlug = async (blogId) => {
+export const findBlogBySlug = async (slug) => {
     try {
-        const selectedBlog = await db
-            .select({
-                blog: blog,
-                user: {
-                    id: user.id,
-                    name: user.name,
+        let data = await db.query.blog.findFirst({
+            with: {
+                category: {
+                    columns: {
+                        id: true,
+                        name: true,
+                        slug: true,
+                        status: true
+                    }
                 },
-                blogCategory: {
-                    id: blogCategory.id,
-                    name: blogCategory.name,
-                    slug: blogCategory.slug,
+                author: {
+                    columns: {
+                        id: true,
+                        name: true,
+                    }
                 },
-            })
-            .from(blog)
-            .leftJoin(blogCategory, eq(blog.categoryId, blogCategory.id))
-            .leftJoin(user, eq(blog.userId, user.id))
-            .where(eq(blog.slug, blogId))
-            .limit(1)
+            },
+            where : eq(blog.slug, slug)
+        })
 
-        return selectedBlog[0] || null
+        return data
     } catch (error) {
         console.error('GET by ID / error: ', error)
         throw new Error('Error fetching blog by ID')

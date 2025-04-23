@@ -38,9 +38,7 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
     try {
         const id = req.params.id
-        const { status } = req.query
-        const filters = { status }
-        const data = await getBlogCatById(id, filters)
+        const data = await getBlogCatById(id)
         res.status(200).json(data)
     } catch (error) {
         res.status(400).json({ error: error.message })
@@ -50,19 +48,19 @@ router.get('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
     try {
         const { name, status } = req.body
-        if (!name || !status) {
+        if (!name) {
             throw new Error('Data is required')
         }
         await createBlogCat(req.body)
         res.status(200).json({ message: 'Blog Category created successfully' })
     } catch (error) {
-        if (error instanceof z.ZodError) {
-            res.status(400).json({
-                error: `${error.errors[0].message} - at column ${error.errors[0].path[0]}`,
-            })
-        } else {
+        // if (error instanceof z.ZodError) {
+        //     res.status(400).json({
+        //         error: `${error.errors[0].message} - at column ${error.errors[0].path[0]}`,
+        //     })
+        // } else {
             res.status(400).json({ error: error.message })
-        }
+        // }
     }
 })
 
@@ -108,13 +106,13 @@ router.patch('/:id', async (req, res) => {
         await updateBlogCat(id, req.body)
         res.status(200).json({ message: 'Blog Category Updated Successfully' })
     } catch (error) {
-        if (error instanceof z.ZodError) {
-            res.status(400).json({
-                error: `${error.errors[0].message} - pada kolom ${error.errors[0].path[0]}`,
-            })
-        } else {
+        // if (error instanceof z.ZodError) {
+        //     res.status(400).json({
+        //         error: `${error.errors[0].message} - pada kolom ${error.errors[0].path[0]}`,
+        //     })
+        // } else {
             res.status(400).json({ error: error.message })
-        }
+        // }
     }
 })
 

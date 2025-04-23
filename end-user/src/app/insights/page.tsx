@@ -16,6 +16,7 @@ import ListCategories from "./_components/ListCategories"
 import ButtonCategory from "./_components/ButtonCategory"
 import Link from "next/link"
 import BlogContent from "@/components/partials/Blog/BlogContent"
+import HeroArticleSection from "./_components/HeroArticleSection"
 
 
 // const categories = [
@@ -82,7 +83,7 @@ export default function Insights() {
                         axiosInstance.get('/blog', {
                             params: {
                                 page,
-                                limit: 6,
+                                limit: 2,
                                 status: "Published",
                                 favorite: false,
                                 categoryId: activeCategory
@@ -90,8 +91,8 @@ export default function Insights() {
                         }),
                         axiosInstance.get('/blog-category', {
                             params: {
-                                page,
-                                limit: 6,
+                                // page,
+                                // limit: 6,
                                 status: true,
                             }
                         }),
@@ -112,10 +113,11 @@ export default function Insights() {
 
     // console.log({ categories });
     // console.log({ blog });
-    console.log({ favBlog });
-    // console.log({"panjang" : favBlog.length });
+    // console.log({ favBlog });
+    // console.log({ defPage });
+    // // console.log({"panjang" : favBlog.length });
     // console.log({ categories });
-    // if (favBlog[0] === undefined) return <div>Loading...</div>
+    // if (favBlog[2] === undefined) return <div>Loading...</div>
 
     return (
         <main className="bg-white flex flex-col gap-2 md:gap-6">
@@ -127,58 +129,14 @@ export default function Insights() {
                 </div>
             </section>
             {
-                favBlog.length > 0 && (
-                    <section className="lg:max-w-7xl lg:mx-auto w-full py-12 px-8 md:px-20 lg:px-5 flex flex-col gap-8 items-center justify-center ">
-                        <Link href={`/insights/${favBlog[0].blog.slug}`} className="w-full rounded-md border-[1px] border-gray-300 shadow-md flex flex-col md:flex-row">
-                            <div className="flex w-full h-full">
-                                <div className="w-full md:w-[48vw] md:h-[50vh] relative">
-                                    <Image src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/uploads/${favBlog[0].blog.image}`} alt="favorite blog 1" width={1920} height={1080} className="md:object-cover md:object-top w-full h-full" quality={100} />
-                                    <ButtonCategory cat={favBlog[0].blogCategory.name} />
-                                </div>
-                            </div>
-                            <div className="h-full flex justify-center md:items-center flex-col gap-5 w-full my-auto p-8 lg:px-14 md:py-0">
-                                <h2 className="!leading-[130%] text-xl md:text-3xl font-semibold line-clamp-3">{favBlog[0].blog.title}</h2>
-                                <BlogContent content={favBlog[0].blog.content} className="line-clamp-2 text-gray-500 custom-prose" />
-                                <div className="flex gap-3 w-full items-center">
-                                    <div className="h-10 md:h-12 aspect-square rounded-full bg-gray-300 flex items-center justify-center">{favBlog[0].user.name.charAt(0).toUpperCase()}</div>
-                                    <div className="flex flex-col gap-1">
-                                        <p className="font-semibold md:text-base text-sm">{favBlog[0].user.name}</p>
-                                        <p className="text-primary md:text-base text-sm">{dayjs(favBlog[0].blog.createdAt).format("MMM DD, YYYY")}</p>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </Link>
-                        <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-8">
-                            {
-                                favBlog.slice(1, 3).map((d: any, i: number) => (
-                                    <Link href={`/insights/${d.blog.slug}`} key={`favorite-insights-${i + 1}`} className="w-full rounded-lg border-[1px] border-gray-300 shadow-md">
-                                        <div className="w-full relative">
-                                            <Image src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/uploads/${d.blog.image}`} alt={`favorite blog ${i + 2}`} width={1920} height={1080} className="md:object-cover md:object-top w-full rounded-t-lg md:h-[40vh]" quality={100} />
-                                            <ButtonCategory cat={d.blogCategory.name} />
-                                        </div>
-                                        <div className="my-10 px-10 flex flex-col gap-4 justify-center">
-                                            <h2 className="!leading-[130%] text-xl font-semibold line-clamp-3">{d.blog.title}</h2>
-                                            <BlogContent content={d.blog.content} className="line-clamp-2 text-gray-500 custom-prose" />
-                                            <div className="flex gap-3 w-full items-center">
-                                                <div className="h-10 md:h-12 aspect-square rounded-full bg-gray-300 flex items-center justify-center">{d.user.name.charAt(0).toUpperCase()}</div>
-                                                <div className="flex flex-col gap-1">
-                                                    <p className="font-semibold md:text-base text-sm">{d.user.name}</p>
-                                                    <p className="text-primary md:text-base text-sm">{dayjs(d.blog.createdAt).format("MMM DD, YYYY")}</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </Link>
-                                ))
-                            }
-                        </div>
-                    </section>
+                (favBlog.length > 0) && (
+                    <HeroArticleSection favBlog={favBlog}/>
                 )
             }
 
             <section className="lg:max-w-7xl lg:mx-auto w-full py-12 px-10 md:px-20 lg:px-5 flex flex-col gap-8 items-center justify-center ">
                 <div className="flex flex-col lg:flex-row gap-y-5 w-full justify-between items-center border-b-2 border-gray-300 pb-12">
-                    <h1 className="text-2xl md:text-3xl">Latest Articles</h1>
+                    <h1 className="text-2xl md:text-3xl md:capitalize uppercase ">Latest Articles</h1>
                     <ListCategories list={categories} activeCategory={activeCategory || "all"} setActiveCategory={setActiveCategory} />
                 </div>
                 <PageArticles data={blog} />

@@ -1,23 +1,28 @@
-export function downloadCSV(data: any, filename = 'data.csv') {
-    // Ambil array user dari objek { user: {...} }
-    const flatData = data.map((item: any) => item.user)
+export function downloadCSV(data: any[], filename = 'leads') {
+    if (!data.length) return;
 
-    if (!flatData.length) return
-
-    const headers = Object.keys(flatData[0])
-    const rows = flatData.map((row: { [x: string]: any }) =>
+    const headers = Object.keys(data[0]);
+    const rows = data.map((row) =>
         headers.map((header) => `"${row[header] ?? ''}"`).join(',')
-    )
+    );
 
-    const csvContent = [headers.join(','), ...rows].join('\n')
-    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' })
+    const csvContent = [headers.join(','), ...rows].join('\n');
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
 
-    const url = URL.createObjectURL(blob)
-    const link = document.createElement('a')
-    link.href = url
-    link.setAttribute('download', filename)
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
 
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
+    const now = new Date();
+    const timestamp = now.toISOString()
+        .replace(/T/, '-')       
+        .replace(/:/g, '-')      
+        .replace(/\..+/, '');    
+
+    const fullFileName = `${filename}-${timestamp}.csv`;
+    link.setAttribute('download', fullFileName);
+
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
 }

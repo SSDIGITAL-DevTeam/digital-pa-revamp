@@ -83,7 +83,7 @@ export default function DataPage() {
     fetchData();
   }, [refetch, page, searchQuery, sort]);
 
-  // console.log({sort})
+  console.log({blogs})
 
   const handleFavorite = async (id: string, currentStatus: boolean) => {
     try {
@@ -130,26 +130,26 @@ export default function DataPage() {
   };
   const headings = ["Blog Name", "Category", "Status", "Action"];
   const data = blogs?.data.map((item: any) => ({
-    "Blog Name": item.blog.title,
-    "Category": item.blogCategory.name,
-    "Status": item.blog.status,
+    "Blog Name": item.title,
+    "Category": item.category.name,
+    "Status": item.status,
     "Action": (
       <div className="flex items-center gap-5">
         <button
-          onClick={() => handleFavorite(item.blog.id, item.blog.favorite)}
+          onClick={() => handleFavorite(item.id, item.favorite)}
           className="text-red-500"
         >
           <Star
-            fill={item.blog.favorite ? "red" : "none"}
+            fill={item.favorite ? "red" : "none"}
             color="red"
             size={15}
           />
         </button>
 
-        <Link href={`/blog/blogs/edit?id=${item.blog.id}`} className="text-blue-500">
+        <Link href={`/blog/blogs/edit?id=${item.id}`} className="text-blue-500">
           <Pencil color="red" size={15} />
         </Link>
-        <button onClick={() => handleDelete(item.blog.id)} className="text-red-500">
+        <button onClick={() => handleDelete(item.id)} className="text-red-500">
           <Trash color="red" size={15} />
         </button>
       </div>

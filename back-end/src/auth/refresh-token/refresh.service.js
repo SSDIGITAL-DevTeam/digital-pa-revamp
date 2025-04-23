@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import { findUserByRefreshToken } from '../../role/role.repository.js';
+import { findUserByRefreshToken } from '../../user/user.repository.js';
 
 export const verifyRefreshToken = async (refreshToken) => {
     try {
@@ -11,7 +11,6 @@ export const verifyRefreshToken = async (refreshToken) => {
             if (err) {
                 throw new Error(403)
             }
-            // const { id, name, email, role, features } = response
             const accessToken = jwt.sign(response, process.env.ACCESS_TOKEN_SECRET, {
                 expiresIn: "30s"
             })

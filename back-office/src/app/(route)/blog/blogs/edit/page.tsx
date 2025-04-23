@@ -25,7 +25,7 @@ const AddPage = () => {
           )
         ])
         setData(category.data.data);
-        setDefaultValue(value.data.blog);
+        setDefaultValue(value.data);
       } catch (error) {
         console.error(error);
       }

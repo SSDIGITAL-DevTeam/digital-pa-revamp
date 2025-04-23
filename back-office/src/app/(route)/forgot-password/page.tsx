@@ -33,15 +33,15 @@ const LoginPage = () => {
     const router = useRouter()
 
     const handleInput = handleSubmit(async (value) => {
-        successToast(
-            <p className="text-xl font-semibold text-green-900">Email has been sent</p>,
-            <p className="text-xs text-green-400 mt-2">Please check your email</p>
-        )
         try {
             await axiosInstance.post(
                 `${process.env.NEXT_PUBLIC_AUTH_API_URL}/forgot-password`,
                 value
             );
+            successToast(
+                <p className="text-xl font-semibold text-green-900">Email has been sent</p>,
+                <p className="text-xs text-green-400 mt-2">Please check your email</p>
+            )
             reset();
         } catch (error: any) {
             failedToast(
@@ -51,6 +51,7 @@ const LoginPage = () => {
                 }
                 </p>
             );
+            reset();
         }
     }
     )

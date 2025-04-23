@@ -1,10 +1,10 @@
 import express from 'express'
 import {
     createLead,
-    deleteBlogById,
+    deleteLeadById,
     getAllLeads,
-    // getLeadById,
-    updateQueue,
+    getLeadById,
+    updateLead,
 } from './lead.service.js'
 
 const router = express.Router()
@@ -30,6 +30,7 @@ router.get('/', async (req, res) => {
                     return { [field]: dir === 'desc' ? 'desc' : 'asc' }
                 })
         }
+        console.log(orderByParams)
 
         const filters = {
             page,
@@ -38,8 +39,6 @@ router.get('/', async (req, res) => {
             orderBy: orderByParams,
             createdAt,
         }
-        // const data = await getAllBlogCat(filters)
-        // res.status(200).json(data)
 
         const data = await getAllLeads(filters)
         res.status(200).json(data)
@@ -87,7 +86,7 @@ router.post('/', async (req, res) => {
 router.delete('/:id', async (req, res) => {
     try {
         const id = req.params.id
-        await deleteBlogById(id)
+        await deleteLeadById(id)
 
         res.status(200).json({ message: 'Delete Blog Successfully' })
     } catch (error) {
@@ -95,32 +94,30 @@ router.delete('/:id', async (req, res) => {
     }
 })
 
-//Ubah data - semua kolom harus terisi
+//Ubah data - hanya kolom yang diisi
 router.put('/:id', async (req, res) => {
     try {
-        const id = req.params.id
-        const { title, content, status, favorite, categoryId } = req.body
+        const { name, email, phone, business, message, from } =
+            req.body
 
-        // Validasi manual basic
         if (
-            !title ||
-            !content ||
-            !status ||
-            favorite === undefined ||
-            !categoryId
+            !name?.trim() ||
+            !email?.trim() ||
+            !phone?.trim() ||
+            !business?.trim() ||
+            !message?.trim() ||
+            !from?.trim()
         ) {
-            throw new Error('Semua field wajib diisi')
+            return res.status(400).json({ error: 'All fields are required' })
         }
 
-        const isFavorite = favorite === 'true'
-        await updateQueue(id, { ...payload, favorite: isFavorite })
-        res.status(200).json({ message: 'Berhasil Mengubah Blog' })
+        await updateLead(id, req.body)
+
+        res.status(200).json({ message: 'Lead edited successfully' })
     } catch (error) {
         res.status(400).json({ error: error.message })
     }
 })
-
-//Ubah data - hanya kolom yang diisi
 router.patch('/:id', async (req, res) => {
     try {
         const id = req.params.id
@@ -128,18 +125,10 @@ router.patch('/:id', async (req, res) => {
         if (!req.body || Object.keys(req.body).length === 0) {
             throw new Error('Nothing to update')
         }
+       
+        await updateLead(id, req.body)
 
-        // console.log(req.body)
-        const payload = { ...req.body }
-
-        if (req.file) {
-            payload.image = req.file.filename
-        } else {
-            delete payload.image
-        }
-        await updateQueue(id, payload)
-
-        res.status(200).json({ message: 'Blog edited successfully' })
+        res.status(200).json({ message: 'Lead edited successfully' })
     } catch (error) {
         res.status(400).json({ error: error.message })
     }

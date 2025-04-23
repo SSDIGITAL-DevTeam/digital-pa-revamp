@@ -17,7 +17,7 @@ export default function ListCategories({ list, activeCategory, setActiveCategory
             <Button
                 onClick={() => setActiveCategory(undefined)}
                 key="insights-category-all"
-                className={`whitespace-nowrap font-semibold text-base py-2 px-3 rounded-sm transition-colors ${category === "all" ? "bg-primary text-white" : "text-black bg-gray-100"
+                className={`whitespace-nowrap font-semibold text-sm md:text-base py-2 px-3 rounded-sm transition-colors ${category === "all" ? "bg-primary text-white" : "text-black bg-gray-100"
                     }`}
             >
                 All
@@ -25,12 +25,12 @@ export default function ListCategories({ list, activeCategory, setActiveCategory
 
             {list.map((d: any) => (
                 <Button
-                    onClick={() => setActiveCategory(d.blogCategory.id)}
-                    key={`insights-category-${d.blogCategory.slug}`}
-                    className={`whitespace-nowrap font-semibold text-base py-2 px-3 rounded-sm transition-colors ${category === d.blogCategory.id ? "bg-primary text-white" : "text-black bg-gray-100"
+                    onClick={() => setActiveCategory(d.id)}
+                    key={`insights-category-${d.slug}`}
+                    className={`whitespace-nowrap font-semibold text-sm md:text-base py-2 px-3 rounded-sm transition-colors ${category === d.id ? "bg-primary text-white" : "text-black bg-gray-100"
                         }`}
                 >
-                    {d.blogCategory.name}
+                    {d.name}
                 </Button>
             ))}
         </div>

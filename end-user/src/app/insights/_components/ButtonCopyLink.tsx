@@ -22,8 +22,8 @@ export default function CopyLinkButton() {
     <Button
       onClick={handleCopy}
       variant={"ghost"}
-      size={"lg"}
-      className="flex lg:flex-row flex-col items-center text-sm lg:text-base gap-1 lg:gap-3 text-gray-500 hover:text-gray-600 transition-all duration-200"
+      size={"sm"}
+      className="flex lg:flex-row flex-col py-2 items-center text-sm gap-1 lg:gap-3 text-gray-500 hover:text-gray-600 transition-all duration-200"
     >
       {copyLinkSVG}
       {copied ? "Link Copied!" : "Copy Link"}

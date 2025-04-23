@@ -6,9 +6,9 @@ import {
     findUserByEmail,
     findUserById,
     insertUser,
-} from './role.repository.js'
+} from './user.repository.js'
 import { user } from '../../drizzle/schema.js'
-import { and, eq, gte } from 'drizzle-orm'
+import { and, asc, desc, eq, gte, like, or } from 'drizzle-orm'
 import dayjs from 'dayjs'
 
 export const encryptPassword = async (password) => {
@@ -97,15 +97,14 @@ export const getAllUsers = async (filters) => {
             },
         }
     } catch (error) {
-        console.log(error)
         throw new Error(error.message)
     }
 }
 export const getUserById = async (id) => {
     try {
         const user = await findUserById(id)
-        if (!user) {
-            throw new Error('Role dengan Id tersebut tidak ditemukan')
+        if (user.length === 0) {
+            throw new Error('User not found')
         }
         return user
     } catch (error) {
@@ -133,7 +132,10 @@ export const createUser = async (payload) => {
 
 export const deleteUserById = async (id) => {
     try {
-        await getUserById(id)
+        const user = await findUserById(id)
+        if (user.length === 0) {
+            throw new Error('User not found')
+        }
         await deleteUser(id)
     } catch (error) {
         throw new Error(error.message)
@@ -144,24 +146,28 @@ export const updateUser = async (id, payload) => {
     try {
         const { password, newPassword } = payload
         const user = await findUserById(id)
+
         if (!user) {
-            console.log(user.user)
             throw new Error('User not found')
         }
-        // console.log(user)
-        if (newPassword) {
-            const isPassword = await compare(password, user[0].user.password)
-            // console.log(newPassword)
+
+        // Jika mau update password
+        if (password && newPassword) {
+            const isPassword = await compare(password, user.password)
             if (!isPassword) {
                 throw new Error('Password does not match')
             }
-            // console.log(newPassword)
+
             const hashPassword = await encryptPassword(newPassword)
-            return await editUser(id, { ...payload, password: hashPassword })
+            return await editUser(id, {
+                ...payload,
+                password: hashPassword
+            })
         }
 
-        const hashPassword = await encryptPassword(password)
-        return await editUser(id, { ...payload, password: hashPassword })
+        const { password: _, newPassword: __, ...safePayload } = payload
+        return await editUser(id, safePayload)
+
     } catch (error) {
         throw new Error(error.message)
     }
