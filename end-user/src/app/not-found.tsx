@@ -1,6 +1,5 @@
 "use client"
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import NotFoundGif from '@/assets/not-found/404 dpa.gif'
 import Image from "next/image";
 import { useRouter } from "next/navigation";

@@ -15,8 +15,8 @@ type FavBlog = {
 }
 
 export default function HeroArticleSection({ favBlog }: { favBlog: FavBlog[] }) {
-    let num = favBlog.length || 1;
-    console.log(num)
+    const num = favBlog.length || 1;
+
     return (
         <section className="lg:max-w-7xl lg:mx-auto w-full py-12 px-8 md:px-20 lg:px-5 flex flex-col gap-8 items-center justify-center ">
             {

@@ -1,8 +1,5 @@
 "use client"
-import Image from "next/image"
-
 // image asset
-import dayjs from "dayjs"
 import { useEffect, useState } from "react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
@@ -13,9 +10,6 @@ import { axiosInstance } from "@/lib/axios"
 
 import PageArticles from "./_components/PageArticles"
 import ListCategories from "./_components/ListCategories"
-import ButtonCategory from "./_components/ButtonCategory"
-import Link from "next/link"
-import BlogContent from "@/components/partials/Blog/BlogContent"
 import HeroArticleSection from "./_components/HeroArticleSection"
 
 
