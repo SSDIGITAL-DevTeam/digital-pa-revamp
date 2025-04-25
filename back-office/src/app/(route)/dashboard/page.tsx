@@ -129,7 +129,7 @@ export default function Page(): JSX.Element {
     totalBlogCategories,leads, totalLeads, loading, error,
   } = state;
 
-  console.log({state})
+  // console.log({state})
   // if (loading) return <p className="text-center"></p>;
   // if (loading) failedToast(
   //   <p className="text-xl font-semibold text-red-900">Failed</p>,

@@ -91,10 +91,10 @@ export default function FormJoin() {
                         <h3 className="text-xl">Email</h3>
                         <p className="text-gray-300 font-light">wow@digital-pa.com.sg</p>
                     </div>
-                    <div className="flex flex-col gap-2 justify-center">
+                    {/* <div className="flex flex-col gap-2 justify-center">
                         <h3 className="text-xl">Contact</h3>
                         <p className="text-gray-300 font-light">+65 XXXXXXXXX</p>
-                    </div>
+                    </div> */}
                     <div className="flex flex-col gap-2 justify-center">
                         <h3 className="text-xl">Visit Us</h3>
                         <p className="text-gray-300 font-light">1100 Lower Delta Rd

@@ -52,7 +52,7 @@ export default function DataPage() {
     window.location.reload();
   }
 
-  console.log(email)
+  // console.log(email)
 
   return (
     <main className="w-full flex flex-col gap-12">

@@ -83,7 +83,7 @@ export default function DataPage() {
     fetchData();
   }, [refetch, page, searchQuery, sort]);
 
-  console.log({blogs})
+  // console.log({blogs})
 
   const handleFavorite = async (id: string, currentStatus: boolean) => {
     try {
