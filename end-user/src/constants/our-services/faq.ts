@@ -90,3 +90,22 @@ export const webFAQ: Faq = [
         desc: "We need details such as business goals, target audience, design preferences, required features, and any branding guidelines to create a website tailored to your needs."
     }
 ]
+
+export const homeFAQ: Faq = [
+    {
+        title: "Is there any additional fee?",
+        desc: "No. All packages are flat fee and we will inform you beforehand if there are any additional costs needed."
+    },
+    {
+        title: "Why should I outsource my marketing team?",
+        desc: "Access expertise, save costs, and free up time to focus on your core business."
+    },
+    {
+        title: "How much does your agency charge and how does it work?",
+        desc: "We offer several packages and can customize a solution to fit your budget."
+    },
+    {
+        title: "Why should I outsource my development team?",
+        desc: "We mitigate risk with clear communication, experienced teams, and ongoing performance tracking."
+    }
+]

@@ -6,6 +6,7 @@ import MarketingSkillSets from './_components/MarketingSkillSets'
 import OurServices from './_components/OurServices/OurServices'
 import Particle from '@/components/partials/ParticleJs/Particle'
 import FAQ from './our-services/_components/FAQ'
+import { homeFAQ } from '@/constants/our-services/faq'
 
 export default function Home() {
     return (
@@ -50,7 +51,7 @@ export default function Home() {
 
             {/* faq section */}
             <section className='py-8'>
-                <FAQ />
+                <FAQ value={homeFAQ}/>
             </section>
             {/* end of faq section */}
         </main>
