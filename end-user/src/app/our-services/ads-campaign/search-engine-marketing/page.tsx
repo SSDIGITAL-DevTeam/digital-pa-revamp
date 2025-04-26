@@ -27,6 +27,7 @@ import Key from '@/assets/our-services/svg/key.svg'
 import Database from '@/assets/our-services/svg/database.svg'
 import Graph from '@/assets/our-services/svg/graph.svg'
 import GridSection from "../../_components/GridSection"
+import { semFAQ } from "@/constants/our-services/faq"
 
 type SemCampaign = {
     icons: string;
@@ -166,7 +167,7 @@ export default function SEM() {
                 <ProvenExperience />
             </section>
             <section className="w-full bg-white py-12 lg:py-20">
-                <FAQ />
+                <FAQ value={semFAQ}/>
             </section>
             <section className="w-full bg-primary py-12 lg:py-20">
                 <FormJoin />

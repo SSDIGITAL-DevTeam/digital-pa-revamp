@@ -25,6 +25,7 @@ import ChooseSEOAgencyImage from "@/assets/our-services/webp/how-to-choose-seo-a
 import FreeSEOWeb from "@/assets/our-services/webp/free-seo-web-audit.webp"
 import GridSection from "../../_components/GridSection"
 import IconGridSection from "../../_components/IconGridSection"
+import { seoFAQ } from "@/constants/our-services/faq"
 
 type SEOServices = {
     title: string;
@@ -149,7 +150,7 @@ export default function SEM() {
             </section>
             {/* FAQ */}
             <section className="w-full bg-white py-12 lg:py-20">
-                <FAQ />
+                <FAQ value={seoFAQ}/>
             </section>
             {/* Join */}
             <section className="w-full bg-primary py-12 lg:py-20">

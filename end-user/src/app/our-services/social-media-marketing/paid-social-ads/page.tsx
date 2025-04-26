@@ -36,8 +36,6 @@ import IconGridSection from "../../_components/IconGridSection"
 
 const mockPhones = [IgAds1, IgAds2, FbAds1, FbAds2]
 
-
-
 const adsServices: { title: string; desc: string, icon: string; }[] = [
     {
         icon: TargetIcon.src,
@@ -74,8 +72,8 @@ const adsServices: { title: string; desc: string, icon: string; }[] = [
 export default function PaidSocialAds() {
     return (
         <main className="">
-            <Hero image={HeroImage.src} alt="Hero Section Image" title="SOCIAL MEDIA MANAGEMENT SERVICE (smm)"
-                subtitle="We handle all aspects of your social media presence, taking care of both content creation and creative elements across platforms like Facebook and Instagram." />
+            <Hero image={HeroImage.src} alt="Hero Section Image" title="Paid social ads management service"
+                subtitle="We leverage Meta Ads on Facebook and Instagram to drive leads and boost sales." />
 
             <section className="w-full bg-[#F5F5F5] py-12 lg:py-20 px-10 md:px-20 lg:px-5">
                 <FlyingSection image={MetaImage.src} title="Facebook & Instagram Advertising" subtitle="Leverage the power of Facebook and Instagram to reach your target audience effectively. We optimize your ad campaigns by refining audience demographics, locations, interests, and behaviors to maximize results. Let us help you grow your business with data-driven social media marketing." side="left" />
@@ -132,9 +130,7 @@ export default function PaidSocialAds() {
             <section className="w-full bg-[#F5F5F5] py-12 lg:py-20 px-10 md:px-20 lg:px-5">
                 <ProvenExperience />
             </section>
-            {/* <section className="w-full bg-white py-12 lg:py-20">
-                <FAQ />
-            </section> */}
+
             <section className="w-full bg-primary py-12 lg:py-20">
                 <FormJoin />
             </section>
