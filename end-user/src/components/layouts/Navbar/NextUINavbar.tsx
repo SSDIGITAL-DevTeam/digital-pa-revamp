@@ -20,7 +20,7 @@ import { useState } from 'react'
 import { usePathname } from 'next/navigation'
 import Logo from '@/components/partials/Logo'
 import { ChevronDown, Sparkles } from 'lucide-react'
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
+// import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
 
 export default function NextUINavbar() {
     const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false)
