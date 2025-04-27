@@ -29,7 +29,7 @@ import Symbol5 from '@/assets/our-services/webp/ai/Symbol.svg-5.webp'
 import DatabaseIcon from '@/assets/our-services/svg/database.svg'
 import DecreaseManpowerIcon from '@/assets/our-services/svg/decrease-manpower.svg'
 import DecreaseAcquisitionIcon from '@/assets/our-services/svg/decrease-acquisition.svg'
-import GraphIcon from '@/assets/our-services/svg/graph.svg'
+import GraphIcon from '@/assets/our-services/svg/graph.svg' //bermasalah
 import TumbIcon from '@/assets/our-services/svg/tumb.svg'
 import DecreaseIcon from '@/assets/our-services/svg/decrease.svg'
 import IncreaseIcon from '@/assets/our-services/svg/drive-traffic.svg'

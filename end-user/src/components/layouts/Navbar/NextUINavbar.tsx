@@ -20,6 +20,7 @@ import { useState } from 'react'
 import { usePathname } from 'next/navigation'
 import Logo from '@/components/partials/Logo'
 import { ChevronDown, Sparkles } from 'lucide-react'
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
 
 export default function NextUINavbar() {
     const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false)
@@ -111,7 +112,7 @@ export default function NextUINavbar() {
             </NavbarContent>
             {/* menu */}
 
-            {/* mobile view */}
+             {/* mobile view */}
             <NavbarMenu
                 className='mt-8 space-y-3 z-[999]'
             >
@@ -194,7 +195,91 @@ export default function NextUINavbar() {
                         Contact Us
                     </Button>
                 </NavbarMenuItem>
-            </NavbarMenu>
+            </NavbarMenu> 
+
+            {/* mobile view */}
+            {/* <NavbarMenu className="mt-8 space-y-3 z-[999]">
+                {navlinks.slice(0, 4).map((navlink: NavLink, index: number) => {
+                    if (navlink.menus) {
+                        return (
+                            <NavbarMenuItem key={`navlink-${index}`} className="w-full">
+                                <Accordion
+                                    type="single"
+                                    collapsible
+                                    className="w-full"
+                                >
+                                    <AccordionItem value={`accordion-${index}`}>
+                                        <AccordionTrigger className="text-lg">
+                                            {navlink.name || 'Our Services'}
+                                        </AccordionTrigger>
+                                        <AccordionContent>
+                                            <div className="flex flex-col gap-4 mt-4">
+                                                {navlink.menus.map((menu, idx) => (
+                                                    <div key={idx}>
+                                                        <div className="font-bold text-base text-primary flex items-center gap-2">
+                                                            {menu.name}
+                                                            {menu.name === "AI Solutions" && (
+                                                                <Sparkles size={12} fill="red" />
+                                                            )}
+                                                        </div>
+                                                        <ul className="flex flex-col gap-2 mt-2 ms-2">
+                                                            {menu.submenu.map((submenu, subIdx) => (
+                                                                <li key={subIdx}>
+                                                                    <Link
+                                                                        href={submenu.path}
+                                                                        className="font-light text-gray-600 cursor-pointer hover:text-primary text-sm break-words"
+                                                                    >
+                                                                        {submenu.name}
+                                                                    </Link>
+                                                                </li>
+                                                            ))}
+                                                        </ul>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </AccordionContent>
+                                    </AccordionItem>
+                                </Accordion>
+                            </NavbarMenuItem>
+                        )
+                    }
+                    return (
+                        <NavbarMenuItem key={`navlink-${index}`}>
+                            <Link
+                                className={`${pathname === navlink.path ? 'text-primary' : 'text-dark'} text-lg font-semibold`}
+                                href={navlink.path}
+                            >
+                                {navlink.name}
+                            </Link>
+                        </NavbarMenuItem>
+                    )
+                })}
+
+                <NavbarMenuItem className="flex gap-4">
+                    <Button
+                        className="font-semibold bg-white border-[2px] border-primary text-primary hover:bg-primary hover:text-white"
+                        size="lg"
+                        as={Link}
+                        href={process.env.NEXT_PUBLIC_API_SIGNIN}
+                        radius="sm"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Sign In
+                    </Button>
+                    <Button
+                        className="font-semibold"
+                        size="lg"
+                        as={Link}
+                        color="primary"
+                        href="/contact-us"
+                        radius="sm"
+                    >
+                        Contact Us
+                    </Button>
+                </NavbarMenuItem>
+            </NavbarMenu> */}
+
 
             <NavbarContent justify='end' className='hidden md:flex'>
                 <NavbarItem>
