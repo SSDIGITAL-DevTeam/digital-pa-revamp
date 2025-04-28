@@ -21,24 +21,24 @@ export const marketingSkillSets: MarketingSkillSet[] = [
         icon: AssetMarketingSkillSet2.src,
         title: 'Search Engine Optimization',
         description:
-            'Stop Google Ads struggles. Get certified experts to manage & optimize campaigns for maximum leads & sales.',
+            'Make a splash! We craft targeted social media ads that grab attention and drive results.',
     },
     {
         icon: AssetMarketingSkillSet3.src,
         title: 'Competitor analysis',
         description:
-            'Stop Google Ads struggles. Get certified experts to manage & optimize campaigns for maximum leads & sales.',
+            'Get found online. We optimize your website to rank higher in searches, bringing customers straight to you.',
     },
     {
         icon: AssetMarketingSkillSet4.src,
         title: 'Social Media Ads',
         description:
-            'Stop Google Ads struggles. Get certified experts to manage & optimize campaigns for maximum leads & sales.',
+            'Chart your marketing course. We build a data-driven plan that sets clear goals and gets you there.',
     },
     {
         icon: AssetMarketingSkillSet5.src,
         title: 'Strategic planning',
         description:
-            'Stop Google Ads struggles. Get certified experts to manage & optimize campaigns for maximum leads & sales.',
+            'Know your rivals. We analyze your competition to uncover their secrets and give you the edge.',
     },
 ]

@@ -17,7 +17,7 @@ export default function FAQ({value}: {value: Faq}) {
                     value?.map((d, i) => (
                         <AccordionItem key={`FAQ-${i + 1}`}value={`items-${i + 1}`}>
                             <AccordionTrigger>
-                                <h2 className="font-semibold text-base py-2 transition-colors duration-300 flex gap-2">
+                                <h2 className="font-semibold text-base py-5 transition-colors duration-300 flex gap-2">
                                     <span className="text-primary hover:none">0{i + 1}</span>
                                     <span className="mr-3 hover:text-primary text-base lg:text-lg">{d.title}</span>
                                 </h2>
