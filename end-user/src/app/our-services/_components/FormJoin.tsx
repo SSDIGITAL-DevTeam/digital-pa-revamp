@@ -7,29 +7,10 @@ import { Form } from "@/components/ui/form";
 import FieldInput from "@/components/partials/Field/FieldInput";
 import FieldPhoneInput from "@/components/partials/Field/FieldPhoneInput";
 import { axiosInstance } from "@/lib/axios";
-import FieldSelect from "@/components/partials/Field/FieldDropdown";
 import { useState } from "react";
 import { toast } from "sonner";
 import { failToast, successToast } from "@/config/toastConfig";
-
-const businessCategories = [
-    'Automotive',
-    'Business Support & Supplies',
-    'Computers & Electronics',
-    'Construction & Contractors',
-    'Education',
-    'Entertainment',
-    'Food & Dining',
-    'Health & Medicine',
-    'Home & Garden',
-    'Legal & Financial',
-    'Manufacturing, Wholesale, Distribution',
-    'Merchants (Retail)',
-    'Miscellaneous',
-    'Personal Care & Services',
-    'Real Estate',
-    'Travel & Transportation',
-]
+import { usePathname } from "next/navigation";
 
 const formData = z.object({
     name: z.string().nonempty(),
@@ -49,6 +30,19 @@ const formData = z.object({
 type FormData = z.infer<typeof formData>
 
 export default function FormJoin() {
+    const basePathname = usePathname();
+
+    const lastSegment = basePathname
+        .split('/')
+        .filter(Boolean)
+        .pop() || '';
+
+    const pathname = lastSegment
+        .split('-')                           
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1)) 
+        .join(' ');                    
+
+
     const [isLoading, setIsLoading] = useState(false);
     const form = useForm<FormData>({
         defaultValues: {
@@ -67,7 +61,8 @@ export default function FormJoin() {
     const handleInput = handleSubmit(async (value) => {
         setIsLoading(true)
         try {
-            const response = await axiosInstance.post("/lead", { ...value, phone: value.phone.replaceAll('+', ''), from: "join" });
+            // console.log({ ...value, phone: value.phone.replaceAll('+', ''), from: pathname })
+            const response = await axiosInstance.post("/lead", { ...value, phone: value.phone.replaceAll('+', ''), from: pathname });
             console.log("Success:", response.data.message);
             toast.success(
                 'Your message has been sent.',
@@ -94,7 +89,7 @@ export default function FormJoin() {
                         <FieldPhoneInput control={control} label="Contact No: *" name="phone" placeholder="Enter your phone number" />
                         <FieldInput control={control} label="Company Name: *" name="companyName" placeholder="Enter your company’s name" />
                         <FieldInput control={control} label="Company Website: *" name="companyWebsite" placeholder="e.g.https://www.yourcompany.com" />
-                        <FieldSelect control={control} label="Business Industry: *" name="business" value={businessCategories} placeholder="Your business industry" />
+                        <FieldInput control={control} label="Business Industry: *" name="business" placeholder="Your business industry" />
                         <div className="lg:col-span-2">
                             <FieldInput control={control} label="Remarks / Special Requirements" name="message" type={"textarea"} placeholder="Tell us anything specific you need help with" />
                         </div>

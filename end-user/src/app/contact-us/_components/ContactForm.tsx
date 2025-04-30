@@ -224,29 +224,9 @@ import { Form } from "@/components/ui/form";
 import FieldInput from "@/components/partials/Field/FieldInput";
 import FieldPhoneInput from "@/components/partials/Field/FieldPhoneInput";
 import { axiosInstance } from "@/lib/axios";
-import FieldSelect from "@/components/partials/Field/FieldDropdown";
 import { useState } from "react";
 import { toast } from "sonner";
 import { failToast, successToast } from "@/config/toastConfig";
-
-const businessCategories = [
-    'Automotive',
-    'Business Support & Supplies',
-    'Computers & Electronics',
-    'Construction & Contractors',
-    'Education',
-    'Entertainment',
-    'Food & Dining',
-    'Health & Medicine',
-    'Home & Garden',
-    'Legal & Financial',
-    'Manufacturing, Wholesale, Distribution',
-    'Merchants (Retail)',
-    'Miscellaneous',
-    'Personal Care & Services',
-    'Real Estate',
-    'Travel & Transportation',
-]
 
 const formData = z.object({
     name: z.string().nonempty(),
@@ -284,7 +264,8 @@ export default function ContactForm() {
     const handleInput = handleSubmit(async (value) => {
         setIsLoading(true)
         try {
-            const response = await axiosInstance.post("/lead", { ...value, phone: value.phone.replaceAll('+', ''), from: "contact" });
+            // console.log({...value, phone: value.phone.replaceAll('+', ''), from: "/contact-us"})
+            const response = await axiosInstance.post("/lead", { ...value, phone: value.phone.replaceAll('+', ''), from: "Contact Us" });
             console.log("Success:", response.data.message);
             toast.success(
                 'Your message has been sent.',
@@ -310,7 +291,7 @@ export default function ContactForm() {
                     <FieldPhoneInput control={control} label="Contact No: *" name="phone" placeholder="Enter your phone number" />
                     <FieldInput control={control} label="Company Name: *" name="companyName" placeholder="Enter your company’s name" />
                     <FieldInput control={control} label="Company Website: *" name="companyWebsite" placeholder="e.g.https://www.yourcompany.com" />
-                    <FieldSelect control={control} label="Business Industry: *" name="business" value={businessCategories} placeholder="Your business industry" />
+                    <FieldInput control={control} label="Business Industry: *" name="business" placeholder="Your business industry" />
                     <div className="lg:col-span-2">
                         <FieldInput control={control} label="Remarks / Special Requirements" name="message" type={"textarea"} placeholder="Tell us anything specific you need help with" />
                     </div>

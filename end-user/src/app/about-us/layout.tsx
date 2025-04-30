@@ -1,10 +1,8 @@
 import { JSX, ReactNode } from 'react'
-import { Metadata } from 'next'
 
-export const metadata: Metadata = {
-    title: 'About Us | Your Digital Partner in Digital Products',
-    description: 'Digital PA - Your digital partner in digital products',
-}
+import { seoMetadata } from '@/constants/metadata/metadata'; 
+
+export const metadata = seoMetadata.about; 
 
 export default function Layout({
     children,

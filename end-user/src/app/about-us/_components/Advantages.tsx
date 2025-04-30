@@ -4,7 +4,8 @@ import dynamic from 'next/dynamic'
 const LottiePlayer = dynamic(() => import('@/components/partials/LottieFiles/LottiePlayer'), { ssr: false })
 
 import { Advantage, advantages } from '@/constants/about-us/advantage'
-import ConsultationButton from '@/components/partials/Button/Consultation'
+import Link from 'next/link'
+import { ArrowRightIcon } from 'lucide-react'
 // import { Button } from '@nextui-org/react'
 // import Link from 'next/link'
 
@@ -32,7 +33,12 @@ export default function Advantages(): JSX.Element {
                     </div>
                 ))}
                 <div className='col-span-2 w-full flex items-center justify-center'>
-                <ConsultationButton/>
+                <Link href={"#consultation"}>
+            <button className={`mt-0 w-fit text-center font-semibold  rounded-lg flex gap-2 items-center bg-primary text-white py-3 px-6 md:py-4 md:px-8`}
+            >
+                Free Consultation <ArrowRightIcon className="h-5 w-5" />
+            </button>
+        </Link>
                 </div>
             </div>
             {/* end of card wrapper */}
