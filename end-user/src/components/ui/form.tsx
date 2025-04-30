@@ -102,10 +102,21 @@ const FormLabel = React.forwardRef<
 >(({ className, ...props }, ref) => {
   const { error, formItemId, newClassName } = useFormField()
 
+  if (newClassName) {
+    return (
+      <Label
+        ref={ref}
+        className={cn(error ? "text-primary ps-2" : "text-gray-700 ps-2", ` text-base font-semibold ${className}`)}
+        htmlFor={formItemId}
+        {...props}
+      />
+    )
+  }
+
   return (
     <Label
       ref={ref}
-      className={cn(error ? (newClassName ? "text-primary ps-2" : "text-red-200") : (newClassName ? "text-gray-700 ps-2" : "text-white"), `text-base font-semibold ${className}`)}
+      className={cn(error ?  "text-red-200" : "text-white", ` text-base font-semibold ${className}`)}
       htmlFor={formItemId}
       {...props}
     />
