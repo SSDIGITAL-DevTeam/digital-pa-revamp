@@ -14,6 +14,9 @@ import {
 
 import { cn } from "@/lib/utils"
 import { Label } from "@/components/ui/label"
+import { usePathname } from "next/navigation"
+
+
 
 const Form = FormProvider
 
@@ -54,12 +57,19 @@ const useFormField = () => {
 
   const { id } = itemContext
 
+  let newClassName= false
+  const pathname = usePathname();
+  if(pathname === "/contact-us") {
+    newClassName = true
+  }
+
   return {
     id,
     name: fieldContext.name,
     formItemId: `${id}-form-item`,
     formDescriptionId: `${id}-form-item-description`,
     formMessageId: `${id}-form-item-message`,
+    newClassName,
     ...fieldState,
   }
 }
@@ -90,12 +100,12 @@ const FormLabel = React.forwardRef<
   React.ElementRef<typeof LabelPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof LabelPrimitive.Root>
 >(({ className, ...props }, ref) => {
-  const { error, formItemId } = useFormField()
+  const { error, formItemId, newClassName } = useFormField()
 
   return (
     <Label
       ref={ref}
-      className={cn(error ? "text-red-200" : "text-white", `text-base font-semibold ${className}`)}
+      className={cn(error ? (newClassName ? "text-primary ps-2" : "text-red-200") : (newClassName ? "text-gray-700 ps-2" : "text-white"), `text-base font-semibold ${className}`)}
       htmlFor={formItemId}
       {...props}
     />
@@ -146,11 +156,23 @@ const FormMessage = React.forwardRef<
   HTMLParagraphElement,
   React.HTMLAttributes<HTMLParagraphElement>
 >(({ className, children, ...props }, ref) => {
-  const { error, formMessageId } = useFormField()
+  const { error, formMessageId, newClassName} = useFormField()
   const body = error ? String(error?.message ?? "") : children
 
   if (!body) {
     return null
+  }
+  if(newClassName){
+    return (
+      <p
+        ref={ref}
+        id={formMessageId}
+        className={cn("text-[0.8rem] font-medium text-primary/60", className)}
+        {...props}
+      >
+        {body}
+      </p>
+    )
   }
 
   return (

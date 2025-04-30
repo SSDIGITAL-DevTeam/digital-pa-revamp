@@ -3,33 +3,38 @@ import "react-international-phone/style.css"
 
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Control } from "react-hook-form";
+import useWidth from "@/hook/useWidth";
 
 type Props = {
     control: Control<any>,
     name: string,
-    label: string
+    label: string,
+    placeholder?: string
 }
 
-export default function FieldPhoneInput({ control, name, label }: Props) {
+export default function FieldPhoneInput({ control, name, label, placeholder }: Props) {
+    const size = useWidth()
+    let height = "48px";
+    if (size && size >= 768) height = "56px"
     return (
         <FormField
             name={name}
             control={control}
             render={({ field }) => (
                 <FormItem>
-                    <FormLabel>{label} <span>*</span></FormLabel>
+                    <FormLabel>{label}</FormLabel>
                     <FormControl>
                         <PhoneInput
                             defaultCountry='sg'
                             value={field.value}
+                            placeholder={placeholder || label}
                             onChange={field.onChange}
-
-                            inputClassName="!flex !items-center !text-base !h-12 !rounded-e-md w-full"
+                            inputClassName="focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-400 !flex !items-center !phone-input !text-sm md:!text-base !h-12 md:!h-14 !rounded-e-md w-full"
                             style={
                                 {
                                     '--react-international-phone-flag-width': '24px',
                                     '--react-international-phone-flag-height': '24px',
-                                    '--react-international-phone-height': '48px',
+                                    '--react-international-phone-height': `${height}`,
                                 } as React.CSSProperties
                             }
                         />

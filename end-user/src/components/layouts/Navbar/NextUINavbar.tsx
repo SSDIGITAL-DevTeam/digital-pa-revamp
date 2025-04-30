@@ -30,7 +30,7 @@ export default function NextUINavbar() {
 
     return (
         <Navbar
-            className='z-[999] w-full bg-white px-0 py-4 lg:px-20'
+            className='z-[102] w-full bg-white px-0 py-4 lg:px-20'
             maxWidth='full'
             isMenuOpen={isMenuOpen}
             onMenuOpenChange={setIsMenuOpen}

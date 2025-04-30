@@ -5,6 +5,6 @@ import * as schema from './schema.js';
 import * as relations from './relations.js';
 dotenv.config();
 
-const poolConnection = mysql.createPool(process.env.DATABASE_URL || 'mysql://root:@localhost:3306/drizzle_test');
+const poolConnection = mysql.createPool(process.env.DATABASE_URL);
 export const db = drizzle(poolConnection,{ schema : {...schema, ...relations},mode:"default" });
 

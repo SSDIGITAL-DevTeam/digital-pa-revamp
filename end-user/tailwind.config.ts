@@ -93,7 +93,7 @@ const config: Config = {
                         animationTimingFunction: 'ease-in-out',
                     },
                     '50%': {
-                        transform: 'translateY(-10px)',
+                        transform: 'translateY(-15px)',
                         animationTimingFunction: 'ease-in-out',
                     },
                 },

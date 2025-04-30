@@ -9,6 +9,8 @@ import FieldPhoneInput from "@/components/partials/Field/FieldPhoneInput";
 import { axiosInstance } from "@/lib/axios";
 import FieldSelect from "@/components/partials/Field/FieldDropdown";
 import { useState } from "react";
+import { toast } from "sonner";
+import { failToast, successToast } from "@/config/toastConfig";
 
 const businessCategories = [
     'Automotive',
@@ -32,9 +34,16 @@ const businessCategories = [
 const formData = z.object({
     name: z.string().nonempty(),
     email: z.string().email().nonempty(),
-    phone: z.string().nonempty().min(4, "Please enter a valid phone number"),
+    // phone: z.string().nonempty().min(4, "Please enter a valid phone number"),
+    companyName: z.string().nonempty(),
+    companyWebsite: z.string().nonempty().startsWith("https://", { message: "Please enter a valid URL" }),
     business: z.string().nonempty(),
-    message: z.string().nonempty(),
+    message: z.string(),
+    phone: z.string().nonempty().refine((val) => {
+        return val.length > 3 && /\d{4,}/.test(val.replace(/^\+\d{1,3}/, ""));
+    }, {
+        message: "Please enter a valid phone number",
+    }),
 })
 
 type FormData = z.infer<typeof formData>
@@ -46,6 +55,8 @@ export default function FormJoin() {
             name: "",
             email: "",
             phone: "",
+            companyName: "",
+            companyWebsite: "",
             business: "",
             message: "",
         },
@@ -53,13 +64,18 @@ export default function FormJoin() {
     });
     const { handleSubmit, control, reset } = form
 
-    const handleInput = handleSubmit( async(value) => {
+    const handleInput = handleSubmit(async (value) => {
         setIsLoading(true)
         try {
-            const response = await axiosInstance.post("/lead", {...value, from : "join"});
+            const response = await axiosInstance.post("/lead", { ...value, phone: value.phone.replaceAll('+', ''), from: "join" });
             console.log("Success:", response.data.message);
-        } catch (error :any) {
+            toast.success(
+                'Your message has been sent.',
+                successToast,
+            )
+        } catch (error: any) {
             console.error("Error:", error);
+            toast.error(error.response.data.error || "Message not sent", failToast)
         }
         finally {
             setIsLoading(false)
@@ -68,40 +84,26 @@ export default function FormJoin() {
     })
 
     return (
-        <div id="consultation" className="lg:max-w-7xl flex flex-col gap-4 lg:gap-8 lg:mx-auto px-5">
-            <Header title="Ready to Transform Your Business Performance?" className="text-white" />
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 w-full pt-12 px-10 md:px-20 lg:px-0">
+        <div id="consultation" className="lg:max-w-7xl flex flex-col gap-2 justify-center items-center lg:gap-10 lg:mx-auto px-5">
+            <Header title="BE PART OF THE SMART BUSINESS OWNERS THAT AUTOMATE, SCALE, AND WIN." subtitle={"Unlock Exclusive Early-Adopter Benefits."} className="text-white" subClassName="text-white/80 md:text-white/80 italic text-base md:text-xl" />
+            <div className="w-full md:max-w-5xl pt-8 md:pt-0 px-5 sm:px-10 md:px-20 lg:px-0">
                 <Form {...form}>
-                    <form onSubmit={handleInput} className="col-span-2 grid grid-cols-1 lg:grid-cols-2 gap-6">
-                        <FieldInput control={control} label="Name" name="name" />
-                        <FieldInput control={control} label="Email" name="email" />
-                        <FieldPhoneInput control={control} label="Phone Number" name="phone" />
-                        <FieldSelect control={control} label="Business Category" name="business" value={businessCategories} />
+                    <form onSubmit={handleInput} className="w-full grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <FieldInput control={control} label="Name: *" name="name" placeholder="Enter your name" />
+                        <FieldInput control={control} label="Email: *" name="email" placeholder="Enter your email address" />
+                        <FieldPhoneInput control={control} label="Contact No: *" name="phone" placeholder="Enter your phone number" />
+                        <FieldInput control={control} label="Company Name: *" name="companyName" placeholder="Enter your company’s name" />
+                        <FieldInput control={control} label="Company Website: *" name="companyWebsite" placeholder="e.g.https://www.yourcompany.com" />
+                        <FieldSelect control={control} label="Business Industry: *" name="business" value={businessCategories} placeholder="Your business industry" />
                         <div className="lg:col-span-2">
-                            <FieldInput control={control} label="Message" name="message" type={"textarea"} />
+                            <FieldInput control={control} label="Remarks / Special Requirements" name="message" type={"textarea"} placeholder="Tell us anything specific you need help with" />
                         </div>
 
                         <div className="flex justify-end w-full lg:col-span-2">
-                            <button disabled={isLoading} type="submit" className=" disabled:bg-red-950/40 disabled:cursor-wait rounded-md border-2 text-white border-white bg-primary py-3 px-5 lg:px-16 w-fit "> {isLoading ? "Sending..." : "Send Message"}</button>
+                            <button disabled={isLoading} type="submit" className=" disabled:bg-red-950/40 text-sm md:text-base disabled:cursor-wait rounded-md border-2 text-white border-white bg-red-800/40 py-3 lg:py-4 px-5 lg:px-12 w-fit hover:bg-red-500 duration-200 transition-all"> {isLoading ? "Sending..." : "Request Consultation"}</button>
                         </div>
                     </form>
                 </Form>
-                <div className="flex flex-col gap-5 text-white">
-                    <div className="flex flex-col gap-2 justify-center">
-                        <h3 className="text-xl">Email</h3>
-                        <p className="text-gray-300 font-light">wow@digital-pa.com.sg</p>
-                    </div>
-                    {/* <div className="flex flex-col gap-2 justify-center">
-                        <h3 className="text-xl">Contact</h3>
-                        <p className="text-gray-300 font-light">+65 XXXXXXXXX</p>
-                    </div> */}
-                    <div className="flex flex-col gap-2 justify-center">
-                        <h3 className="text-xl">Visit Us</h3>
-                        <p className="text-gray-300 font-light">1100 Lower Delta Rd
-                            #02-02B EPL Building
-                            Singapore 169206</p>
-                    </div>
-                </div>
             </div>
         </div >
     )

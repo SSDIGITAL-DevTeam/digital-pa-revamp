@@ -4,7 +4,7 @@ import ContactForm from './_components/ContactForm'
 export default function ContactUs(): JSX.Element {
     return (
         <main>
-            <header className='container p-6 lg:p-8'>
+            <header className='container p-6 lg:p-8 flex flex-col justify-center md:items-center mt-16'>
                 <h1 className='text-2xl uppercase tracking-widest text-primary'>
                     Say Hello
                 </h1>
@@ -13,17 +13,26 @@ export default function ContactUs(): JSX.Element {
                     We&apos;d Love to Hear from You. Let&apos;s Get in Touch.
                 </h2>
             </header>
+            {/* <header className='container p-6 lg:p-8'>
+                <h1 className='text-2xl uppercase tracking-widest text-primary'>
+                    Say Hello
+                </h1>
+
+                <h2 className='mt-4 text-3xl font-normal uppercase'>
+                    We&apos;d Love to Hear from You. Let&apos;s Get in Touch.
+                </h2>
+            </header> */}
 
             {/* contact form section */}
             <section className='pb-8'>
                 <div className='container p-6 lg:p-8'>
                     <div className='flex flex-col gap-6 lg:flex-row lg:gap-8'>
-                        <div className='lg:w-2/3'>
+                        <div className='w-full flex justify-center items-center'>
                             <ContactForm />
                         </div>
 
                         {/* contact information wrapper */}
-                        <div className='mt-8 flex flex-col gap-6 lg:mt-0 lg:w-1/3 lg:gap-8'>
+                        {/* <div className='mt-8 flex flex-col gap-6 lg:mt-0 lg:w-1/3 lg:gap-8'>
                             <div>
                                 <p className='font-heading text-xl font-semibold'>
                                     Email
@@ -49,7 +58,7 @@ export default function ContactUs(): JSX.Element {
                                     Singapore 169206
                                 </address>
                             </div>
-                        </div>
+                        </div> */}
                         {/* end of contact information wrapper */}
                     </div>
                 </div>
@@ -57,7 +66,7 @@ export default function ContactUs(): JSX.Element {
             {/* end of contact form section */}
 
             {/* location form section */}
-            <section className='py-8'>
+            {/* <section className='py-8'>
                 <div className='container p-6 lg:p-8'>
                     <iframe
                         className='w-full rounded-lg'
@@ -66,7 +75,7 @@ export default function ContactUs(): JSX.Element {
                         loading='lazy'
                     ></iframe>
                 </div>
-            </section>
+            </section> */}
             {/* end of location form section */}
         </main>
     )

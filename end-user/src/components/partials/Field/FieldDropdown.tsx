@@ -12,21 +12,22 @@ type Props = {
     control: Control<any>,
     name: string,
     label: string,
-    value: string[]
+    value: string[],
+    placeholder?: string
 }
 
-export default function FieldSelect({ control, name, label, value }: Props) {
+export default function FieldSelect({ control, name, label, value, placeholder }: Props) {
     return (
         <FormField
             name={name}
             control={control}
             render={({ field }) => (
                 <FormItem>
-                    <FormLabel>{label} <span>*</span></FormLabel>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                    <FormLabel>{label}</FormLabel>
+                    <Select onValueChange={field.onChange} defaultValue={field.value || ""}>
                         <FormControl>
                             <SelectTrigger>
-                                <SelectValue placeholder={label} />
+                                <SelectValue placeholder={placeholder || label} />
                             </SelectTrigger>
                         </FormControl>
                         <SelectContent>

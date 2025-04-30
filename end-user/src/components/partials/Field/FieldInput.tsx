@@ -8,22 +8,23 @@ type Props = {
     name: string,
     label: string,
     type?: "textarea" | ""
+    placeholder?: string
 }
 
-export default function FieldInput({ control, name, label, type }: Props) {
+export default function FieldInput({ control, name, label, type, placeholder }: Props) {
     return (
         <FormField
             name={name}
             control={control}
             render={({ field }) => (
                 <FormItem>
-                    <FormLabel>{label} <span>*</span></FormLabel>
+                    <FormLabel>{label}</FormLabel>
                     <FormControl>
                         <div className="">
                             {
                                 type === "textarea"
-                                    ? <Textarea placeholder={name} {...field} />
-                                    : <Input placeholder={name} type="text"
+                                    ? <Textarea placeholder={placeholder || name} {...field} />
+                                    : <Input placeholder={placeholder || name} type="text"
                                         {...field} />
                             }
                         </div>

@@ -33,13 +33,13 @@ export default function GridSection({ list, height, width, side = "center", lead
                             alt="icon"
                             width={1000}
                             height={1000}
-                            className="object-contain w-12 h-12 lg:w-[72px] lg:h-[72px]"
+                            className="object-contain w-16 h-16 lg:w-[72px] lg:h-[72px]"
                         />
                     )}
 
                     <h2 className={`text-primary text-3xl lg:text-5xl ${side === "left" ? "text-left" : "text-center"}`}>
                         {!d.icons && "0" + (i + 1)}
-                        <span className={`block text-lg lg:text-xl text-black ${leading ? leading : 'leading-[120%]' } mt-4`}>{d.title}</span>
+                        <span className={`block text-lg lg:text-xl text-black ${leading ? leading : 'leading-[130%]' } mt-4`}>{d.title}</span>
                     </h2>
 
                     {d.desc &&
