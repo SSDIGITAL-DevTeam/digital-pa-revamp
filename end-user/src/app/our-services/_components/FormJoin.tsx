@@ -17,7 +17,7 @@ const formData = z.object({
     email: z.string().email().nonempty(),
     // phone: z.string().nonempty().min(4, "Please enter a valid phone number"),
     companyName: z.string().nonempty(),
-    companyWebsite: z.string().nonempty().startsWith("https://", { message: "Please enter a valid URL" }),
+    companyWebsite: z.string().nonempty().min(5, "Please enter a valid website"),
     business: z.string().nonempty(),
     message: z.string(),
     phone: z.string().nonempty().refine((val) => {

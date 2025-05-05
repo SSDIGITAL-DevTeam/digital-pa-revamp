@@ -1,18 +1,10 @@
 // utils/mailer.js
-import nodemailer from 'nodemailer'
-
-const transporter = nodemailer.createTransport({
-  host: 'sandbox.smtp.mailtrap.io',
-  port: 2525,
-  auth: {
-    user: '79a044f319a464', // Ganti sesuai akun Mailtrap kamu
-    pass: '07ae0b0b200e9f',
-  },
-})
+// import nodemailer from 'nodemailer'
+import { transporter } from './sendMail.js'
 
 export const sendResetEmail = async (to, link) => {
   const mailOptions = {
-    from: '"Ryan Kusuma" <cihuy@example.com>',
+    from: `"${process.env.USER_EMAIL}" <${process.env.USER_EMAIL}>`,
     to,
     subject: 'Reset Your Password',
     html: `
@@ -27,7 +19,7 @@ export const sendResetEmail = async (to, link) => {
         <p>If you did not request a password reset, please ignore this email.</p>
         <br>
         <p>Best regards,</p>
-        <p><strong>Ryan Kusuma</strong><br>Administrator</p>
+        <p><strong>Digital PA Singapore</strong></p>
       </div>
     `,
   }

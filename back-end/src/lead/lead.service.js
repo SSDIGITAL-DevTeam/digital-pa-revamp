@@ -14,6 +14,7 @@ dayjs.locale('id') // Set locale ke bahasa Indonesia
 
 import { asc, desc, ilike, and, or, eq, like, sql, gte, is } from 'drizzle-orm'
 import { blog, blogCategory, lead, user } from '../../drizzle/schema.js'
+import { sendLeadEmail } from '../../utils/sendMail.js'
 
 export const getAllLeads = async (filters) => {
     try {
@@ -112,6 +113,7 @@ export const getLeadById = async (id) => {
 export const createLead = async (payload) => {
     try {
         await insertLead(payload)
+        await sendLeadEmail(payload)
     } catch (error) {
         throw new Error(error.message)
     }

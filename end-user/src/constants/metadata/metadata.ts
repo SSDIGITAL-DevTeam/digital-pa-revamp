@@ -1,10 +1,46 @@
-import { Metadata } from 'next'
-
 const metadataBase = new URL('https://digital-pa.com.sg')
 const defaultImage = '/asset-logo.webp'
 export type MetadataKeys = keyof typeof seoMetadata
 
-export const seoMetadata: Record<string, Metadata> = {
+export const seoMetadata = {
+    // home: {
+    //     metadataBase,
+    //     title: 'Digital PA | Your Digital Partner in Digital Products',
+    //     description: 'Your digital partner in digital products',
+    //     keywords: [
+    //         'Digital Marketing',
+    //         'Marketing Automation',
+    //         'Social Media Marketing',
+    //         'SEO',
+    //     ],
+    //     openGraph: {
+    //         title: 'Digital PA | Your Digital Partner in Digital Products',
+    //         description: 'Your digital partner in digital products',
+    //         images: '/asset-logo.webp',
+    //     },
+    // },
+    home: {
+        metadataBase,
+        title: 'Homepage | Digital PA Singapore',
+        description:
+            'Discover how Digital PA helps businesses grow with expert digital marketing solutions tailored for success.',
+        keywords: [
+            'Digital PA',
+            'Digital Marketing Singapore',
+            'Marketing Solutions',
+            'SEO',
+            'Social Media Marketing',
+            'Marketing Automation',
+        ],
+        openGraph: {
+            title: 'Homepage | Digital PA Singapore',
+            description:
+                'Discover how Digital PA helps businesses grow with expert digital marketing solutions tailored for success.',
+            url: `${metadataBase}`,
+            images: defaultImage,
+        },
+    },
+
     about: {
         metadataBase,
         title: 'About Us | Digital PA Singapore',
@@ -320,6 +356,46 @@ export const seoMetadata: Record<string, Metadata> = {
             description:
                 'Ensure your site remains fast, secure, and up-to-date with our reliable maintenance services.',
             url: `${metadataBase}/website-development/website-maintenance`,
+            images: defaultImage,
+        },
+    },
+
+    aiAutomation: {
+        metadataBase,
+        title: 'AI Automation Solutions | Your Digital Partner in Digital Products',
+        description:
+            'Discover how Digital PA’s AI automation services help businesses in Singapore streamline operations, reduce costs, and enhance efficiency through intelligent automation and digital transformation.',
+        keywords: [
+            'AI Automation',
+            'Automation Services',
+            'Digital Transformation',
+            'Automation Tools',
+        ],
+        openGraph: {
+            title: 'AI Automation Solutions | Your Digital Partner in Digital Products',
+            description:
+                'Discover how Digital PA’s AI automation services help businesses in Singapore streamline operations, reduce costs, and enhance efficiency through intelligent automation and digital transformation.',
+            url: `${metadataBase}/ai-solutions/ai-automation`,
+            images: defaultImage,
+        },
+    },
+
+    success: {
+        metadataBase,
+        title: 'Thank You | Digital PA Singapore',
+        description:
+            'We’ve successfully received your inquiry. Our team will get back to you shortly to assist with your automation needs.',
+        keywords: [
+            'Lead Submitted',
+            'Thank You Page',
+            'AI Automation Contact',
+            'Digital PA Success Page',
+        ],
+        openGraph: {
+            title: 'Thank You | Digital PA Singapore',
+            description:
+                'We’ve successfully received your inquiry. Our team will get back to you shortly.',
+            url: `${metadataBase}/success`,
             images: defaultImage,
         },
     },

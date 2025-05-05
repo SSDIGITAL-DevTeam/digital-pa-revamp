@@ -1,7 +1,8 @@
 import { JSX, ReactNode } from 'react'
+
 import { seoMetadata } from '@/constants/metadata/metadata'; 
 
-export const metadata = seoMetadata.aiAutomation;
+export const metadata = seoMetadata.success; 
 
 export default function Layout({ children }: Readonly<{ children: ReactNode }>): JSX.Element {
     return <>{children}</>

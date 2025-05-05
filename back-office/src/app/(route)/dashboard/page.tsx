@@ -222,8 +222,8 @@ export default function Page(): JSX.Element {
               <th className="text-red-700 px-4 py-2 text-left w-1/5">Email Address</th>
               <th className="text-red-700 px-4 py-2 text-left w-1/5">Phone Number</th>
               <th className="text-red-700 px-4 py-2 text-left w-1/5">Business Industry</th>
-              <th className="text-red-700 px-4 py-2 text-left w-1/5">Message</th>
               <th className="text-red-700 px-4 py-2 text-left w-1/5">Source</th>
+              <th className="text-red-700 px-4 py-2 text-left w-fit max-w-1/5">Message</th>
             </tr>
           </thead>
           <tbody>
@@ -235,8 +235,8 @@ export default function Page(): JSX.Element {
                   <td className="px-4 py-2">{lead.email}</td>
                   <td className="px-4 py-2">{lead.phone}</td>
                   <td className="px-4 py-2">{lead.business}</td>
-                  <td className="px-4 py-2">{lead.message}</td>
                   <td className="px-4 py-2">{lead.from}</td>
+                  <td className="px-4 py-2">{lead.message}</td>
                 </tr>
               );
             })}

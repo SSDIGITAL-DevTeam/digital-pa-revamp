@@ -9,10 +9,11 @@ type Props = {
     control: Control<any>,
     name: string,
     label: string,
-    placeholder?: string
+    placeholder?: string,
+    for?: string
 }
 
-export default function FieldPhoneInput({ control, name, label, placeholder }: Props) {
+export default function FieldPhoneInput({ control, name, label, placeholder, for:id }: Props) {
     const size = useWidth()
     let height = "48px";
     if (size && size >= 768) height = "56px"
@@ -22,7 +23,7 @@ export default function FieldPhoneInput({ control, name, label, placeholder }: P
             control={control}
             render={({ field }) => (
                 <FormItem>
-                    <FormLabel>{label}</FormLabel>
+                    <FormLabel className={id && "text-gray-700"}>{label}</FormLabel>
                     <FormControl>
                         <PhoneInput
                             defaultCountry='sg'
