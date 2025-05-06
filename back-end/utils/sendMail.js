@@ -1,5 +1,6 @@
 // utils/mailer.js
 import nodemailer from 'nodemailer'
+import logger from './logger.js'
 
 export const transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -53,6 +54,6 @@ export const sendLeadEmail = async (payload) => {
         }
         await transporter.sendMail(mailOptions)
     } catch (error) {
-        console.log('Send Email error: ', error)
+        logger.error(`Send Email error: ${error.message}`)
     }
 }

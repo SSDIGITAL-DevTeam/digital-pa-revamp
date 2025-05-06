@@ -35,7 +35,6 @@ export const findLeadById = async (where) => {
         })
         return data
     } catch (error) {
-        console.error('GET by ID / error: ', error)
         throw new Error('Get lead by ID unsuccessfully')
     }
 }
@@ -44,7 +43,6 @@ export const insertLead = async (data) => {
     try {
         await db.insert(lead).values(data)
     } catch (error) {
-        console.error('POST / error: ', error)
         throw new Error('Lead insert unsuccessfully')
     }
 }
@@ -53,7 +51,6 @@ export const deleteLead = async (id) => {
     try {
         await db.delete(lead).where(eq(lead.id, id))
     } catch (error) {
-        console.error('DELETE / error: ', error)
         throw new Error('Lead delete unsuccessfully')
     }
 }
@@ -62,7 +59,6 @@ export const editLead = async (id, data) => {
     try {
         await db.update(lead).set(data).where(eq(lead.id, id))
     } catch (error) {
-        console.log('UPDATE / error: ', error)
         throw new Error('Lead edit unsuccessfully')
     }
 }

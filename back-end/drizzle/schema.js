@@ -55,7 +55,7 @@ export const lead = mysqlTable('lead', {
   business: varchar('business', { length: 255 }).notNull(),
   message: text('message'),
   companyName: varchar('company_name', { length: 255 }).notNull(),
-  companyWebsite: varchar('company_website', { length: 255 }).notNull(),
+  companyWebsite: varchar('company_website', { length: 255 }),
   from: varchar('from', { length: 50 }).notNull(),
   createdAt: timestamp('created_at').defaultNow().notNull(),
   updatedAt: timestamp('updated_at').defaultNow().notNull(),

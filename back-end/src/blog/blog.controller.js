@@ -7,6 +7,7 @@ import {
     updateQueue,
 } from './blog.service.js'
 import { parseBlogQuery } from '../../utils/parseBlogQuery.js'
+import logger from '../../utils/logger.js'
 
 const router = express.Router()
 
@@ -14,10 +15,9 @@ router.get('/', async (req, res) => {
     try {
         const filters = parseBlogQuery(req.query)
         const data = await getAllBlogs(filters)
-        // console.log(filters);
         res.status(200).json(data)
     } catch (error) {
-        console.error('GET / error:', error)
+        logger.error(`GET / error: ${error.message}`)
         res.status(400).json({ error: error.message })
     }
 })
@@ -28,7 +28,7 @@ router.get('/:id', async (req, res) => {
         const data = await getBlogById(id)
         res.status(200).json(data)
     } catch (error) {
-        console.error('GET /:id error:', error)
+        logger.error(`GET /:id error: ${error.message}`)
         res.status(400).json({ error: error.message })
     }
 })
@@ -62,7 +62,7 @@ router.post('/', async (req, res) => {
 
         res.status(201).json({ message: 'Blog created successfully' })
     } catch (error) {
-        console.error('POST / error:', error)
+        logger.error(`POST / error: ${error.message}`)
         res.status(400).json({ error: error.message })
     }
 })
@@ -74,17 +74,16 @@ router.delete('/:id', async (req, res) => {
 
         res.status(200).json({ message: 'Delete Blog Successfully' })
     } catch (error) {
+        logger.error(`DELETE /:id error: ${error.message}`)
         res.status(400).json({ error: error.message })
     }
 })
 
-//Ubah data - semua kolom harus terisi
 router.put('/:id', async (req, res) => {
     try {
         const id = req.params.id
         const { title, content, status, favorite, categoryId } = req.body
 
-        // Validasi manual basic
         if (
             !title ||
             !content ||
@@ -99,11 +98,11 @@ router.put('/:id', async (req, res) => {
         await updateQueue(id, { ...payload, favorite: isFavorite })
         res.status(200).json({ message: 'Berhasil Mengubah Blog' })
     } catch (error) {
+        logger.error(`PUT /:id error: ${error.message}`)
         res.status(400).json({ error: error.message })
     }
 })
 
-//Ubah data - hanya kolom yang diisi
 router.patch('/:id', async (req, res) => {
     try {
         const id = req.params.id
@@ -112,7 +111,6 @@ router.patch('/:id', async (req, res) => {
             throw new Error('Nothing to update')
         }
 
-        // console.log(req.body)
         const payload = { ...req.body }
 
         if (req.file) {
@@ -124,6 +122,7 @@ router.patch('/:id', async (req, res) => {
 
         res.status(200).json({ message: 'Blog edited successfully' })
     } catch (error) {
+        logger.error(`PATCH /:id error: ${error.message}`)
         res.status(400).json({ error: error.message })
     }
 })

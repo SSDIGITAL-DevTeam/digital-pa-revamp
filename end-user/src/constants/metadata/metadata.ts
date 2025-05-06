@@ -399,4 +399,26 @@ export const seoMetadata = {
             images: defaultImage,
         },
     },
+
+    tuition: {
+        metadataBase,
+        title: 'DPA Tuition Centre | Digital PA Singapore',
+        description: 
+            'Learn about DPA Tuition Centre’s academic coaching, teaching philosophy, and the services we offer to help students thrive in their studies and mindset development.',
+        keywords: [
+        'Academic Coaching',
+        'DPA Tuition Centre Services',
+        'Tuition Singapore',
+        'Mindset Development',
+        'Game-based Learning',
+        'Mock Exams',
+        ],
+        openGraph: {
+        title: 'DPA Tuition Centre | Digital PA Singapore',
+        description: 
+            'Explore the comprehensive academic coaching services offered by DPA Tuition Centre, focused on academic success and personal development.',
+        url: `${metadataBase}/tuition-center-knowledge-base`,
+        images: defaultImage,
+        },
+    },
 }

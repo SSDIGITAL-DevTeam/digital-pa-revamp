@@ -30,8 +30,7 @@ export const findAllUsers = async (skip, limit, where, orderBy) => {
 
         return { datas, total }
     } catch (error) {
-        console.log('GET / error: ', error)
-        throw new Error('Error fetching all users')
+        throw new Error('Get all users unsuccessfully')
     }
 }
 
@@ -42,7 +41,6 @@ export const findUserById = async (id) => {
         })
         return data
     } catch (error) {
-        console.log('GET /Id error: ', error)
         throw new Error('Get user by ID unsuccessfully')
     }
 }
@@ -54,7 +52,6 @@ export const findUserByEmail = async (email) => {
         })
         return userData
     } catch (error) {
-        console.error('GET by Email / error: ', error)
         throw new Error('Get user by email unsuccessfully')
     }
 }
@@ -66,7 +63,6 @@ export const findUserByRefreshToken = async (refreshToken) => {
         })
         return userData
     } catch (error) {
-        console.error('GET by Refresh Token / error: ', error)
         throw new Error('Get user by refresh token unsuccessfully')
     }
 }
@@ -75,7 +71,6 @@ export const insertUser = async (data) => {
     try {
         await db.insert(user).values(data)
     } catch (error) {
-        console.error('POST / error: ', error)
         throw new Error('Error creating user')
     }
 }
@@ -84,7 +79,6 @@ export const deleteUser = async (id) => {
     try {
         await db.delete(user).where(eq(user.id, id))
     } catch (error) {
-        console.log('DELETE / error: ', error)
         throw new Error('Error deleting user')
     }
 }
@@ -93,7 +87,6 @@ export const editUser = async (id, data) => {
     try {
         await db.update(user).set(data).where(eq(user.id, id))
     } catch (error) {
-        console.log(error)
         throw new Error('Edit user unsuccessfully')
     }
 }

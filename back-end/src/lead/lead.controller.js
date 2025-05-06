@@ -6,6 +6,7 @@ import {
     getLeadById,
     updateLead,
 } from './lead.service.js'
+import logger from '../../utils/logger.js'
 
 const router = express.Router()
 
@@ -43,7 +44,7 @@ router.get('/', async (req, res) => {
         const data = await getAllLeads(filters)
         res.status(200).json(data)
     } catch (error) {
-        console.error('GET / error:', error)
+        logger.error(`GET / error: ${error.message}`)
         res.status(400).json({ error: error.message })
     }
 })
@@ -54,14 +55,14 @@ router.get('/:id', async (req, res) => {
         const data = await getLeadById(id)
         res.status(200).json(data)
     } catch (error) {
-        console.error('GET /:id error:', error)
+        logger.error(`GET /:id error: ${error.message}`)
         res.status(400).json({ error: error.message })
     }
 })
 
 router.post('/', async (req, res) => {
     try {
-        const { name, email, phone, business, companyName, companyWebsite, from } =
+        const { name, email, phone, business, companyName, from, token } =
             req.body
 
         if (
@@ -70,8 +71,8 @@ router.post('/', async (req, res) => {
             !phone?.trim() ||
             !business?.trim() ||
             !companyName?.trim() ||
-            !companyWebsite?.trim() ||
-            !from?.trim()
+            !from?.trim() ||
+            !token?.trim()
         ) {
             return res.status(400).json({ error: 'All fields are required' })
         }
@@ -79,7 +80,7 @@ router.post('/', async (req, res) => {
 
         res.status(201).json({ message: 'Lead created successfully' })
     } catch (error) {
-        console.error('POST / error:', error)
+        logger.error(`POST / error: ${error.message}`)
         res.status(400).json({ error: error.message })
     }
 })
@@ -91,6 +92,7 @@ router.delete('/:id', async (req, res) => {
 
         res.status(200).json({ message: 'Delete Blog Successfully' })
     } catch (error) {
+        logger.error(`DELETE /:id error: ${error.message}`)
         res.status(400).json({ error: error.message })
     }
 })
@@ -116,9 +118,11 @@ router.put('/:id', async (req, res) => {
 
         res.status(200).json({ message: 'Lead edited successfully' })
     } catch (error) {
+        logger.error(`PUT /:id error: ${error.message}`)
         res.status(400).json({ error: error.message })
     }
 })
+
 router.patch('/:id', async (req, res) => {
     try {
         const id = req.params.id
@@ -126,11 +130,11 @@ router.patch('/:id', async (req, res) => {
         if (!req.body || Object.keys(req.body).length === 0) {
             throw new Error('Nothing to update')
         }
-       
         await updateLead(id, req.body)
 
         res.status(200).json({ message: 'Lead edited successfully' })
     } catch (error) {
+        logger.error(`PATCH /:id error: ${error.message}`)
         res.status(400).json({ error: error.message })
     }
 })

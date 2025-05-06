@@ -19,7 +19,6 @@ export const findAllBlogCats = async (skip, limit, where, orderBy) => {
 
         return { datas, total }
     } catch (error) {
-        console.log('GET / error: ', error)
         throw new Error('Get all blog categories unsuccessfully')
     }
 }
@@ -27,11 +26,10 @@ export const findAllBlogCats = async (skip, limit, where, orderBy) => {
 export const findBlogCatByName = async (name) => {
     try {
         const data = await db.query.blogCategory.findFirst({
-            where : eq(blogCategory.name, name)
+            where: eq(blogCategory.name, name),
         })
         return data
     } catch (error) {
-        console.log('GET / error: ', error)
         throw new Error('Get blog category by name unsuccessfully')
     }
 }
@@ -41,22 +39,21 @@ export const findBlogCatById = async (where) => {
         const data = await db.query.blogCategory.findFirst({
             where,
             with: {
-                blogs : {
-                    columns:{
+                blogs: {
+                    columns: {
                         id: true,
                         title: true,
                         slug: true,
                         favorite: true,
                         status: true,
-                        userId: true
-                    }
-                }
+                        userId: true,
+                    },
+                },
             },
         })
 
         return data
     } catch (error) {
-        console.log('GET /:id error: ', error)
         throw new Error('Get blog category by id unsuccessfully')
     }
 }
@@ -65,7 +62,6 @@ export const insertBlogCat = async (data) => {
     try {
         await db.insert(blogCategory).values(data)
     } catch (error) {
-        console.error('POST / error: ', error)
         throw new Error('Insert blog category unsuccessfully')
     }
 }
@@ -74,7 +70,6 @@ export const deleteBlogCat = async (id) => {
     try {
         await db.delete(blogCategory).where(eq(blogCategory.id, id))
     } catch (error) {
-        console.log(error)
         throw new Error('Delete blog category unsuccessfully')
     }
 }
@@ -83,7 +78,6 @@ export const editBlogCat = async (id, data) => {
     try {
         await db.update(blogCategory).set(data).where(eq(blogCategory.id, id))
     } catch (error) {
-        console.log(error)
         throw new Error('Change blog category unsuccessfully')
     }
 }

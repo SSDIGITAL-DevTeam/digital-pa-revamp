@@ -1,30 +1,23 @@
-//functionya re-usable
-
 import {
     findAllLeads,
     insertLead,
     findLeadById,
     editLead,
-    deleteLead
+    deleteLead,
 } from './lead.repository.js'
 import dayjs from 'dayjs'
 import 'dayjs/locale/id.js'
 
-dayjs.locale('id') // Set locale ke bahasa Indonesia
+dayjs.locale('id')
 
-import { asc, desc, ilike, and, or, eq, like, sql, gte, is } from 'drizzle-orm'
-import { blog, blogCategory, lead, user } from '../../drizzle/schema.js'
+import { asc, desc, and, or, eq, like, gte } from 'drizzle-orm'
+import { lead } from '../../drizzle/schema.js'
 import { sendLeadEmail } from '../../utils/sendMail.js'
+import logger from '../../utils/logger.js'
 
 export const getAllLeads = async (filters) => {
     try {
-        const {
-            page = 1,
-            limit = 10,
-            orderBy,
-            search,
-            createdAt
-        } = filters
+        const { page = 1, limit = 10, orderBy, search, createdAt } = filters
 
         const skip = (page - 1) * limit
 
@@ -46,28 +39,27 @@ export const getAllLeads = async (filters) => {
         }
 
         if (createdAt) {
-            let dateFrom;
-            const now = dayjs();
+            let dateFrom
+            const now = dayjs()
 
             switch (createdAt) {
                 case 'today':
-                    dateFrom = now.startOf('day').toDate();
-                    break;
+                    dateFrom = now.startOf('day').toDate()
+                    break
                 case 'this_week':
-                    dateFrom = now.startOf('week').toDate();
-                    break;
+                    dateFrom = now.startOf('week').toDate()
+                    break
                 case 'this_month':
-                    dateFrom = now.startOf('month').toDate();
-                    break;
+                    dateFrom = now.startOf('month').toDate()
+                    break
                 default:
-                    dateFrom = null;
+                    dateFrom = null
             }
 
             if (dateFrom) {
-                whereConditions.push(gte(lead.createdAt, dateFrom));
+                whereConditions.push(gte(lead.createdAt, dateFrom))
             }
         }
-
 
         const where = whereConditions.length
             ? and(...whereConditions)
@@ -81,7 +73,6 @@ export const getAllLeads = async (filters) => {
         const { datas, total } = await findAllLeads(skip, limit, where, order)
 
         const totalPages = Math.ceil(total / limit)
-        // console.log({ datas, total, totalPages })
         return {
             data: datas,
             pagination: {
@@ -92,7 +83,6 @@ export const getAllLeads = async (filters) => {
             },
         }
     } catch (error) {
-        console.log(error)
         throw new Error(error.message)
     }
 }
@@ -101,7 +91,7 @@ export const getLeadById = async (id) => {
     try {
         let where = eq(lead.id, id)
         const leadData = await findLeadById(where)
-        if(!leadData) {
+        if (!leadData) {
             throw new Error('Lead not found')
         }
         return leadData
@@ -110,8 +100,31 @@ export const getLeadById = async (id) => {
     }
 }
 
+async function verifyRecaptchaToken(token) {
+    const RECAPTCHA_SECRET_KEY = process.env.RECAPTCHA_SECRET_KEY
+    const url = 'https://www.google.com/recaptcha/api/siteverify'
+    const params = new URLSearchParams()
+    params.append('secret', RECAPTCHA_SECRET_KEY)
+    params.append('response', token)
+
+    const response = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: params,
+    })
+
+    const data = await response.json()
+    logger.info(data)
+    if (!data.success || data.score < 0.5) {
+        throw new Error('Failed reCAPTCHA check or low score')
+    }
+
+    return data
+}
+
 export const createLead = async (payload) => {
     try {
+        await verifyRecaptchaToken(payload.token)
         await insertLead(payload)
         await sendLeadEmail(payload)
     } catch (error) {

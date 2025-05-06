@@ -5,6 +5,7 @@
 import { db } from '../../drizzle/db.js'
 import { blog, blogCategory, user } from '../../drizzle/schema.js'
 import { eq, count } from 'drizzle-orm'
+import logger from '../../utils/logger.js'
 
 export const findAllBlogs = async (skip, limit, where, orderBy) => {
     try {
@@ -43,8 +44,8 @@ export const findAllBlogs = async (skip, limit, where, orderBy) => {
 
         return { datas, total }
     } catch (error) {
-        console.log('GET / error: ', error)
-        throw new Error('Error fetching all blogs')
+        // logger.error('GET / error: Get all blogs unsuccessfully')
+        throw new Error('Get all blogs unsuccessfully')
     }
 }
 export const checkBlogFavorite = async () => {
@@ -58,8 +59,8 @@ export const checkBlogFavorite = async () => {
 
         return total
     } catch (error) {
-        console.log('GET / error: ', error)
-        throw new Error('Error fetching all blogs')
+        // logger.error('GET / error: Get favorite blogs unsuccessfully')
+        throw new Error('Get favorite blogs unsuccessfully')
     }
 }
 
@@ -87,8 +88,8 @@ export const findBlogById = async (blogId) => {
 
         return data
     } catch (error) {
-        console.error('GET by ID / error: ', error)
-        throw new Error('Error fetching blog by ID')
+        // logger.error(`GET by ID / error: Get blog by ID unsuccessfully`)
+        throw new Error('Get blog by ID unsuccessfully`)')
     }
 }
 export const findBlogBySlug = async (slug) => {
@@ -115,8 +116,8 @@ export const findBlogBySlug = async (slug) => {
 
         return data
     } catch (error) {
-        console.error('GET by ID / error: ', error)
-        throw new Error('Error fetching blog by ID')
+        // logger.error('GET by ID / error: Get blog by slug unsuccessfully')
+        throw new Error('Get blog by slug unsuccessfully')
     }
 }
 
@@ -130,8 +131,8 @@ export const findBlogByTitle = async (title) => {
 
         return result[0] || null
     } catch (error) {
-        console.error('GET by Title / error: ', error)
-        throw new Error('Error fetching blog by title')
+        // logger.error('GET by Title / error: Get blog by title unsuccessfully')
+        throw new Error('Get blog by title unsuccessfully')
     }
 }
 
@@ -139,8 +140,8 @@ export const insertBlog = async (data) => {
     try {
         await db.insert(blog).values(data)
     } catch (error) {
-        console.error('POST / error: ', error)
-        throw new Error('Error inserting blog')
+        // logger.error('POST / error: Insert blog unsuccessfully')
+        throw new Error('Insert blog unsuccessfully')
     }
 }
 
@@ -148,8 +149,8 @@ export const deleteBlog = async (id) => {
     try {
         await db.delete(blog).where(eq(blog.id, id))
     } catch (error) {
-        console.error('DELETE / error: ', error)
-        throw new Error('Error deleting blog')
+        // logger.error('DELETE / error: Blog delete unsuccessfully')
+        throw new Error('Blog delete unsuccessfully')
     }
 }
 
@@ -157,7 +158,7 @@ export const editQueue = async (id, data) => {
     try {
         await db.update(blog).set(data).where(eq(blog.id, id))
     } catch (error) {
-        console.log(error)
+        // logger.error('UPDATE / error: Blog edit unsuccessfully')
         throw new Error('Blog edit unsuccessfully')
     }
 }

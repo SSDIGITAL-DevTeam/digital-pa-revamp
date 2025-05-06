@@ -20,8 +20,9 @@ import { fileURLToPath } from 'url'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
-import { asc, desc, ilike, and, or, eq, like, sql, gte } from 'drizzle-orm'
-import { blog, blogCategory, user } from '../../drizzle/schema.js'
+import { asc, desc, and, or, eq, like, gte } from 'drizzle-orm'
+import { blog } from '../../drizzle/schema.js'
+import logger from '../../utils/logger.js'
 
 export const getAllBlogs = async (filters) => {
     try {
@@ -139,8 +140,7 @@ export const createBlog = async (payload) => {
 
         await insertBlog({ ...payload, slug, status : "Published", favorite: false })
     } catch (error) {
-        console.error('POST / error:', error)
-        throw new Error(error.message || 'Error inserting blog')
+        throw new Error(error.message)
     }
 }
 
@@ -156,7 +156,6 @@ export const deleteBlogById = async (id) => {
         }
         await deleteBlog(id)
     } catch (error) {
-        console.log(error)
         throw new Error(error.message)
     }
 }
@@ -193,7 +192,6 @@ export const updateQueue = async (id, payload) => {
         }
         await editQueue(id, { ...payload, favorite: newFavorite })
     } catch (error) {
-        console.log(error)
         throw new Error(error.message)
     }
 }

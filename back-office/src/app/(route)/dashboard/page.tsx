@@ -98,7 +98,7 @@ export default function Page(): JSX.Element {
         { url: "/blog", params: { limit: 1, status: "Archived", createdAt: filter } },
         { url: "/blog", params: { limit: 1, status: "Draft", createdAt: filter } },
         { url: "/blog-category", params: { limit: 1, createdAt: filter } },
-        { url: "/lead", params: { page, limit: 5, createdAt: filter } },
+        { url: "/lead", params: { page, limit: 5, createdAt: filter, orderBy: "createdAt:desc" } },
       ];
 
       const responses = await Promise.all(

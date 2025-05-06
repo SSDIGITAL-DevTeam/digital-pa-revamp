@@ -19,7 +19,7 @@ router.post('/', async (req, res) => {
 
         res.status(201).json({ message: 'Password updated successfully' })
     } catch (error) {
-        console.error('POST / reset-password error:', error)
+        logger.error(`POST / reset-password error: ${error.message}`)
         return res.status(400).json({ error: 'Invalid or expired token' })
     }
 })

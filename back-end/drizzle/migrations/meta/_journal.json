@@ -43,6 +43,13 @@
       "when": 1745994464925,
       "tag": "0005_smart_green_goblin",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "5",
+      "when": 1746501705646,
+      "tag": "0006_remarkable_salo",
+      "breakpoints": true
     }
   ]
 }

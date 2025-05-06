@@ -2,6 +2,7 @@ import express from 'express'
 import jwt from 'jsonwebtoken'
 import { sendResetEmail } from '../../../utils/mail.js'
 import { findUserByEmail } from '../../user/user.repository.js'
+import logger from '../../../utils/logger.js'
 
 const router = express.Router()
 
@@ -29,7 +30,7 @@ router.post('/', async (req, res) => {
         res.status(200).json({ message: 'Password reset link sent to email' })
 
     } catch (error) {
-        console.error('POST / reset-password error:', error)
+        logger.error(`POST / reset-password error: ${error.message || "error"}`)
         res.status(400).json({ error: error.message })
     }
 })

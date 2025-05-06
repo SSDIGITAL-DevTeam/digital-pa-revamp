@@ -1,11 +1,13 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
-// import path from "path";
 import helmet from "helmet";
 import cookieParser from "cookie-parser";
+// import path from "path";
 // import http from 'http'
 // import rateLimit from 'express-rate-limit'
+import pinoHttp from "pino-http";
+import logger from "../utils/logger.js";
 
 //new
 import UserController from "./user/user.controller.js";
@@ -46,6 +48,7 @@ app.use(
   })
 );
 
+app.use(pinoHttp({ logger }));
 // app.use(limiter);
 app.use(helmet());
 app.use(cookieParser());
@@ -73,5 +76,5 @@ app.use("/api/v1/blog-category", BlogCategoryController);
 app.use("/api/v1/blog", upload.single("image"), BlogController);
 
 
-const server = app.listen(PORT, () => console.log(`Server Running On Port ${PORT}`));
+const server = app.listen(PORT, () => logger.info(`Server Running On Port ${PORT}`));
 export default server;

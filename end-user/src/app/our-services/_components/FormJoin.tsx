@@ -10,14 +10,14 @@ import { axiosInstance } from "@/lib/axios";
 import { useState } from "react";
 import { toast } from "sonner";
 import { failToast, successToast } from "@/config/toastConfig";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
 const formData = z.object({
     name: z.string().nonempty(),
     email: z.string().email().nonempty(),
-    // phone: z.string().nonempty().min(4, "Please enter a valid phone number"),
     companyName: z.string().nonempty(),
-    companyWebsite: z.string().nonempty().min(5, "Please enter a valid website"),
+    companyWebsite: z.string().optional(),
     business: z.string().nonempty(),
     message: z.string(),
     phone: z.string().nonempty().refine((val) => {
@@ -38,11 +38,12 @@ export default function FormJoin() {
         .pop() || '';
 
     const pathname = lastSegment
-        .split('-')                           
-        .map(word => word.charAt(0).toUpperCase() + word.slice(1)) 
-        .join(' ');                    
+        .split('-')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
 
-
+    const router = useRouter();
+    const { executeRecaptcha } = useGoogleReCaptcha()
     const [isLoading, setIsLoading] = useState(false);
     const form = useForm<FormData>({
         defaultValues: {
@@ -61,16 +62,26 @@ export default function FormJoin() {
     const handleInput = handleSubmit(async (value) => {
         setIsLoading(true)
         try {
-            // console.log({ ...value, phone: value.phone.replaceAll('+', ''), from: pathname })
-            const response = await axiosInstance.post("/lead", { ...value, phone: value.phone.replaceAll('+', ''), from: pathname });
+            if (!executeRecaptcha) {
+                throw new Error('reCAPTCHA is not available')
+            }
+            const token = await executeRecaptcha('formSubmit')
+            const response = await axiosInstance.post("/lead",
+                {
+                    ...value,
+                    phone: value.phone.replaceAll('+', ''),
+                    from: pathname,
+                    token
+                });
             console.log("Success:", response.data.message);
             toast.success(
                 'Your message has been sent.',
                 successToast,
             )
+            router.push("/success");
         } catch (error: any) {
             console.error("Error:", error);
-            toast.error(error.response.data.error || "Message not sent", failToast)
+            toast.error(error.message || error.response.data.error || "Message not sent", failToast)
         }
         finally {
             setIsLoading(false)
@@ -88,7 +99,7 @@ export default function FormJoin() {
                         <FieldInput control={control} label="Email: *" name="email" placeholder="Enter your email address" />
                         <FieldPhoneInput control={control} label="Contact No: *" name="phone" placeholder="Enter your phone number" />
                         <FieldInput control={control} label="Company Name: *" name="companyName" placeholder="Enter your company’s name" />
-                        <FieldInput control={control} label="Company Website: *" name="companyWebsite" placeholder="e.g.https://www.yourcompany.com" />
+                        <FieldInput control={control} label="Company Website:" name="companyWebsite" placeholder="e.g.https://www.yourcompany.com" />
                         <FieldInput control={control} label="Business Industry: *" name="business" placeholder="Your business industry" />
                         <div className="lg:col-span-2">
                             <FieldInput control={control} label="Remarks / Special Requirements" name="message" type={"textarea"} placeholder="Tell us anything specific you need help with" />

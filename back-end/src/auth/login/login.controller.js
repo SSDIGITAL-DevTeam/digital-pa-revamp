@@ -1,6 +1,7 @@
 import express from 'express'
 import { z } from 'zod';
 import { loginUser } from './login.service.js';
+import logger from '../../../utils/logger.js';
 
 const router = express.Router()
 
@@ -20,13 +21,8 @@ router.post("/", async (req, res) => {
         
 
     } catch (error) {
-        if (error instanceof z.ZodError) {
-            res.status(400).json({
-                error: `${error.errors[0].message} - pada kolom ${error.errors[0].path[0]}`,
-            });
-        } else {
+        logger.error(`POST / login error: ${error.message}`)
             res.status(400).json({ error: error.message });
-        }
     }
 });
 
