@@ -167,10 +167,10 @@
   }
 
   .grecaptcha-badge {
-    /* display: none !important; */
-    left: 0 !important;
+    display: none !important;
+    /* left: 0 !important;
     right: auto !important;
-    z-index: 19 !important;
+    z-index: 19 !important; */
   }  
 
 /* scrollbar */
