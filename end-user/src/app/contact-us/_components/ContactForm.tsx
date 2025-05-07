@@ -65,6 +65,7 @@ export default function ContactForm() {
                 'Your message has been sent.',
                 successToast,
             )
+            sessionStorage.setItem("formSubmitted", "true");
             router.push("/success");
         } catch (error: any) {
             console.error("Error:", error);
