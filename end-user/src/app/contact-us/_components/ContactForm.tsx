@@ -52,7 +52,7 @@ export default function ContactForm() {
             if (!executeRecaptcha) {
                 throw new Error('reCAPTCHA is not available')
             }
-            const token = await executeRecaptcha('contact-submit')
+            const token = await executeRecaptcha('contactSubmit')
             const response = await axiosInstance.post("/lead",
                 {
                     ...value,
