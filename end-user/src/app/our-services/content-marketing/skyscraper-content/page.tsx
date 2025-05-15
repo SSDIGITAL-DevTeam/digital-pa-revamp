@@ -27,17 +27,7 @@ import Rank from '@/assets/our-services/svg/rank.svg'
 import Establish from '@/assets/our-services/svg/establish.svg'
 import BoostOrganic from '@/assets/our-services/svg/organic-traffic.svg'
 import DriveTraffic from '@/assets/our-services/svg/drive-web-traffic.svg'
-
-export type GridType = {
-    title: string;
-    desc: string;
-    icon: string;
-}
-
-export type ListType = {
-    title: string;
-    desc: string;
-}
+import { GridType, ListType } from '@/constants/our-services/skyscaper'
 
 const qualityInfographics: GridType[] = [
     {

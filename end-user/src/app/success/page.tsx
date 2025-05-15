@@ -17,7 +17,7 @@ export default function SuccessPage() {
     return (
         <main className="w-full">
             <section className="max-w-5xl mx-auto flex flex-col items-center gap-9 h-full justify-center py-32 sm:py-40">
-                <Image src={successModalImage.src} alt="success-modal" width={1920} height={1080} className="h-20 w-20 sm:h-32 sm:w-32 md:h-44 md:w-44 bg-gray-50/60 rounded-full shadow-md" />
+                <Image src={successModalImage.src} priority alt="success-modal" width={1920} height={1080} className="h-20 w-20 sm:h-32 sm:w-32 md:h-44 md:w-44 bg-gray-50/60 rounded-full shadow-md" />
                 <div className="space-y-4">
                     <h2 className="text-xl md:text-4xl text-center text-gray-800">Thank You for Your Enquiry</h2>
                     <p className="text-center text-gray-600 !leading-[150%] text-sm md:text-lg max-w-[70%] mx-auto">

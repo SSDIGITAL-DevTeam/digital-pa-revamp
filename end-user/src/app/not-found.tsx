@@ -18,7 +18,9 @@ export default function NotFound() {
                 <Button onClick={()=> router.push("/")} className="py-6 px-8 font-semibold rounded-xl lg:mt-0 mt-7">Return to the Homepage</Button>
                 <div className="hidden absolute bottom-10 right-10 lg:flex flex-col items-end font-extrabold text-primary gap-5">
                     <p className="text-5xl">Oops! Error</p>
+                    <div className="w-full md:max-w-[40vw]">
                     <Image src={NotFoundGif} alt="404" width={400} height={400} className="w-full" />
+                    </div>
                 </div>
             </section>
         </main>

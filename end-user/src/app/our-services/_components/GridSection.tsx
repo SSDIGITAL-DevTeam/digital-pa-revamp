@@ -1,18 +1,5 @@
+import { Props } from "@/constants/our-services/type"
 import Image from "next/image"
-
-type List = {
-    title: string,
-    desc?: string,
-    icons?: string,
-}
-
-type Props = {
-    list: List[],
-    height?: string,
-    leading? :string
-    width?: string,
-    side?: "left" | "center"
-}
 
 export default function GridSection({ list, height, width, side = "center", leading }: Props) {
     return (

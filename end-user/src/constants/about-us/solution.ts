@@ -14,6 +14,10 @@ export type Solution = {
 export const solutions: Solution[] = [
     {
         icon: AssetSolution1.src,
+        title: 'AI Solutions',
+    },
+    {
+        icon: AssetSolution1.src,
         title: 'Web Design & Development',
     },
     {
@@ -40,11 +44,6 @@ export const solutions: Solution[] = [
         icon: AssetSolution7.src,
         title: 'Performance Report',
     },
-    {
-        icon: '',
-        title: '',
-    },
-
     {
         icon: AssetSolution7.src,
         title: 'Competitor Research',
