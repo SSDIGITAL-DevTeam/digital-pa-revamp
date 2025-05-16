@@ -226,13 +226,13 @@ export default function AboutUs(): JSX.Element {
             {/* end of advantages section */}
 
             {/* instant saving section */}
-            <section className="w-full py-8 lg:py-14 px-10 md:px-20 lg:px-5">
+            <section className="hidden w-full py-8 lg:py-14 px-10 md:px-20 lg:px-5">
                 <Missions />
             </section>
             {/* end of advantages section */}
 
             {/* instant saving section */}
-            <section className="w-full py-8 lg:py-14 px-10 md:px-20 lg:px-5">
+            <section className="hidden w-full py-8 lg:py-14 px-10 md:px-20 lg:px-5">
                 <div className="lg:max-w-7xl flex flex-col justify-center items-center gap-4 lg:mx-auto">
                     <h2 className={`uppercase !leading-tight text-3xl sm:text-4xl max-w-[70vw] text-center w-full text-primary`}>
                         OUR VALUES
