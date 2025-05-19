@@ -20,9 +20,9 @@ export default function Footer(): JSX.Element {
 
                         <p>
                             <strong>
-                                Think of us as your Personal Assistant
+                            Think of us as your Digital Partner —
                             </strong>{' '}
-                            that manages your digital marketing stuffs.
+                            simplifying marketing, automation, and growth for your business.
                         </p>
                     </div>
 

@@ -421,4 +421,26 @@ export const seoMetadata = {
         images: defaultImage,
         },
     },
+  privacyPolicy: {
+  metadataBase,
+  title: 'Privacy Policy | Digital PA Singapore',
+  description: 
+    'Read how Digital PA Singapore collects, uses, and protects your personal data in accordance with the PDPA. Your privacy and trust are our top priority.',
+  keywords: [
+    'Digital PA Privacy Policy',
+    'PDPA Singapore',
+    'Data Protection',
+    'Personal Data Usage',
+    'Privacy Compliance',
+    'Website Privacy Policy',
+  ],
+  openGraph: {
+    title: 'Privacy Policy | Digital PA Singapore',
+    description:
+      'Read how Digital PA Singapore collects, uses, and protects your personal data in accordance with the PDPA. Your privacy and trust are our top priority.',
+    url: `${metadataBase}/privacy-policy`,
+    images: defaultImage,
+  },
+}
+
 }
