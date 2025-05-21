@@ -1,3 +1,4 @@
+"use client"
 import Hero from './_components/Hero'
 import PayLessGetMore from './_components/PayLessGetMore'
 import WhyUs from './_components/WhyUs'
@@ -8,8 +9,31 @@ import Particle from '@/components/partials/ParticleJs/Particle'
 import FAQ from './our-services/_components/FAQ'
 import { homeFAQ } from '@/constants/our-services/faq'
 import Script from 'next/script'
+import LocomotiveScroll from "locomotive-scroll";
+import { useEffect } from 'react'
 
 export default function Home() {
+
+    useEffect(() => {
+        const locomotiveScroll = new LocomotiveScroll({
+            lenisOptions: {
+                wrapper: window,
+                content: document.documentElement,
+                lerp: 0.1,
+                duration: 1.2,
+                orientation: 'vertical',
+                gestureOrientation: 'vertical',
+                smoothWheel: true,
+                wheelMultiplier: 1,
+                touchMultiplier: 2,
+                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // https://www.desmos.com/calculator/brs54l4xou
+            },
+        });
+        return () => {
+            locomotiveScroll.destroy();
+        };
+    }, [])
+
     return (
         <main>
             <Script
@@ -20,7 +44,6 @@ export default function Home() {
                 <div className='absolute inset-0 z-10'>
                     <Particle />
                 </div>
-
                 <Hero />
             </header>
 
@@ -55,7 +78,7 @@ export default function Home() {
             {/* end of one personal assistant section */}
 
             {/* faq section */}
-            <section className='py-8'>
+            <section className='py-8 pb-32'>
                 <FAQ value={homeFAQ} />
             </section>
             {/* end of faq section */}

@@ -36,10 +36,10 @@ import {
     saveMoneyTime2,
     whoShouldUseOurAI
 } from '@/constants/our-services/ai-automation'
-import useLocoScroll from '@/hook/useLocomotive'
+// import useLocoScroll from '@/hook/useLocomotive'
 
 const AiAutomation: React.FC = (): JSX.Element => {
-    useLocoScroll();
+    // useLocoScroll();
     return (
         <main data-scroll-container>
             {/* Header */}

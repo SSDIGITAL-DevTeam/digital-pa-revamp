@@ -9,12 +9,12 @@ export default function OurServices(): JSX.Element {
     return (
         <>
             <div className='container p-6 lg:p-8'>
-                <header className='py-4 text-center lg:py-12'>
-                    <h2 className='uppercase text-primary'>
+                <header  className='py-4 text-center lg:py-12'>
+                    <h2 data-scroll data-scroll-speed="0.1" className='uppercase text-primary'>
                         One Personal Assistant for All Tasks
                     </h2>
 
-                    <p className='mx-auto mt-4 max-w-2xl lg:text-xl'>
+                    <p data-scroll data-scroll-speed="0.08" className='mx-auto mt-4 max-w-2xl lg:text-xl'>
                         Don&apos;t waste your time and money on hiring a
                         dedicated specialist! <br /> Our team mostly consist all
                         specialists you need to run a success campaign

@@ -36,7 +36,7 @@ export default function WhyUs(): JSX.Element {
                                         src={item.icon}
                                         alt='icon'
                                         radius='lg'
-                                        loading='lazy'
+                                        loading='eager'
                                     />
                                 </div>
 

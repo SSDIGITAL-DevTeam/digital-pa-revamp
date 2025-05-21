@@ -38,7 +38,7 @@ export default function NextUINavbar() {
             <NavbarContent className='' justify='start'>
                 <NavbarBrand className='flex justify-start'>
                     <Link href='/'>
-                        <Logo/>
+                        <Logo />
                     </Link>
                 </NavbarBrand>
             </NavbarContent>
@@ -112,7 +112,7 @@ export default function NextUINavbar() {
             </NavbarContent>
             {/* menu */}
 
-             {/* mobile view */}
+            {/* mobile view */}
             <NavbarMenu
                 className='mt-8 space-y-3 z-[999]'
             >
@@ -195,7 +195,7 @@ export default function NextUINavbar() {
                         Contact Us
                     </Button>
                 </NavbarMenuItem>
-            </NavbarMenu> 
+            </NavbarMenu>
 
             {/* mobile view */}
             {/* <NavbarMenu className="mt-8 space-y-3 z-[999]">

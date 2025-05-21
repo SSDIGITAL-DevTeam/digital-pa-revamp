@@ -16,10 +16,10 @@ export default function RootLayout({
 }>) {
     return (
         <html lang='en'>
-            <body>
-                    <div className='bg-[url("/webp/asset-background.webp")] bg-cover bg-center bg-no-repeat'>
-                        <NextUINavbar />
+            <body >
+                <div className='bg-[url("/webp/asset-background.webp")] bg-cover bg-center bg-no-repeat'>
                         <NextTopLoader color='#DB1222' showSpinner={false} />
+                        <NextUINavbar />
                         <Toaster />
                         <Providers>
                             <div className='flex min-h-screen flex-col'>
@@ -31,7 +31,7 @@ export default function RootLayout({
                             </div>
                         </Providers>
                         {/* <WhatsappButton/> */}
-                    </div>
+                </div>
             </body>
         </html>
     )

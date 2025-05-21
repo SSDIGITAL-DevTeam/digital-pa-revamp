@@ -1,6 +1,7 @@
 import FadeInWhenVisible from '@/components/partials/FramerMotion/FadeInWhenVisible'
 import { Brand, brands } from '@/constants/homepage/brands'
-import { Image } from '@nextui-org/react'
+import Image from 'next/image'
+// import { Image } from '@nextui-org/react'
 import { JSX } from 'react'
 
 export default function BrandPartners(): JSX.Element {
@@ -17,8 +18,12 @@ export default function BrandPartners(): JSX.Element {
                         multiplier={index / 2}
                     >
                         <Image
+                            priority
+                            quality={100}
+                            width={1920}
+                            height={1080}
                             className='aspect-[18/9] w-64 object-contain'
-                            loading='lazy'
+                            loading='eager'
                             src={brand.logo}
                             alt={brand.name}
                         />
