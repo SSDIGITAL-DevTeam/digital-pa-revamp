@@ -41,7 +41,7 @@ import {
 const AiAutomation: React.FC = (): JSX.Element => {
     // useLocoScroll();
     return (
-        <main data-scroll-container>
+        <main>
             {/* Header */}
             <section className="w-full bg-white lg:pt-14">
                 <div className="relative lg:max-w-[98%] flex flex-col items-center justify-center gap-5 lg:gap-3 lg:mx-auto py-12 lg:py-16 rounded-3xl bg-gradient-to-l from-[#F3BEBE]/40 from-40% to-gray-200/50">
@@ -49,11 +49,11 @@ const AiAutomation: React.FC = (): JSX.Element => {
                         <span className='bg-gradient-to-r from-pink-600 to-orange-400 text-transparent bg-clip-text'> AI-Powered Automation</span>
                     </p>
                     <div className="flex flex-col gap-8 md:gap-7 items-center px-5">
-                        <h1 data-scroll data-scroll-speed="2" className="normal-case lg:max-w-5xl !leading-[140%] text-3xl sm:text-4xl md:text-5xl lg:text-6xl max-w-6xl text-center w-full bg-gradient-to-r from-pink-600 to-orange-400 text-transparent bg-clip-text">
+                        <h1 className="normal-case lg:max-w-5xl !leading-[140%] text-3xl sm:text-4xl md:text-5xl lg:text-6xl max-w-6xl text-center w-full bg-gradient-to-r from-pink-600 to-orange-400 text-transparent bg-clip-text">
                             <span className='text-black'>All-in-one</span> business marketing and CRM automation
                             <span className='text-black'> platform for SMEs owners</span>
                         </h1>
-                        <p data-scroll data-scroll-speed="1" className="max-w-4xl text-center !leading-[150%] lg:text-lg font-medium text-gray-700">helps small to medium-sized businesses capture leads, drive sales, nurture customer relationships, and optimize day-to-day processes.</p>
+                        <p className="max-w-4xl text-center !leading-[150%] lg:text-lg font-medium text-gray-700">helps small to medium-sized businesses capture leads, drive sales, nurture customer relationships, and optimize day-to-day processes.</p>
                     </div>
                     <div className="flex w-full justify-center items-center lg:mt-7 mt-5">
                         <ConsultationButton />

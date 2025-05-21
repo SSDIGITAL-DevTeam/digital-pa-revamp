@@ -7,12 +7,12 @@ export default function GridSection({ list, height, width, side = "center", lead
             {list.map((d, i) => (
                 <div
                     key={`grid-${i + 1}`}
-                    className={`w-full ${width ?? "lg:max-w-[400px]"} rounded-md justify-center 
+                    className={`w-full ${width ?? "lg:max-w-[400px]"} rounded-xl justify-center 
                             ${side === "left" ? "items-start" : "items-center"} h-full 
                             py-10 lg:py-0 ${height ?? "lg:min-h-[36vh]"} 
                             bg-white border-gray-200 border-[1px] shadow-md 
                             hover:shadow-lg duration-300 transition-all flex flex-col 
-                            gap-2 p-10`}
+                            gap-2 md:gap-4 p-10`}
                 >
                     {d.icons && (
                         <Image
@@ -24,13 +24,13 @@ export default function GridSection({ list, height, width, side = "center", lead
                         />
                     )}
 
-                    <h2 className={`text-primary text-3xl lg:text-5xl ${side === "left" ? "text-left" : "text-center"}`}>
+                    <h2 className={`text-primary text-3xl lg:text-6xl ${side === "left" ? "text-left" : "text-center"}`}>
                         {!d.icons && "0" + (i + 1)}
                         <span className={`block text-lg lg:text-xl text-black ${leading ? leading : 'leading-[130%]' } mt-4`}>{d.title}</span>
                     </h2>
 
                     {d.desc &&
-                        <p className={`!leading-[150%] text-gray-500 text-sm ${side === "left" ? "text-left" : "text-center"}`}>
+                        <p className={`!leading-[150%] text-gray-600 text-sm md:text-base ${side === "left" ? "text-left" : "text-center"}`}>
                             {d.desc}
                         </p>
                     }

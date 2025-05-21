@@ -442,4 +442,25 @@ export const seoMetadata = {
             images: defaultImage,
         },
     },
+    
+  aiMarketingAutomation: {
+    metadataBase,
+    title: "AI Marketing Automation | Your Partner in Smarter Digital Marketing Solutions",
+    description: "Explore how Digital PA’s AI marketing automation services empower businesses in Singapore to optimize campaigns, boost engagement, and increase ROI through advanced automation and intelligent marketing strategies.",
+    keywords: [
+      "AI Marketing Automation",
+      "Marketing Automation Services",
+      "Digital Marketing",
+      "Campaign Optimization",
+      "Intelligent Marketing Tools"
+    ],
+    openGraph: {
+      title: "AI Marketing Automation | Your Partner in Smarter Digital Marketing Solutions",
+      description: "Explore how Digital PA’s AI marketing automation services empower businesses in Singapore to optimize campaigns, boost engagement, and increase ROI through advanced automation and intelligent marketing strategies.",
+      url: "yourMetadataBaseUrlHere/ai-solutions/ai-marketing-automation",
+      images: "defaultImage"
+    }
+  
+}
+
 }

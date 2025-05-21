@@ -3,17 +3,8 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import successModalImage from "@/assets/our-services/webp/success-modal.png"
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
 export default function SuccessPage() {
     const router = useRouter();
-    useEffect(() => {
-        const submitted = sessionStorage.getItem("formSubmitted");
-        if (submitted !== "true") {
-            router.replace("/");
-        } else {
-            sessionStorage.removeItem("formSubmitted");
-        }
-    }, []);
     return (
         <main className="w-full">
             <section className="max-w-5xl mx-auto flex flex-col items-center gap-9 h-full justify-center py-32 sm:py-40">
