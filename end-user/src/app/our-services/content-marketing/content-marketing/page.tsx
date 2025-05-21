@@ -16,7 +16,7 @@ import SearchIcon from "@/assets/our-services/svg/seo.svg"
 //components
 import Hero from '@/app/our-services/_components/Hero'
 import OurBrands from "../../_components/OurBrandPartner"
-import ProvenExperience from "../../_components/ProvenExperience"
+// import ProvenExperience from "../../_components/ProvenExperience"
 import FormJoin from "../../_components/FormJoin"
 import FlyingSection from "../../_components/FlyingSection"
 import Header from "../../_components/Header"
@@ -155,9 +155,9 @@ export default function ContentMarketing() {
                 <OurBrands />
             </section>
 
-            <section className="w-full bg-[#F5F5F5] py-12 lg:py-20 px-10 md:px-20 lg:px-5">
+            {/* <section className="w-full bg-[#F5F5F5] py-12 lg:py-20 px-10 md:px-20 lg:px-5">
                 <ProvenExperience />
-            </section>
+            </section> */}
 
             <section className="w-full bg-primary py-12 lg:py-20">
                 <FormJoin />

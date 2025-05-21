@@ -5,7 +5,7 @@ import Hero from '@/app/our-services/_components/Hero'
 import ConsultationButton from "@/components/partials/Button/Consultation"
 import FAQ from "../../_components/FAQ"
 import FormJoin from "../../_components/FormJoin"
-import ProvenExperience from "../../_components/ProvenExperience"
+// import ProvenExperience from "../../_components/ProvenExperience"
 import OurBrands from "../../_components/OurBrandPartner"
 import Header from "../../_components/Header"
 
@@ -163,9 +163,9 @@ export default function SEM() {
             <section className="w-full bg-white py-12 lg:py-20">
                 <OurBrands />
             </section>
-            <section className="w-full bg-[#F5F5F5] py-12 lg:py-20 px-10 md:px-20 lg:px-5">
+            {/* <section className="w-full bg-[#F5F5F5] py-12 lg:py-20 px-10 md:px-20 lg:px-5">
                 <ProvenExperience />
-            </section>
+            </section> */}
             <section className="w-full bg-white py-12 lg:py-20">
                 <FAQ value={semFAQ}/>
             </section>

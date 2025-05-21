@@ -12,7 +12,7 @@ import ConsultationButton from "@/components/partials/Button/Consultation"
 import FAQ from "../../_components/FAQ"
 import OurBrands from "../../_components/OurBrandPartner"
 import FormJoin from "../../_components/FormJoin"
-import ProvenExperience from "../../_components/ProvenExperience"
+// import ProvenExperience from "../../_components/ProvenExperience"
 import Header from "../../_components/Header"
 import FlyingSection from "../../_components/FlyingSection"
 import ListSection from "../../_components/ListSection"
@@ -145,9 +145,9 @@ export default function SEM() {
                 <OurBrands />
             </section>
             {/* Proven Experience */}
-            <section className="w-full bg-[#F5F5F5] py-12 lg:py-20 px-10 md:px-20 lg:px-5">
+            {/* <section className="w-full bg-[#F5F5F5] py-12 lg:py-20 px-10 md:px-20 lg:px-5">
                 <ProvenExperience />
-            </section>
+            </section> */}
             {/* FAQ */}
             <section className="w-full bg-white py-12 lg:py-20">
                 <FAQ value={seoFAQ}/>

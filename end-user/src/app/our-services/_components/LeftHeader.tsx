@@ -6,8 +6,8 @@ export default function LeftHeader({ title, subtitle, className }: { title: stri
             <div className="flex flex-col items-start lg:max-w-[50vw] w-full h-full">
                 <h1 className={`capitalize !leading-tight text-3xl sm:text-4xl w-full text-primary lg:text-start text-center  ${className}`}>{title}</h1>
             </div>
-            <div className="flex md:flex-row gap-5 flex-col items-center md:items-start md:justify-between w-full">
-                <p className="!leading-[150%] text-sm md:text-lg text-left md:max-w-[40vw] lg:max-w-[45vw] text-gray-700">{subtitle}</p>
+            <div className="flex lg:flex-row gap-y-7 flex-col items-center lg:items-start lg:justify-between w-full">
+                <p className="!leading-[150%] text-sm md:text-lg text-left lg:max-w-[45vw] text-gray-700">{subtitle}</p>
                 <ConsultationButton text="Get a free consultation"/>
             </div>
         </div>

@@ -1,29 +1,10 @@
 "use client"
-import React, { JSX } from 'react'
+import React, { JSX, useEffect } from 'react'
 import Image from 'next/image'
-// import Header from '../../_components/Header'
-// import ConsultationButton from '@/components/partials/Button/Consultation'
-// import OurBrands from '../../_components/OurBrandPartner'
-// import ProvenExperience from '../../_components/ProvenExperience'
-// import FormJoin from '../../_components/FormJoin'
-// import FlyingSection from '../../_components/FlyingSection'
-// import LeftHeader from '../../_components/LeftHeader'
-// import GridSection from '../../_components/GridSection'
-// import GradientSection from '../../_components/GradientSection'
-// import ColumnsIconSection from '../../_components/ColumnsIconSection'
-// import IconGridSection from '../../_components/IconGridSection'
-// import TabSection from '../../_components/TabSection'
 
 import SimplifyImage from '@/assets/our-services/webp/ai/Image.webp'
 import HelpingImage1 from '@/assets/our-services/webp/ai/help1.webp'
 import HelpingImage2 from '@/assets/our-services/webp/ai/help2.webp'
-
-//asset simbol
-// import Symbol1 from '@/assets/our-services/webp/ai/Symbol.svg-1.webp'
-// import Symbol2 from '@/assets/our-services/webp/ai/Symbol.svg-2.webp'
-// import Symbol3 from '@/assets/our-services/webp/ai/Symbol.svg-3.webp'
-// import Symbol4 from '@/assets/our-services/webp/ai/Symbol.svg-4.webp'
-// import Symbol5 from '@/assets/our-services/webp/ai/Symbol.svg-5.webp'
 
 import InSummaryImage from '@/assets/our-services/webp/free-seo-web-audit.webp'
 
@@ -46,105 +27,84 @@ import GradientSection from '../our-services/_components/GradientSection'
 import TabSection from '../our-services/_components/TabSection'
 import ColumnsIconSection from '../our-services/_components/ColumnsIconSection'
 import OurBrands from '../our-services/_components/OurBrandPartner'
-import ProvenExperience from '../our-services/_components/ProvenExperience'
+// import ProvenExperience from '../our-services/_components/ProvenExperience'
 import FormJoin from '../our-services/_components/FormJoin'
 import { Button } from '@/components/ui/button'
-import { ArrowRightIcon } from '@heroicons/react/16/solid'
+// import { ArrowRightIcon } from '@heroicons/react/16/solid'
 // import useLocoScroll from '@/hook/useLocomotive'
-
-const gradientRight = (
-    <svg width="1123" height="870" className='absolute bottom-0 right-0' viewBox="0 0 1123 870" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <g filter="url(#filter0_f_3514_10923)">
-            <path d="M1632.8 800.127C1670.48 1165.04 1389.18 1583.7 1028.08 1518.98C703.005 1460.72 535.763 1094.38 623.93 776.11C715.127 446.902 1101.16 179.382 1392.3 358.081C1559.79 460.884 1612.61 604.644 1632.8 800.127Z" fill="url(#paint0_radial_3514_10923)" fill-opacity="0.5" />
-        </g>
-        <defs>
-            <filter id="filter0_f_3514_10923" x="0.575562" y="-299.166" width="2235.61" height="2424.82" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                <feFlood flood-opacity="0" result="BackgroundImageFix" />
-                <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
-                <feGaussianBlur stdDeviation="300" result="effect1_foregroundBlur_3514_10923" />
-            </filter>
-            <radialGradient id="paint0_radial_3514_10923" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(621.342 1290.86) rotate(-36.2259) scale(1265 1285.28)">
-                <stop offset="0.336458" stop-color="#FFA800" />
-                <stop offset="0.445833" stop-color="#FF0000" />
-                <stop offset="1" stop-color="#DB1222" />
-            </radialGradient>
-        </defs>
-    </svg>
-
-)
-
-const gradientLeft = (
-    <svg width="696" height="845" className='absolute bottom-0 left-0' viewBox="0 0 696 845" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <g filter="url(#filter0_f_3514_12340)">
-            <ellipse cx="-160" cy="855.5" rx="356" ry="355.5" fill="#FF8000" fill-opacity="0.5" />
-        </g>
-        <defs>
-            <filter id="filter0_f_3514_12340" x="-1016" y="0" width="1712" height="1711" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                <feFlood flood-opacity="0" result="BackgroundImageFix" />
-                <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
-                <feGaussianBlur stdDeviation="250" result="effect1_foregroundBlur_3514_12340" />
-            </filter>
-        </defs>
-    </svg>
-)
-
-const weCanDoRight = (
-    <svg width="1208" height="775" className='absolute top-40 right-20' viewBox="0 0 1208 775" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <g filter="url(#filter0_f_3514_12465)">
-            <path d="M998.039 167.882C1251.33 185.702 1503.22 427.412 1416.03 665.886C1337.55 880.572 1067.84 950.913 861.364 852.849C647.789 751.417 511.43 456.322 667.981 279.135C758.043 177.202 862.354 158.336 998.039 167.882Z" fill="url(#paint0_radial_3514_12465)" fill-opacity="0.5" />
-        </g>
-        <defs>
-            <filter id="filter0_f_3514_12465" x="0.346924" y="-434.312" width="2033.3" height="1930.6" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                <feFlood flood-opacity="0" result="BackgroundImageFix" />
-                <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
-                <feGaussianBlur stdDeviation="300" result="effect1_foregroundBlur_3514_12465" />
-            </filter>
-            <radialGradient id="paint0_radial_3514_12465" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1212 915.995) rotate(-116.305) scale(875.551 889.584)">
-                <stop offset="0.336458" stop-color="#FFA800" />
-                <stop offset="0.445833" stop-color="#FF0000" />
-                <stop offset="1" stop-color="#DB1222" />
-            </radialGradient>
-        </defs>
-    </svg>
-)
-
-const weCanDoLeft = (
-    <svg width="895" height="775" className='absolute bottom-32 left-20' viewBox="0 0 895 775" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <g filter="url(#filter0_f_3514_12466)">
-            <circle cx="213" cy="458" r="182" fill="#FF8000" fill-opacity="0.5" />
-        </g>
-        <defs>
-            <filter id="filter0_f_3514_12466" x="-469" y="-224" width="1364" height="1364" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                <feFlood flood-opacity="0" result="BackgroundImageFix" />
-                <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
-                <feGaussianBlur stdDeviation="250" result="effect1_foregroundBlur_3514_12466" />
-            </filter>
-        </defs>
-    </svg>
-)
+import gradientHeroRight from "@/assets/ai-automation/svg/gradient-hero-right.svg"
+import gradientHeroLeft from "@/assets/ai-automation/svg/gradient-hero-left.svg"
+import gradientIconRight from "@/assets/ai-automation/svg/gradient-icon-right.svg"
+import gradientIconLeft from "@/assets/ai-automation/svg/gradient-icon-left.svg"
+// import gradientSolutionsRight from "@/assets/ai-automation/svg/gradient-solutions-right.svg"
+// import gradientSolutionsLeft from "@/assets/ai-automation/svg/gradient-solutions-left.svg"
+import AssetLogoWithText from "@/assets/logo/webp/asset-logo-with-text.webp"
+import AssetHeroSection from "@/assets/ai-automation/webp/asset-hero-section.webp"
+import LocomotiveScroll from 'locomotive-scroll'
 
 const AiAutomation: React.FC = (): JSX.Element => {
-    // useLocoScroll();
+    useEffect(() => {
+        const locomotiveScroll = new LocomotiveScroll({
+            lenisOptions: {
+                wrapper: window,
+                content: document.documentElement,
+                lerp: 0.1,
+                duration: 1.2,
+                orientation: 'vertical',
+                gestureOrientation: 'vertical',
+                smoothWheel: true,
+                wheelMultiplier: 1,
+                touchMultiplier: 2,
+                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // https://www.desmos.com/calculator/brs54l4xou
+            },
+        });
+         return () => {
+        locomotiveScroll.destroy(); // Penting agar tidak corrupt saat komponen dibongkar
+         
+    };
+    }, [])
+
     return (
         <main>
             {/* Header */}
             <section className="w-full bg-white lg:pt-14">
-                <div className="relative overflow-hidden lg:max-w-[95%] flex flex-col items-center justify-center gap-5 lg:gap-3 lg:mx-auto py-12 lg:py-16 rounded-3xl">
-                    {gradientLeft}
-                    {gradientRight}
-                    <p className='z-[1]text-center p-2 rounded-full bg-white shadow-sm font-bold text-base md:text-lg'>🤖
-                        <span className='bg-gradient-to-r from-pink-600 to-orange-400 text-transparent bg-clip-text'> AI-Powered Marketing Automation</span>
-                    </p>
-                    <div className="z-[1] flex flex-col gap-8 md:gap-7 items-center px-5">
-                        <h1 className="normal-case lg:max-w-5xl !leading-[140%] text-3xl sm:text-4xl md:text-5xl lg:text-6xl max-w-6xl text-center w-full bg-gradient-to-r from-pink-600 to-orange-400 text-transparent bg-clip-text">
-                            <span className='text-black'>The ultimate</span> all-in-one platform
-                            <span className='text-black'> to supercharge your marketing and automate CRM</span>
-                        </h1>
-                        <p className="max-w-4xl text-center !leading-[150%] lg:text-lg font-medium text-gray-700">Empowering small to medium-sized businesses to capture more leads, boost sales, build lasting customer relationships, and streamline daily operations</p>
-                    </div>
-                    <div className="z-[1] flex flex-col md:flex-row w-full justify-center items-center lg:mt-7 mt-5 text-xl gap-5">
-                        <Button className='flex items-center gap-2 text-white w-fit text-center font-semibold rounded-2xl bg-primary py-3 px-6 md:py-8 md:px-6'>Get a Free Consultation <ArrowRightIcon className="h-5 w-5" /></Button>
-                        <Button className='w-fit text-center font-semibold rounded-2xl bg-white shadow-sm py-3 px-6 md:py-8 md:px-6 text-primary'>See Benefits</Button>
+                <div className=" relative min-h-screen overflow-visible lg:max-w-[95%] flex flex-col items-center justify-start gap-5 lg:gap-8 lg:mx-auto py-12 lg:py-16 rounded-3xl">
+                    <Image src={gradientHeroRight} alt="a" width={1920} height={1080} priority className="absolute -bottom-[60vh] -right-[40vw] opacity-50" />
+                    <Image src={gradientHeroLeft} alt="b" width={1920} height={1080} priority className="absolute -bottom-[80vh] left-[-35vw] opacity-40" />
+                    <div className='z-[1] absolute lg:max-w-7xl top-6 left-1/2 -translate-x-1/2 flex w-full justify-center flex-col items-center gap-5 lg:gap-8 px-5'>
+                        <div className='max-w-[30vw] md:max-w-[15vw]'>
+                            <Image
+                                src={AssetLogoWithText}
+                                alt="asset-logo-with-text"
+                                width={1920}
+                                height={1080}
+                                className='w-full h-full'
+                            />
+                        </div>
+                        <span className='z-[1] text-center p-2 rounded-full bg-white border-2 border-primary/60 shadow-sm font-semibold text-xs sm:text-base md:text-lg'>🤖
+                            <span className='bg-gradient-to-r from-pink-600 to-orange-400 text-transparent bg-clip-text'> AI-Powered Marketing Automation</span>
+                        </span>
+                        <div className="z-[1] flex flex-col gap-8 md:gap-7 items-center px-5">
+                            <h1 data-scroll data-scroll-speed="1.5" className="z-[1] lg:max-w-7xl !leading-[140%] text-3xl sm:text-3xl md:text-4xl lg:text-5xl max-w-6xl text-center w-full text-primary">
+                                <span className='text-black'>The ultimate</span> all-in-one platform
+                                <span className='text-black'> to supercharge your marketing and automate CRM</span>
+                            </h1>
+                            <p data-scroll data-scroll-speed="1.4" className="z-[1] max-w-4xl text-center !leading-[150%] lg:text-lg font-medium text-gray-700">Empowering small to medium-sized businesses to capture more leads, boost sales, build lasting customer relationships, and streamline daily operations</p>
+                        </div>
+                        <div data-scroll data-scroll-speed="1.3" className="z-[1] flex flex-col md:flex-row w-full justify-center items-center text-xl gap-5">
+                            {/* <Button className='flex items-center gap-2 text-white md:w-fit text-center font-semibold rounded-2xl bg-primary w-[50vw] py-6 md:py-8 md:px-6 hover:bg-red-800'>Get a Free Consultation <ArrowRightIcon className="h-5 w-5" /></Button> */}
+                            <ConsultationButton text='Get a Free Consultation' />
+                            <Button className='md:w-fit text-center font-semibold rounded-2xl bg-white shadow-md border-[1px] border-gray-300 px-16 py-6 md:py-8 md:px-6 text-primary hover:bg-primary/5'>See Benefits</Button>
+                        </div>
+                        <div data-scroll data-scroll-speed="1.2" className='w-[80vw] py-3 md:w-[50vw]'>
+                            <Image
+                                src={AssetHeroSection}
+                                alt="asset-logo-with-text"
+                                width={1920}
+                                height={1080}
+                                className='w-full h-full'
+                            />
+                        </div>
                     </div>
 
                     {/* Bouncing Images */}
@@ -159,10 +119,10 @@ const AiAutomation: React.FC = (): JSX.Element => {
             {/* Simplyfy Section */}
             <section className="w-full bg-white py-12 lg:py-20 px-10 md:px-20 lg:px-5">
                 <div className="lg:max-w-7xl flex flex-col items-center justify-center gap-12 lg:gap-16 lg:mx-auto">
-                    <span className='text-center p-2 rounded-full bg-white border-full border-2 border-primary/60 shadow-sm font-semibold text-base md:text-lg'>🏆
+                    <span className='text-center p-2 rounded-full bg-white border-2 border-primary/60 shadow-sm font-semibold text-xs sm:text-base md:text-lg max-w-[60vw]'>🏆
                         <span className='bg-gradient-to-r from-pink-600 to-orange-400 text-transparent bg-clip-text'> Where Smart Business Owners Automate, Scale, and Win</span>
                     </span>
-                    <Header title={<><span className='text-black'>In the era of AI,</span> either you are part of it, or you are simply out of it!!</>} subtitle="Most businesses fall into these traps:" className="lg:max-w-7xl capitalize md:w-[50vw]" subClassName='md:text-xl' />
+                    <Header title={<><span className='text-black'>In the era of AI,</span> either you are part of it, or you are simply out of it!!</>} subtitle="Most businesses fall into these traps:" className="lg:max-w-7xl capitalize" subClassName='md:text-xl' />
                     <GridSection list={saveMoneyTime2} side="left" height='lg:min-h-[40vh]' />
                     <div className='flex w-full justify-center' >
                         <ConsultationButton />
@@ -184,10 +144,10 @@ const AiAutomation: React.FC = (): JSX.Element => {
             </section>
 
             {/* Column Icon Section */}
-            <section className="w-full bg-white py-12 lg:py-16">
+            <section className="w-full bg-white py-12 lg:py-16 px-10 md:px-20 lg:px-5">
                 <div className="relative overflow-hidden lg:max-w-[95%] flex flex-col items-center justify-center gap-5 lg:gap-3 lg:mx-auto py-12 lg:py-16 rounded-3xl">
-                    {weCanDoLeft}
-                    {weCanDoRight}
+                    <Image src={gradientIconRight} alt="a" width={1920} height={1080} priority className="absolute bottom-0 right-0 opacity-50" />
+                    <Image src={gradientIconLeft} alt="b" width={1920} height={1080} priority className="absolute bottom-0 left-0 opacity-40" />
                     <div className="lg:max-w-7xl flex flex-col items-center justify-center gap-12 lg:gap-16 lg:mx-auto">
                         <Header title={<><span className='text-black'>What can  for you?{" "}</span>We do {" "}<span className='text-black'>for you?</span></>} className="lg:max-w-7xl capitalize" />
                         <IconGridSection list={canWeDo} side='left' padding="lg:py-8" className='lg:text-xl lg:font-semibold text-primary' />
@@ -205,7 +165,7 @@ const AiAutomation: React.FC = (): JSX.Element => {
             </section>
 
             {/* Tab Section */}
-            <section className="w-full bg-white pt-0 pb-12 lg:pb-20 lg:pt-6 px-10 md:px-20 lg:px-5">
+            <section className="w-full py-12 lg:pb-20 lg:pt-6 px-10 md:px-20 lg:px-5">
                 <TabSection />
             </section>
 
@@ -280,9 +240,9 @@ const AiAutomation: React.FC = (): JSX.Element => {
                 <OurBrands />
             </section>
 
-            <section className="w-full bg-[#F5F5F5] py-12 lg:py-20 px-10 md:px-20 lg:px-5">
+            {/* <section className="w-full bg-[#F5F5F5] py-12 lg:py-20 px-10 md:px-20 lg:px-5">
                 <ProvenExperience />
-            </section>
+            </section> */}
 
             <section className="w-full bg-primary py-12 lg:py-20">
                 <FormJoin />

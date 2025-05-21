@@ -4,7 +4,7 @@ import Image from "next/image"
 import Hero from '@/app/our-services/_components/Hero'
 import ConsultationButton from "@/components/partials/Button/Consultation"
 import FormJoin from "../../_components/FormJoin"
-import ProvenExperience from "../../_components/ProvenExperience"
+// import ProvenExperience from "../../_components/ProvenExperience"
 import OurBrands from "../../_components/OurBrandPartner"
 import ListSection from "../../_components/ListSection"
 import FlyingSection from "../../_components/FlyingSection"
@@ -137,9 +137,9 @@ export default function SEOCopyWriting() {
             <section className="w-full bg-white lg:py-20 py-12">
                 <OurBrands />
             </section>
-            <section className="w-full bg-[#F5F5F5] lg:py-20 py-12 px-10 md:px-20 lg:px-5">
+            {/* <section className="w-full bg-[#F5F5F5] lg:py-20 py-12 px-10 md:px-20 lg:px-5">
                 <ProvenExperience />
-            </section>
+            </section> */}
             <section className="w-full bg-primary lg:py-20 py-12">
                 <FormJoin />
             </section>

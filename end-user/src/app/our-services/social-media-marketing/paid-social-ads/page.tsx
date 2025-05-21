@@ -4,7 +4,7 @@ import Image from "next/image"
 import Hero from '@/app/our-services/_components/Hero'
 import ConsultationButton from "@/components/partials/Button/Consultation"
 import OurBrands from "../../_components/OurBrandPartner"
-import ProvenExperience from "../../_components/ProvenExperience"
+// import ProvenExperience from "../../_components/ProvenExperience"
 // import FAQ from "../../_components/FAQ"
 import FormJoin from "../../_components/FormJoin"
 import FlyingSection from "../../_components/FlyingSection"
@@ -127,9 +127,9 @@ export default function PaidSocialAds() {
                 <OurBrands />
             </section>
 
-            <section className="w-full bg-[#F5F5F5] py-12 lg:py-20 px-10 md:px-20 lg:px-5">
+            {/* <section className="w-full bg-[#F5F5F5] py-12 lg:py-20 px-10 md:px-20 lg:px-5">
                 <ProvenExperience />
-            </section>
+            </section> */}
 
             <section className="w-full bg-primary py-12 lg:py-20">
                 <FormJoin />

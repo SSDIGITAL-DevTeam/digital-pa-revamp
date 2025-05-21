@@ -149,12 +149,11 @@ export default function TabSection() {
             {/* Sticky Header */}
             {/* <header data-scroll-sticky className="md:sticky top-12 pt-14 bg-white z-50 border-b-[1px] w-full flex flex-col gap-8"> */}
             <header
-                className="md:sticky pt-32 top-0 bg-white z-50 border-b-[1px] w-full flex flex-col gap-8"
+                className="md:sticky md:pt-32 top-0 md:bg-[#F5F5F5] z-50 border-b-[1px] w-full flex flex-col gap-8"
             >
-
                 <div className='flex gap-4 flex-col w-full pb-2'>
                     <h1 className="text-primary capitalize text-3xl md:text-4xl !leading-[120%] font-bold md:text-left text-center">Benefits <span className="text-black">of our Solution</span></h1>
-                    <p className="max-w-3xl text-base md:text-lg !leading-[150%] md:text-left text-center">Now, let&apos;s explore the key features and benefits of our platform</p>
+                    <p className="max-w-3xl text-sm md:text-lg !leading-[150%] md:text-left text-center text-gray-700">Now, let&apos;s explore the key features and benefits of our platform</p>
                 </div>
                 <div className="hidden md:flex justify-between w-full">
                     {sections.map(({ id, name }) => (

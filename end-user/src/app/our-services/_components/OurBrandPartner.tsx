@@ -15,7 +15,7 @@ const listClients = [BikeChoice.src, Sun.src, HealingLoftFull.src, Higer.src, Ca
 export default function OurBrands() {
     return (
         <div className="lg:max-w-7xl w-full flex flex-col gap-10 lg:gap-16 lg:mx-auto px-5">
-            <Header title='our brand partners' />
+            <Header title='our brand partners' className='md:max-w-6xl'/>
             <div className="flex flex-wrap gap-x-8 gap-y-8 justify-center items-end lg:max-w-4xl lg:mx-auto ">
                 <Image src={listClients[0]} alt={`${listClients[0]} logo`} width={1920} height={1080} className="object-contain h-10 w-fit" />
                 <Image src={listClients[1]} alt={`${listClients[1]} logo`} width={1920} height={1080} className="object-contain h-20 w-fit" />

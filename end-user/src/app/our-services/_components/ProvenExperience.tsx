@@ -27,7 +27,7 @@ const experience: Experience[] = [
 export default function ProvenExperience(){
     return(
         <div className="lg:max-w-7xl flex flex-col gap-16 lg:mx-auto">
-                    <Header title="Proven Experience and Trust"/>
+                    <Header title="Proven Experience and Trust" className="md:max-w-6xl"/>
                     <div className="grid grid-cols-1 lg:grid-cols-3 w-full bg-white border-gray-200 border-[1px] shadow-md hover:shadow-lg duration-300 transition-all rounded-md py-10">
                         {experience.map((d, i) => (
                             <div key={`experience-${i+1}`} className="w-full justify-center items-center flex flex-col gap-4 p-8 border-b-[1px] lg:border-e-[1px]">

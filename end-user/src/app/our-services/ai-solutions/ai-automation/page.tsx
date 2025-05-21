@@ -4,7 +4,7 @@ import Image from 'next/image'
 import Header from '../../_components/Header'
 import ConsultationButton from '@/components/partials/Button/Consultation'
 import OurBrands from '../../_components/OurBrandPartner'
-import ProvenExperience from '../../_components/ProvenExperience'
+// import ProvenExperience from '../../_components/ProvenExperience'
 import FormJoin from '../../_components/FormJoin'
 import FlyingSection from '../../_components/FlyingSection'
 import LeftHeader from '../../_components/LeftHeader'
@@ -186,9 +186,9 @@ const AiAutomation: React.FC = (): JSX.Element => {
                 <OurBrands />
             </section>
 
-            <section className="w-full bg-[#F5F5F5] py-12 lg:py-20 px-10 md:px-20 lg:px-5">
+            {/* <section className="w-full bg-[#F5F5F5] py-12 lg:py-20 px-10 md:px-20 lg:px-5">
                 <ProvenExperience />
-            </section>
+            </section> */}
 
             <section className="w-full bg-primary py-12 lg:py-20">
                 <FormJoin />

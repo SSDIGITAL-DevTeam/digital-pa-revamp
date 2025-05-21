@@ -97,7 +97,7 @@ export default function FormJoin() {
 
     return (
         <div id="consultation" className="lg:max-w-7xl flex flex-col gap-2 justify-center items-center lg:gap-10 lg:mx-auto px-5">
-            <Header title="BE PART OF THE SMART BUSINESS OWNERS THAT AUTOMATE, SCALE, AND WIN." subtitle={"Unlock Exclusive Early-Adopter Benefits."} className="text-white" subClassName="text-white/80 md:text-white/80 italic text-base md:text-xl" />
+            <Header title="BE PART OF THE SMART BUSINESS OWNERS THAT AUTOMATE, SCALE, AND WIN." subtitle={"Unlock Exclusive Early-Adopter Benefits."} className="text-white md:max-w-7xl" subClassName="text-white/80 md:text-white/80 italic text-base md:text-xl" />
             <div className="w-full md:max-w-5xl pt-8 md:pt-0 px-5 sm:px-10 md:px-20 lg:px-0">
                 <Form {...form}>
                     <form onSubmit={handleInput} className="w-full grid grid-cols-1 lg:grid-cols-2 gap-6">

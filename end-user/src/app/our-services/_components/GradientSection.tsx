@@ -17,9 +17,9 @@ export default function GradientSection({ data, name }: { data: List[], name: st
                         quality={100}
                         className="w-full h-full object-cover rounded-2xl"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-r lg:bg-gradient-to-t from-black via-black/60 to-transparent rounded-md text-white flex justify-start lg:justify-end flex-col gap-1 p-4 lg:px-8 lg:py-12">
-                        <h2 className="text-lg lg:text-2xl font-bold">{d.title}</h2>
-                        <p className="text-xs lg:text-base text-white/60">{d.subtitle}</p>
+                    <div className="absolute inset-0 bg-gradient-to-r lg:bg-gradient-to-t from-black/80 md:from-black via-black/60 to-transparent rounded-2xl text-white flex justify-start lg:justify-end flex-col gap-1 p-6 lg:px-8 lg:py-12">
+                        <h2 className="text-xl lg:text-2xl font-bold">{d.title}</h2>
+                        <p className="text-sm lg:text-base md:text-white/60 text-white/70">{d.subtitle}</p>
 
                     </div>
                 </div>
