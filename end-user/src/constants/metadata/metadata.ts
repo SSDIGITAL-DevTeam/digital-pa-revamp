@@ -1,5 +1,5 @@
 const metadataBase = new URL('https://digital-pa.com.sg')
-const defaultImage = `${metadataBase}/asset-logo.webp`
+const defaultImage = `${metadataBase}/webp/asset-logo.webp`
 export type MetadataKeys = keyof typeof seoMetadata
 
 export const seoMetadata = {
