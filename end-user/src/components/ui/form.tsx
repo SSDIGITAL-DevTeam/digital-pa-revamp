@@ -57,10 +57,10 @@ const useFormField = () => {
 
   const { id } = itemContext
 
-  let newClassName= false
+  let isContactUs= false
   const pathname = usePathname();
   if(pathname === "/contact-us") {
-    newClassName = true
+    isContactUs = true
   }
 
   return {
@@ -69,7 +69,7 @@ const useFormField = () => {
     formItemId: `${id}-form-item`,
     formDescriptionId: `${id}-form-item-description`,
     formMessageId: `${id}-form-item-message`,
-    newClassName,
+    isContactUs,
     ...fieldState,
   }
 }
@@ -100,13 +100,13 @@ const FormLabel = React.forwardRef<
   React.ElementRef<typeof LabelPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof LabelPrimitive.Root>
 >(({ className, ...props }, ref) => {
-  const { error, formItemId, newClassName } = useFormField()
+  const { error, formItemId, isContactUs } = useFormField()
 
-  if (newClassName) {
+  if (isContactUs) {
     return (
       <Label
         ref={ref}
-        className={cn(error ? "text-primary ps-2" : "text-gray-700 ps-2", ` text-base font-semibold ${className}`)}
+        className={cn(error ? "text-primary ps-2" : "text-gray-700 ps-2", `text-sm md:text-base font-semibold ${className}`)}
         htmlFor={formItemId}
         {...props}
       />
@@ -116,7 +116,7 @@ const FormLabel = React.forwardRef<
   return (
     <Label
       ref={ref}
-      className={cn(error ?  "text-red-200" : "text-white", ` text-base font-semibold ${className}`)}
+      className={cn(error ?  "text-red-200" : "text-white", `text-sm md:text-base font-semibold ${className}`)}
       htmlFor={formItemId}
       {...props}
     />
@@ -150,13 +150,13 @@ const FormDescription = React.forwardRef<
   HTMLParagraphElement,
   React.HTMLAttributes<HTMLParagraphElement>
 >(({ className, ...props }, ref) => {
-  const { formDescriptionId } = useFormField()
+  const { formDescriptionId, isContactUs } = useFormField()
 
   return (
     <p
       ref={ref}
       id={formDescriptionId}
-      className={cn("text-[0.8rem] text-muted-foreground", className)}
+      className={cn(`${isContactUs ? "text-muted-foreground" : "text-white"} text-[0.8rem] `, className)}
       {...props}
     />
   )
@@ -167,13 +167,13 @@ const FormMessage = React.forwardRef<
   HTMLParagraphElement,
   React.HTMLAttributes<HTMLParagraphElement>
 >(({ className, children, ...props }, ref) => {
-  const { error, formMessageId, newClassName} = useFormField()
+  const { error, formMessageId, isContactUs} = useFormField()
   const body = error ? String(error?.message ?? "") : children
 
   if (!body) {
     return null
   }
-  if(newClassName){
+  if(isContactUs){
     return (
       <p
         ref={ref}

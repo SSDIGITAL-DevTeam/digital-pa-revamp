@@ -62,7 +62,7 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
     try {
-        const { name, email, phone, business, companyName, from, token } =
+        const { name, email, phone, business, companyName, from, token, isAgree } =
             req.body
 
         if (
@@ -72,7 +72,8 @@ router.post('/', async (req, res) => {
             !business?.trim() ||
             !companyName?.trim() ||
             !from?.trim() ||
-            !token?.trim()
+            !token?.trim() ||
+            isAgree === undefined
         ) {
             return res.status(400).json({ error: 'All fields are required' })
         }

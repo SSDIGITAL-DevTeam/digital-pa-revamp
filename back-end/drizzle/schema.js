@@ -1,9 +1,8 @@
-import { relations } from 'drizzle-orm';
 import { mysqlTable, varchar, mysqlEnum, json, timestamp, boolean, text } from 'drizzle-orm/mysql-core';
 import { v4 as uuidv4 } from 'uuid';
 
 // Enums
-export const planStatusEnum = mysqlEnum('plan_status', ['Draft', 'Active', 'NonActive']);
+export const userStatusEnum = mysqlEnum('user_status', ['Draft', 'Active', 'NonActive']);
 export const blogStatusEnum = mysqlEnum('blog_status', ['Published', 'Archived', 'Draft']);
 
 export const user = mysqlTable('user', {
@@ -11,7 +10,7 @@ export const user = mysqlTable('user', {
   name: varchar('name', { length: 255 }).notNull(),
   email: varchar('email', { length: 255 }).notNull().unique(),
   password: varchar('password', { length: 255 }).notNull(),
-  status: planStatusEnum.notNull(),
+  status: userStatusEnum.notNull(),
   refreshToken: text('refresh_token'),
   role: varchar('role', { length: 50 }).notNull(),
   features: json('features').notNull(),
@@ -59,4 +58,5 @@ export const lead = mysqlTable('lead', {
   from: varchar('from', { length: 50 }).notNull(),
   createdAt: timestamp('created_at').defaultNow().notNull(),
   updatedAt: timestamp('updated_at').defaultNow().notNull(),
+  isAgree: boolean('is_agree').default(true), //setelah migrate akan di ubah menjadi not null
 });

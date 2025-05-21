@@ -2,7 +2,6 @@ import ConsultationButton from "@/components/partials/Button/Consultation";
 import Image from "next/image";
 
 type Side = "left" | "right";
-
 export default function FlyingSection({ image, title, subtitle, side }: { image: string, title: string, subtitle: string, side: Side }) {
     return (
         <div className="lg:max-w-7xl grid grid-cols-1 lg:grid-cols-12 gap-y-32 gap-x-10 lg:mx-auto relative">

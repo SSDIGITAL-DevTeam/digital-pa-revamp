@@ -38,7 +38,7 @@ export default function NextUINavbar() {
             <NavbarContent className='' justify='start'>
                 <NavbarBrand className='flex justify-start'>
                     <Link href='/'>
-                        <Logo />
+                        <Logo/>
                     </Link>
                 </NavbarBrand>
             </NavbarContent>

@@ -145,9 +145,16 @@ export default function TabSection() {
 
 
     return (
-        <div className="relative lg:max-w-7xl flex flex-col items-center justify-center gap-10 lg:mx-auto">
+        <div data-scroll-container id="sticky-header-target" className="relative lg:max-w-7xl flex flex-col items-center justify-center gap-10 lg:mx-auto">
             {/* Sticky Header */}
-            <header className="md:sticky top-12 pt-14 bg-white z-50 border-b-[1px] w-full flex flex-col gap-8">
+            {/* <header data-scroll-sticky className="md:sticky top-12 pt-14 bg-white z-50 border-b-[1px] w-full flex flex-col gap-8"> */}
+            <header
+                data-scroll
+                data-scroll-sticky
+                data-scroll-target="#sticky-header-target"
+                className="md:sticky pt-32 top-0 bg-white z-50 border-b-[1px] w-full flex flex-col gap-8"
+            >
+
                 <div className='flex gap-3 flex-col w-full pb-2'>
                     <h1 className="text-primary text-3xl md:text-2xl !leading-[120%] font-bold uppercase md:text-left text-center">Benefits of our Solution</h1>
                     <p className="max-w-3xl text-base !leading-[150%] md:text-left text-center">Now, let&apos;s explore the key features and benefits of our platform</p>

@@ -4,7 +4,7 @@ import ContactForm from './_components/ContactForm'
 export default function ContactUs(): JSX.Element {
     return (
         <main>
-            <header className='container p-6 lg:p-8 flex flex-col justify-center md:items-center mt-16'>
+            <header className='container p-10 lg:p-8 flex flex-col justify-center md:items-center md:mt-16'>
                 <h1 className='text-2xl uppercase tracking-widest text-primary'>
                     Say Hello
                 </h1>
@@ -25,7 +25,7 @@ export default function ContactUs(): JSX.Element {
 
             {/* contact form section */}
             <section className='pb-8'>
-                <div className='container p-6 lg:p-8'>
+                <div className='container px-10 lg:p-8'>
                     <div className='flex flex-col gap-6 lg:flex-row lg:gap-8'>
                         <div className='w-full flex justify-center items-center'>
                             <ContactForm />

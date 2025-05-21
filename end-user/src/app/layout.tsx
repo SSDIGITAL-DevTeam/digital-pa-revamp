@@ -6,7 +6,6 @@ import NextTopLoader from 'nextjs-toploader'
 import { Toaster } from 'sonner'
 // import WhatsappButton from '@/components/partials/Button/WhatsappButton'
 import { seoMetadata } from '@/constants/metadata/metadata';
-import Script from 'next/script'
 
 export const metadata = seoMetadata.home;
 
@@ -17,26 +16,22 @@ export default function RootLayout({
 }>) {
     return (
         <html lang='en'>
-            <head>
-                <Script
-                    src="https://dunsregistered.dnb.com"
-                    strategy="afterInteractive"
-                />
-            </head>
-            <body className='bg-[url("/webp/asset-background.webp")] bg-cover bg-center bg-no-repeat'>
-                <NextTopLoader color='#DB1222' showSpinner={false} />
-                <Toaster />
-                <Providers>
-                    <div className='flex min-h-screen flex-col'>
-                        {/* <Navbar /> */}
+            <body>
+                    <div className='bg-[url("/webp/asset-background.webp")] bg-cover bg-center bg-no-repeat'>
                         <NextUINavbar />
-                        {children}
-                        <div className='mt-auto'>
-                            <Footer />
-                        </div>
+                        <NextTopLoader color='#DB1222' showSpinner={false} />
+                        <Toaster />
+                        <Providers>
+                            <div className='flex min-h-screen flex-col'>
+                                {/* <Navbar /> */}
+                                {children}
+                                <div className='mt-auto'>
+                                    <Footer />
+                                </div>
+                            </div>
+                        </Providers>
+                        {/* <WhatsappButton/> */}
                     </div>
-                </Providers>
-                {/* <WhatsappButton/> */}
             </body>
         </html>
     )

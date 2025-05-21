@@ -11,6 +11,7 @@ import { toast } from "sonner";
 import { failToast, successToast } from "@/config/toastConfig";
 import { useRouter } from "next/navigation";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
+import FieldCheckbox from "@/components/partials/Field/FieldCheckbox";
 
 const formData = z.object({
     name: z.string().nonempty(),
@@ -24,6 +25,10 @@ const formData = z.object({
     }, {
         message: "Please enter a valid phone number",
     }),
+    isAgree: z.literal(true, {
+        errorMap: () => ({ message: "You must agree before submitting the form." }),
+    }),
+
 })
 
 type FormData = z.infer<typeof formData>
@@ -41,6 +46,7 @@ export default function ContactForm() {
             companyWebsite: "",
             business: "",
             message: "",
+            isAgree: undefined,
         },
         resolver: zodResolver(formData),
     });
@@ -78,10 +84,10 @@ export default function ContactForm() {
     })
 
     return (
-        <div id="consultation" className="lg:max-w-5xl w-full flex flex-col gap-2 justify-center items-center lg:gap-10 lg:mx-auto px-5">
+        <div id="consultation" className="lg:max-w-5xl w-full flex flex-col gap-2 justify-center items-center lg:gap-10 lg:mx-auto md:px-5">
             {/* <div className="w-full pt-8 md:pt-0 px-5 sm:px-10 md:px-20 lg:px-0"> */}
             <Form {...form}>
-                <form onSubmit={handleInput} className="w-full grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <form onSubmit={handleInput} className="w-full grid grid-cols-1 lg:grid-cols-2 gap-3 md:gap-6">
                     <FieldInput control={control} label="Name: *" name="name" placeholder="Enter your name" />
                     <FieldInput control={control} label="Email: *" name="email" placeholder="Enter your email address" />
                     <FieldPhoneInput control={control} label="Contact No: *" name="phone" placeholder="Enter your phone number" />
@@ -89,11 +95,14 @@ export default function ContactForm() {
                     <FieldInput control={control} label="Company Website:" name="companyWebsite" placeholder="e.g.https://www.yourcompany.com" />
                     <FieldInput control={control} label="Business Industry: *" name="business" placeholder="Your business industry" />
                     <div className="lg:col-span-2">
-                        <FieldInput control={control} label="Remarks / Special Requirements" name="message" type={"textarea"} placeholder="Tell us anything specific you need help with" />
+                        <FieldInput control={control} label="Remarks / Special Requirements" name="message" type={"textarea"} placeholder="What would you like to discuss during the consultation?" />
+                    </div>
+                    <div className="lg:col-span-2">
+                        <FieldCheckbox control={control} name="isAgree" />
                     </div>
 
                     <div className="flex justify-end w-full lg:col-span-2">
-                        <button disabled={isLoading} type="submit" className=" disabled:bg-red-950 text-sm md:text-base disabled:cursor-wait rounded-md border-2 text-white border-white hover:bg-red-800 py-3 lg:py-4 px-5 lg:px-12 w-fit bg-red-500 duration-200 transition-all"> {isLoading ? "Sending..." : "Submit"}</button>
+                        <button disabled={isLoading} type="submit" className=" disabled:bg-red-950 text-sm md:text-base disabled:cursor-wait rounded-lg font-semibold border-2 text-white border-white hover:bg-red-800 py-3 lg:py-4 px-5 lg:px-12 w-fit bg-primary duration-200 transition-all"> {isLoading ? "Sending..." : "Submit"}</button>
                     </div>
                 </form>
             </Form>

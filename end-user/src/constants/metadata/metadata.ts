@@ -1,5 +1,5 @@
 const metadataBase = new URL('https://digital-pa.com.sg')
-const defaultImage = '/asset-logo.webp'
+const defaultImage = `${metadataBase}/asset-logo.webp`
 export type MetadataKeys = keyof typeof seoMetadata
 
 export const seoMetadata = {
@@ -21,7 +21,7 @@ export const seoMetadata = {
     // },
     home: {
         metadataBase,
-        title: 'Homepage | Digital PA Singapore',
+        title: 'Digital PA Singapore',
         description:
             'Discover how Digital PA helps businesses grow with expert digital marketing solutions tailored for success.',
         keywords: [
@@ -33,7 +33,7 @@ export const seoMetadata = {
             'Marketing Automation',
         ],
         openGraph: {
-            title: 'Homepage | Digital PA Singapore',
+            title: 'Digital PA Singapore',
             description:
                 'Discover how Digital PA helps businesses grow with expert digital marketing solutions tailored for success.',
             url: `${metadataBase}`,
@@ -403,44 +403,43 @@ export const seoMetadata = {
     tuition: {
         metadataBase,
         title: 'DPA Tuition Centre | Digital PA Singapore',
-        description: 
+        description:
             'Learn about DPA Tuition Centre’s academic coaching, teaching philosophy, and the services we offer to help students thrive in their studies and mindset development.',
         keywords: [
-        'Academic Coaching',
-        'DPA Tuition Centre Services',
-        'Tuition Singapore',
-        'Mindset Development',
-        'Game-based Learning',
-        'Mock Exams',
+            'Academic Coaching',
+            'DPA Tuition Centre Services',
+            'Tuition Singapore',
+            'Mindset Development',
+            'Game-based Learning',
+            'Mock Exams',
         ],
         openGraph: {
-        title: 'DPA Tuition Centre | Digital PA Singapore',
-        description: 
-            'Explore the comprehensive academic coaching services offered by DPA Tuition Centre, focused on academic success and personal development.',
-        url: `${metadataBase}/tuition-center-knowledge-base`,
-        images: defaultImage,
+            title: 'DPA Tuition Centre | Digital PA Singapore',
+            description:
+                'Explore the comprehensive academic coaching services offered by DPA Tuition Centre, focused on academic success and personal development.',
+            url: `${metadataBase}/tuition-center-knowledge-base`,
+            images: defaultImage,
         },
     },
-  privacyPolicy: {
-  metadataBase,
-  title: 'Privacy Policy | Digital PA Singapore',
-  description: 
-    'Read how Digital PA Singapore collects, uses, and protects your personal data in accordance with the PDPA. Your privacy and trust are our top priority.',
-  keywords: [
-    'Digital PA Privacy Policy',
-    'PDPA Singapore',
-    'Data Protection',
-    'Personal Data Usage',
-    'Privacy Compliance',
-    'Website Privacy Policy',
-  ],
-  openGraph: {
-    title: 'Privacy Policy | Digital PA Singapore',
-    description:
-      'Read how Digital PA Singapore collects, uses, and protects your personal data in accordance with the PDPA. Your privacy and trust are our top priority.',
-    url: `${metadataBase}/privacy-policy`,
-    images: defaultImage,
-  },
-}
-
+    privacyPolicy: {
+        metadataBase,
+        title: 'Privacy Policy | Digital PA Singapore',
+        description:
+            'Read how Digital PA Singapore collects, uses, and protects your personal data in accordance with the PDPA. Your privacy and trust are our top priority.',
+        keywords: [
+            'Digital PA Privacy Policy',
+            'PDPA Singapore',
+            'Data Protection',
+            'Personal Data Usage',
+            'Privacy Compliance',
+            'Website Privacy Policy',
+        ],
+        openGraph: {
+            title: 'Privacy Policy | Digital PA Singapore',
+            description:
+                'Read how Digital PA Singapore collects, uses, and protects your personal data in accordance with the PDPA. Your privacy and trust are our top priority.',
+            url: `${metadataBase}/privacy-policy`,
+            images: defaultImage,
+        },
+    },
 }

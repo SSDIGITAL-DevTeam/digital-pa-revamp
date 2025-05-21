@@ -13,8 +13,8 @@ export default function Hero(): JSX.Element {
                 </h1>
 
                 <p className='relative mt-4 max-w-3xl text-xl md:text-3xl'>
-                    Think of us as your Personal Assistant that manages your
-                    digital marketing stuffs
+                    Think of us as your Digital Partner — <br/>
+                    simplifying marketing, automation, and growth for your business.
                 </p>
                 <Link href={"/contact-us"} className='z-50'>
                     <button className='mt-8 relative bg-primary  cursor-pointer hover:shadow-primary/60 hover:shadow-md py-4 px-20 w-fit text-center font-semibold text-white rounded-lg duration-300 transition-all'> Boost Your Sales

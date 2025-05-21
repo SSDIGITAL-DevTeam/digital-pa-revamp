@@ -1,5 +1,5 @@
 "use client"
-import { JSX } from 'react'
+import React, { JSX } from 'react'
 import Image from 'next/image'
 import Header from '../../_components/Header'
 import ConsultationButton from '@/components/partials/Button/Consultation'
@@ -36,11 +36,12 @@ import {
     saveMoneyTime2,
     whoShouldUseOurAI
 } from '@/constants/our-services/ai-automation'
+import useLocoScroll from '@/hook/useLocomotive'
 
-export default function WebsiteDevelopment(): JSX.Element {
-
+const AiAutomation: React.FC = (): JSX.Element => {
+    useLocoScroll();
     return (
-        <main className="">
+        <main data-scroll-container>
             {/* Header */}
             <section className="w-full bg-white lg:pt-14">
                 <div className="relative lg:max-w-[98%] flex flex-col items-center justify-center gap-5 lg:gap-3 lg:mx-auto py-12 lg:py-16 rounded-3xl bg-gradient-to-l from-[#F3BEBE]/40 from-40% to-gray-200/50">
@@ -48,22 +49,22 @@ export default function WebsiteDevelopment(): JSX.Element {
                         <span className='bg-gradient-to-r from-pink-600 to-orange-400 text-transparent bg-clip-text'> AI-Powered Automation</span>
                     </p>
                     <div className="flex flex-col gap-8 md:gap-7 items-center px-5">
-                        <h1 className="normal-case lg:max-w-5xl !leading-[140%] text-3xl sm:text-4xl md:text-5xl lg:text-6xl max-w-6xl text-center w-full bg-gradient-to-r from-pink-600 to-orange-400 text-transparent bg-clip-text">
+                        <h1 data-scroll data-scroll-speed="2" className="normal-case lg:max-w-5xl !leading-[140%] text-3xl sm:text-4xl md:text-5xl lg:text-6xl max-w-6xl text-center w-full bg-gradient-to-r from-pink-600 to-orange-400 text-transparent bg-clip-text">
                             <span className='text-black'>All-in-one</span> business marketing and CRM automation
                             <span className='text-black'> platform for SMEs owners</span>
                         </h1>
-                        <p className="max-w-4xl text-center !leading-[150%] lg:text-lg font-medium text-gray-700">helps small to medium-sized businesses capture leads, drive sales, nurture customer relationships, and optimize day-to-day processes.</p>
+                        <p data-scroll data-scroll-speed="1" className="max-w-4xl text-center !leading-[150%] lg:text-lg font-medium text-gray-700">helps small to medium-sized businesses capture leads, drive sales, nurture customer relationships, and optimize day-to-day processes.</p>
                     </div>
                     <div className="flex w-full justify-center items-center lg:mt-7 mt-5">
                         <ConsultationButton />
                     </div>
 
                     {/* Bouncing Images */}
-                    <Image src={Symbol2.src} quality={100} width={1920} height={1080} priority className="hidden md:block absolute z-[4] h-12 w-12 top-[24%] left-[12%]  animate-smoothBounce delay-1000" alt={`symbol-google`} />
-                    <Image src={Symbol3.src} quality={100} width={1920} height={1080} priority className="hidden md:block absolute z-[4] h-12 w-12 top-[44%] left-[15%]  animate-smoothBounce" alt={`symbol-google-ads`} />
-                    <Image src={Symbol5.src} quality={100} width={1920} height={1080} priority className="hidden md:block absolute z-[4] h-12 w-12 top-[17%] right-[14%] animate-smoothBounce" alt={`symbol-instagram`} />
-                    <Image src={Symbol4.src} quality={100} width={1920} height={1080} priority className="hidden md:block absolute z-[4] h-12 w-12 top-[33%] right-[10%] animate-smoothBounce delay-1000" alt={`symbol-meta`} />
-                    <Image src={Symbol1.src} quality={100} width={1920} height={1080} priority className="hidden md:block absolute z-[4] h-12 w-12 top-[51%] right-[17%] animate-smoothBounce delay-500" alt={`symbol-facebook`} />
+                    <Image src={Symbol2.src} quality={100} width={1920} height={1080} priority className="hidden lg:block absolute z-[4] h-12 w-12 top-[24%] left-[12%]  animate-smoothBounce delay-1000" alt={`symbol-google`} />
+                    <Image src={Symbol3.src} quality={100} width={1920} height={1080} priority className="hidden lg:block absolute z-[4] h-12 w-12 top-[44%] left-[15%]  animate-smoothBounce" alt={`symbol-google-ads`} />
+                    <Image src={Symbol5.src} quality={100} width={1920} height={1080} priority className="hidden lg:block absolute z-[4] h-12 w-12 top-[17%] right-[14%] animate-smoothBounce" alt={`symbol-instagram`} />
+                    <Image src={Symbol4.src} quality={100} width={1920} height={1080} priority className="hidden lg:block absolute z-[4] h-12 w-12 top-[33%] right-[10%] animate-smoothBounce delay-1000" alt={`symbol-meta`} />
+                    <Image src={Symbol1.src} quality={100} width={1920} height={1080} priority className="hidden lg:block absolute z-[4] h-12 w-12 top-[51%] right-[17%] animate-smoothBounce delay-500" alt={`symbol-facebook`} />
                 </div>
             </section>
 
@@ -195,3 +196,5 @@ export default function WebsiteDevelopment(): JSX.Element {
         </main>
     )
 }
+
+export default AiAutomation

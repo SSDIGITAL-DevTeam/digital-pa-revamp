@@ -7,10 +7,15 @@ import OurServices from './_components/OurServices/OurServices'
 import Particle from '@/components/partials/ParticleJs/Particle'
 import FAQ from './our-services/_components/FAQ'
 import { homeFAQ } from '@/constants/our-services/faq'
+import Script from 'next/script'
 
 export default function Home() {
     return (
         <main>
+            <Script
+                src="https://dunsregistered.dnb.com"
+                strategy="afterInteractive"
+            />
             <header className='relative min-h-screen'>
                 <div className='absolute inset-0 z-10'>
                     <Particle />
@@ -51,7 +56,7 @@ export default function Home() {
 
             {/* faq section */}
             <section className='py-8'>
-                <FAQ value={homeFAQ}/>
+                <FAQ value={homeFAQ} />
             </section>
             {/* end of faq section */}
         </main>

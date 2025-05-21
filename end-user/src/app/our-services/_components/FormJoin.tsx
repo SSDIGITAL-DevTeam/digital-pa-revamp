@@ -12,6 +12,7 @@ import { toast } from "sonner";
 import { failToast, successToast } from "@/config/toastConfig";
 import { usePathname, useRouter } from "next/navigation";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
+import FieldCheckbox from "@/components/partials/Field/FieldCheckbox";
 
 const formData = z.object({
     name: z.string().nonempty(),
@@ -25,6 +26,10 @@ const formData = z.object({
     }, {
         message: "Please enter a valid phone number",
     }),
+    isAgree: z.literal(true, {
+        errorMap: () => ({ message: "You must agree before submitting the form." }),
+    }),
+
 })
 
 type FormData = z.infer<typeof formData>
@@ -54,6 +59,7 @@ export default function FormJoin() {
             companyWebsite: "",
             business: "",
             message: "",
+            isAgree: undefined,
         },
         resolver: zodResolver(formData),
     });
@@ -102,7 +108,10 @@ export default function FormJoin() {
                         <FieldInput control={control} label="Company Website:" name="companyWebsite" placeholder="e.g.https://www.yourcompany.com" />
                         <FieldInput control={control} label="Business Industry: *" name="business" placeholder="Your business industry" />
                         <div className="lg:col-span-2">
-                            <FieldInput control={control} label="Remarks / Special Requirements" name="message" type={"textarea"} placeholder="Tell us anything specific you need help with" />
+                            <FieldInput control={control} label="Remarks / Special Requirements" name="message" type={"textarea"} placeholder="What would you like to discuss during the consultation?" />
+                        </div>
+                        <div className="lg:col-span-2">
+                            <FieldCheckbox control={control} name="isAgree" />
                         </div>
 
                         <div className="flex justify-end w-full lg:col-span-2">
