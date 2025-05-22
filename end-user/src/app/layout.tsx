@@ -1,7 +1,7 @@
 import './globals.css'
 import { Providers } from './providers'
 import Footer from '@/components/layouts/Footer'
-import NextUINavbar from '@/components/layouts/Navbar/NextUINavbar'
+import Navbar from '@/components/layouts/Navbar'
 import NextTopLoader from 'nextjs-toploader'
 import { Toaster } from 'sonner'
 // import WhatsappButton from '@/components/partials/Button/WhatsappButton'
@@ -19,7 +19,7 @@ export default function RootLayout({
             <body >
                 <div className='bg-[url("/webp/asset-background.webp")] bg-cover bg-center bg-no-repeat'>
                         <NextTopLoader color='#DB1222' showSpinner={false} />
-                        <NextUINavbar />
+                        <Navbar />
                         <Toaster />
                         <Providers>
                             <div className='flex min-h-screen flex-col'>

@@ -3,7 +3,7 @@ export type NavLink = {
     path: string
     menus?: Menus[]
 }
-type Menus = {
+export type Menus = {
     name: string
     submenu: Submenus[]
 }
@@ -21,7 +21,7 @@ export const navlinks: NavLink[] = [
         path: '/about-us',
     },
     {
-        name: 'Our Services',
+        name: 'Services',
         path: '/our-services',
         menus: [
         {

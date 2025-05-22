@@ -149,7 +149,7 @@ export default function TabSection() {
             {/* Sticky Header */}
             {/* <header data-scroll-sticky className="md:sticky top-12 pt-14 bg-white z-50 border-b-[1px] w-full flex flex-col gap-8"> */}
             <header
-                className="md:sticky md:pt-32 top-0 md:bg-[#F5F5F5] z-50 border-b-[1px] w-full flex flex-col gap-8"
+                className="md:sticky md:pt-32 top-0 md:bg-white z-50 border-b-[1px] w-full flex flex-col gap-8"
             >
                 <div className='flex gap-4 flex-col w-full pb-2'>
                     <h1 className="text-primary capitalize text-3xl md:text-4xl !leading-[120%] font-bold md:text-left text-center">Benefits <span className="text-black">of our Solution</span></h1>

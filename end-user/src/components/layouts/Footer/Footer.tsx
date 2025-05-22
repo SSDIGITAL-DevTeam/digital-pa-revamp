@@ -7,6 +7,7 @@ import { NavLink, navlinks } from '@/constants/navlink'
 // import AssetTwitterIcon from '@/assets/footer/svg/asset-twitter-icon.svg'
 // import { Image } from '@nextui-org/react'
 import Logo from '@/components/partials/Logo'
+import { FooterPopover } from '@/components/partials/Popover/FooterPopover'
 
 export default function Footer(): JSX.Element {
     return (
@@ -20,7 +21,7 @@ export default function Footer(): JSX.Element {
 
                         <p>
                             <strong>
-                            Think of us as your Digital Partner —
+                                Think of us as your Digital Partner —
                             </strong>{' '}
                             simplifying marketing, automation, and growth for your business.
                         </p>
@@ -79,16 +80,22 @@ export default function Footer(): JSX.Element {
                         </p>
 
                         <ul className='mt-2.5 space-y-2 '>
-                            {navlinks.map((navlink: NavLink, index: number) => (
-                                <li
-                                    className='duration-150 hover:translate-x-1 hover:font-semibold'
-                                    key={`footer-link-${index}`}
-                                >
-                                    <Link className='block' href={navlink.path}>
-                                        {navlink.name}
-                                    </Link>
-                                </li>
-                            ))}
+                            {navlinks.map((navlink: NavLink, index: number) => {
+                                return (
+                                    <li
+                                        className='duration-150 hover:translate-x-1 hover:font-semibold'
+                                        key={`footer-link-${index}`}
+                                    >
+                                        {(navlink.menus) ?
+                                            <FooterPopover name={navlink.name} menus={navlink.menus || []}/>
+                                            :
+                                            <Link className='block' href={navlink.path}>
+                                                {navlink.name}
+                                            </Link>
+                                        }
+                                    </li>
+                                )
+                            })}
                         </ul>
                     </div>
 

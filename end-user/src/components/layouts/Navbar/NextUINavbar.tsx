@@ -30,7 +30,7 @@ export default function NextUINavbar() {
 
     return (
         <Navbar
-            className='z-[102] w-full bg-white px-0 py-4 lg:px-20'
+            className={`z-[102] w-full bg-white px-0 py-4 lg:px-20 ${pathname  === "/marketing-automation" ? "hidden" : ""}`}
             maxWidth='full'
             isMenuOpen={isMenuOpen}
             onMenuOpenChange={setIsMenuOpen}
@@ -63,7 +63,7 @@ export default function NextUINavbar() {
                                             endContent={<ChevronDown />}
                                             className={`${pathname.startsWith(navlink.path) ? 'text-primary' : 'text-dark'} text-lg lg:text-xl font-semibold`}
                                         >
-                                            Our Services
+                                            Services
                                         </Button>
                                     </DropdownTrigger>
                                 </NavbarItem>
@@ -126,7 +126,7 @@ export default function NextUINavbar() {
                                             endContent={<ChevronDown />}
                                             className={`${pathname.startsWith(navlink.path) ? 'text-primary' : 'text-dark'} text-lg font-semibold`}
                                         >
-                                            Our Services
+                                            Services
                                         </Button>
                                     </DropdownTrigger>
                                 </NavbarMenuItem>
