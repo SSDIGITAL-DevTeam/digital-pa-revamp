@@ -20,13 +20,12 @@ import { useState } from 'react'
 import { usePathname } from 'next/navigation'
 import Logo from '@/components/partials/Logo'
 import { ChevronDown, Sparkles } from 'lucide-react'
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
 // import { useFooterStore } from '@/store/navbarStore'
-// import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
 
 export default function NextUINavbar() {
     const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false)
 
-    // pathname
     const pathname = usePathname()
     // const setIsOpenNavbar = useFooterStore((state) => state.updateNavbar)
     // const isOpenNavbar = useFooterStore((state) => state.isNavbarOpen)
@@ -36,7 +35,7 @@ export default function NextUINavbar() {
 
     return (
         <Navbar
-            className={`z-[102] w-full bg-white px-0 py-4 lg:px-20 ${pathname === "/marketing-automation" ? "hidden" : ""}`}
+            className={`z-[102] w-full bg-white px-0 py-2 md:py-4 lg:px-20 ${pathname === "/marketing-automation" ? "hidden" : ""}`}
             maxWidth='full'
             // isMenuOpen={isOpenNavbar}
             // onMenuOpenChange={setIsOpenNavbar}
@@ -52,9 +51,7 @@ export default function NextUINavbar() {
             </NavbarContent>
 
             <NavbarContent className='md:hidden' justify='end'>
-                <NavbarMenuToggle
-                    aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
-                />
+                <NavbarMenuToggle aria-label={isMenuOpen ? 'Close menu' : 'Open menu'} />
             </NavbarContent>
             {/* Desktop Menu */}
             <NavbarContent
@@ -121,7 +118,7 @@ export default function NextUINavbar() {
             {/* menu */}
 
             {/* mobile view */}
-            <NavbarMenu
+            {/* <NavbarMenu
                 className='mt-8 space-y-3 z-[999]'
             >
                 {navlinks.slice(0, 4).map((navlink: NavLink, index: number) => {
@@ -203,10 +200,10 @@ export default function NextUINavbar() {
                         Contact Us
                     </Button>
                 </NavbarMenuItem>
-            </NavbarMenu>
+            </NavbarMenu> */}
 
-            {/* mobile view */}
-            {/* <NavbarMenu className="mt-8 space-y-3 z-[999]">
+            {/* mobile view accordion*/}
+            <NavbarMenu className="mt-4 space-y-3 z-[999]">
                 {navlinks.slice(0, 4).map((navlink: NavLink, index: number) => {
                     if (navlink.menus) {
                         return (
@@ -216,35 +213,44 @@ export default function NextUINavbar() {
                                     collapsible
                                     className="w-full"
                                 >
-                                    <AccordionItem value={`accordion-${index}`}>
-                                        <AccordionTrigger className="text-lg">
-                                            {navlink.name || 'Our Services'}
+                                    <AccordionItem value={`accordion-parent-${index}`}>
+                                        <AccordionTrigger className="text-lg mb-3">
+                                            {navlink.name}
                                         </AccordionTrigger>
-                                        <AccordionContent>
-                                            <div className="flex flex-col gap-4 mt-4">
+                                        <AccordionContent className="space-y-4">
+                                            {/* testing */}
+                                            <Accordion
+                                                type="single"
+                                                collapsible
+                                                className="w-full space-y-6 mt-2"
+                                            >
                                                 {navlink.menus.map((menu, idx) => (
-                                                    <div key={idx}>
-                                                        <div className="font-bold text-base text-primary flex items-center gap-2">
-                                                            {menu.name}
-                                                            {menu.name === "AI Solutions" && (
-                                                                <Sparkles size={12} fill="red" />
-                                                            )}
-                                                        </div>
-                                                        <ul className="flex flex-col gap-2 mt-2 ms-2">
-                                                            {menu.submenu.map((submenu, subIdx) => (
-                                                                <li key={subIdx}>
-                                                                    <Link
-                                                                        href={submenu.path}
-                                                                        className="font-light text-gray-600 cursor-pointer hover:text-primary text-sm break-words"
-                                                                    >
-                                                                        {submenu.name}
-                                                                    </Link>
-                                                                </li>
-                                                            ))}
-                                                        </ul>
-                                                    </div>
+                                                    <AccordionItem value={`accordion-child-${idx}`} key={idx}>
+                                                        <AccordionTrigger className="text-sm ms-4 font-normal">
+                                                            <span className='flex font-semibold items-center gap-2 text-gray-700'>
+                                                                {menu.name === "AI Solutions" && <Sparkles size={12} fill="red" />}
+                                                                {menu.name}
+                                                            </span>
+                                                        </AccordionTrigger>
+                                                        <AccordionContent>
+                                                            <div key={idx} className="ms-10 mt-4">
+                                                                <ul className="flex flex-col gap-y-4 h-fit max-h-28 overflow-y-scroll">
+                                                                    {menu.submenu.map((submenu, subIdx) => (
+                                                                        <li key={subIdx}>
+                                                                            <Link
+                                                                                href={submenu.path}
+                                                                                className="text-gray-700 flex flex-row items-center gap-3 cursor-pointer font-medium hover:text-primary text-sm break-words"
+                                                                            >
+                                                                                {submenu.name}
+                                                                            </Link>
+                                                                        </li>
+                                                                    ))}
+                                                                </ul>
+                                                            </div>
+                                                        </AccordionContent>
+                                                    </AccordionItem>
                                                 ))}
-                                            </div>
+                                            </Accordion>
                                         </AccordionContent>
                                     </AccordionItem>
                                 </Accordion>
@@ -263,7 +269,7 @@ export default function NextUINavbar() {
                     )
                 })}
 
-                <NavbarMenuItem className="flex gap-4">
+                <NavbarMenuItem className="flex gap-2">
                     <Button
                         className="font-semibold bg-white border-[2px] border-primary text-primary hover:bg-primary hover:text-white"
                         size="lg"
@@ -286,7 +292,7 @@ export default function NextUINavbar() {
                         Contact Us
                     </Button>
                 </NavbarMenuItem>
-            </NavbarMenu> */}
+            </NavbarMenu>
 
 
             <NavbarContent justify='end' className='hidden md:flex'>

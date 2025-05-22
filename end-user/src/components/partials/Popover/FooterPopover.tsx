@@ -1,3 +1,5 @@
+"use client"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import {
     Popover,
     PopoverContent,
@@ -15,7 +17,7 @@ export function FooterPopover({ name, menus }: { name: string; menus: Menus[] })
     // const setIsOpenService = useFooterStore((state) => state.updateService)
     return (
         <Popover>
-            <PopoverTrigger asChild 
+            <PopoverTrigger
             // onClick={() =>{
             //     setIsOpenNavbar(true)
             //     setIsOpenService(true)
@@ -23,8 +25,8 @@ export function FooterPopover({ name, menus }: { name: string; menus: Menus[] })
             >
                 <span className="cursor-pointer">{name}</span>
             </PopoverTrigger>
-            <PopoverContent className="w-fit">
-                <div className="columns-2 gap-2 md:gap-6 p-3">
+            <PopoverContent className="w-[80vw] sm:w-fit">
+                <div className="columns-2 gap-2 md:gap-6 p-3 hidden sm:block">
                     {menus.map((menu, idx) => (
                         <ul key={idx} className="flex flex-col gap-2 py-2 md:p-4">
                             <li>
@@ -46,6 +48,40 @@ export function FooterPopover({ name, menus }: { name: string; menus: Menus[] })
                         </ul>
                     ))}
                 </div>
+
+                {/* testing */}
+                <Accordion
+                    type="single"
+                    collapsible
+                    className="w-full space-y-6 sm:hidden p-4 rounded-2xl"
+                >
+                    {menus.map((menu, idx) => (
+                        <AccordionItem value={`accordion-child-${idx}`} key={`accordion-child-${idx}`}>
+                            <AccordionTrigger className="text-sm ms-4 font-normal">
+                                <span className='flex font-semibold items-center gap-2 text-gray-700'>
+                                    {menu.name === "AI Solutions" && <Sparkles size={12} fill="red" />}
+                                    {menu.name}
+                                </span>
+                            </AccordionTrigger>
+                            <AccordionContent>
+                                <div key={idx} className="ms-10 mt-4">
+                                    <ul className="flex flex-col gap-y-3">
+                                        {menu.submenu.map((submenu, subIdx) => (
+                                            <li key={subIdx}>
+                                                <Link
+                                                    href={submenu.path}
+                                                    className="text-gray-700 flex flex-row items-center gap-3 cursor-pointer font-medium hover:text-primary text-sm break-words"
+                                                >
+                                                    {submenu.name}
+                                                </Link>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            </AccordionContent>
+                        </AccordionItem>
+                    ))}
+                </Accordion>
             </PopoverContent>
         </Popover>
     )

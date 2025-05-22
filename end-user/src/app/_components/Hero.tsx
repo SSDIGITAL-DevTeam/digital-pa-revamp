@@ -12,7 +12,7 @@ export default function Hero(): JSX.Element {
                     <br /> Assistant that Does It All
                 </h1>
 
-                <p className='!leading-snug relative mt-4 max-w-3xl text-xl md:text-3xl' data-scroll data-scroll-speed="0.2">
+                <p className='!leading-snug relative mt-4 max-w-3xl text-lg md:text-3xl' data-scroll data-scroll-speed="0.2">
                     Think of us as your Digital Partner — <br/>
                     simplifying marketing, automation, and growth for your business.
                 </p>

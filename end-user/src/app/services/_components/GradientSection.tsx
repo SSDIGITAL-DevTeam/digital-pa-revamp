@@ -8,14 +8,14 @@ export default function GradientSection({ data, name }: { data: List[], name: st
     return (
         <div className="flex flex-wrap gap-7 w-full justify-center items-center">
             {data.map((d, i) => (
-                <div key={`${name}-${i+1}`} className="relative w-full lg:w-[600px] h-[50vh]">
+                <div key={`${name}-${i+1}`} className="group relative overflow-hidden rounded-2xl w-full lg:w-[600px] h-[50vh] shadow-md hover:shadow-2xl transition-all duration-300">
                     <Image
                         src={d.image}
                         alt="Image"
                         width={1920}
                         height={1080}
                         quality={100}
-                        className="w-full h-full object-cover rounded-2xl"
+                        className="w-full h-full object-cover  group-hover:scale-110 duration-1000 transition-all"
                     />
                     <div className="absolute inset-0 bg-gradient-to-r lg:bg-gradient-to-t from-black/80 md:from-black via-black/60 to-transparent rounded-2xl text-white flex justify-start lg:justify-end flex-col gap-1 p-6 lg:px-8 lg:py-12">
                         <h2 className="text-xl lg:text-2xl font-bold">{d.title}</h2>

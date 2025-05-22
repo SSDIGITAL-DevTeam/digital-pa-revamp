@@ -12,7 +12,7 @@ import { FooterPopover } from '@/components/partials/Popover/FooterPopover'
 export default function Footer(): JSX.Element {
     return (
         <footer className='border-t bg-white'>
-            <div className='container p-4 md:p-8'>
+            <div className='container p-10 md:p-8'>
                 <div className='grid grid-cols-1 gap-8 py-4 sm:grid-cols-2 md:grid-cols-4 md:justify-items-center lg:grid-cols-4'>
                     <div className='space-y-4'>
                         <Link href='/'>

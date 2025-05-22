@@ -94,7 +94,7 @@ const AiAutomation: React.FC = (): JSX.Element => {
                         <div data-scroll data-scroll-speed="1.3" className="z-[1] flex flex-col md:flex-row w-full justify-center items-center text-xl gap-5">
                             {/* <Button className='flex items-center gap-2 text-white md:w-fit text-center font-semibold rounded-2xl bg-primary w-[50vw] py-6 md:py-8 md:px-6 hover:bg-red-800'>Get a Free Consultation <ArrowRightIcon className="h-5 w-5" /></Button> */}
                             <ConsultationButton text='Get a Free Consultation' />
-                            <Button className='md:w-fit text-center font-semibold rounded-2xl bg-white shadow-md border-[1px] border-gray-300 px-16 py-6 md:py-8 md:px-6 text-primary hover:bg-primary/5'>See Benefits</Button>
+                            <Button className='md:w-fit text-center font-semibold rounded-2xl bg-white shadow-md border-[1px] border-gray-300 px-16 py-6 md:py-7 md:px-6 text-primary hover:bg-primary/5'>See Benefits</Button>
                         </div>
                         <div data-scroll data-scroll-speed="1.2" className='w-[80vw] py-3 md:w-[50vw]'>
                             <Image
