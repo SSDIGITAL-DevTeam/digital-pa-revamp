@@ -1,7 +1,7 @@
 "use client"
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import successModalImage from "@/assets/our-services/webp/success-modal.png"
+import successModalImage from "@/assets/services/webp/success-modal.png"
 import { useRouter } from "next/navigation";
 export default function SuccessPage() {
     const router = useRouter();

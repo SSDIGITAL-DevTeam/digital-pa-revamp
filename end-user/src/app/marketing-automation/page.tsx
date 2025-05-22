@@ -2,11 +2,11 @@
 import React, { JSX, useEffect } from 'react'
 import Image from 'next/image'
 
-import SimplifyImage from '@/assets/our-services/webp/ai/Image.webp'
-import HelpingImage1 from '@/assets/our-services/webp/ai/help1.webp'
-import HelpingImage2 from '@/assets/our-services/webp/ai/help2.webp'
+import SimplifyImage from '@/assets/services/webp/ai/Image.webp'
+import HelpingImage1 from '@/assets/services/webp/ai/help1.webp'
+import HelpingImage2 from '@/assets/services/webp/ai/help2.webp'
 
-import InSummaryImage from '@/assets/our-services/webp/free-seo-web-audit.webp'
+import InSummaryImage from '@/assets/services/webp/free-seo-web-audit.webp'
 
 import {
     allInOnePlatformAI,
@@ -16,19 +16,19 @@ import {
     saveMoneyTime,
     saveMoneyTime2,
     whoShouldUseOurAI
-} from '@/constants/our-services/ai-automation'
+} from '@/constants/services/ai-automation'
 import ConsultationButton from '@/components/partials/Button/Consultation'
-import Header from '../our-services/_components/Header'
-import GridSection from '../our-services/_components/GridSection'
-import FlyingSection from '../our-services/_components/FlyingSection'
-import IconGridSection from '../our-services/_components/IconGridSection'
-import LeftHeader from '../our-services/_components/LeftHeader'
-import GradientSection from '../our-services/_components/GradientSection'
-import TabSection from '../our-services/_components/TabSection'
-import ColumnsIconSection from '../our-services/_components/ColumnsIconSection'
-import OurBrands from '../our-services/_components/OurBrandPartner'
-// import ProvenExperience from '../our-services/_components/ProvenExperience'
-import FormJoin from '../our-services/_components/FormJoin'
+import Header from '../services/_components/Header'
+import GridSection from '../services/_components/GridSection'
+import FlyingSection from '../services/_components/FlyingSection'
+import IconGridSection from '../services/_components/IconGridSection'
+import LeftHeader from '../services/_components/LeftHeader'
+import GradientSection from '../services/_components/GradientSection'
+import TabSection from '../services/_components/TabSection'
+import ColumnsIconSection from '../services/_components/ColumnsIconSection'
+import OurBrands from '../services/_components/OurBrandPartner'
+// import ProvenExperience from '../services/_components/ProvenExperience'
+import FormJoin from '../services/_components/FormJoin'
 import { Button } from '@/components/ui/button'
 // import { ArrowRightIcon } from '@heroicons/react/16/solid'
 // import useLocoScroll from '@/hook/useLocomotive'

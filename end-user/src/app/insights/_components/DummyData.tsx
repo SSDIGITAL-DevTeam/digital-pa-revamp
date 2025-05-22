@@ -1,4 +1,4 @@
-import BalancingImage from '@/assets/our-services/webp/balancing-hunt.webp'
+import BalancingImage from '@/assets/services/webp/balancing-hunt.webp'
 
 export const pageData = [
     {

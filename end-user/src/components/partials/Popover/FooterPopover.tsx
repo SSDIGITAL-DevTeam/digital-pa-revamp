@@ -4,13 +4,23 @@ import {
     PopoverTrigger,
 } from "@/components/ui/popover"
 import { Menus } from "@/constants/navlink"
+// import { useFooterStore } from "@/store/navbarStore";
 import { Sparkles } from "lucide-react"
 import Link from "next/link"
 
 export function FooterPopover({ name, menus }: { name: string; menus: Menus[] }) {
+
+    // const setIsOpenNavbar = useFooterStore((state) => state.updateNavbar)
+
+    // const setIsOpenService = useFooterStore((state) => state.updateService)
     return (
         <Popover>
-            <PopoverTrigger asChild>
+            <PopoverTrigger asChild 
+            // onClick={() =>{
+            //     setIsOpenNavbar(true)
+            //     setIsOpenService(true)
+            // }}
+            >
                 <span className="cursor-pointer">{name}</span>
             </PopoverTrigger>
             <PopoverContent className="w-fit">

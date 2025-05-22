@@ -20,6 +20,7 @@ import { useState } from 'react'
 import { usePathname } from 'next/navigation'
 import Logo from '@/components/partials/Logo'
 import { ChevronDown, Sparkles } from 'lucide-react'
+// import { useFooterStore } from '@/store/navbarStore'
 // import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
 
 export default function NextUINavbar() {
@@ -27,11 +28,18 @@ export default function NextUINavbar() {
 
     // pathname
     const pathname = usePathname()
+    // const setIsOpenNavbar = useFooterStore((state) => state.updateNavbar)
+    // const isOpenNavbar = useFooterStore((state) => state.isNavbarOpen)
+
+    // const setIsOpenService = useFooterStore((state) => state.updateService)
+    // const isOpenService = useFooterStore((state) => state.isServiceOpen)
 
     return (
         <Navbar
-            className={`z-[102] w-full bg-white px-0 py-4 lg:px-20 ${pathname  === "/marketing-automation" ? "hidden" : ""}`}
+            className={`z-[102] w-full bg-white px-0 py-4 lg:px-20 ${pathname === "/marketing-automation" ? "hidden" : ""}`}
             maxWidth='full'
+            // isMenuOpen={isOpenNavbar}
+            // onMenuOpenChange={setIsOpenNavbar}
             isMenuOpen={isMenuOpen}
             onMenuOpenChange={setIsMenuOpen}
         >

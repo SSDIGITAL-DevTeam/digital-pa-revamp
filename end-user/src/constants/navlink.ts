@@ -22,14 +22,14 @@ export const navlinks: NavLink[] = [
     },
     {
         name: 'Services',
-        path: '/our-services',
+        path: '/services',
         menus: [
         {
             name: "AI Solutions",
             submenu: [
                 {
                     name: "AI Automation",
-                    path: "/our-services/ai-solutions/ai-automation" 
+                    path: "/services/ai-solutions/ai-automation" 
                 },
             ]
         },
@@ -38,15 +38,15 @@ export const navlinks: NavLink[] = [
             submenu: [
                 {
                     name: "Search Engine Optimization",
-                    path: "/our-services/ads-campaign/search-engine-optimization" 
+                    path: "/services/ads-campaign/search-engine-optimization" 
                 },
                 {
                     name: "Search Engine Marketing",
-                    path: "/our-services/ads-campaign/search-engine-marketing" 
+                    path: "/services/ads-campaign/search-engine-marketing" 
                 },
                 {
                     name: "SEO Copywriting",
-                    path: "/our-services/ads-campaign/seo-copywriting" 
+                    path: "/services/ads-campaign/seo-copywriting" 
                 },
             ]
         },
@@ -55,11 +55,11 @@ export const navlinks: NavLink[] = [
             submenu: [
                 {
                     name: "Social Media Management",
-                    path: "/our-services/social-media-marketing/social-media-management" 
+                    path: "/services/social-media-marketing/social-media-management" 
                 },
                 {
                     name: "Paid Social Ads",
-                    path: "/our-services/social-media-marketing/paid-social-ads" 
+                    path: "/services/social-media-marketing/paid-social-ads" 
                 },
             ]
         },
@@ -68,27 +68,27 @@ export const navlinks: NavLink[] = [
             submenu: [
                 {
                     name: "Copywriting",
-                    path: "/our-services/content-marketing/copywriting" 
+                    path: "/services/content-marketing/copywriting" 
                 },
                 {
                     name: "Content Marketing",
-                    path: "/our-services/content-marketing/content-marketing" 
+                    path: "/services/content-marketing/content-marketing" 
                 },
                 {
                     name: "Social Media Content",
-                    path: "/our-services/content-marketing/social-media-content" 
+                    path: "/services/content-marketing/social-media-content" 
                 },
                 {
                     name: "Blog Article",
-                    path: "/our-services/content-marketing/blog-article" 
+                    path: "/services/content-marketing/blog-article" 
                 },
                 {
                     name: "Infographic Content",
-                    path: "/our-services/content-marketing/infographic-content" 
+                    path: "/services/content-marketing/infographic-content" 
                 },
                 {
                     name: "Skyscraper Content",
-                    path: "/our-services/content-marketing/skyscraper-content" 
+                    path: "/services/content-marketing/skyscraper-content" 
                 },
             ]
         },
@@ -97,11 +97,11 @@ export const navlinks: NavLink[] = [
             submenu: [
                 {
                     name: "Website Design & Development",
-                    path: "/our-services/website-development/website-design-development" 
+                    path: "/services/website-development/website-design-development" 
                 },
                 {
                     name: "Website Maintenance",
-                    path: "/our-services/website-development/website-maintenance" 
+                    path: "/services/website-development/website-maintenance" 
                 },
             ]
         },

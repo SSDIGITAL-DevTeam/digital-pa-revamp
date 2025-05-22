@@ -116,7 +116,7 @@ export const seoMetadata = {
             title: 'Search Engine Marketing (SEM) Services | Digital PA Singapore',
             description:
                 'Maximize your online visibility with paid ads and expert SEM strategies tailored to your goals.',
-            url: `${metadataBase}/our-services/ads-campaign/search-engine-marketing`,
+            url: `${metadataBase}/services/ads-campaign/search-engine-marketing`,
             images: defaultImage,
         },
     },
@@ -136,7 +136,7 @@ export const seoMetadata = {
             title: 'SEO Services | Digital PA Singapore',
             description:
                 'Grow your organic traffic and improve search rankings with our proven SEO strategies.',
-            url: `${metadataBase}/our-services/ads-campaign/search-engine-optimization`,
+            url: `${metadataBase}/services/ads-campaign/search-engine-optimization`,
             images: defaultImage,
         },
     },
@@ -156,7 +156,7 @@ export const seoMetadata = {
             title: 'SEO Copywriting Services | Digital PA Singapore',
             description:
                 'We create optimized content that engages your audience and ranks high on search engines.',
-            url: `${metadataBase}/our-services/ads-campaign/seo-copywriting`,
+            url: `${metadataBase}/services/ads-campaign/seo-copywriting`,
             images: defaultImage,
         },
     },
