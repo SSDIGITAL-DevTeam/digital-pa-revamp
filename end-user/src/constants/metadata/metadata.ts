@@ -484,7 +484,7 @@ export const seoMetadata = {
             images: defaultImage,
         },
     },
-    chatbot: {
+    isunChatbot: {
         metadataBase,
         title: 'Chat Bot | Digital PA Singapore',
         description:
@@ -499,7 +499,26 @@ export const seoMetadata = {
             title: 'Chat Bot | Digital PA Singapore',
             description:
             'Chat about your marketing automation needs. Our chatbot is here to help you with your automation needs',
-            url: `${metadataBase}/chatbot`,
+            url: `${metadataBase}/isun-chatbot-ai-testing`,
+            images: defaultImage,
+        },
+    },
+    dpaChatbot: {
+        metadataBase,
+        title: 'Chat Bot | Digital PA Singapore',
+        description:
+            'Chat about your marketing automation needs. Our chatbot is here to help you with your automation needs',
+        keywords: [
+            'Chatbot',
+            'Digital PA Chatbot',
+            'Chatbot Services',
+            'AI-Powered Marketing',
+        ],
+        openGraph: {
+            title: 'Chat Bot | Digital PA Singapore',
+            description:
+            'Chat about your marketing automation needs. Our chatbot is here to help you with your automation needs',
+            url: `${metadataBase}/demo-dpa-tuition-agency`,
             images: defaultImage,
         },
     },

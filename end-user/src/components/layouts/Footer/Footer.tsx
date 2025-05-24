@@ -14,11 +14,13 @@ import { usePathname } from 'next/navigation'
 export default function Footer(): JSX.Element {
 
     const pathname = usePathname()
-    
-        let isHidden = false
-        if (pathname === "/marketing-automation" || pathname === "/isun-chatbot-ai-testing") {
-            isHidden = true
-        }
+
+    let isHidden = false
+    if (pathname === "/marketing-automation"
+        || pathname === "/isun-chatbot-ai-testing"
+        || pathname === "/demo-dpa-tuition-agency") {
+        isHidden = true
+    }
 
     return (
         <footer className={`border-t bg-white ${isHidden ? "hidden" : ""}`} >
@@ -97,7 +99,7 @@ export default function Footer(): JSX.Element {
                                         key={`footer-link-${index}`}
                                     >
                                         {(navlink.menus) ?
-                                            <FooterPopover name={navlink.name} menus={navlink.menus || []}/>
+                                            <FooterPopover name={navlink.name} menus={navlink.menus || []} />
                                             :
                                             <Link className='block' href={navlink.path}>
                                                 {navlink.name}

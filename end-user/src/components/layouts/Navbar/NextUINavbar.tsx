@@ -29,7 +29,9 @@ export default function NextUINavbar() {
     const pathname = usePathname()
 
     let isHidden = false
-    if (pathname === "/marketing-automation" || pathname === "/isun-chatbot-ai-testing") {
+    if (pathname === "/marketing-automation" 
+        || pathname === "/isun-chatbot-ai-testing"
+        || pathname === "/demo-dpa-tuition-agency") {
         isHidden = true
     }
     // const setIsOpenNavbar = useFooterStore((state) => state.updateNavbar)
