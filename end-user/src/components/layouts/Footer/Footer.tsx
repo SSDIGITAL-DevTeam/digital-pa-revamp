@@ -1,3 +1,4 @@
+"use client"
 import { JSX } from 'react'
 import Link from 'next/link'
 import { EnvelopeIcon } from '@heroicons/react/16/solid'
@@ -8,10 +9,19 @@ import { NavLink, navlinks } from '@/constants/navlink'
 // import { Image } from '@nextui-org/react'
 import Logo from '@/components/partials/Logo'
 import { FooterPopover } from '@/components/partials/Popover/FooterPopover'
+import { usePathname } from 'next/navigation'
 
 export default function Footer(): JSX.Element {
+
+    const pathname = usePathname()
+    
+        let isHidden = false
+        if (pathname === "/marketing-automation" || pathname === "/isun-chatbot-ai-testing") {
+            isHidden = true
+        }
+
     return (
-        <footer className='border-t bg-white'>
+        <footer className={`border-t bg-white ${isHidden ? "hidden" : ""}`} >
             <div className='container p-10 md:p-8'>
                 <div className='grid grid-cols-1 gap-8 py-4 sm:grid-cols-2 md:grid-cols-4 md:justify-items-center lg:grid-cols-4'>
                     <div className='space-y-4'>

@@ -27,6 +27,11 @@ export default function NextUINavbar() {
     const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false)
 
     const pathname = usePathname()
+
+    let isHidden = false
+    if (pathname === "/marketing-automation" || pathname === "/isun-chatbot-ai-testing") {
+        isHidden = true
+    }
     // const setIsOpenNavbar = useFooterStore((state) => state.updateNavbar)
     // const isOpenNavbar = useFooterStore((state) => state.isNavbarOpen)
 
@@ -35,7 +40,7 @@ export default function NextUINavbar() {
 
     return (
         <Navbar
-            className={`z-[102] w-full bg-white px-0 py-2 md:py-4 lg:px-20 ${pathname === "/marketing-automation" ? "hidden" : ""}`}
+            className={`z-[102] w-full bg-white px-0 py-2 md:py-4 lg:px-20 ${isHidden ? "hidden" : ""}`}
             maxWidth='full'
             // isMenuOpen={isOpenNavbar}
             // onMenuOpenChange={setIsOpenNavbar}
