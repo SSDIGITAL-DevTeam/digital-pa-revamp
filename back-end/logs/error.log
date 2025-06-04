@@ -4,3 +4,4 @@
 {"level":50,"time":1746436092350,"pid":13904,"hostname":"MyBookHypeAMD","msg":"GET by ID / error: Error"}
 {"level":50,"time":1746436126610,"pid":22276,"hostname":"MyBookHypeAMD","msg":"GET by ID / error: "}
 {"level":50,"time":1746437037250,"pid":6440,"hostname":"MyBookHypeAMD","msg":"GET /:id error: Get blog by ID unsuccessfully`)"}
+{"level":50,"time":1749018708825,"pid":4388,"hostname":"KusumaEuphoria","msg":"POST / error: createDemo is not defined"}

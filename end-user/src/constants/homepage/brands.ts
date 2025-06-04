@@ -1,8 +1,7 @@
-import AssetBikeChoice from '@/assets/homepage/webp/asset-bikechoice.webp'
-import AssetIsun from '@/assets/homepage/webp/asset-isun.webp'
-import AssetHealingLoft from '@/assets/homepage/webp/asset-healingloft.webp'
+import AssetBikeChoice from '@/assets/services/webp/our-brand-partner/bike-choice.webp'
+import AssetIsun from '@/assets/services/webp/our-brand-partner/isun.webp'
 import AssetHiger from '@/assets/homepage/webp/asset-higer.webp'
-import AssetCarChoice from '@/assets/homepage/webp/asset-carchoice.webp'
+import AssetCarChoice from '@/assets/services/webp/our-brand-partner/car-choice.webp'
 import AssetSuma from '@/assets/homepage/webp/asset-suma.webp'
 import AssetWinphuket from '@/assets/homepage/webp/asset-winphuket.webp'
 import AssetMotorCheckup from '@/assets/homepage/webp/asset-motorcheckup.webp'
@@ -22,8 +21,8 @@ export const brands = [
         logo: AssetIsun.src,
     },
     {
-        name: 'Healing Loft',
-        logo: AssetHealingLoft.src,
+        name: 'Suma',
+        logo: AssetSuma.src,
     },
     {
         name: 'Higer',
@@ -32,10 +31,6 @@ export const brands = [
     {
         name: 'Car Choice',
         logo: AssetCarChoice.src,
-    },
-    {
-        name: 'Suma',
-        logo: AssetSuma.src,
     },
     {
         name: 'Winphuket',

@@ -10,7 +10,6 @@
 
 @layer base {
     :root {
-        scroll-padding-top: 160px; 
         scroll-behavior: smooth;
         /* font-size: 0.95rem; */
         --background: 0 0% 100%;

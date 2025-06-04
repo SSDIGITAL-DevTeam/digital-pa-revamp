@@ -59,7 +59,7 @@ const useFormField = () => {
 
   let isContactUs= false
   const pathname = usePathname();
-  if(pathname === "/contact-us") {
+  if(pathname === "/contact-us" || pathname === "/dpa-leads-ai-automation") {
     isContactUs = true
   }
 

@@ -14,6 +14,7 @@ import UserController from "./user/user.controller.js";
 import BlogController from "./blog/blog.controller.js";
 import LeadController from "./lead/lead.controller.js";
 import BlogCategoryController from "./blog-category/blog-category.controller.js";
+import FreeDemoController from "./demo/demo.controller.js";
 
 //authentications
 import loginController from "./auth/login/login.controller.js";
@@ -71,6 +72,7 @@ app.use("/api/auth/forgot-password", forgotPasswordController);
 app.use("/api/auth/reset-password", resetPasswordController);
 app.use("/api/v1/user", UserController);
 app.use("/api/v1/lead", LeadController);
+app.use("/api/v1/free-demo", FreeDemoController);
 // app.use("/api/v1/service-category",verifyToken, ServiceCatController);
 app.use("/api/v1/blog-category", BlogCategoryController);
 app.use("/api/v1/blog", upload.single("image"), BlogController);

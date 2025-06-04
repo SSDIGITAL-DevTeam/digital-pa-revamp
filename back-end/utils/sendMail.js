@@ -54,6 +54,47 @@ export const sendLeadEmail = async (payload) => {
         }
         await transporter.sendMail(mailOptions)
     } catch (error) {
-        logger.error(`Send Email error: ${error.message}`)
+        logger.error(`Send Leads Email error: ${error.message}`)
+    }
+}
+
+export const sendFreeDemo = async (payload) => {
+    try {
+        const {
+            name,
+            email,
+            phoneNumber,
+            companyName,
+            industry,
+            companySize
+        } = payload
+
+        const mailOptions = {
+            from: `"${process.env.USER_EMAIL}" <${process.env.USER_EMAIL}>`,
+            to: process.env.TO_EMAIL || undefined,
+            cc: process.env.CC_EMAIL || undefined,
+            subject: 'New Free Demo Lead Notification',
+            html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #eee; border-radius: 8px; background-color: #f9f9f9;">
+          <h2 style="color: #333;">New Free Demo Lead Notification</h2>
+          <p>Hi Team,</p>
+          <p>A new lead has just been submitted. Please review the details below:</p>
+          <h3 style="color: #555;">Free Demo Summary:</h3>
+          <ul>
+            <li><strong>Name:</strong> ${name || '-'}</li>
+            <li><strong>Email:</strong> ${email || '-'}</li>
+            <li><strong>Phone:</strong> ${phoneNumber || '-'}</li>
+            <li><strong>Company Name:</strong> ${companyName || '-'}</li>
+            <li><strong>Industry:</strong> ${industry || '-'}</li>
+            <li><strong>Company Size:</strong> ${companySize || '-'}</li>
+          </ul>
+          <br>
+          <p>Regards,</p>
+          <p><strong>Marketing Team</strong></p>
+        </div>`,
+        }
+        await transporter.sendMail(mailOptions)
+    } catch (error) {
+        logger.error(`Send Free Demo Email error: ${error.message}`)
     }
 }

@@ -11,9 +11,9 @@ import { Faq } from "@/constants/services/faq";
 
 export default function FAQ({ value }: { value: Faq }) {
     return (
-        <div  className="lg:max-w-7xl px-10 lg:px-0 flex flex-col justify-center items-center gap-8 lg:gap-16 lg:mx-auto">
+        <div className="lg:max-w-7xl px-10 lg:px-0 flex flex-col justify-center items-center gap-8 lg:gap-16 lg:mx-auto">
             <Header title="Frequently Asked Questions"/>
-            <Accordion type="single" collapsible className="w-full max-w-2xl">
+            <Accordion type="single" collapsible className="w-full max-w-3xl md:space-y-2">
                 {
                     value?.map((d, i) => (
                         <AccordionItem key={`FAQ-${i + 1}`} value={`items-${i + 1}`}>
@@ -24,7 +24,7 @@ export default function FAQ({ value }: { value: Faq }) {
                                 </h2>
                             </AccordionTrigger>
                             <AccordionContent className="md:pt-3">
-                                <p className="ml-8 md:text-base">{d.desc}</p>
+                                <p className="ml-8 text-sm md:text-base !leading-[160%] text-gray-600">{d.desc}</p>
                             </AccordionContent>
                         </AccordionItem>
                     ))

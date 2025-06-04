@@ -16,7 +16,7 @@ export default function Footer(): JSX.Element {
     const pathname = usePathname()
 
     let isHidden = false
-    if (pathname === "/marketing-automation"
+    if (pathname === "/dpa-leads-ai-automation"
         || pathname === "/isun-chatbot-ai-testing"
         || pathname === "/demo-dpa-tuition-agency") {
         isHidden = true

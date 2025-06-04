@@ -11,8 +11,9 @@ export default function BrandPartners(): JSX.Element {
                 <h2 className='uppercase text-primary'>Our Brand Partners</h2>
             </header>
 
-            <div className='mx-auto grid max-w-6xl grid-cols-2 place-items-center gap-4 p-4 lg:grid-cols-4 lg:gap-8 xl:gap-16'>
-                {brands.map((brand: Brand, index: number) => (
+            <div className='mx-auto flex flex-wrap max-w-6xl  justify-center items-center gap-4 p-4 lg:gap-8 xl:gap-16'>
+                {brands.map((brand: Brand, index: number) => {
+                    return(
                     <FadeInWhenVisible
                         key={`brand-${index}`}
                         multiplier={index / 2}
@@ -22,13 +23,13 @@ export default function BrandPartners(): JSX.Element {
                             quality={100}
                             width={1920}
                             height={1080}
-                            className='aspect-[18/9] w-64 object-contain'
+                            className='aspect-[18/9] w-32 md:w-56 object-contain'
                             loading='eager'
                             src={brand.logo}
                             alt={brand.name}
                         />
                     </FadeInWhenVisible>
-                ))}
+                )})}
             </div>
 
             <div className='mx-auto mt-8'>

@@ -459,7 +459,7 @@ export const seoMetadata = {
             title: 'AI Marketing Automation | Your Partner in Smarter Digital Marketing Solutions',
             description:
                 'Explore how Digital PA’s AI marketing automation services empower businesses in Singapore to optimize campaigns, boost engagement, and increase ROI through advanced automation and intelligent marketing strategies.',
-            url: `${metadataBase}/marketing-automation`,
+            url: `${metadataBase}/dpa-leads-ai-automation`,
             images: defaultImage,
         },
     },

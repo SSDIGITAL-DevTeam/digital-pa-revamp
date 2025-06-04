@@ -12,12 +12,12 @@ type Props = {
 }
 export default function IconGridSection({ list, side = "center", padding, className }: Props) {
     return (
-        <div className="grid lg:grid-cols-2 lg:grid-rows-2 grid-cols-1 gap-6 justify-center items-center w-full md:mx-auto px-10">
+        <div className="grid lg:grid-cols-2 lg:grid-rows-2 grid-cols-1 gap-6 justify-center items-center w-full md:mx-auto">
             {list.map((d, i) => {
                 const isLastOdd = list.length % 2 !== 0 && i === list.length - 1;
                 return (
                     <div key={`grid-icon-${i + 1}`}
-                        className={`backdrop-blur-sm rounded-2xl border-2 border-white/30 w-full items-center py-6 md:py-8 bg-white/40 border-gray-200 shadow-md hover:shadow-lg duration-300 transition-all flex flex-row gap-3 md:gap-6 px-8 
+                        className={`backdrop-blur-sm rounded-2xl border-2 border-white/30 w-full items-center py-6 md:py-8 bg-white border-gray-200 shadow-md hover:shadow-lg duration-300 transition-all flex flex-row gap-3 md:gap-6 px-8 
                             ${side === "left" ? "justify-start" : "justify-center"} 
                             ${padding ? padding : "lg:py-16"} 
                             ${isLastOdd && "lg:col-span-2 lg:w-1/2 mx-auto"}`}>
