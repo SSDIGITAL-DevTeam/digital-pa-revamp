@@ -1,10 +1,10 @@
 "use client"
 import React, { JSX
-    , useEffect 
+    // , useEffect 
 } from 'react'
 import Image from 'next/image'
 import { ArrowRightIcon, CircleCheck, Star } from 'lucide-react'
-import LocomotiveScroll from 'locomotive-scroll'
+// import LocomotiveScroll from 'locomotive-scroll'
 
 import gradientHeroRight from "@/assets/ai-automation/svg/gradient-hero-right.svg"
 import gradientHeroLeft from "@/assets/ai-automation/svg/gradient-hero-left.svg"
@@ -155,25 +155,25 @@ const ListSmartBusinessOwner = [
 
 
 const AiAutomation: React.FC = (): JSX.Element => {
-    useEffect(() => {
-        const locomotiveScroll = new LocomotiveScroll({
-            lenisOptions: {
-                wrapper: window,
-                content: document.documentElement,
-                lerp: 0.1,
-                duration: 1.2,
-                orientation: 'vertical',
-                gestureOrientation: 'vertical',
-                smoothWheel: true,
-                wheelMultiplier: 1,
-                touchMultiplier: 2,
-                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-            },
-        });
-        return () => {
-            locomotiveScroll.destroy();
-        };
-    }, [])
+    // useEffect(() => {
+    //     const locomotiveScroll = new LocomotiveScroll({
+    //         lenisOptions: {
+    //             wrapper: window,
+    //             content: document.documentElement,
+    //             lerp: 0.1,
+    //             duration: 1.2,
+    //             orientation: 'vertical',
+    //             gestureOrientation: 'vertical',
+    //             smoothWheel: true,
+    //             wheelMultiplier: 1,
+    //             touchMultiplier: 2,
+    //             easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    //         },
+    //     });
+    //     return () => {
+    //         locomotiveScroll.destroy();
+    //     };
+    // }, [])
 
     return (
         <main>
