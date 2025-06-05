@@ -145,32 +145,30 @@ export default function TabSection() {
 
 
     return (
-        <div className="relative lg:max-w-7xl flex flex-col items-center justify-center gap-10 lg:mx-auto">
-            {/* Sticky Header */}
-            {/* <header data-scroll-sticky className="md:sticky top-12 pt-14 bg-white z-50 border-b-[1px] w-full flex flex-col gap-8"> */}
-            <header
-                className="md:sticky md:pt-32 top-0 md:bg-white z-50 border-b-[1px] w-full flex flex-col gap-8"
-            >
-                <div className='flex gap-4 flex-col w-full pb-2'>
-                    <h1 className="text-primary capitalize text-3xl md:text-4xl !leading-[120%] font-bold md:text-left text-center">Benefits <span className="text-black">of our Solution</span></h1>
-                    <p className="max-w-3xl text-sm md:text-lg !leading-[150%] md:text-left text-center text-gray-700">Now, let&apos;s explore the key features and benefits of our platform</p>
+        <div className="relative w-full flex flex-col items-center justify-center">
+            <div className="md:sticky md:pt-24 top-0 bg-white z-50 md:border-b-[1px] w-full">
+                <div className="md:max-w-7xl md:mx-auto py-12 md:py-8 px-10 lg:px-5 flex flex-col gap-8">
+                    <div className='flex gap-4 flex-col w-full pb-2'>
+                        <h1 className="text-primary capitalize text-3xl md:text-4xl !leading-[120%] font-bold md:text-left text-center">Benefits <span className="text-black">of our Solution</span></h1>
+                        <p className="max-w-3xl text-sm md:text-lg !leading-[150%] md:text-left text-center text-gray-700">Now, let&apos;s explore the key features and benefits of our platform</p>
+                    </div>
+                    <div className="hidden md:flex justify-between w-full">
+                        {sections.map(({ id, name }) => (
+                            <button
+                                key={id}
+                                onClick={() => scrollToSection(id)}
+                                className={`text-sm transition-all border-b-[2px] pb-2 ${activeSection === id ? "text-primary border-primary font-semibold " : "text-gray-500 font-semibold border-transparent"
+                                    }`}
+                            >
+                                {name}
+                            </button>
+                        ))}
+                    </div>
                 </div>
-                <div className="hidden md:flex justify-between w-full">
-                    {sections.map(({ id, name }) => (
-                        <button
-                            key={id}
-                            onClick={() => scrollToSection(id)}
-                            className={`text-sm transition-all border-b-[2px] pb-2 ${activeSection === id ? "text-primary border-primary font-semibold " : "text-gray-500 font-semibold border-transparent"
-                                }`}
-                        >
-                            {name}
-                        </button>
-                    ))}
-                </div>
-            </header>
+            </div>
 
             {/* Content Sections */}
-            <div className="md:mt-8 space-y-20 md:space-y-16">
+            <div className="md:mt-8 space-y-20 md:space-y-16 w-full md:max-w-7xl md:mx-auto px-10 lg:px-5">
                 {sections.map(({ id, name, sub, list, sub2, image }) => (
                     <section
                         key={id}
@@ -184,7 +182,7 @@ export default function TabSection() {
                         <div className="flex flex-col gap-6 lg:ps-24 lg:py-5 justify-center">
                             <h2 className="hidden md:block text-3xl !leading-[120%]">{name}</h2>
                             <p className="text-sm md:text-base text-gray-800 !leading-[150%] space-y-5">{sub}</p>
-                            <ul className="font-semibold flex flex-col flex-wrap gap-2 lg:max-h-[28vh]">
+                            <ul className="font-semibold flex flex-col flex-wrap gap-2 lg:max-h-[28vh] pl-4 md:pl-0 w-full">
                                 {
                                     list?.map((item, index) => (
                                         <li key={`list-${index + 1}`} className="text-sm lg:text-base flex items-center gap-2"><CheckBoxIcon />{item}</li>

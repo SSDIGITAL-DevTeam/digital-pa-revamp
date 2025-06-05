@@ -95,11 +95,11 @@ const ListDPALeads = [
 const ListWhyTrustDPA = [
     {
         icons: ImageWhyTrustDPA01.src,
-        title: "🏅 Trusted by 100+ SMEs in Singapore",
+        title: "🏅 Trusted by 100+ SME&apos;s in Singapore",
     },
     {
         icons: ImageWhyTrustDPA02.src,
-        title: "✅ Built for Local SMEs with Real Business Needs",
+        title: "✅ Built for Local SME&apos;s with Real Business Needs",
     },
     {
         icons: ImageWhyTrustDPA03.src,
@@ -142,7 +142,7 @@ const ListSmartBusiness = [
 const ListDemo = [
     "How DPA Leads automates lead capture, replies, and bookings",
     "How to replace manual WhatsApp replies with auto AI sequences",
-    "How smart SMEs in SG are scaling leaner and faster"
+    "How smart SME&apos;s in SG are scaling leaner and faster"
 ]
 
 const ListSmartBusinessOwner = [
@@ -190,28 +190,28 @@ const AiAutomation: React.FC = (): JSX.Element => {
                         />
                     </div>
 
-                    <span className='z-[1] text-center py-2 px-6 rounded-full bg-white border-[2px] border-gray-300/50 shadow-sm font-semibold text-xs sm:text-base md:text-lg'>✅
+                    <span className='z-[2] text-center py-2 px-6 rounded-full bg-white border-[2px] border-gray-300/50 shadow-sm font-semibold text-xs sm:text-base md:text-lg'>✅
                         <span className='text-primary'>One dashboard. One system. 10x productivity.</span>
                     </span>
 
-                    <div className="z-[1] flex flex-col gap-3 md:gap-3 items-center px-5">
-                        <h1 className="z-[1] lg:max-w-7xl !leading-[140%] text-3xl sm:text-3xl md:text-5xl max-w-6xl text-center w-full text-primary">
+                    <div className="z-[2] flex flex-col gap-3 md:gap-3 items-center px-5">
+                        <h1 className="z-[2] lg:max-w-7xl !leading-[140%] text-3xl sm:text-3xl md:text-5xl max-w-6xl text-center w-full text-primary">
                             <span className='text-black'>Still Wasting Time Chasing Leads{" "}</span>Manually?
                         </h1>
-                        <p className="z-[1] max-w-4xl text-center !leading-[150%] text-sm md:text-base lg:text-xl font-medium text-gray-600">
+                        <p className="z-[2] max-w-4xl text-center !leading-[150%] text-sm md:text-base lg:text-xl font-medium text-gray-600">
                             <span className='hidden md:inline'>Join the smart business owners who automate, scale, and win with AI-powered CRM.</span>
                             <span className='md:hidden'>Still Wasting Time Chasing Leads Manually?</span>
                         </p>
                     </div>
 
-                    <Link href={"#consultation"} className='z-[1]'>
-                        <button className={`z-[1] mt-0 w-fit text-center font-semibold rounded-2xl flex gap-2 items-center bg-primary py-4 px-6 md:py-4 text-white text-sm md:text-base`}
+                    <Link href={"#consultation"} className='z-[2]'>
+                        <button className={`z-[2] mt-0 w-fit text-center font-semibold rounded-2xl flex gap-2 items-center bg-primary py-4 px-6 md:py-4 text-white text-sm md:text-base`}
                         >
                             Schedule Your Free Demo<ArrowRightIcon className="h-5 w-5" />
                         </button>
                     </Link>
 
-                    <div className='z-20 w-full py-3 lg:absolute lg:-bottom-[10vh] lg:left-1/2 lg:-translate-x-1/2'>
+                    <div className='z-[1] w-full py-3 lg:absolute lg:-bottom-[10vh] lg:left-1/2 lg:-translate-x-1/2'>
                         <Image
                             src={ImageHeroDesktop}
                             alt="image-hero"

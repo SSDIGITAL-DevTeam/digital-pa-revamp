@@ -35,7 +35,7 @@ export default function Missions() {
                     <div className="flex flex-col lg:col-span-2 justify-center rounded-xl border-primary border-[1px] p-10 shadow-sm hover:shadow-md gap-4">
                         {scope}
                         <h2 className="text-black text-xl md:text-2xl !leading-[120%] font-semibold">OUR VISION</h2>
-                        <p className="!leading-[150%] text-gray-700">To lead the AI shift for growing SMEs in Southeast Asia — with systems, speed, and scale once reserved for tech giants. Because in today’s world, it’s not about hiring more staff — it’s about building better systems.</p>
+                        <p className="!leading-[150%] text-gray-700">To lead the AI shift for growing SME&apos;s in Southeast Asia — with systems, speed, and scale once reserved for tech giants. Because in today’s world, it’s not about hiring more staff — it’s about building better systems.</p>
                     </div>
                 </div>
             </section>

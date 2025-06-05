@@ -7,12 +7,11 @@ export default function GridSection({ list, height, width, side = "center", lead
             {list.map((d, i) => (
                 <div
                     key={`grid-${i + 1}`}
-                    className={`w-full ${width ?? "lg:max-w-[400px]"} rounded-xl justify-center 
-                            ${side === "left" ? "items-start" : "items-center"} h-full 
-                            py-10 lg:py-0 ${height ?? "lg:min-h-[36vh]"} 
-                            bg-white border-gray-200 border-[1px] shadow-md 
-                            hover:shadow-lg duration-300 transition-all flex flex-col 
-                            gap-2 md:gap-4 p-10`}
+                    className={`w-full h-full py-10 lg:py-10 bg-white border-gray-200 border-[1px] shadow-md hover:shadow-lg duration-300 transition-all flex flex-col rounded-xl gap-2 md:gap-4 p-10
+                        ${side === "top" ? "justify-start lg:pt-12" : "justify-center"} 
+                        ${side === "left" ? "items-start" : "items-center"} 
+                        ${width ?? "lg:max-w-[400px]"} 
+                        ${height ?? "lg:min-h-[36vh]"}`}
                 >
                     {d.icons && (
                         <Image
@@ -26,7 +25,7 @@ export default function GridSection({ list, height, width, side = "center", lead
 
                     <h2 className={`text-primary text-3xl lg:text-6xl ${side === "left" ? "text-left" : "text-center"}`}>
                         {!d.icons && "0" + (i + 1)}
-                        <span className={`block text-lg lg:text-xl text-black ${leading ? leading : 'leading-[130%]' } mt-4`}>{d.title}</span>
+                        <span className={`block text-lg lg:text-xl text-black ${leading ? leading : 'leading-[130%]'} mt-4`}>{d.title}</span>
                     </h2>
 
                     {d.desc &&
@@ -56,11 +55,11 @@ export default function GridSection({ list, height, width, side = "center", lead
 //             {list.map((d, i) => (
 //                 <div
 //                     key={`grid-${i}`}
-//                     className={`gsap-card w-full ${width ?? "lg:max-w-[400px]"} rounded-md justify-center 
-//                       ${side === "left" ? "items-start" : "items-center"} h-full 
-//                       py-10 lg:py-0 ${height ?? "lg:min-h-[36vh]"} 
-//                       bg-white border-gray-200 border-[1px] shadow-md 
-//                       hover:shadow-lg duration-300 transition-all flex flex-col 
+//                     className={`gsap-card w-full ${width ?? "lg:max-w-[400px]"} rounded-md justify-center
+//                       ${side === "left" ? "items-start" : "items-center"} h-full
+//                       py-10 lg:py-0 ${height ?? "lg:min-h-[36vh]"}
+//                       bg-white border-gray-200 border-[1px] shadow-md
+//                       hover:shadow-lg duration-300 transition-all flex flex-col
 //                       gap-2 p-10`}
 //                 >
 //                     {d.icons && (

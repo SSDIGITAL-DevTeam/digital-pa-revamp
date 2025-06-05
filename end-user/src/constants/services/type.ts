@@ -9,5 +9,5 @@ export type Props = {
     height?: string,
     leading? :string
     width?: string,
-    side?: "left" | "center"
+    side?: "left" | "center" | "top",
 }

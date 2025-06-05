@@ -51,7 +51,7 @@ const AiAutomation: React.FC = (): JSX.Element => {
                     <div className="flex flex-col gap-8 md:gap-7 items-center px-5">
                         <h1 className="normal-case lg:max-w-5xl !leading-[140%] text-3xl sm:text-4xl md:text-5xl lg:text-6xl max-w-6xl text-center w-full bg-gradient-to-r from-pink-600 to-orange-400 text-transparent bg-clip-text">
                             <span className='text-black'>All-in-one</span> business marketing and CRM automation
-                            <span className='text-black'> platform for SMEs owners</span>
+                            <span className='text-black'> platform for SME&apos;s owners</span>
                         </h1>
                         <p className="max-w-4xl text-center !leading-[150%] lg:text-lg font-medium text-gray-700">helps small to medium-sized businesses capture leads, drive sales, nurture customer relationships, and optimize day-to-day processes.</p>
                     </div>
@@ -83,7 +83,7 @@ const AiAutomation: React.FC = (): JSX.Element => {
             <section className="w-full bg-white py-12 lg:py-20 px-10 md:px-20 lg:px-5">
                 <div className="lg:max-w-7xl flex flex-col items-center justify-center gap-12 lg:gap-16 lg:mx-auto">
                     <Header title="Who Should Use Our AI Integrated Solution?" subtitle="Whether you’re a marketer, part of a sales team, an entrepreneur, or run a local business, it helps you out." className="lg:max-w-7xl" />
-                    <GridSection list={whoShouldUseOurAI} side="center" height='lg:min-h-[36vh]' />
+                    <GridSection list={whoShouldUseOurAI} side="top" height='lg:min-h-[36vh]' />
                 </div>
             </section>
 
@@ -111,7 +111,7 @@ const AiAutomation: React.FC = (): JSX.Element => {
             </section>
 
             {/* Tab Section */}
-            <section className="w-full bg-white pt-0 pb-12 lg:pb-20 lg:pt-6 px-10 md:px-20 lg:px-5">
+            <section className="w-full bg-white pt-0 pb-12 lg:pb-20 lg:pt-6 px-0">
                 <TabSection />
             </section>
 
@@ -124,7 +124,7 @@ const AiAutomation: React.FC = (): JSX.Element => {
                             <ConsultationButton />
                         </div>
                     </div>
-                    <GridSection list={keyFunction} side="left" />
+                    <GridSection list={keyFunction} side="left" height='lg:min-h-[40vh]'/>
                     <div className='lg:hidden flex w-full justify-center' >
                         <ConsultationButton />
                     </div>
@@ -134,7 +134,7 @@ const AiAutomation: React.FC = (): JSX.Element => {
             {/* Column Icon Section */}
             <section className="w-full bg-white py-12 lg:py-20 px-10 md:px-20 lg:px-5">
                 <div className="lg:max-w-7xl flex flex-col items-center justify-center gap-14 lg:gap-16 lg:mx-auto">
-                    <h1 className="text-primary text-3xl lg:text-4xl !leading-[120%] font-bold uppercase lg:text-start text-center ">HOW OUR SOLUTION HELP SMEs?</h1>
+                    <h1 className="text-primary text-3xl lg:text-4xl !leading-[120%] font-bold lg:text-start text-center">HOW OUR SOLUTION HELP SME&apos;s?</h1>
                     <div className='flex flex-col gap-8 w-full'>
                         <div className='flex lg:flex-row flex-col gap-4 items-center justify-between w-full'>
                             <h3 className='uppercase text-xl sm:text-3xl md:text-4xl font-bold lg:text-start text-center'>SAVE MONEY / TIME 💰</h3>
@@ -177,7 +177,7 @@ const AiAutomation: React.FC = (): JSX.Element => {
                     </div>
                     <div className='w-full flex lg:flex-row flex-col gap-4 lg:justify-between border-[1px] border-gray-300 shadow-md rounded-xl lg:p-6 items-center'>
                         <Image src={HelpingImage2.src} alt={"helping-image-2"} width={1920} height={1080} quality={100} priority className="object-cover md:object-contain w-fit md:h-[40vh] rounded-lg" />
-                        <p className='lg:max-w-[50%] font-semibold lg:text-start text-center lg:font-bold !leading-[150%] text-base md:text-xl lg:text-2xl order-2 md:order-1 lg:p-0 p-5'>Save time, reduce business cost, increase productivity and efficiency of their business process</p>
+                        <p className='lg:max-w-[50%] font-semibold lg:text-start text-center lg:font-bold !leading-[150%] text-base md:text-xl lg:text-2xl order-2 md:order-1 lg:p-0 p-5'>While acquiring new clients, increasing revenue, profit and lifetime value of clients</p>
                     </div>
                 </div>
             </section>

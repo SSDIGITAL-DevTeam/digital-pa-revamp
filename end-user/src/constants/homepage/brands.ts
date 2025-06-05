@@ -1,5 +1,5 @@
 import AssetBikeChoice from '@/assets/services/webp/our-brand-partner/bike-choice.webp'
-import AssetIsun from '@/assets/services/webp/our-brand-partner/isun.webp'
+import AssetIsun from '@/assets/services/webp/our-brand-partner/isun.png'
 import AssetHiger from '@/assets/homepage/webp/asset-higer.webp'
 import AssetCarChoice from '@/assets/services/webp/our-brand-partner/car-choice.webp'
 import AssetSuma from '@/assets/homepage/webp/asset-suma.webp'
