@@ -95,11 +95,11 @@ const ListDPALeads = [
 const ListWhyTrustDPA = [
     {
         icons: ImageWhyTrustDPA01.src,
-        title: "🏅 Trusted by 100+ SME&apos;s in Singapore",
+        title: "🏅 Trusted by 100+ SMEs in Singapore",
     },
     {
         icons: ImageWhyTrustDPA02.src,
-        title: "✅ Built for Local SME&apos;s with Real Business Needs",
+        title: "✅ Built for Local SMEs with Real Business Needs",
     },
     {
         icons: ImageWhyTrustDPA03.src,
@@ -142,7 +142,7 @@ const ListSmartBusiness = [
 const ListDemo = [
     "How DPA Leads automates lead capture, replies, and bookings",
     "How to replace manual WhatsApp replies with auto AI sequences",
-    "How smart SME&apos;s in SG are scaling leaner and faster"
+    "How smart SMEs in SG are scaling leaner and faster"
 ]
 
 const ListSmartBusinessOwner = [
@@ -365,8 +365,8 @@ const AiAutomation: React.FC = (): JSX.Element => {
                     />
                 </div>
                 <div className="lg:max-w-7xl flex flex-col lg:flex-row md:items-center justify-between gap-5 lg:mx-auto pl-20 md:pl-52">
-                    <h1 className='text-left text-white !leading-[140%] text-lg sm:text-2xl md:text-3xl max-w-3xl font-semibold md:font-bold'>Real businesses. Real results. Zero fluff.</h1>
-                    <ConsultationButton text='Book My Free Demo Now' color='full-white' className="md:px-5" />
+                    <h1 className='text-left text-white !leading-[140%] text-lg sm:text-2xl md:text-3xl max-w-3xl font-semibold md:font-bold z-[20]'>Real businesses. Real results. Zero fluff.</h1>
+                    <ConsultationButton text='Book My Free Demo Now' color='full-white' className="md:px-5 z-[20]" />
                 </div>
             </section>
 

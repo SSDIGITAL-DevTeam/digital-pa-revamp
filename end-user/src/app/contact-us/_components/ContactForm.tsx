@@ -72,7 +72,7 @@ export default function ContactForm() {
                 successToast,
             )
             sessionStorage.setItem("formSubmitted", "true");
-            router.push("/success");
+            router.push("/thanks/contact-us");
         } catch (error: any) {
             console.error("Error:", error);
             toast.error(error?.message || error?.response?.data.error || "Message not sent", failToast)

@@ -78,7 +78,7 @@ export default function SEM() {
                     </div>
                     <Image src={GoogleSearch.src} quality={100} alt="SEO" width={1920} height={1080} className="lg:order-2 order-1 object-cover z-[52] h-full w-full " />
                 </div>
-                <div className="grid grid-cols-1 lg:grid-cols-2 w-fit h-full lg:h-[50vh] rounded-xl border-gray-200 border-[1px] p-10 shadow-sm gap-10">
+                <div className="grid grid-cols-1 overflow-hidden lg:grid-cols-2 w-fit h-full lg:h-[50vh] rounded-xl border-gray-200 border-[1px] p-10 shadow-sm gap-10">
                     <Image src={GoogleAds.src} quality={100} alt="SEO" width={1920} height={1080} className="object-cover  z-[52] h-full w-full " />
                     <div className="flex flex-col gap-4 justify-end mb-20">
                         <h2 className="text-black text-2xl !leading-[120%] font-semibold">100% Transparency and Ownership of your Google Ad Account</h2>
@@ -92,7 +92,7 @@ export default function SEM() {
             <section className="w-full bg-[#F5F5F5] py-12 lg:py-20 px-10 md:px-20 lg:px-5">
                 <div className="lg:max-w-7xl flex flex-col gap-16 lg:mx-auto">
                     <Header title="How We Manage your SEM Campaigns" subtitle="We utilize the best SEM practices to ensure optimal returns for your campaigns. This is just a glimpse of what we offer when managing your SEM campaigns." />
-                        <GridSection list={semCampaign} side="left" height="lg:min-h-[38vh]"/>
+                        <GridSection list={semCampaign} side="left" height="lg:min-h-[360px]"/>
                     <div className="flex w-full justify-center items-center">
                         <ConsultationButton />
                     </div>

@@ -83,7 +83,7 @@ export default function FormFreeDemo() {
     //             'Your message has been sent.',
     //             successToast,
     //         )
-    //         router.push("/success");
+    //         router.push("/thanks/free-demo");
     //     } catch (error: any) {
     //         console.error("Error:", error);
     //         toast.error(
@@ -121,7 +121,7 @@ export default function FormFreeDemo() {
                     'Your message has been sent.',
                     successToast,
                 )
-                router.push("/success");
+                router.push("/thanks/free-demo");
             }
         } catch (error: any) {
             console.error("Error:", error);

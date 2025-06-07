@@ -1,4 +1,9 @@
+# *
 User-agent: *
-Disallow: 
-Disallow: /cgi-bin/
-Sitemap: https://dev.digital-pa.com.sg/
+Allow: /
+
+# Host
+Host: https://digital-pa.com.sg
+
+# Sitemaps
+Sitemap: https://digital-pa.com.sg/sitemap.xml

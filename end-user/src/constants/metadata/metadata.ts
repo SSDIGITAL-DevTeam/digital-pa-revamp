@@ -3,25 +3,9 @@ const defaultImage = `${metadataBase}/webp/asset-logo.webp`
 export type MetadataKeys = keyof typeof seoMetadata
 
 export const seoMetadata = {
-    // home: {
-    //     metadataBase,
-    //     title: 'Digital PA | Your Digital Partner in Digital Products',
-    //     description: 'Your digital partner in digital products',
-    //     keywords: [
-    //         'Digital Marketing',
-    //         'Marketing Automation',
-    //         'Social Media Marketing',
-    //         'SEO',
-    //     ],
-    //     openGraph: {
-    //         title: 'Digital PA | Your Digital Partner in Digital Products',
-    //         description: 'Your digital partner in digital products',
-    //         images: '/asset-logo.webp',
-    //     },
-    // },
     home: {
         metadataBase,
-        title: 'Digital PA Singapore',
+        title: 'Digital PA Singapore | Digital Marketing Experts',
         description:
             'Discover how Digital PA helps businesses grow with expert digital marketing solutions tailored for success.',
         keywords: [
@@ -33,17 +17,27 @@ export const seoMetadata = {
             'Marketing Automation',
         ],
         openGraph: {
-            title: 'Digital PA Singapore',
+            title: 'Digital PA Singapore | Digital Marketing Experts',
             description:
                 'Discover how Digital PA helps businesses grow with expert digital marketing solutions tailored for success.',
             url: `${metadataBase}`,
-            images: defaultImage,
+            images: [
+                {
+                    url: defaultImage,
+                    alt: 'Digital PA Logo',
+                    width: 1200,
+                    height: 630,
+                },
+            ],
+        },
+        alternates: {
+            canonical: `${metadataBase}`,
         },
     },
 
     about: {
         metadataBase,
-        title: 'About Us | Digital PA Singapore',
+        title: 'About Digital PA | Trusted Marketing Partner',
         description:
             'Learn about Digital PA, our mission, and how we help businesses grow with tailored digital marketing solutions.',
         keywords: [
@@ -53,17 +47,27 @@ export const seoMetadata = {
             'Company Overview',
         ],
         openGraph: {
-            title: 'About Us | Digital PA Singapore',
+            title: 'About Digital PA | Trusted Marketing Partner',
             description:
                 'Learn about Digital PA, our mission, and how we help businesses grow with tailored digital marketing solutions.',
-            url: `${metadataBase}/about`,
-            images: defaultImage,
+            url: `${metadataBase}/about-us`,
+            images: [
+                {
+                    url: defaultImage,
+                    alt: 'Digital PA Logo',
+                    width: 1200,
+                    height: 630,
+                },
+            ],
+        },
+        alternates: {
+            canonical: `${metadataBase}/about-us`,
         },
     },
 
     contact: {
         metadataBase,
-        title: 'Contact Us | Digital PA Singapore',
+        title: 'Contact Digital PA | Reach Our Marketing Experts',
         description:
             'Reach out to Digital PA for expert advice on digital marketing, automation, SEO, and more.',
         keywords: [
@@ -73,17 +77,27 @@ export const seoMetadata = {
             'Marketing Support',
         ],
         openGraph: {
-            title: 'Contact Us | Digital PA Singapore',
+            title: 'Contact Digital PA | Reach Our Marketing Experts',
             description:
                 'Reach out to Digital PA for expert advice on digital marketing, automation, SEO, and more.',
             url: `${metadataBase}/contact-us`,
-            images: defaultImage,
+            images: [
+                {
+                    url: defaultImage,
+                    alt: 'Digital PA Logo',
+                    width: 1200,
+                    height: 630,
+                },
+            ],
+        },
+        alternates: {
+            canonical: `${metadataBase}/contact-us`,
         },
     },
 
     insights: {
         metadataBase,
-        title: 'Insights | Digital PA Singapore',
+        title: 'Insights | Trends & Tips by Digital PA Singapore',
         description:
             'Stay updated with the latest digital marketing trends, guides, and case studies curated by our team.',
         keywords: [
@@ -93,17 +107,27 @@ export const seoMetadata = {
             'Case Studies',
         ],
         openGraph: {
-            title: 'Insights | Digital PA Singapore',
+            title: 'Insights | Trends & Tips by Digital PA Singapore',
             description:
                 'Stay updated with the latest digital marketing trends, guides, and case studies curated by our team.',
             url: `${metadataBase}/insights`,
-            images: defaultImage,
+            images: [
+                {
+                    url: defaultImage,
+                    alt: 'Digital PA Logo',
+                    width: 1200,
+                    height: 630,
+                },
+            ],
+        },
+        alternates: {
+            canonical: `${metadataBase}/insights`,
         },
     },
 
     sem: {
         metadataBase,
-        title: 'Search Engine Marketing (SEM) Services | Digital PA Singapore',
+        title: 'SEM Services in Singapore | Digital PA Singapore',
         description:
             'Maximize your online visibility with paid ads and expert SEM strategies tailored to your goals.',
         keywords: [
@@ -113,17 +137,27 @@ export const seoMetadata = {
             'Paid Search',
         ],
         openGraph: {
-            title: 'Search Engine Marketing (SEM) Services | Digital PA Singapore',
+            title: 'SEM Services in Singapore | Digital PA Singapore',
             description:
                 'Maximize your online visibility with paid ads and expert SEM strategies tailored to your goals.',
             url: `${metadataBase}/services/ads-campaign/search-engine-marketing`,
-            images: defaultImage,
+            images: [
+                {
+                    url: defaultImage,
+                    alt: 'Digital PA Logo',
+                    width: 1200,
+                    height: 630,
+                },
+            ],
+        },
+        alternates: {
+            canonical: `${metadataBase}/services/ads-campaign/search-engine-marketing`,
         },
     },
 
     seo: {
         metadataBase,
-        title: 'SEO Services | Digital PA Singapore',
+        title: 'SEO Services in Singapore | Digital PA Singapore',
         description:
             'Grow your organic traffic and improve search rankings with our proven SEO strategies.',
         keywords: [
@@ -133,11 +167,21 @@ export const seoMetadata = {
             'Technical SEO',
         ],
         openGraph: {
-            title: 'SEO Services | Digital PA Singapore',
+            title: 'SEO Services in Singapore | Digital PA Singapore',
             description:
                 'Grow your organic traffic and improve search rankings with our proven SEO strategies.',
             url: `${metadataBase}/services/ads-campaign/search-engine-optimization`,
-            images: defaultImage,
+            images: [
+                {
+                    url: defaultImage,
+                    alt: 'Digital PA Logo',
+                    width: 1200,
+                    height: 630,
+                },
+            ],
+        },
+        alternates: {
+            canonical: `${metadataBase}/services/ads-campaign/search-engine-optimization`,
         },
     },
 
@@ -157,13 +201,23 @@ export const seoMetadata = {
             description:
                 'We create optimized content that engages your audience and ranks high on search engines.',
             url: `${metadataBase}/services/ads-campaign/seo-copywriting`,
-            images: defaultImage,
+            images: [
+                {
+                    url: defaultImage,
+                    alt: 'Digital PA Logo',
+                    width: 1200,
+                    height: 630,
+                },
+            ],
+        },
+        alternates: {
+            canonical: `${metadataBase}/services/ads-campaign/seo-copywriting`,
         },
     },
 
     blog: {
         metadataBase,
-        title: 'Blog Articles | Digital PA Singapore',
+        title: 'Blog Articles & Resources | Digital PA Singapore',
         description:
             'Explore our blog to find expert tips, industry trends, and digital growth strategies.',
         keywords: [
@@ -173,11 +227,21 @@ export const seoMetadata = {
             'Growth Hacking',
         ],
         openGraph: {
-            title: 'Blog Articles | Digital PA Singapore',
+            title: 'Blog Articles & Resources | Digital PA Singapore',
             description:
                 'Explore our blog to find expert tips, industry trends, and digital growth strategies.',
-            url: `${metadataBase}/content-marketing/blog-article`,
-            images: defaultImage,
+            url: `${metadataBase}/services/content-marketing/blog-article`,
+            images: [
+                {
+                    url: defaultImage,
+                    alt: 'Digital PA Logo',
+                    width: 1200,
+                    height: 630,
+                },
+            ],
+        },
+        alternates: {
+            canonical: `${metadataBase}/services/content-marketing/blog-article`,
         },
     },
 
@@ -196,8 +260,18 @@ export const seoMetadata = {
             title: 'Content Marketing Services | Digital PA Singapore',
             description:
                 'Drive traffic and engagement with strategic content marketing tailored to your business goals.',
-            url: `${metadataBase}/content-marketing/content-marketing`,
-            images: defaultImage,
+            url: `${metadataBase}/services/content-marketing/content-marketing`,
+            images: [
+                {
+                    url: defaultImage,
+                    alt: 'Digital PA Logo',
+                    width: 1200,
+                    height: 630,
+                },
+            ],
+        },
+        alternates: {
+            canonical: `${metadataBase}/services/content-marketing/content-marketing`,
         },
     },
 
@@ -216,14 +290,24 @@ export const seoMetadata = {
             title: 'Copywriting Services | Digital PA Singapore',
             description:
                 'Engage your audience and drive action with persuasive, brand-focused copywriting services.',
-            url: `${metadataBase}/content-marketing/copywriting`,
-            images: defaultImage,
+            url: `${metadataBase}/services/content-marketing/copywriting`,
+            images: [
+                {
+                    url: defaultImage,
+                    alt: 'Digital PA Logo',
+                    width: 1200,
+                    height: 630,
+                },
+            ],
+        },
+        alternates: {
+            canonical: `${metadataBase}/services/content-marketing/copywriting`,
         },
     },
 
     infographic: {
         metadataBase,
-        title: 'Infographic Design & Content Services | Digital PA Singapore',
+        title: 'Infographic Design Services | Digital PA Singapore',
         description:
             'Turn complex data into engaging visual stories with our infographic content services.',
         keywords: [
@@ -233,11 +317,21 @@ export const seoMetadata = {
             'Content Marketing',
         ],
         openGraph: {
-            title: 'Infographic Design & Content Services | Digital PA Singapore',
+            title: 'Infographic Design Services | Digital PA Singapore',
             description:
                 'Turn complex data into engaging visual stories with our infographic content services.',
-            url: `${metadataBase}/content-marketing/infographic-content`,
-            images: defaultImage,
+            url: `${metadataBase}/services/content-marketing/infographic-content`,
+            images: [
+                {
+                    url: defaultImage,
+                    alt: 'Digital PA Logo',
+                    width: 1200,
+                    height: 630,
+                },
+            ],
+        },
+        alternates: {
+            canonical: `${metadataBase}/services/content-marketing/infographic-content`,
         },
     },
 
@@ -256,14 +350,24 @@ export const seoMetadata = {
             title: 'Skyscraper Content Services | Digital PA Singapore',
             description:
                 'Dominate your niche with comprehensive, high-quality skyscraper content that ranks.',
-            url: `${metadataBase}/content-marketing/skyscraper-content`,
-            images: defaultImage,
+            url: `${metadataBase}/services/content-marketing/skyscraper-content`,
+            images: [
+                {
+                    url: defaultImage,
+                    alt: 'Digital PA Logo',
+                    width: 1200,
+                    height: 630,
+                },
+            ],
+        },
+        alternates: {
+            canonical: `${metadataBase}/services/content-marketing/skyscraper-content`,
         },
     },
 
     socialContent: {
         metadataBase,
-        title: 'Social Media Content Services | Digital PA Singapore',
+        title: 'Social Media Content Solutions | Digital PA Singapore',
         description:
             'We create thumb-stopping, brand-focused content for all your social platforms.',
         keywords: [
@@ -273,11 +377,21 @@ export const seoMetadata = {
             'Facebook Content',
         ],
         openGraph: {
-            title: 'Social Media Content Services | Digital PA Singapore',
+            title: 'Social Media Content Solutions | Digital PA Singapore',
             description:
                 'We create thumb-stopping, brand-focused content for all your social platforms.',
-            url: `${metadataBase}/content-marketing/social-media-content`,
-            images: defaultImage,
+            url: `${metadataBase}/services/content-marketing/social-media-content`,
+            images: [
+                {
+                    url: defaultImage,
+                    alt: 'Digital PA Logo',
+                    width: 1200,
+                    height: 630,
+                },
+            ],
+        },
+        alternates: {
+            canonical: `${metadataBase}/services/content-marketing/social-media-content`,
         },
     },
 
@@ -296,8 +410,18 @@ export const seoMetadata = {
             title: 'Paid Social Ads Management | Digital PA Singapore',
             description:
                 'Maximize your ROI with strategic paid campaigns on Facebook, Instagram, LinkedIn, and more.',
-            url: `${metadataBase}/social-media-marketing/paid-social-ads`,
-            images: defaultImage,
+            url: `${metadataBase}/services/social-media-marketing/paid-social-ads`,
+            images: [
+                {
+                    url: defaultImage,
+                    alt: 'Digital PA Logo',
+                    width: 1200,
+                    height: 630,
+                },
+            ],
+        },
+        alternates: {
+            canonical: `${metadataBase}/services/social-media-marketing/paid-social-ads`,
         },
     },
 
@@ -316,8 +440,18 @@ export const seoMetadata = {
             title: 'Social Media Management Services | Digital PA Singapore',
             description:
                 'We handle your strategy, content, and community management across all major platforms.',
-            url: `${metadataBase}/social-media-marketing/social-media-management`,
-            images: defaultImage,
+            url: `${metadataBase}/services/social-media-marketing/social-media-management`,
+            images: [
+                {
+                    url: defaultImage,
+                    alt: 'Digital PA Logo',
+                    width: 1200,
+                    height: 630,
+                },
+            ],
+        },
+        alternates: {
+            canonical: `${metadataBase}/services/social-media-marketing/social-media-management`,
         },
     },
 
@@ -336,7 +470,18 @@ export const seoMetadata = {
             title: 'Website Design & Development Services | Digital PA Singapore',
             description:
                 'Create stunning, responsive websites that align with your business goals and drive results.',
-            images: defaultImage,
+            url: `${metadataBase}/services/website-development/website-design-development`,
+            images: [
+                {
+                    url: defaultImage,
+                    alt: 'Digital PA Logo',
+                    width: 1200,
+                    height: 630,
+                },
+            ],
+        },
+        alternates: {
+            canonical: `${metadataBase}/services/website-development/website-design-development`,
         },
     },
 
@@ -355,8 +500,18 @@ export const seoMetadata = {
             title: 'Website Maintenance Services | Digital PA Singapore',
             description:
                 'Ensure your site remains fast, secure, and up-to-date with our reliable maintenance services.',
-            url: `${metadataBase}/website-development/website-maintenance`,
-            images: defaultImage,
+            url: `${metadataBase}/services/website-development/website-maintenance`,
+            images: [
+                {
+                    url: defaultImage,
+                    alt: 'Digital PA Logo',
+                    width: 1200,
+                    height: 630,
+                },
+            ],
+        },
+        alternates: {
+            canonical: `${metadataBase}/services/website-development/website-maintenance`,
         },
     },
 
@@ -375,14 +530,24 @@ export const seoMetadata = {
             title: 'AI Automation Solutions | Your Digital Partner in Digital Products',
             description:
                 'Discover how Digital PA’s AI automation services help businesses in Singapore streamline operations, reduce costs, and enhance efficiency through intelligent automation and digital transformation.',
-            url: `${metadataBase}/ai-solutions/ai-automation`,
-            images: defaultImage,
+            url: `${metadataBase}/services/ai-solutions/ai-automation`,
+            images: [
+                {
+                    url: defaultImage,
+                    alt: 'Digital PA Logo',
+                    width: 1200,
+                    height: 630,
+                },
+            ],
+        },
+        alternates: {
+            canonical: `${metadataBase}/services/ai-solutions/ai-automation`,
         },
     },
 
     success: {
         metadataBase,
-        title: 'Thank You | Digital PA Singapore',
+        title: 'Thank You for Reaching Out | Digital PA Singapore',
         description:
             'We’ve successfully received your inquiry. Our team will get back to you shortly to assist with your automation needs.',
         keywords: [
@@ -392,17 +557,27 @@ export const seoMetadata = {
             'Digital PA Success Page',
         ],
         openGraph: {
-            title: 'Thank You | Digital PA Singapore',
+            title: 'Thank You for Reaching Out | Digital PA Singapore',
             description:
                 'We’ve successfully received your inquiry. Our team will get back to you shortly.',
-            url: `${metadataBase}/success`,
-            images: defaultImage,
+            url: `${metadataBase}/thanks`,
+            images: [
+                {
+                    url: defaultImage,
+                    alt: 'Digital PA Logo',
+                    width: 1200,
+                    height: 630,
+                },
+            ],
+        },
+        alternates: {
+            canonical: `${metadataBase}/thanks`,
         },
     },
 
     tuition: {
         metadataBase,
-        title: 'DPA Tuition Centre | Digital PA Singapore',
+        title: 'DPA Tuition Centre | Singapore Learning Support',
         description:
             'Learn about DPA Tuition Centre’s academic coaching, teaching philosophy, and the services we offer to help students thrive in their studies and mindset development.',
         keywords: [
@@ -414,13 +589,24 @@ export const seoMetadata = {
             'Mock Exams',
         ],
         openGraph: {
-            title: 'DPA Tuition Centre | Digital PA Singapore',
+            title: 'DPA Tuition Centre | Singapore Learning Support',
             description:
                 'Explore the comprehensive academic coaching services offered by DPA Tuition Centre, focused on academic success and personal development.',
             url: `${metadataBase}/tuition-center-knowledge-base`,
-            images: defaultImage,
+            images: [
+                {
+                    url: defaultImage,
+                    alt: 'Digital PA Logo',
+                    width: 1200,
+                    height: 630,
+                },
+            ],
+        },
+        alternates: {
+            canonical: `${metadataBase}/tuition-center-knowledge-base`,
         },
     },
+
     privacyPolicy: {
         metadataBase,
         title: 'Privacy Policy | Digital PA Singapore',
@@ -439,13 +625,23 @@ export const seoMetadata = {
             description:
                 'Read how Digital PA Singapore collects, uses, and protects your personal data in accordance with the PDPA. Your privacy and trust are our top priority.',
             url: `${metadataBase}/privacy-policy`,
-            images: defaultImage,
+            images: [
+                {
+                    url: defaultImage,
+                    alt: 'Digital PA Logo',
+                    width: 1200,
+                    height: 630,
+                },
+            ],
+        },
+        alternates: {
+            canonical: `${metadataBase}/privacy-policy`,
         },
     },
 
     aiMarketingAutomation: {
         metadataBase,
-        title: 'AI Marketing Automation | Your Partner in Smarter Digital Marketing Solutions',
+        title: 'AI Marketing Automation | Smarter Digital Strategy',
         description:
             'Explore how Digital PA’s AI marketing automation services empower businesses in Singapore to optimize campaigns, boost engagement, and increase ROI through advanced automation and intelligent marketing strategies.',
         keywords: [
@@ -456,11 +652,21 @@ export const seoMetadata = {
             'Intelligent Marketing Tools',
         ],
         openGraph: {
-            title: 'AI Marketing Automation | Your Partner in Smarter Digital Marketing Solutions',
+            title: 'AI Marketing Automation | Smarter Digital Strategy',
             description:
                 'Explore how Digital PA’s AI marketing automation services empower businesses in Singapore to optimize campaigns, boost engagement, and increase ROI through advanced automation and intelligent marketing strategies.',
             url: `${metadataBase}/dpa-leads-ai-automation`,
-            images: defaultImage,
+            images: [
+                {
+                    url: defaultImage,
+                    alt: 'Digital PA Logo',
+                    width: 1200,
+                    height: 630,
+                },
+            ],
+        },
+        alternates: {
+            canonical: `${metadataBase}/dpa-leads-ai-automation`,
         },
     },
 
@@ -481,31 +687,53 @@ export const seoMetadata = {
             description:
                 'Discover how Digital PA empowers businesses in Singapore with AI-driven marketing automation to refine campaigns, boost engagement, and achieve measurable results through intelligent digital solutions.',
             url: `${metadataBase}/terms-and-conditions`,
-            images: defaultImage,
+            images: [
+                {
+                    url: defaultImage,
+                    alt: 'Digital PA Logo',
+                    width: 1200,
+                    height: 630,
+                },
+            ],
+        },
+        alternates: {
+            canonical: `${metadataBase}/terms-and-conditions`,
         },
     },
+
     isunChatbot: {
         metadataBase,
-        title: 'Chat Bot | Digital PA Singapore',
+        title: 'iSun Chatbot Services | Digital PA Singapore',
         description:
             'Chat about your marketing automation needs. Our chatbot is here to help you with your automation needs',
         keywords: [
             'Chatbot',
-            'Digital PA Chatbot',
+            'iSun Chatbot',
             'Chatbot Services',
             'AI-Powered Marketing',
         ],
         openGraph: {
-            title: 'Chat Bot | Digital PA Singapore',
+            title: 'iSun Chatbot Services | Digital PA Singapore',
             description:
-            'Chat about your marketing automation needs. Our chatbot is here to help you with your automation needs',
+                'Chat about your marketing automation needs. Our chatbot is here to help you with your automation needs',
             url: `${metadataBase}/isun-chatbot-ai-testing`,
-            images: defaultImage,
+            images: [
+                {
+                    url: defaultImage,
+                    alt: 'Digital PA Logo',
+                    width: 1200,
+                    height: 630,
+                },
+            ],
+        },
+        alternates: {
+            canonical: `${metadataBase}/isun-chatbot-ai-testing`,
         },
     },
+
     dpaChatbot: {
         metadataBase,
-        title: 'Chat Bot | Digital PA Singapore',
+        title: 'DPA Chatbot Services | Digital PA Singapore',
         description:
             'Chat about your marketing automation needs. Our chatbot is here to help you with your automation needs',
         keywords: [
@@ -515,11 +743,21 @@ export const seoMetadata = {
             'AI-Powered Marketing',
         ],
         openGraph: {
-            title: 'Chat Bot | Digital PA Singapore',
+            title: 'DPA Chatbot Services | Digital PA Singapore',
             description:
-            'Chat about your marketing automation needs. Our chatbot is here to help you with your automation needs',
+                'Chat about your marketing automation needs. Our chatbot is here to help you with your automation needs',
             url: `${metadataBase}/demo-dpa-tuition-agency`,
-            images: defaultImage,
+            images: [
+                {
+                    url: defaultImage,
+                    alt: 'Digital PA Logo',
+                    width: 1200,
+                    height: 630,
+                },
+            ],
+        },
+        alternates: {
+            canonical: `${metadataBase}/demo-dpa-tuition-agency`,
         },
     },
 }

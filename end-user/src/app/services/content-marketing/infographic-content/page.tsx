@@ -120,14 +120,14 @@ export default function InfographicContent() {
             <section className="w-full bg-[#F5F5F5] py-12 lg:py-20 px-10 md:px-20 lg:px-5">
                 <div className="lg:max-w-7xl flex flex-col items-center justify-center gap-12 lg:gap-16 lg:mx-auto">
                     <LeftHeader title="What Defines a Quality Infographic?" subtitle="An impactful and successful infographic includes the following key components designed to grab your audience's interest:" />
-                    <GridSection list={qualityInfographics} side="left" height="lg:min-h-[34vh]" />
+                    <GridSection list={qualityInfographics} side="left" />
                 </div>
             </section>
 
             <section className="w-full bg-white py-12 lg:py-20 px-10 md:px-20 lg:px-5">
                 <div className="lg:max-w-7xl flex flex-col items-center justify-center gap-12 lg:gap-16 lg:mx-auto">
                     <Header title="Infographic Types" subtitle="Whether you create an infographic yourself or collaborate with an agency, it's important to choose the right template that suits your needs. Select the one that fits your objectives. Here are several infographic types to consider:" />
-                    <GridSection list={infographicTypes} side="center" height="lg:min-h-[34vh]" />
+                    <GridSection list={infographicTypes} side="center" />
                 </div>
             </section>
 

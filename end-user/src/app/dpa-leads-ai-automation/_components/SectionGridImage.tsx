@@ -14,7 +14,7 @@ return(
                 <div
                     key={`grid-${i + 1}`}
                     className={`w-full lg:max-w-[400px] rounded-2xl justify-start 
-                        items-center h-full lg:min-h-[48vh] p-5 lg:p-5 bg-white border-gray-200 border-[1px] shadow-md hover:shadow-lg duration-300 transition-all flex flex-col gap-2 md:gap-4 ${className}`}
+                        items-center h-full lg:min-h-[400px] p-5 lg:p-5 bg-white border-gray-200 border-[1px] shadow-md hover:shadow-lg duration-300 transition-all flex flex-col gap-2 md:gap-4 ${className}`}
                 >
                     <Image
                         src={d.icons}

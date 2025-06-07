@@ -98,7 +98,7 @@ export default function InfographicContent() {
             <section className="w-full bg-[#F5F5F5] py-12 lg:py-20 px-10 md:px-20 lg:px-5">
                 <div className="lg:max-w-7xl flex flex-col items-center justify-center gap-12 lg:gap-16 lg:mx-auto">
                     <Header title="The Skyscraper Technique for SEO" subtitle="SEO agencies use the skyscraper technique to improve rankings through high-quality content marketing. The process involves three key steps:" />
-                    <GridSection list={skyscraperTechnique} side="left" height="lg:min-h-[34vh]" />
+                    <GridSection list={skyscraperTechnique} side="left" />
                 </div>
             </section>
             <section className="w-full bg-white py-12 lg:py-20 px-10 md:px-20 lg:px-5">

@@ -43,7 +43,7 @@ export default function WebsiteMaintenance() {
             <section className="w-full bg-white py-12 lg:py-20 px-10 md:px-20 lg:px-5">
                 <div className="lg:max-w-7xl flex flex-col items-center justify-center  gap-16 lg:mx-auto">
                     <LeftHeader title="What’s Included in Our Website Maintenance Service?" subtitle="We ensure your website stays secure, updated, and optimized so you can focus on your business." />
-                    <GridSection list={maintenanceServices} side="left" height="lg:min-h-[30vh]"/>
+                    <GridSection list={maintenanceServices} side="left" height='lg:min-h-[300px]'/>
                 </div>
             </section>
             <section className="w-full bg-[#F5F5F5] py-12 lg:py-20 px-10 md:px-20 lg:px-5">

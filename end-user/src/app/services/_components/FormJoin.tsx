@@ -84,7 +84,7 @@ export default function FormJoin() {
                 'Your message has been sent.',
                 successToast,
             )
-            router.push("/success");
+            router.push("/thanks/service-request");
         } catch (error: any) {
             console.error("Error:", error);
             toast.error(error.message || error.response.data.error || "Message not sent", failToast)

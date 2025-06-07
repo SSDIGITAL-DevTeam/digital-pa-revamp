@@ -101,7 +101,7 @@ export default function SEOCopyWriting() {
             <section className="w-full bg-[#F5F5F5] py-12 lg:py-20 px-10 md:px-20 lg:px-5">
                 <div className="lg:max-w-7xl flex flex-col items-center justify-center  gap-16 lg:mx-auto">
                    <Header title="Key Aspects of SEO Copywriting:" subtitle="Below are some pointers to note when it comes to SEO copywriting" />
-                   <GridSection list={keyAspect} height="lg:min-h-[35vh]"/>
+                   <GridSection list={keyAspect} height="lg:min-h-[340px]"/>
                 </div>
                 <div className="flex w-full justify-center items-center mt-8 lg:mt-20">
                     <ConsultationButton />

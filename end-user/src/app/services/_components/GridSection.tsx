@@ -3,15 +3,15 @@ import Image from "next/image"
 
 export default function GridSection({ list, height, width, side = "center", leading }: Props) {
     return (
-        <div className="flex flex-wrap gap-6 w-full justify-center items-center">
+        <div className="flex flex-wrap gap-6 w-full justify-center items-stretch">
             {list.map((d, i) => (
                 <div
                     key={`grid-${i + 1}`}
                     className={`w-full h-full py-10 lg:py-10 bg-white border-gray-200 border-[1px] shadow-md hover:shadow-lg duration-300 transition-all flex flex-col rounded-xl gap-2 md:gap-4 p-10
-                        ${side === "top" ? "justify-start lg:pt-12" : "justify-center"} 
+                        ${side === "top" ? "justify-start lg:pt-16" : "justify-center"} 
                         ${side === "left" ? "items-start" : "items-center"} 
                         ${width ?? "lg:max-w-[400px]"} 
-                        ${height ?? "lg:min-h-[36vh]"}`}
+                        ${height ?? "lg:min-h-[360px]"}`}
                 >
                     {d.icons && (
                         <Image
@@ -39,49 +39,48 @@ export default function GridSection({ list, height, width, side = "center", lead
     )
 }
 
-// import { useEffect, useRef } from "react";
-// import { gsap } from "gsap";
-// import { ScrollTrigger } from "gsap/ScrollTrigger";
-// import Image from "next/image";
-// import { Props } from "@/constants/services/type";
-// import LocomotiveScroll from "locomotive-scroll";
-
-// gsap.registerPlugin(ScrollTrigger);
+// import { Props } from "@/constants/services/type"
+// import Image from "next/image"
 
 // export default function GridSection({ list, height, width, side = "center", leading }: Props) {
-//     const containerRef = useRef<HTMLDivElement>(null);
 //     return (
-//         <div ref={containerRef} className="flex flex-wrap gap-6 w-full justify-center items-center">
+//         <div className="flex flex-wrap gap-6 w-full justify-center">
 //             {list.map((d, i) => (
 //                 <div
-//                     key={`grid-${i}`}
-//                     className={`gsap-card w-full ${width ?? "lg:max-w-[400px]"} rounded-md justify-center
-//                       ${side === "left" ? "items-start" : "items-center"} h-full
-//                       py-10 lg:py-0 ${height ?? "lg:min-h-[36vh]"}
-//                       bg-white border-gray-200 border-[1px] shadow-md
-//                       hover:shadow-lg duration-300 transition-all flex flex-col
-//                       gap-2 p-10`}
+//                     key={`grid-${i + 1}`}
+//                     className={`
+//                         flex flex-col justify-between 
+//                         p-10 gap-4 rounded-xl border border-gray-200 bg-white 
+//                         shadow-md hover:shadow-lg transition-all duration-300 
+//                         w-full ${width ?? "lg:basis-[30%]"} 
+//                         min-h-[300px] lg:min-h-[380px] 
+//                         h-full
+//                     `}
 //                 >
-//                     {d.icons && (
-//                         <Image
-//                             src={d.icons}
-//                             alt="icon"
-//                             width={1000}
-//                             height={1000}
-//                             className="object-contain w-16 h-16 lg:w-[72px] lg:h-[72px]"
-//                         />
-//                     )}
+//                     <div className={`flex flex-col ${side === "left" ? "items-start text-left" : "items-center text-center"} gap-4`}>
+//                         {d.icons && (
+//                             <Image
+//                                 src={d.icons}
+//                                 alt="icon"
+//                                 width={1000}
+//                                 height={1000}
+//                                 className="object-contain w-16 h-16 lg:w-[72px] lg:h-[72px]"
+//                             />
+//                         )}
 
-//                     <h2 className={`text-primary text-3xl lg:text-5xl ${side === "left" ? "text-left" : "text-center"}`}>
-//                         {!d.icons && "0" + (i + 1)}
-//                         <span className={`block text-lg lg:text-xl text-black ${leading ? leading : 'leading-[130%]'} mt-4`}>{d.title}</span>
-//                     </h2>
+//                         <h2 className="text-primary text-3xl lg:text-5xl">
+//                             {!d.icons && "0" + (i + 1)}
+//                             <span className={`block text-lg lg:text-xl text-black ${leading ?? 'leading-[130%]'} mt-2`}>
+//                                 {d.title}
+//                             </span>
+//                         </h2>
+//                     </div>
 
-//                     {d.desc &&
-//                         <p className={`!leading-[150%] text-gray-500 text-sm ${side === "left" ? "text-left" : "text-center"}`}>
+//                     {d.desc && (
+//                         <p className={`text-gray-600 text-sm md:text-base leading-[150%] ${side === "left" ? "text-left" : "text-center"}`}>
 //                             {d.desc}
 //                         </p>
-//                     }
+//                     )}
 //                 </div>
 //             ))}
 //         </div>

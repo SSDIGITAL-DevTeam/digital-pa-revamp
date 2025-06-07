@@ -43,7 +43,7 @@ const AiAutomation: React.FC = (): JSX.Element => {
     return (
         <main>
             {/* Header */}
-            <section className="w-full bg-white lg:pt-14">
+            <header className="w-full bg-white lg:pt-14">
                 <div className="relative lg:max-w-[98%] flex flex-col items-center justify-center gap-5 lg:gap-3 lg:mx-auto py-12 lg:py-16 rounded-3xl bg-gradient-to-l from-[#F3BEBE]/40 from-40% to-gray-200/50">
                     <p className='text-center p-2 rounded-full bg-white shadow-sm font-bold text-base md:text-lg'>🤖
                         <span className='bg-gradient-to-r from-pink-600 to-orange-400 text-transparent bg-clip-text'> AI-Powered Automation</span>
@@ -51,7 +51,7 @@ const AiAutomation: React.FC = (): JSX.Element => {
                     <div className="flex flex-col gap-8 md:gap-7 items-center px-5">
                         <h1 className="normal-case lg:max-w-5xl !leading-[140%] text-3xl sm:text-4xl md:text-5xl lg:text-6xl max-w-6xl text-center w-full bg-gradient-to-r from-pink-600 to-orange-400 text-transparent bg-clip-text">
                             <span className='text-black'>All-in-one</span> business marketing and CRM automation
-                            <span className='text-black'> platform for SME&apos;s owners</span>
+                            <span className='text-black'> platform for SMEs owners</span>
                         </h1>
                         <p className="max-w-4xl text-center !leading-[150%] lg:text-lg font-medium text-gray-700">helps small to medium-sized businesses capture leads, drive sales, nurture customer relationships, and optimize day-to-day processes.</p>
                     </div>
@@ -66,7 +66,7 @@ const AiAutomation: React.FC = (): JSX.Element => {
                     <Image src={Symbol4.src} quality={100} width={1920} height={1080} priority className="hidden lg:block absolute z-[4] h-12 w-12 top-[33%] right-[10%] animate-smoothBounce delay-1000" alt={`symbol-meta`} />
                     <Image src={Symbol1.src} quality={100} width={1920} height={1080} priority className="hidden lg:block absolute z-[4] h-12 w-12 top-[51%] right-[17%] animate-smoothBounce delay-500" alt={`symbol-facebook`} />
                 </div>
-            </section>
+            </header>
 
             {/* Simplyfy Section */}
             <section className="w-full bg-[#F5F5F5] py-12 lg:py-20 px-10 md:px-20 lg:px-5">
@@ -75,7 +75,7 @@ const AiAutomation: React.FC = (): JSX.Element => {
                         <span className='bg-gradient-to-r from-pink-600 to-orange-400 text-transparent bg-clip-text'> Where Smart Business Owners Automate, Scale, and Win</span>
                     </h3>
                     <Header title="In the era of AI, either you are part of it, or you are simply out of it!!" subtitle="Most businesses fall into these traps:" className="lg:max-w-7xl" />
-                    <GridSection list={saveMoneyTime2} side="left" height='lg:min-h-[40vh]' />
+                    <GridSection list={saveMoneyTime2} side="left" height='lg:min-h-[380px]' />
                 </div>
             </section>
 
@@ -83,7 +83,7 @@ const AiAutomation: React.FC = (): JSX.Element => {
             <section className="w-full bg-white py-12 lg:py-20 px-10 md:px-20 lg:px-5">
                 <div className="lg:max-w-7xl flex flex-col items-center justify-center gap-12 lg:gap-16 lg:mx-auto">
                     <Header title="Who Should Use Our AI Integrated Solution?" subtitle="Whether you’re a marketer, part of a sales team, an entrepreneur, or run a local business, it helps you out." className="lg:max-w-7xl" />
-                    <GridSection list={whoShouldUseOurAI} side="top" height='lg:min-h-[36vh]' />
+                    <GridSection list={whoShouldUseOurAI} side="top" height='lg:min-h-[360px]' />
                 </div>
             </section>
 
@@ -124,7 +124,7 @@ const AiAutomation: React.FC = (): JSX.Element => {
                             <ConsultationButton />
                         </div>
                     </div>
-                    <GridSection list={keyFunction} side="left" height='lg:min-h-[40vh]'/>
+                    <GridSection list={keyFunction} side="left" height='lg:min-h-[380px]'/>
                     <div className='lg:hidden flex w-full justify-center' >
                         <ConsultationButton />
                     </div>
@@ -134,7 +134,7 @@ const AiAutomation: React.FC = (): JSX.Element => {
             {/* Column Icon Section */}
             <section className="w-full bg-white py-12 lg:py-20 px-10 md:px-20 lg:px-5">
                 <div className="lg:max-w-7xl flex flex-col items-center justify-center gap-14 lg:gap-16 lg:mx-auto">
-                    <h1 className="text-primary text-3xl lg:text-4xl !leading-[120%] font-bold lg:text-start text-center">HOW OUR SOLUTION HELP SME&apos;s?</h1>
+                    <h1 className="text-primary text-3xl lg:text-4xl !leading-[120%] font-bold lg:text-start text-center">HOW OUR SOLUTION HELP SMEs?</h1>
                     <div className='flex flex-col gap-8 w-full'>
                         <div className='flex lg:flex-row flex-col gap-4 items-center justify-between w-full'>
                             <h3 className='uppercase text-xl sm:text-3xl md:text-4xl font-bold lg:text-start text-center'>SAVE MONEY / TIME 💰</h3>

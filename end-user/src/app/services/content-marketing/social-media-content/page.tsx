@@ -77,7 +77,7 @@ export default function SocialMediaContent() {
             <section className="w-full bg-[#F5F5F5] py-12 lg:py-20 px-10 md:px-20 lg:px-5">
                 <div className="lg:max-w-7xl flex flex-col items-center justify-center gap-12 lg:gap-16 lg:mx-auto">
                     <LeftHeader title="What Types of Content Work Best for Social Media?" subtitle="The ideal strategy is to mix different content types. Some audiences prefer articles or blogs, while others enjoy videos. Here are the types of content you can share:" />
-                    <GridSection list={contentWorkType} side="left" height="lg:min-h-[34vh]" />
+                    <GridSection list={contentWorkType} side="left"/>
                 </div>
             </section>
 
