@@ -25,14 +25,14 @@ export default function SectionOurValue() {
                         return(
                         <div
                             key={`grid-${i + 1}`}
-                            className={`w-full lg:max-w-[400px] rounded-xl items-start h-full py-10 lg:pt-14 min-h-[330px] lg:min-h-[340px]  shadow-md hover:shadow-lg duration-300 transition-all flex flex-col gap-2 p-10 relative overflow-hidden ${isLast ? 'bg-red-100' : 'bg-white'}`}>
+                            className={`w-full lg:max-w-[400px] rounded-xl items-start h-full py-10 lg:pt-14 min-h-[360px]  shadow-md hover:shadow-lg duration-300 transition-all flex flex-col gap-2 p-10 relative overflow-hidden ${isLast ? 'bg-red-100' : 'bg-white'}`}>
                             <h2 className={`text-primary text-xl lg:text-2xl text-left`}>
                                 {value.title}
                             </h2>
                             <p className={`!leading-[150%] ${isLast ? "text-primary" : "text-gray-700"} text-xs md:text-sm`}>
                                <span className="font-bold">{value.desc1}{" "}</span>{value.desc2}
                             </p>
-                            <Image src={value.icon} alt="mission-icon" width={180} height={180} className={`bottom-0 right-0 absolute`} />
+                            <Image src={value.icon} alt="mission-icon" width={1920} height={1080} quality={100} className={`w-[200px] bottom-0 right-0 absolute`} />
                         </div>
                     )})}
                 </div>

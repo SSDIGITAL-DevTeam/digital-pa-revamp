@@ -33,9 +33,9 @@ export default function Missions() {
                         ListMission.map((mission, i) => {
                             const isRed = i % 2 === 0;
                             return (
-                                <div key={`mission-${i + 1}`} className={`flex flex-row md:flex-col items-center md:items-start rounded-xl px-8 py-8 md:min-h-[210px] shadow-sm hover:shadow-md gap-y-2 gap-x-5 transition-all duration-300 ${isRed ? 'bg-red-700' : 'bg-white'}`}>
-                                    <Image src={mission.icon} alt="mission-icon" width={100} height={100} className={`w-10 h-10 p-1 rounded-full ${isRed ? 'bg-white' : 'bg-red-700'}`} />
-                                    <div className="flex flex-col gap-2">
+                                <div key={`mission-${i + 1}`} className={`flex flex-row md:flex-col items-center md:items-start rounded-xl p-8 md:min-h-[210px] shadow-sm hover:shadow-md gap-y-2 gap-x-5 transition-all duration-300 ${isRed ? 'bg-red-700' : 'bg-white'}`}>
+                                    <Image src={mission.icon} alt="mission-icon" width={100} height={100} className={`w-2/5 md:w-10 md:h-10 p-1 rounded-full ${isRed ? 'bg-white' : 'bg-red-700'}`} />
+                                    <div className="flex flex-col gap-2 w-full">
                                         <h2 className={`text-lg md:text-xl !leading-[120%] font-semibold mt-2 ${isRed ? 'text-white' : 'text-red-700'}`}>{mission.title}</h2>
                                         <p className={`!leading-[150%] text-sm md:text-lg ${isRed ? 'text-white/80 md:text-white' : 'text-gray-700/80 md:text-gray-700'}`}>{mission.desc}</p>
                                     </div>
