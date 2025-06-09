@@ -11,7 +11,7 @@ export default function InstantSaving(): JSX.Element {
     return (
         <div className='container p-6 md:p-8'>
             <header className='space-y-6 md:space-y-8'>
-                <p className='text-center text-xl md:text-3xl'>
+                <p className='text-center text-xl md:text-2xl'>
                     Everything You Need Digitally,
                 </p>
                 <div className='flex flex-col justify-center text-center'>
