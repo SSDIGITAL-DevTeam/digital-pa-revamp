@@ -16,7 +16,7 @@ export const advantages: Advantage[] = [
     },
     {
         motion: AssetLottieAdvantage2,
-        title: 'Speed, Quality, Concurrency',
+        title: 'Speed, Quality, EFFICIENCY',
         description:
             'We always strive to become better — as individuals, employees, business partners,and a company. We never stop seeking a faster and better-quality way to work, concurrently.',
     },

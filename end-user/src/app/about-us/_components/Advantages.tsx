@@ -25,7 +25,6 @@ export default function Advantages(): JSX.Element {
                             <h2 className='mx-auto max-w-[25rem] text-center text-2xl font-bold uppercase text-primary'>
                                 {advantage.title}
                             </h2>
-
                             <p className='mt-4 text-center font-medium text-neutral-600 sm:text-lg'>
                                 {advantage.description}
                             </p>
@@ -42,20 +41,6 @@ export default function Advantages(): JSX.Element {
                 </Link>
             </div>
             {/* end of card wrapper */}
-
-            {/* <div className='mx-auto mt-8 block max-w-xs md:mt-16'>
-                <Button
-                    className='font-semibold'
-                    as={Link}
-                    href='/contact-us'
-                    color='primary'
-                    size='lg'
-                    radius='sm'
-                    fullWidth
-                >
-                    Let&apos;s Talk
-                </Button>
-            </div> */}
         </div>
     )
 }

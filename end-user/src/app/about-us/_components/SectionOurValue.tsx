@@ -7,7 +7,6 @@ import { ArrowRightIcon } from "lucide-react";
 export default function SectionOurValue() {
     return (
         <div className="lg:max-w-7xl flex flex-col justify-center items-center gap-2 lg:mx-auto">
-            
             <div className="flex flex-col lg:flex-row gap-x-20 gap-y-10 w-full justify-between items-center py-12">
                 <div className="flex flex-col gap-5 w-full lg:max-w-[28vw]">
                     <h2 className={`uppercase !leading-tight text-2xl sm:text-4xl lg:max-w-[70vw] w-full text-black text-center lg:text-left`}>
@@ -30,7 +29,7 @@ export default function SectionOurValue() {
                                 {value.title}
                             </h2>
                             <p className={`!leading-[150%] ${isLast ? "text-primary" : "text-gray-700"} text-xs md:text-sm`}>
-                               <span className="font-bold">{value.desc1}{" "}</span>{value.desc2}
+                               <span className="font-bold">{value.desc1}{". "}</span>{value.desc2}
                             </p>
                             <Image src={value.icon} alt="mission-icon" width={1920} height={1080} quality={100} className={`w-[200px] bottom-0 right-0 absolute`} />
                         </div>
