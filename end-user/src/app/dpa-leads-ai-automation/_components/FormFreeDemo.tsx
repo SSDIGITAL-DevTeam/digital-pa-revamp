@@ -121,7 +121,7 @@ export default function FormFreeDemo() {
                     'Your message has been sent.',
                     successToast,
                 )
-                router.push("/thanks/free-demo");
+                router.push("/thanks/free-demo-jdfgkj48-456456rfgrefg-wejlkn34kj5nbj2lk3hb-3j54kj324wertuiwergiuo354tnij-3kj34kj34jh45fdddd");
             }
         } catch (error: any) {
             console.error("Error:", error);

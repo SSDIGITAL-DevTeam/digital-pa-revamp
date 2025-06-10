@@ -10,12 +10,12 @@ type Values = {
     icon : StaticImageData,
 }
 
-import ImageValueIcon01 from "@/assets/about-us/svg/target.svg";
+import ImageValueIcon01 from "@/assets/about-us/svg/target.png";
 import ImageValueIcon02 from "@/assets/about-us/svg/robot.svg";
-import ImageValueIcon03 from "@/assets/about-us/svg/system.svg";
-import ImageValueIcon04 from "@/assets/about-us/svg/castle.svg";
-import ImageValueIcon05 from "@/assets/about-us/svg/accountant.svg";
-import ImageValueIcon06 from "@/assets/about-us/svg/coin.svg";
+import ImageValueIcon03 from "@/assets/about-us/svg/system.png";
+import ImageValueIcon04 from "@/assets/about-us/svg/castle.png";
+import ImageValueIcon05 from "@/assets/about-us/svg/accountant.png";
+import ImageValueIcon06 from "@/assets/about-us/svg/coin.png";
 import { StaticImageData } from "next/image";
 
 export const solutions : Solution[] = [
