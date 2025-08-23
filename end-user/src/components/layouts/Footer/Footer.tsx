@@ -78,8 +78,12 @@ export default function Footer(): JSX.Element {
                             target='_blank'
                         >
                             <address className='mt-2.5 w-3/4 not-italic md:w-full'>
-                                1100 Lower Delta Rd #02-02B EPL Building
-                                Singapore 169206
+                                {/* 1100 Lower Delta Rd #02-02B EPL Building
+                                Singapore 169206 */}
+
+                                2 Kallang Avenue
+                                #08-08 CT HUB
+                                Singapore 339407
                             </address>
                         </a>
 
