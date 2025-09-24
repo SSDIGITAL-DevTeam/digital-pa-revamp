@@ -107,10 +107,10 @@ export const navlinks: NavLink[] = [
         },
     ]
     },
-    // {
-    //     name: 'Insights',
-    //     path: '/insights',
-    // },
+    {
+        name: 'Insights',
+        path: '/insights',
+    },
     // {
     //     name: 'Our Packages',
     //     path: '/our-packages',

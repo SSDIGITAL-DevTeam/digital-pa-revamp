@@ -74,7 +74,7 @@ export default function Footer(): JSX.Element {
                         </p>
 
                         <a
-                            href='https://maps.app.goo.gl/MpvSR2mATADEUe2y8'
+                            href='https://maps.app.goo.gl/K4SQtzmKupSxRZys8'
                             target='_blank'
                         >
                             <address className='mt-2.5 w-3/4 not-italic md:w-full'>
