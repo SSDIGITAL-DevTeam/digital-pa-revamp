@@ -1,0 +1,48 @@
+{
+  "name": "digitalpa-backend",
+  "version": "1.0.0",
+  "main": "server.cjs",
+  "type": "module",
+  "scripts": {
+    "test": "jest",
+    "start": "node server.cjs",
+    "server": "nodemon .",
+    "generate" : "npx drizzle-kit generate --config drizzle.config.mjs",
+    "migrate" : "npx drizzle-kit migrate --config drizzle.config.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dayjs": "^1.11.13",
+    "dotenv": "^16.4.7",
+    "drizzle-orm": "^0.43.1",
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.5.0",
+    "helmet": "^8.0.0",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^1.4.5-lts.1",
+    "mysql2": "^3.14.0",
+    "nodemailer": "^6.10.1",
+    "pino": "^9.6.0",
+    "pino-http": "^10.4.0",
+    "pino-multi-stream": "^6.0.0",
+    "pino-pretty": "^13.0.0",
+    "socket.io": "^4.8.1",
+    "uuid": "^11.1.0",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.26.7",
+    "@babel/preset-env": "^7.26.7",
+    "babel-jest": "^29.7.0",
+    "drizzle-kit": "^0.31.1",
+    "jest": "^29.7.0",
+    "nodemon": "^3.1.9",
+    "supertest": "^7.0.0"
+  }
+}

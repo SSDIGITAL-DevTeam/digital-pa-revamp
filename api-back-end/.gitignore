@@ -1,0 +1,12 @@
+./.env
+/.env
+.env
+
+query.text
+
+node_modules
+node_modules/
+
+upload
+upload/
+*.zip

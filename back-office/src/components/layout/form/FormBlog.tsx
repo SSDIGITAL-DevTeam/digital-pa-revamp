@@ -17,6 +17,7 @@ import { useAuthStore } from "@/store/login";
 import { withAuth } from "@/hoc/withAuth";
 import { axiosInstance } from "@/lib/axios";
 import { Key } from "lucide-react";
+import PdfField from "@/components/partials/form/PdfField";
 
 const blogStatus = [
     "Published",
@@ -53,6 +54,20 @@ const dataSchema = z.object({
             { message: "Image must be a file" }
         )
         .optional(),
+
+    pdf: z
+        .any()
+        .refine(
+            (file) => {
+                if (!file) return true; // Boleh kosong
+                if (typeof file === "string") return true; // Nama file lama (path/url)
+                if (file instanceof File && file.type === "application/pdf") return true; // Harus PDF
+                return false;
+            },
+            { message: "PDF must be a valid .pdf file" }
+        )
+        .optional(),
+
     content: z.string().nonempty("Content is required"),
     status: z.enum([...blogStatus]),
     favorite: z.boolean(),
@@ -68,6 +83,7 @@ const FormBlog = ({ defaultValue, data }: { defaultValue?: any, data: any }) => 
         defaultValues: {
             title: "",
             image: undefined,
+            pdf: undefined,
             content: "",
             status: "Published",
             favorite: false,
@@ -78,6 +94,8 @@ const FormBlog = ({ defaultValue, data }: { defaultValue?: any, data: any }) => 
 
     const [imageFile, setImageFile] = React.useState<File | null>(null);
     const [previewUrl, setPreviewUrl] = React.useState<string>("");
+    const [pdfPreviewUrl, setPdfPreviewUrl] = React.useState<string>("");
+    const [pdfFile, setPdfFile] = React.useState<File | null>(null);
     const id = useAuthStore((state) => state.id);
 
 
@@ -91,6 +109,10 @@ const FormBlog = ({ defaultValue, data }: { defaultValue?: any, data: any }) => 
         if (defaultValue?.image) {
             setPreviewUrl(`${process.env.NEXT_PUBLIC_IMAGE_API_URL}/${defaultValue.image}`);
         }
+        if (defaultValue?.pdf) {
+            setPdfPreviewUrl(`${process.env.NEXT_PUBLIC_IMAGE_API_URL}/${defaultValue.pdf}`);
+        }
+        console.log("=============pdfPreviewUrl ",pdfPreviewUrl)
     }, [defaultValue]);
 
 
@@ -115,6 +137,9 @@ const FormBlog = ({ defaultValue, data }: { defaultValue?: any, data: any }) => 
             formData.append("userId", id);
             if (imageFile) {
                 formData.append("image", imageFile);
+            }
+            if (pdfFile) {
+                formData.append("pdf", pdfFile);
             }
 
             const url = defaultValue
@@ -155,6 +180,13 @@ const FormBlog = ({ defaultValue, data }: { defaultValue?: any, data: any }) => 
                     <ImageField defaultImage={previewUrl} setImageFile={setImageFile} control={control} label="Add Cover Image" name="image" />
                     <InputField control={control} label="Add Title" name="title" />
                     {defaultValue && <RadioGroupField control={control} name="status" label="Status" data={statusList} />}
+                    <PdfField 
+                        defaultPdf={pdfPreviewUrl}  // state untuk default pdf preview (optional)
+                        setPdfFile={setPdfFile}     // handler simpan file ke parent
+                        control={control} 
+                        label="Add PDF File" 
+                        name="pdf" 
+                    />
                     <BlogField control={control} name="content" label="blog Content" />
                 </div>
                 <div className="w-full flex justify-between features-center mt-8 sm:mt-12">

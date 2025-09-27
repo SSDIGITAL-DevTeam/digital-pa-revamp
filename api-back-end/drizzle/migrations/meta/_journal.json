@@ -1,0 +1,76 @@
+{
+  "version": "7",
+  "dialect": "mysql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1743050429565,
+      "tag": "0000_plain_exiles",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1744689714656,
+      "tag": "0001_bright_runaways",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1744856445382,
+      "tag": "0002_lively_may_parker",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1744857745863,
+      "tag": "0003_small_wasp",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1744860751992,
+      "tag": "0004_cute_mockingbird",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "5",
+      "when": 1745994464925,
+      "tag": "0005_smart_green_goblin",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "5",
+      "when": 1746501705646,
+      "tag": "0006_remarkable_salo",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "5",
+      "when": 1747715525831,
+      "tag": "0007_wooden_chimera",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "5",
+      "when": 1758873973439,
+      "tag": "0008_wooden_red_wolf",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "5",
+      "when": 1758874066671,
+      "tag": "0009_tranquil_skreet",
+      "breakpoints": true
+    }
+  ]
+}
