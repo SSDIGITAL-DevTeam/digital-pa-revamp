@@ -15,7 +15,7 @@ import { axiosInstance } from "@/lib/axios";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
 type Props = {
-  pdf: string; // nama file PDF, misalnya "blog.pdf"
+  pdf: string;
   slug: string;
 };
 
@@ -26,7 +26,8 @@ export default function DownloadPdfModal({ pdf, slug }: Props) {
     email: "",
     company: "",
   });
-  const [loading, setLoading] = useState(false); // 🔑 state loading
+  const [loading, setLoading] = useState(false);
+  const [open, setOpen] = useState(false); // ✅ kontrol modal
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -38,7 +39,7 @@ export default function DownloadPdfModal({ pdf, slug }: Props) {
       throw new Error("reCAPTCHA is not available");
     }
 
-    setLoading(true); // ✅ mulai loading
+    setLoading(true);
     try {
       const token = await executeRecaptcha("downloadPdfSubmit");
       const payload = {
@@ -62,7 +63,6 @@ export default function DownloadPdfModal({ pdf, slug }: Props) {
         console.log("Downloading from:", pdfUrl);
 
         try {
-          // 🔑 Ambil PDF sebagai blob
           const fileResponse = await axiosInstance.get(pdfUrl, {
             responseType: "blob",
           });
@@ -71,7 +71,6 @@ export default function DownloadPdfModal({ pdf, slug }: Props) {
             new Blob([fileResponse.data], { type: "application/pdf" })
           );
 
-          // 🔑 Trigger download
           const link = document.createElement("a");
           link.href = blobUrl;
           link.setAttribute("download", pdf);
@@ -81,9 +80,12 @@ export default function DownloadPdfModal({ pdf, slug }: Props) {
 
           window.URL.revokeObjectURL(blobUrl);
           console.log("download berhasil");
+
+          setOpen(false); // ✅ tutup modal setelah download
         } catch (downloadError) {
           console.error("Gagal download blob, fallback buka tab:", downloadError);
           window.open(pdfUrl, "_blank");
+          setOpen(false); // ✅ tetap tutup modal walau fallback
         }
       }
     } catch (error: any) {
@@ -92,12 +94,12 @@ export default function DownloadPdfModal({ pdf, slug }: Props) {
         console.error("Backend response:", error.response.data);
       }
     } finally {
-      setLoading(false); // ✅ selesai loading
+      setLoading(false);
     }
   };
 
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button variant="default">Download PDF</Button>
       </DialogTrigger>

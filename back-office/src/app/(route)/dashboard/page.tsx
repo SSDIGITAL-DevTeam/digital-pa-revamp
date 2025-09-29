@@ -219,6 +219,7 @@ export default function Page(): JSX.Element {
           <thead className="w-full">
             <tr className="w-full">
               <th className="text-red-700 px-4 py-2 text-left w-1/5">Name</th>
+              <th className="text-red-700 px-4 py-2 text-left w-1/5">Company Name</th>
               <th className="text-red-700 px-4 py-2 text-left w-1/5">Email Address</th>
               <th className="text-red-700 px-4 py-2 text-left w-1/5">Phone Number</th>
               <th className="text-red-700 px-4 py-2 text-left w-1/5">Business Industry</th>
@@ -232,6 +233,7 @@ export default function Page(): JSX.Element {
               return (
                 <tr key={lead.id} className="border-b">
                   <td className="px-4 py-2">{lead.name}</td>
+                  <td className="px-4 py-2">{lead.companyName}</td>
                   <td className="px-4 py-2">{lead.email}</td>
                   <td className="px-4 py-2">{lead.phone}</td>
                   <td className="px-4 py-2">{lead.business}</td>
