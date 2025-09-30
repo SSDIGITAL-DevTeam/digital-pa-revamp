@@ -7,7 +7,8 @@ export function parseBlogQuery(query) {
       search,
       orderBy,
       categoryId,
-      createdAt
+      createdAt,
+      excludeId, // ⬅️ tambahin di sini
     } = query;
   
     const parsedPage = Math.max(parseInt(page) || 1, 1);
@@ -31,7 +32,9 @@ export function parseBlogQuery(query) {
       search: search ?? undefined,
       orderBy: orderByParams.length > 0 ? orderByParams : undefined,
       categoryId: categoryId ?? undefined,
-      createdAt : createdAt ?? undefined
+      createdAt : createdAt ?? undefined,
+      
+      excludeId: excludeId ?? undefined, // ⬅️ hasil parsingnya dikembalikan
     };
   }
   

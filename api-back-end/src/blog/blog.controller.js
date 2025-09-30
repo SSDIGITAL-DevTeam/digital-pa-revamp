@@ -36,7 +36,7 @@ router.get('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
    
     try {
-      const { title, content, categoryId, userId } = req.body;
+      const { title, content, categoryId, userId ,status} = req.body;
   
       // ✅ Validasi image wajib ada
       if (!req.files || !req.files.image || !req.files.image[0]) {
@@ -49,6 +49,7 @@ router.post('/', async (req, res) => {
       if (
         !title?.trim() ||
         !content?.trim() ||
+        !status||
         categoryId === undefined ||
         userId === undefined
       ) {
@@ -64,10 +65,14 @@ router.post('/', async (req, res) => {
         title: title.trim(),
         content: content.trim(),
         categoryId,
+        status,
         userId,
         image: imageFile.filename,       // wajib
         pdf: pdfFile ? pdfFile.filename : null, // opsional
       };
+      if( status=== "Published"){
+        blogData.publishDate = new Date();
+      }
     
       await createBlog(blogData);
      // return res.status(200).json({ error: pdfFile ? pdfFile.filename : null});
@@ -93,6 +98,7 @@ router.delete('/:id', async (req, res) => {
 router.put('/:id', async (req, res) => {
     try {
         const id = req.params.id
+        const data = await getBlogById(id)
         const { title, content, status, favorite, categoryId } = req.body
 
         if (
@@ -106,7 +112,17 @@ router.put('/:id', async (req, res) => {
         }
 
         const isFavorite = favorite === 'true'
-        await updateQueue(id, { ...payload, favorite: isFavorite })
+        const updateData = { 
+            ...payload, 
+            favorite: isFavorite 
+          };
+       
+        // kalau status berubah jadi Published, set publishDate
+        if (status === "Published" && data.publishDate == null) {
+            updateData.publishDate = new Date();
+        }
+        
+        await updateQueue(id, updateData);
         res.status(200).json({ message: 'Berhasil Mengubah Blog' })
     } catch (error) {
         logger.error(`PUT /:id error: ${error.message}`)
@@ -117,7 +133,7 @@ router.put('/:id', async (req, res) => {
 router.patch('/:id', async (req, res) => {
     try {
         const id = req.params.id
-
+        const data = await getBlogById(id)
         if (!req.body || Object.keys(req.body).length === 0) {
             throw new Error('Nothing to update')
         }
@@ -139,6 +155,11 @@ router.patch('/:id', async (req, res) => {
           //  payload.image = req.file.filename
         } else {
             delete payload.image
+        }
+     
+        // kalau status berubah jadi Published, set publishDate
+        if (payload.status === "Published" && data.publishDate == null) {
+            payload.publishDate = new Date();
         }
         await updateQueue(id, payload)
 

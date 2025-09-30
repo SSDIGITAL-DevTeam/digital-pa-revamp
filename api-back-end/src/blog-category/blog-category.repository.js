@@ -1,27 +1,38 @@
-import { count, eq } from 'drizzle-orm'
+import { count, eq,sql } from 'drizzle-orm'
 import { db } from '../../drizzle/db.js'
 import { blog, blogCategory } from '../../drizzle/schema.js'
 
 export const findAllBlogCats = async (skip, limit, where, orderBy) => {
     try {
-        let baseQuery = db.select().from(blogCategory)
+        // ambil data kategori + hitung jumlah blog
+        let baseQuery = db
+            .select({
+                id: blogCategory.id,
+                name: blogCategory.name,
+                slug: blogCategory.slug,
+                status: blogCategory.status,
+                countBlog: count(blog.id).mapWith(Number), // jumlah blog per kategori
+            })
+            .from(blogCategory)
+            .leftJoin(blog, eq(blog.categoryId, blogCategory.id)) // asumsi relasi blog.categoryId
+            .groupBy(blogCategory.id);
 
-        if (where) baseQuery = baseQuery.where(where)
-        if (orderBy) baseQuery = baseQuery.orderBy(...orderBy)
+        if (where) baseQuery = baseQuery.where(where);
+        if (orderBy) baseQuery = baseQuery.orderBy(...orderBy);
 
-        const datas = await baseQuery.limit(limit).offset(skip)
+        const datas = await baseQuery.limit(limit).offset(skip);
 
-        const totalQuery = db.select({ count: count() }).from(blogCategory)
+        // hitung total kategori (bukan total blog)
+        const totalQuery = db.select({ count: count() }).from(blogCategory);
+        if (where) totalQuery.where(where);
 
-        if (where) totalQuery.where(where)
+        const [{ count: total }] = await totalQuery;
 
-        const [{ count: total }] = await totalQuery
-
-        return { datas, total }
+        return { datas, total };
     } catch (error) {
-        throw new Error('Get all blog categories unsuccessfully')
+        throw new Error("Get all blog categories unsuccessfully");
     }
-}
+};
 
 export const findBlogCatByName = async (name) => {
     try {

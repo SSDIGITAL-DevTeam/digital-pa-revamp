@@ -68,6 +68,7 @@ export default function DataPage() {
         const response = await axiosInstance.get("/blog", {
           params: { limit: 4, page, search: searchQuery, orderBy: `${sort.key}:${sort.direction ? "desc" : "asc"}` },
         });
+        console.log(JSON.stringify({ limit: 4, page, search: searchQuery, orderBy: `${sort.key}:${sort.direction ? "desc" : "asc"}` }));
         setBlogs(response.data);
         // console.log(response.data);
       } catch (error: any) {

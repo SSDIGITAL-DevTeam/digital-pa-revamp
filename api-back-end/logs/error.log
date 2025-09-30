@@ -73,3 +73,129 @@
 {"level":50,"time":1758954402931,"pid":21128,"hostname":"LAPTOP-9LTRFM6V","msg":"PATCH /:id error: imageFile is not defined"}
 {"level":50,"time":1758954429139,"pid":9332,"hostname":"LAPTOP-9LTRFM6V","msg":"PATCH /:id error: imageFile is not defined"}
 {"level":50,"time":1758955548362,"pid":14980,"hostname":"LAPTOP-9LTRFM6V","msg":"POST / error: Title already exists"}
+{"level":50,"time":1759126934783,"pid":34028,"hostname":"LAPTOP-9LTRFM6V","msg":"POST / login error: Get user by email unsuccessfully"}
+{"level":50,"time":1759126938490,"pid":34028,"hostname":"LAPTOP-9LTRFM6V","msg":"POST / login error: Get user by email unsuccessfully"}
+{"level":50,"time":1759126938664,"pid":34028,"hostname":"LAPTOP-9LTRFM6V","msg":"POST / login error: Get user by email unsuccessfully"}
+{"level":50,"time":1759126939457,"pid":34028,"hostname":"LAPTOP-9LTRFM6V","msg":"POST / login error: Get user by email unsuccessfully"}
+{"level":50,"time":1759126943827,"pid":34028,"hostname":"LAPTOP-9LTRFM6V","msg":"POST / login error: Get user by email unsuccessfully"}
+{"level":50,"time":1759126944865,"pid":34028,"hostname":"LAPTOP-9LTRFM6V","msg":"POST / login error: Get user by email unsuccessfully"}
+{"level":50,"time":1759127097719,"pid":34028,"hostname":"LAPTOP-9LTRFM6V","msg":"POST / login error: Password does not match"}
+{"level":50,"time":1759132015732,"pid":34028,"hostname":"LAPTOP-9LTRFM6V","msg":"POST / error: Title already exists"}
+{"level":50,"time":1759133819746,"pid":29968,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759133819752,"pid":29968,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759133819768,"pid":29968,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759133819769,"pid":29968,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759133828875,"pid":21944,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759133828882,"pid":21944,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759133828895,"pid":21944,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759133828896,"pid":21944,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759133838280,"pid":18220,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759133838287,"pid":18220,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759133838301,"pid":18220,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759133838303,"pid":18220,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759133861282,"pid":18220,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759133861284,"pid":18220,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759133861293,"pid":18220,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759133861295,"pid":18220,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759133891735,"pid":16956,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759133891741,"pid":16956,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759133891751,"pid":16956,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759133891754,"pid":16956,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759133902477,"pid":22640,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759133902483,"pid":22640,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759133902492,"pid":22640,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759133902495,"pid":22640,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759133930105,"pid":21632,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759133930111,"pid":21632,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759133930122,"pid":21632,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759133930124,"pid":21632,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759133949967,"pid":36268,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759133949973,"pid":36268,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759133949986,"pid":36268,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759133949988,"pid":36268,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759133953692,"pid":36268,"hostname":"LAPTOP-9LTRFM6V","msg":"GET /:id error: Get blog by ID unsuccessfully`)"}
+{"level":50,"time":1759133967891,"pid":36268,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759133994369,"pid":8064,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759134006050,"pid":17684,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759134013876,"pid":32752,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759134014779,"pid":32752,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759134014937,"pid":32752,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759134015105,"pid":32752,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759134015271,"pid":32752,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759134015438,"pid":32752,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759134015590,"pid":32752,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759134015767,"pid":32752,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759134015951,"pid":32752,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759134016142,"pid":32752,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759134036954,"pid":21344,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759134038078,"pid":21344,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759134046730,"pid":21344,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759134047397,"pid":21344,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759134047568,"pid":21344,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759134047769,"pid":21344,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759134056866,"pid":33256,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759134057750,"pid":33256,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759134057918,"pid":33256,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759134058096,"pid":33256,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759134058237,"pid":33256,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759134083485,"pid":33256,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759134083673,"pid":33256,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759134083838,"pid":33256,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759134084005,"pid":33256,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759134084181,"pid":33256,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759134084359,"pid":33256,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759134084552,"pid":33256,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759134090741,"pid":22284,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759134214888,"pid":22284,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759134215494,"pid":22284,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759134215661,"pid":22284,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759134215829,"pid":22284,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759134215990,"pid":22284,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759134216160,"pid":22284,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759134216348,"pid":22284,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759134216517,"pid":22284,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759134262145,"pid":22284,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759134348260,"pid":1128,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759134487531,"pid":5872,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: ne is not defined"}
+{"level":50,"time":1759134493538,"pid":5872,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: ne is not defined"}
+{"level":50,"time":1759134787064,"pid":33448,"hostname":"LAPTOP-9LTRFM6V","msg":"POST / error: Title already exists"}
+{"level":50,"time":1759134794830,"pid":33448,"hostname":"LAPTOP-9LTRFM6V","msg":"POST / error: Title already exists"}
+{"level":50,"time":1759137652494,"pid":32752,"hostname":"LAPTOP-9LTRFM6V","msg":"POST / error: Title already exists"}
+{"level":50,"time":1759139087542,"pid":12864,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: ReferenceError: db is not defined"}
+{"level":50,"time":1759139104620,"pid":32968,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: ReferenceError: db is not defined"}
+{"level":50,"time":1759139421325,"pid":13472,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: ReferenceError: db is not defined"}
+{"level":50,"time":1759200263198,"pid":35208,"hostname":"LAPTOP-9LTRFM6V","msg":"DELETE /:id error: The \"path\" argument must be of type string. Received null"}
+{"level":50,"time":1759200266029,"pid":35208,"hostname":"LAPTOP-9LTRFM6V","msg":"DELETE /:id error: The \"path\" argument must be of type string. Received null"}
+{"level":50,"time":1759200266917,"pid":35208,"hostname":"LAPTOP-9LTRFM6V","msg":"DELETE /:id error: The \"path\" argument must be of type string. Received null"}
+{"level":50,"time":1759200268444,"pid":35208,"hostname":"LAPTOP-9LTRFM6V","msg":"DELETE /:id error: The \"path\" argument must be of type string. Received null"}
+{"level":50,"time":1759200269331,"pid":35208,"hostname":"LAPTOP-9LTRFM6V","msg":"DELETE /:id error: The \"path\" argument must be of type string. Received null"}
+{"level":50,"time":1759200272316,"pid":35208,"hostname":"LAPTOP-9LTRFM6V","msg":"DELETE /:id error: The \"path\" argument must be of type string. Received null"}
+{"level":50,"time":1759200273805,"pid":35208,"hostname":"LAPTOP-9LTRFM6V","msg":"DELETE /:id error: The \"path\" argument must be of type string. Received null"}
+{"level":50,"time":1759200274396,"pid":35208,"hostname":"LAPTOP-9LTRFM6V","msg":"DELETE /:id error: The \"path\" argument must be of type string. Received null"}
+{"level":50,"time":1759200278268,"pid":35208,"hostname":"LAPTOP-9LTRFM6V","msg":"DELETE /:id error: The \"path\" argument must be of type string. Received null"}
+{"level":50,"time":1759200283645,"pid":35208,"hostname":"LAPTOP-9LTRFM6V","msg":"DELETE /:id error: The \"path\" argument must be of type string. Received null"}
+{"level":50,"time":1759200284203,"pid":35208,"hostname":"LAPTOP-9LTRFM6V","msg":"DELETE /:id error: The \"path\" argument must be of type string. Received null"}
+{"level":50,"time":1759200284371,"pid":35208,"hostname":"LAPTOP-9LTRFM6V","msg":"DELETE /:id error: The \"path\" argument must be of type string. Received null"}
+{"level":50,"time":1759200284554,"pid":35208,"hostname":"LAPTOP-9LTRFM6V","msg":"DELETE /:id error: The \"path\" argument must be of type string. Received null"}
+{"level":50,"time":1759200284715,"pid":35208,"hostname":"LAPTOP-9LTRFM6V","msg":"DELETE /:id error: The \"path\" argument must be of type string. Received null"}
+{"level":50,"time":1759200783191,"pid":22808,"hostname":"LAPTOP-9LTRFM6V","msg":"DELETE /:id error: The \"path\" argument must be of type string. Received null"}
+{"level":50,"time":1759200865674,"pid":35312,"hostname":"LAPTOP-9LTRFM6V","msg":"GET /:id error: Blog not found"}
+{"level":50,"time":1759204985922,"pid":17432,"hostname":"LAPTOP-9LTRFM6V","msg":"POST / error: Title already exists"}
+{"level":50,"time":1759205259184,"pid":17432,"hostname":"LAPTOP-9LTRFM6V","msg":"POST / error: Title already exists"}
+{"level":50,"time":1759205444303,"pid":17432,"hostname":"LAPTOP-9LTRFM6V","msg":"GET /:id error: Blog not found"}
+{"level":50,"time":1759206076622,"pid":17432,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759206076623,"pid":17432,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759206076628,"pid":17432,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759206076629,"pid":17432,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759206082454,"pid":17432,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759206082456,"pid":17432,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759206082463,"pid":17432,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759206082466,"pid":17432,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759206090630,"pid":17432,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759206090638,"pid":17432,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759206114779,"pid":17432,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759206114786,"pid":17432,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759206171144,"pid":17432,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759206171151,"pid":17432,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759206174551,"pid":17432,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759206174562,"pid":17432,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}

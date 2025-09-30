@@ -21,7 +21,7 @@ export default function PageArticles ({data}: {data: any}): JSX.Element {
                             <h2 className="!leading-[150%] md:!leading-[130%] text-lg lg:text-xl font-semibold line-clamp-3">{d.title}</h2>
                             <BlogContent content={d.content} className="line-clamp-3 custom-prose text-gray-500"/>
                             <div className="w-full flex justify-between items-center mt-2">
-                                <p className="text-primary font-semibold">{dayjs(d.createdAt).format("MMM DD, YYYY")}</p>
+                                <p className="text-primary font-semibold">{dayjs(d.publishDate).format("MMM DD, YYYY")}</p>
                                 <button className="text-white bg-primary py-2 px-3 rounded-md font-semibold"><ArrowRightIcon className="w-5 h-5" />
                                 </button>
                             </div>

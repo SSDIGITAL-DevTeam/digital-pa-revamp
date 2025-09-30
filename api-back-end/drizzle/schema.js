@@ -40,6 +40,7 @@ export const blog = mysqlTable('blog', {
     .notNull()
     .references(() => blogCategory.id, { onDelete: 'cascade' }),
   createdAt: timestamp('created_at').defaultNow().notNull(),
+  publishDate: timestamp('publish_date').default(null), // ⬅️ default NULL
   updatedAt: timestamp('updated_at').defaultNow().notNull(),
   userId: varchar('user_id', { length: 36 })
     .notNull()

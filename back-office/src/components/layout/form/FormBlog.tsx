@@ -179,7 +179,8 @@ const FormBlog = ({ defaultValue, data }: { defaultValue?: any, data: any }) => 
                     <SelectField control={control} label="Add Category" name="categoryId" data={blogCategory} />
                     <ImageField defaultImage={previewUrl} setImageFile={setImageFile} control={control} label="Add Cover Image" name="image" />
                     <InputField control={control} label="Add Title" name="title" />
-                    {defaultValue && <RadioGroupField control={control} name="status" label="Status" data={statusList} />}
+                    <RadioGroupField control={control} name="status" label="Status" data={statusList} />
+                    {/* {defaultValue && <RadioGroupField control={control} name="status" label="Status" data={statusList} />} */}
                     <PdfField 
                         defaultPdf={pdfPreviewUrl}  // state untuk default pdf preview (optional)
                         setPdfFile={setPdfFile}     // handler simpan file ke parent

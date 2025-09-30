@@ -38,16 +38,10 @@ const PdfField = ({
         }
     }, [defaultPdf]);
 
-    // 🔽 fungsi download PDF
-    const handleDownload = () => {
+    // 🔽 fungsi preview PDF di tab baru
+    const handlePreview = () => {
         if (!previewUrl) return;
-
-        const link = document.createElement("a");
-        link.href = previewUrl;
-        link.download = `${label}.pdf`; // nama file hasil download
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
+        window.open(previewUrl, "_blank"); // buka di tab baru
     };
 
     return (
@@ -82,15 +76,15 @@ const PdfField = ({
 
                     <FormMessage />
 
-                    {/* Download PDF */}
+                    {/* Preview PDF */}
                     {previewUrl ? (
                         <Button
                             type="button"
                             variant="outline"
                             className="mt-3"
-                            onClick={handleDownload}
+                            onClick={handlePreview}
                         >
-                            Download PDF
+                            Preview PDF
                         </Button>
                     ) : (
                         <div className="h-20 w-full flex items-center justify-center bg-gray-100 text-gray-400 mt-3">

@@ -20,7 +20,7 @@ import { fileURLToPath } from 'url'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
-import { asc, desc, and, or, eq, like, gte } from 'drizzle-orm'
+import { asc, desc, and, or, eq, like, gte ,ne} from 'drizzle-orm'
 import { blog } from '../../drizzle/schema.js'
 import logger from '../../utils/logger.js'
 
@@ -34,7 +34,8 @@ export const getAllBlogs = async (filters) => {
             search,
             favorite,
             categoryId,
-            createdAt
+            createdAt,
+            excludeId
         } = filters
         // console.log(filters)
 
@@ -47,6 +48,9 @@ export const getAllBlogs = async (filters) => {
         if (status !== undefined) whereConditions.push(eq(blog.status, status))
         if (categoryId !== undefined) {
             whereConditions.push(eq(blog.categoryId, categoryId))
+        }
+           if (excludeId !== undefined) {
+            whereConditions.push(ne(blog.id, excludeId)) // exclude ID tertentu
         }
         if (favorite !== undefined)
             whereConditions.push(eq(blog.favorite, newFavorite))
@@ -139,7 +143,7 @@ export const createBlog = async (payload) => {
             .replace(/[^a-z0-9]+/g, '-')
             .replace(/^-+|-+$/g, '')
             
-        await insertBlog({ ...payload, slug, status : "Published", favorite: false })
+        await insertBlog({ ...payload, slug, favorite: false })
     } catch (error) {
         throw new Error(error.message)
     }
@@ -156,10 +160,16 @@ export const deleteBlogById = async (id) => {
             fs.unlinkSync(imagePath)
         }
 
-        const pdfPath = path.join(__dirname, '../../upload', blog.pdf);
-        if (fs.existsSync(pdfPath)) {
-            fs.unlinkSync(pdfPath);
+     
+        try {
+            const pdfPath = path.join(__dirname, '../../upload', blog.pdf);
+            if (fs.existsSync(pdfPath)) {
+                fs.unlinkSync(pdfPath);
+            }  
+        } catch (error) {
+            
         }
+       
         await deleteBlog(id)
     } catch (error) {
         throw new Error(error.message)

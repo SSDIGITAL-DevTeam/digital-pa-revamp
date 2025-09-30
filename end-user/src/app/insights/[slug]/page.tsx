@@ -17,6 +17,7 @@ export type Blog = {
   userId: string;
   createdAt: string;
   updatedAt: string;
+  publishDate: string;
   pdf: string | null; // ✅ field baru
   author: {
     id: string;
@@ -58,11 +59,12 @@ export default async function Page({
       params: {
         categoryId: data.categoryId,
         limit: 3,
+        excludeId: data.id,
       },
     });
     const relatedBlogs = res.data.data as Blog[];
 
-    const formattedDate = dayjs(data.createdAt).format("MMM DD, YYYY");
+    const formattedDate = dayjs(data.publishDate).format("MMM DD, YYYY");
 
     return (
       <main className="bg-white">

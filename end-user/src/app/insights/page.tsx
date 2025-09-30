@@ -71,16 +71,20 @@ export default function Insights() {
                             params: {
                                 status: "Published",
                                 favorite: true,
-                                limit : 3
+                                limit : 3,
+                                orderBy:"createdAt:desc",
+                               // orderBy: JSON.stringify([{ createdAt: "desc" }])
                             }
                         }),
                         axiosInstance.get('/blog', {
                             params: {
                                 page,
-                                limit: 2,
+                                limit: 6,
                                 status: "Published",
                                 favorite: false,
-                                categoryId: activeCategory
+                                categoryId: activeCategory,
+                                orderBy:"createdAt:desc",
+                               // orderBy: JSON.stringify([{ createdAt: "desc" }])
                             }
                         }),
                         axiosInstance.get('/blog-category', {
@@ -134,16 +138,22 @@ export default function Insights() {
                     <ListCategories list={categories} activeCategory={activeCategory || "all"} setActiveCategory={setActiveCategory} />
                 </div>
                 <PageArticles data={blog} />
+                {(!blog || blog.length === 0) && (
+                    <>No posts found.</>
+                )}
             </section>
 
-            <PaginationComponents
-                handleNext={handleNext}
-                handlePrev={handlePrevious}
-                page={page}
-                className='mt-10'
-                setPage={handleChangePage}
-                totalPage={defPage.totalPages || 1}
-            />
+            {blog && blog.length > 0 &&
+                    <PaginationComponents
+                        handleNext={handleNext}
+                        handlePrev={handlePrevious}
+                        page={page}
+                        className='mt-10'
+                        setPage={handleChangePage}
+                        totalPage={defPage.totalPages || 1}
+                    />
+            }
+          
         </main>
     )
 
