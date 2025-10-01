@@ -106,7 +106,7 @@ export default async function Page({
             </div>
             <BlogContent
               content={data.content}
-              className="!leading-[150%] text-sm lg:text-base blog-prose"
+              className="!leading-[150%] text-sm lg:text-[18px] blog-prose"
             />
           </section>
 
