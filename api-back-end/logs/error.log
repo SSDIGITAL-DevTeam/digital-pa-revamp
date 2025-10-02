@@ -219,3 +219,10 @@
 {"level":50,"time":1759389875579,"pid":29720,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / refresh-token error: 401"}
 {"level":50,"time":1759389876359,"pid":29720,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / refresh-token error: 401"}
 {"level":50,"time":1759389876384,"pid":29720,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / refresh-token error: 401"}
+{"level":50,"time":1759395218554,"pid":26404,"hostname":"LAPTOP-9LTRFM6V","msg":"POST / login error: Email not found"}
+{"level":50,"time":1759395219767,"pid":26404,"hostname":"LAPTOP-9LTRFM6V","msg":"POST / login error: Email not found"}
+{"level":50,"time":1759395219933,"pid":26404,"hostname":"LAPTOP-9LTRFM6V","msg":"POST / login error: Email not found"}
+{"level":50,"time":1759395220102,"pid":26404,"hostname":"LAPTOP-9LTRFM6V","msg":"POST / login error: Email not found"}
+{"level":50,"time":1759395220262,"pid":26404,"hostname":"LAPTOP-9LTRFM6V","msg":"POST / login error: Email not found"}
+{"level":50,"time":1759395220414,"pid":26404,"hostname":"LAPTOP-9LTRFM6V","msg":"POST / login error: Email not found"}
+{"level":50,"time":1759395220605,"pid":26404,"hostname":"LAPTOP-9LTRFM6V","msg":"POST / login error: Email not found"}
