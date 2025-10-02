@@ -1,4 +1,4 @@
-import { mysqlTable, varchar, mysqlEnum, json, timestamp, boolean, text } from 'drizzle-orm/mysql-core';
+import { mysqlTable, varchar, mysqlEnum, json, timestamp, boolean, text, int } from 'drizzle-orm/mysql-core';
 import { v4 as uuidv4 } from 'uuid';
 
 // Enums
@@ -61,4 +61,16 @@ export const lead = mysqlTable('lead', {
   createdAt: timestamp('created_at').defaultNow().notNull(),
   updatedAt: timestamp('updated_at').defaultNow().notNull(),
   isAgree: boolean('is_agree').default(true), //setelah migrate akan di ubah menjadi not null
+});
+
+// Metas table for polymorphic SEO metadata
+export const metas = mysqlTable('metas', {
+  id: int('id').autoincrement().primaryKey(),
+  key: varchar('key', { length: 255 }).notNull(),
+  value: varchar('value', { length: 255 }).notNull(),
+  content: text('content'),
+  metaableId: varchar('metaable_id', { length: 36 }).notNull(), // UUID of target
+  metaableType: varchar('metaable_type', { length: 50 }).notNull(), // e.g., 'blog'
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+  updatedAt: timestamp('updated_at').defaultNow().notNull(),
 });

@@ -199,3 +199,23 @@
 {"level":50,"time":1759206171151,"pid":17432,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
 {"level":50,"time":1759206174551,"pid":17432,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
 {"level":50,"time":1759206174562,"pid":17432,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / error: Get all blogs unsuccessfully"}
+{"level":50,"time":1759378077453,"pid":20872,"hostname":"LAPTOP-9LTRFM6V","msg":"GET /:id error: Table 'project_digital_pa.metas' doesn't exist"}
+{"level":50,"time":1759378077464,"pid":20872,"hostname":"LAPTOP-9LTRFM6V","msg":"GET /:id error: Table 'project_digital_pa.metas' doesn't exist"}
+{"level":50,"time":1759378170921,"pid":20872,"hostname":"LAPTOP-9LTRFM6V","msg":"GET /:id error: Table 'project_digital_pa.metas' doesn't exist"}
+{"level":50,"time":1759378170929,"pid":20872,"hostname":"LAPTOP-9LTRFM6V","msg":"GET /:id error: Table 'project_digital_pa.metas' doesn't exist"}
+{"level":50,"time":1759378198166,"pid":20872,"hostname":"LAPTOP-9LTRFM6V","msg":"POST / error: Title already exists"}
+{"level":50,"time":1759378204243,"pid":20872,"hostname":"LAPTOP-9LTRFM6V","msg":"POST / error: Table 'project_digital_pa.metas' doesn't exist"}
+{"level":50,"time":1759378307793,"pid":21436,"hostname":"LAPTOP-9LTRFM6V","msg":"POST / error: Title already exists"}
+{"level":50,"time":1759379990531,"pid":7624,"hostname":"LAPTOP-9LTRFM6V","msg":"POST / error: Title already exists"}
+{"level":50,"time":1759380467398,"pid":2540,"hostname":"LAPTOP-9LTRFM6V","msg":"POST / error: Title already exists"}
+{"level":50,"time":1759380475091,"pid":2540,"hostname":"LAPTOP-9LTRFM6V","msg":"POST / error: Title already exists"}
+{"level":50,"time":1759386906372,"pid":2540,"hostname":"LAPTOP-9LTRFM6V","msg":"GET /:id error: Blog not found"}
+{"level":50,"time":1759386906374,"pid":2540,"hostname":"LAPTOP-9LTRFM6V","msg":"GET /:id error: Blog not found"}
+{"level":50,"time":1759386942243,"pid":2540,"hostname":"LAPTOP-9LTRFM6V","msg":"GET /:id error: Blog not found"}
+{"level":50,"time":1759386942248,"pid":2540,"hostname":"LAPTOP-9LTRFM6V","msg":"GET /:id error: Blog not found"}
+{"level":50,"time":1759387127583,"pid":2540,"hostname":"LAPTOP-9LTRFM6V","msg":"GET /:id error: Blog not found"}
+{"level":50,"time":1759387127595,"pid":2540,"hostname":"LAPTOP-9LTRFM6V","msg":"GET /:id error: Blog not found"}
+{"level":50,"time":1759389875546,"pid":29720,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / refresh-token error: 401"}
+{"level":50,"time":1759389875579,"pid":29720,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / refresh-token error: 401"}
+{"level":50,"time":1759389876359,"pid":29720,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / refresh-token error: 401"}
+{"level":50,"time":1759389876384,"pid":29720,"hostname":"LAPTOP-9LTRFM6V","msg":"GET / refresh-token error: 401"}

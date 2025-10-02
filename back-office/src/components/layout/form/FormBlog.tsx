@@ -18,6 +18,7 @@ import { withAuth } from "@/hoc/withAuth";
 import { axiosInstance } from "@/lib/axios";
 import { Key } from "lucide-react";
 import PdfField from "@/components/partials/form/PdfField";
+import SEOFormSection from "@/components/partials/form/SEOFormSection";
 
 const blogStatus = [
     "Published",
@@ -97,6 +98,9 @@ const FormBlog = ({ defaultValue, data }: { defaultValue?: any, data: any }) => 
     const [pdfPreviewUrl, setPdfPreviewUrl] = React.useState<string>("");
     const [pdfFile, setPdfFile] = React.useState<File | null>(null);
     const id = useAuthStore((state) => state.id);
+    const [seo, setSeo] = React.useState<{ title: string; keyword: string; description: string }>(
+        { title: "", keyword: "", description: "" }
+    );
 
 
     useEffect(() => {
@@ -111,6 +115,12 @@ const FormBlog = ({ defaultValue, data }: { defaultValue?: any, data: any }) => 
         }
         if (defaultValue?.pdf) {
             setPdfPreviewUrl(`${process.env.NEXT_PUBLIC_IMAGE_API_URL}/${defaultValue.pdf}`);
+        }
+        if (defaultValue && Array.isArray(defaultValue.metas)) {
+            const title = defaultValue.metas.find((m: any) => m.value === 'title')?.content || ''
+            const keyword = defaultValue.metas.find((m: any) => m.value === 'keyword')?.content || ''
+            const description = defaultValue.metas.find((m: any) => m.value === 'description')?.content || ''
+            setSeo({ title, keyword, description })
         }
         console.log("=============pdfPreviewUrl ",pdfPreviewUrl)
     }, [defaultValue]);
@@ -141,6 +151,26 @@ const FormBlog = ({ defaultValue, data }: { defaultValue?: any, data: any }) => 
             if (pdfFile) {
                 formData.append("pdf", pdfFile);
             }
+            // Validate SEO
+            const title = (seo.title || '').trim()
+            const keyword = (seo.keyword || '').trim()
+            const description = (seo.description || '').trim()
+            if (!title || !keyword || !description) {
+                throw new Error('All SEO fields are required')
+            }
+            if (keyword.length > 70) {
+                throw new Error('Keyword must be 70 characters or less')
+            }
+            if (description.length > 160) {
+                throw new Error('Description must be 160 characters or less')
+            }
+
+            const metasArr = [
+                { key: 'name', value: 'title', content: title },
+                { key: 'name', value: 'keyword', content: keyword },
+                { key: 'name', value: 'description', content: description },
+            ]
+            formData.append("metas", JSON.stringify(metasArr));
 
             const url = defaultValue
                 ? `/blog/${defaultValue.id}`
@@ -165,7 +195,7 @@ const FormBlog = ({ defaultValue, data }: { defaultValue?: any, data: any }) => 
             failedToast(
                 <p className="text-xl font-semibold text-red-900">Failed</p>,
                 <p className="text-xs text-red-300 mt-2">{
-                    error.response?.data?.error || error.response?.statusText || "Error processing data"
+                    error.response?.data?.error || error.response?.statusText || error.message || "Error processing data"
                 }
                 </p>
             );
@@ -189,6 +219,12 @@ const FormBlog = ({ defaultValue, data }: { defaultValue?: any, data: any }) => 
                         name="pdf" 
                     />
                     <BlogField control={control} name="content" label="blog Content" />
+                    <SEOFormSection
+                        title={seo.title}
+                        keyword={seo.keyword}
+                        description={seo.description}
+                        onChange={(v) => setSeo((prev) => ({ ...prev, ...v }))}
+                    />
                 </div>
                 <div className="w-full flex justify-between features-center mt-8 sm:mt-12">
                     <Button

@@ -13,6 +13,8 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { axiosInstance } from "@/lib/axios";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
+import { PhoneInput } from "react-international-phone";
+import "react-international-phone/style.css";
 
 type Props = {
   pdf: string;
@@ -24,10 +26,11 @@ export default function DownloadPdfModal({ pdf, slug }: Props) {
   const [form, setForm] = useState({
     name: "",
     email: "",
-    company: "",
+    phoneNumber: "",
   });
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false); // ✅ kontrol modal
+  const [errors, setErrors] = useState<{ phoneNumber?: string }>({});
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -39,17 +42,27 @@ export default function DownloadPdfModal({ pdf, slug }: Props) {
       throw new Error("reCAPTCHA is not available");
     }
 
+    // Basic phone validation consistent with contact form
+    const rawPhone = form.phoneNumber || "";
+    const cleaned = rawPhone.replace(/^\+\d{1,3}/, "");
+    if (!(rawPhone.length > 3 && /\d{4,}/.test(cleaned))) {
+      setErrors({ phoneNumber: "Please enter a valid phone number" });
+      return;
+    }
+    setErrors({});
+
     setLoading(true);
     try {
       const token = await executeRecaptcha("downloadPdfSubmit");
       const payload = {
         name: form.name,
         email: form.email,
-        phone: "-",
+        phoneNumber: rawPhone.replaceAll("+", ""),
+        phone: rawPhone.replaceAll("+", ""), // backend compatibility
         business: "-",
         message: "-",
         from: "insights/" + slug,
-        companyName: form.company,
+        companyName: "-", // keep field for current backend validation
         token,
         isAgree: true,
       };
@@ -134,14 +147,26 @@ export default function DownloadPdfModal({ pdf, slug }: Props) {
             />
           </div>
           <div className="flex flex-col gap-2">
-            <Label htmlFor="company">Company</Label>
-            <Input
-              id="company"
-              name="company"
-              placeholder="Enter your company name"
-              value={form.company}
-              onChange={handleChange}
-            />
+            <Label htmlFor="phoneNumber">Phone Number</Label>
+            <div className="flex items-center w-full rounded-md border border-gray-300 focus-within:ring focus-within:ring-blue-500">
+              <PhoneInput
+                defaultCountry="sg"
+                value={form.phoneNumber}
+                onChange={(val) => setForm((prev) => ({ ...prev, phoneNumber: val }))}
+                placeholder="Enter your phone number"
+                className="w-full"
+                // countrySelectorLabel="Country code"
+                inputClassName="!h-10 !py-2 !px-3 !text-sm !rounded-none !border-0 !w-full focus:outline-none"
+                style={{
+                  '--react-international-phone-flag-width': '20px',
+                  '--react-international-phone-flag-height': '20px',
+                  '--react-international-phone-height': '40px',
+                } as React.CSSProperties}
+              />
+            </div>
+            {errors.phoneNumber && (
+              <span className="text-xs text-red-500">{errors.phoneNumber}</span>
+            )}
           </div>
           <Button type="submit" className="mt-4" disabled={loading}>
             {loading ? "Processing..." : "Submit & Download"}

@@ -4,6 +4,10 @@ import dayjs from "dayjs";
 import Image from "next/image";
 import CopyLinkButton from "../_components/ButtonCopyLink";
 import DownloadPdfModal from "./_components/DownloadPdfModal";
+import { notFound } from "next/navigation";
+import type { Metadata } from "next";
+import { seoMetadata } from "@/constants/metadata/metadata";
+import Script from "next/script";
 
 export type Blog = {
   id: string;
@@ -46,6 +50,70 @@ export type BlogDetailResponse = {
   blogCategory: BlogCategory;
 };
 
+export const revalidate = 0; // always fresh for SEO
+
+async function fetchBlog(slug: string) {
+  const base = process.env.NEXT_PUBLIC_API_URL;
+  const url = `${base}/blog/${slug}`;
+  const res = await fetch(url, { cache: "no-store" });
+  if (!res.ok) return null;
+  return res.json();
+}
+
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+  try {
+    const data: any = await fetchBlog(params.slug);
+    if (!data) return { title: "Insights | Digital PA", description: "Read our insights." };
+
+    const baseCanonical = (seoMetadata?.home?.alternates?.canonical as string) || "https://digital-pa.com.sg";
+    const canonical = `${baseCanonical}/insights/${params.slug}`;
+    const imageUrl = `${process.env.NEXT_PUBLIC_API_IMAGE_URL}/${data.image}`;
+
+    // metas coming from API array or flattened
+    const metas = Array.isArray(data.metas) ? data.metas : [];
+    const description = metas.find((m: any) => m.value === "description")?.content || data.description || "";
+    const keywordsRaw = metas.find((m: any) => m.value === "keyword")?.content || metas.find((m: any) => m.value === "tags")?.content || "";
+    const keywords = keywordsRaw
+      .split(",")
+      .map((s: string) => s.trim())
+      .filter(Boolean);
+
+    // Prefer metaTitle, fallback to title meta, then data.title
+    const pageTitle =
+   
+      metas.find((m: any) => m.value === "title")?.content ||
+      data.title;
+
+    return {
+      title: pageTitle,
+      description: description || undefined,
+      keywords: keywords.length ? keywords : undefined,
+      openGraph: {
+        title: pageTitle,
+        description: description || undefined,
+        url: canonical,
+        images: [
+          {
+            url: imageUrl,
+            width: 1200,
+            height: 630,
+            alt: data.title,
+          },
+        ],
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: pageTitle,
+        description: description || undefined,
+        images: [imageUrl],
+      },
+      alternates: { canonical },
+    };
+  } catch {
+    return { title: "Insights | Digital PA", description: "Read our insights." };
+  }
+}
+
 export default async function Page({
   params,
 }: Readonly<{ params: { slug: string } }>) {
@@ -66,9 +134,23 @@ export default async function Page({
 
     const formattedDate = dayjs(data.publishDate).format("MMM DD, YYYY");
 
+    const metaDesc = (Array.isArray((data as any).metas) ? (data as any).metas.find((m: any) => m.value === "description")?.content : undefined) || "";
+
+    const ld = {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      headline: data.title,
+      description: metaDesc || undefined,
+      image: `${process.env.NEXT_PUBLIC_API_IMAGE_URL}/${data.image}`,
+      author: data.author?.name ? { "@type": "Person", name: data.author.name } : undefined,
+      datePublished: data.publishDate || data.createdAt,
+    };
+
     return (
       <main className="bg-white">
         <div className="max-w-4xl py-12 lg:py-24 px-8 md:px-20 mx-auto flex flex-col space-y-12 lg:space-y-16 bg-white">
+          <Script id="blog-json-ld" type="application/ld+json" strategy="afterInteractive"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} />
           {/* header blog */}
           <section className="w-full flex flex-col gap-8 lg:gap-8">
             <h1 className="text-3xl !leading-[120%]">{data.title}</h1>
@@ -145,6 +227,6 @@ export default async function Page({
     );
   } catch (error) {
     console.error("Error fetching blog data:", error);
-    return <main>Error loading blog</main>;
+    notFound();
   }
 }

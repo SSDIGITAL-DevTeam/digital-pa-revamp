@@ -36,7 +36,7 @@ router.get('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
    
     try {
-      const { title, content, categoryId, userId ,status} = req.body;
+      const { title, content, categoryId, userId ,status } = req.body;
   
       // ✅ Validasi image wajib ada
       if (!req.files || !req.files.image || !req.files.image[0]) {
@@ -73,10 +73,13 @@ router.post('/', async (req, res) => {
       if( status=== "Published"){
         blogData.publishDate = new Date();
       }
-    
-      await createBlog(blogData);
-     // return res.status(200).json({ error: pdfFile ? pdfFile.filename : null});
-      res.status(201).json({ message: 'Blog created successfully' });
+      // metas can arrive as JSON string when using multipart/form-data
+      let metas = [];
+      if (req.body.metas) {
+        try { metas = typeof req.body.metas === 'string' ? JSON.parse(req.body.metas) : req.body.metas; } catch {}
+      }
+      const created = await createBlog({ ...blogData, metas });
+      res.status(201).json(created);
     } catch (error) {
       logger.error(`POST / error: ${error.message}`);
       res.status(400).json({ error: error.message });
@@ -112,9 +115,19 @@ router.put('/:id', async (req, res) => {
         }
 
         const isFavorite = favorite === 'true'
+        // metas may come as JSON string
+        let metas = []
+        if (req.body.metas) {
+          try { metas = typeof req.body.metas === 'string' ? JSON.parse(req.body.metas) : req.body.metas } catch {}
+        }
+
         const updateData = { 
-            ...payload, 
-            favorite: isFavorite 
+            title,
+            content,
+            status,
+            categoryId,
+            favorite: isFavorite,
+            metas
           };
        
         // kalau status berubah jadi Published, set publishDate
@@ -122,8 +135,8 @@ router.put('/:id', async (req, res) => {
             updateData.publishDate = new Date();
         }
         
-        await updateQueue(id, updateData);
-        res.status(200).json({ message: 'Berhasil Mengubah Blog' })
+        const updated = await updateQueue(id, updateData);
+        res.status(200).json(updated)
     } catch (error) {
         logger.error(`PUT /:id error: ${error.message}`)
         res.status(400).json({ error: error.message })
@@ -161,9 +174,12 @@ router.patch('/:id', async (req, res) => {
         if (payload.status === "Published" && data.publishDate == null) {
             payload.publishDate = new Date();
         }
-        await updateQueue(id, payload)
-
-        res.status(200).json({ message: 'Blog edited successfully' })
+        // attach metas if present (may be JSON string)
+        if (req.body.metas) {
+            try { payload.metas = typeof req.body.metas === 'string' ? JSON.parse(req.body.metas) : req.body.metas } catch {}
+        }
+        const updated = await updateQueue(id, payload)
+        res.status(200).json(updated)
     } catch (error) {
         logger.error(`PATCH /:id error: ${error.message}`)
         res.status(400).json({ error: error.message })

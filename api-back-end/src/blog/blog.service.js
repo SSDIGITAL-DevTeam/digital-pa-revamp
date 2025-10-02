@@ -23,6 +23,8 @@ const __dirname = path.dirname(__filename)
 import { asc, desc, and, or, eq, like, gte ,ne} from 'drizzle-orm'
 import { blog } from '../../drizzle/schema.js'
 import logger from '../../utils/logger.js'
+import { v4 as uuidv4 } from 'uuid'
+import { findMetasByTarget, upsertSEO, deleteMetasByTarget, upsertMetas, ensureDefaultMetas } from '../meta/meta.repository.js'
 
 export const getAllBlogs = async (filters) => {
     try {
@@ -121,10 +123,19 @@ export const getAllBlogs = async (filters) => {
 
 export const getBlogById = async (id) => {
     try {
-        let blog = await findBlogById(id) 
-        if(!blog) blog = await findBlogBySlug(id)
-        if(!blog) throw new Error('Blog not found')
-        return blog
+        let data = await findBlogById(id) 
+        if(!data) data = await findBlogBySlug(id)
+        if(!data) throw new Error('Blog not found')
+
+        // Load SEO metas and flatten keys
+        const metaRows = await findMetasByTarget(data.id, 'blog')
+        const seo = {
+            tags: metaRows.find((m) => m.key === 'tags')?.value || '',
+            keyword: metaRows.find((m) => m.key === 'keyword')?.value || '',
+            description: metaRows.find((m) => m.key === 'description')?.content || '',
+        }
+        const metas = metaRows.map((m) => ({ key: m.key, value: m.value, content: m.content }))
+        return { ...data, ...seo, metas }
     } catch (error) {
         throw new Error(error.message)
     }
@@ -142,8 +153,23 @@ export const createBlog = async (payload) => {
             .toLowerCase()
             .replace(/[^a-z0-9]+/g, '-')
             .replace(/^-+|-+$/g, '')
-            
-        await insertBlog({ ...payload, slug, favorite: false })
+
+        // Ensure we have the blog ID available for metas
+        const newId = uuidv4()
+        await insertBlog({ id: newId, ...payload, slug, favorite: false })
+
+        // Save metas if provided, otherwise insert defaults
+        if (payload.metas && Array.isArray(payload.metas) && payload.metas.length > 0) {
+            await upsertMetas(newId, 'blog', payload.metas)
+        } else if (payload.seo) {
+            // backward compat
+            await upsertSEO(newId, 'blog', payload.seo)
+        } else {
+            await ensureDefaultMetas(newId, 'blog')
+        }
+
+        // return created blog with metas
+        return await getBlogById(newId)
     } catch (error) {
         throw new Error(error.message)
     }
@@ -169,7 +195,8 @@ export const deleteBlogById = async (id) => {
         } catch (error) {
             
         }
-       
+       // delete metas first
+        await deleteMetasByTarget(id, 'blog')
         await deleteBlog(id)
     } catch (error) {
         throw new Error(error.message)
@@ -214,6 +241,18 @@ export const updateQueue = async (id, payload) => {
             throw new Error('You can only favorite up to 3 blogs')
         }
         await editQueue(id, { ...payload, favorite: newFavorite })
+
+        // Upsert metas array if provided, otherwise ensure defaults if none exist
+        if (payload.metas && Array.isArray(payload.metas) && payload.metas.length > 0) {
+            await upsertMetas(id, 'blog', payload.metas)
+        } else if (payload.seo) {
+            // backward compat
+            await upsertSEO(id, 'blog', payload.seo)
+        } else {
+            await ensureDefaultMetas(id, 'blog')
+        }
+
+        return await getBlogById(id)
     } catch (error) {
         throw new Error(error.message)
     }
