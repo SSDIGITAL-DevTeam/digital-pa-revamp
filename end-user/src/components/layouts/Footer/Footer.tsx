@@ -10,7 +10,7 @@ import { NavLink, navlinks } from '@/constants/navlink'
 import Logo from '@/components/partials/Logo'
 import { FooterPopover } from '@/components/partials/Popover/FooterPopover'
 import { usePathname } from 'next/navigation'
-import { Facebook, FacebookIcon, Instagram, InstagramIcon} from 'lucide-react'
+import { FacebookIcon, InstagramIcon} from 'lucide-react'
 
 export default function Footer(): JSX.Element {
 
