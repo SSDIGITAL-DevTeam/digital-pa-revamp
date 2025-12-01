@@ -296,7 +296,7 @@ export default function NextUINavbar() {
                         href="/contact-us"
                         radius="sm"
                     >
-                        Contact Us
+                        Free Consultation
                     </Button>
                 </NavbarMenuItem>
             </NavbarMenu>
@@ -325,7 +325,7 @@ export default function NextUINavbar() {
                         href='/contact-us'
                         radius='sm'
                     >
-                        Contact Us
+                        Free Consultation
                     </Button>
                 </NavbarItem>
             </NavbarContent>

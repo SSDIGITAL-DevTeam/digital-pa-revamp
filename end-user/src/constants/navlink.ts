@@ -17,10 +17,6 @@ export const navlinks: NavLink[] = [
         path: '/',
     },
     {
-        name: 'About Us',
-        path: '/about-us',
-    },
-    {
         name: 'Services',
         path: '/services',
         menus: [
@@ -110,6 +106,10 @@ export const navlinks: NavLink[] = [
     {
         name: 'Insights',
         path: '/insights',
+    },
+    {
+        name: 'About Us',
+        path: '/about-us',
     },
     // {
     //     name: 'Our Packages',
