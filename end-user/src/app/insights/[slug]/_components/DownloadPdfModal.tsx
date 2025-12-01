@@ -124,7 +124,7 @@ export default function DownloadPdfModal({ pdf, slug }: Props) {
         </DialogHeader>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <div className="flex flex-col gap-2">
-            <Label htmlFor="name">Full Name</Label>
+            <Label htmlFor="name">Full Name <span className="text-red-500">*</span></Label>
             <Input
               id="name"
               name="name"
@@ -135,7 +135,7 @@ export default function DownloadPdfModal({ pdf, slug }: Props) {
             />
           </div>
           <div className="flex flex-col gap-2">
-            <Label htmlFor="email">Email Address</Label>
+            <Label htmlFor="email">Email Address <span className="text-red-500">*</span></Label>
             <Input
               id="email"
               name="email"
@@ -147,7 +147,7 @@ export default function DownloadPdfModal({ pdf, slug }: Props) {
             />
           </div>
           <div className="flex flex-col gap-2">
-            <Label htmlFor="phoneNumber">Phone Number</Label>
+            <Label htmlFor="phoneNumber">Phone Number <span className="text-red-500">*</span></Label>
             <div className="flex items-center w-full rounded-md border border-gray-300 focus-within:ring focus-within:ring-blue-500">
               <PhoneInput
                 defaultCountry="sg"

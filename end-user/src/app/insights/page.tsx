@@ -134,7 +134,6 @@ export default function Insights() {
 
             <section className="lg:max-w-7xl lg:mx-auto w-full py-12 px-10 md:px-20 lg:px-5 flex flex-col gap-8 items-center justify-center ">
                 <div className="flex flex-col lg:flex-row gap-y-5 w-full justify-between items-center border-b-2 border-gray-300 pb-12">
-                    <h1 className="text-2xl md:text-3xl md:capitalize uppercase ">Latest Articles</h1>
                     <ListCategories list={categories} activeCategory={activeCategory || "all"} setActiveCategory={setActiveCategory} />
                 </div>
                 <PageArticles data={blog} />

@@ -192,7 +192,7 @@ export const serviceTabs: Service[] = [
         },
     },
     {
-        name: '2 Web Developers',
+        name: 'Skilled Web Developers',
         icon: AssetWebDeveloper.src,
         content: {
             description:

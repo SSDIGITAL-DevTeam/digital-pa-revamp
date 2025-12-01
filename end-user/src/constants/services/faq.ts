@@ -93,7 +93,7 @@ export const webFAQ: Faq = [
 
 export const homeFAQ: Faq = [
     {
-        title: "Is there any additional fee?",
+        title: "Are you worried about the fee?",
         desc: "No. All packages are flat fee and we will inform you beforehand if there are any additional costs needed."
     },
     {

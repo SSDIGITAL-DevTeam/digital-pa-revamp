@@ -10,6 +10,7 @@ import { NavLink, navlinks } from '@/constants/navlink'
 import Logo from '@/components/partials/Logo'
 import { FooterPopover } from '@/components/partials/Popover/FooterPopover'
 import { usePathname } from 'next/navigation'
+import { Facebook, FacebookIcon, Instagram, InstagramIcon} from 'lucide-react'
 
 export default function Footer(): JSX.Element {
 
@@ -53,6 +54,21 @@ export default function Footer(): JSX.Element {
                                 <EnvelopeIcon className='h-5 w-5' />
 
                                 <span>wow@digital-pa.com.sg</span>
+                            </a>
+                            <a
+                                className='flex items-center gap-2 duration-150 hover:translate-x-1'
+                                href='mailto:wow@digital-pa.com.sg'
+                            >
+                                <FacebookIcon className='h-5 w-5' />
+
+                                <span>www.facebook.com/dpaleads</span>
+                            </a><a
+                                className='flex items-center gap-2 duration-150 hover:translate-x-1'
+                                href='mailto:wow@digital-pa.com.sg'
+                            >
+                                <InstagramIcon className='h-5 w-5' />
+
+                                <span>www.instagram.com/digitalpa.sg/</span>
                             </a>
 
                             {/* hidden phone at the moment */}

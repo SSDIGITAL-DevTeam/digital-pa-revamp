@@ -104,7 +104,7 @@ export default function WhyUs(): JSX.Element {
                             size='lg'
                             radius='sm'
                         >
-                            Enquire Now
+                            Free Consultation
                         </Button>
                     </header>
                 </div>
