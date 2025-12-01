@@ -57,14 +57,14 @@ export default function Footer(): JSX.Element {
                             </a>
                             <a
                                 className='flex items-center gap-2 duration-150 hover:translate-x-1'
-                                href='mailto:wow@digital-pa.com.sg'
+                                href='https://www.facebook.com/dpaleads'
                             >
                                 <FacebookIcon className='h-5 w-5' />
 
                                 <span>www.facebook.com/dpaleads</span>
                             </a><a
                                 className='flex items-center gap-2 duration-150 hover:translate-x-1'
-                                href='mailto:wow@digital-pa.com.sg'
+                                href='https://www.instagram.com/digitalpa.sg/'
                             >
                                 <InstagramIcon className='h-5 w-5' />
 

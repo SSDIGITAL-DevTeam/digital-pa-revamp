@@ -24,11 +24,11 @@ export default function Hero(): JSX.Element {
                         data-scroll-speed="0.2"
                     >
                         <button className="mt-8 relative bg-primary cursor-pointer hover:shadow-primary/60 hover:shadow-md py-4 px-20 w-fit text-center font-semibold text-white rounded-lg duration-300 transition-all">
-                            Boost Your Sales
+                            Free Consultation
                         </button>
                     </Link>
 
-                    <p className="text-primary text-center mt-3">Free Consultation</p>
+                    <p className="text-primary text-center mt-3">Boost Your Sales</p>
                 </div>
             </div>
         </div>
