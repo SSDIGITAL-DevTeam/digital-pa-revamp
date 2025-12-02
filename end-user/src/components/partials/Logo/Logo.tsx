@@ -1,6 +1,6 @@
 import { JSX } from 'react'
-import { Image } from '@nextui-org/react'
 import AssetLogoWithText from '@/assets/logo/webp/asset-logo-with-text.webp'
+import OptimizedImage from '@/components/optimized/OptimizedImage'
 
 export default function Logo({
     className = 'w-48',
@@ -9,13 +9,13 @@ export default function Logo({
 }): JSX.Element {
     return (
         <figure>
-            <Image
+            <OptimizedImage
                 className={`${className}`}
                 src={AssetLogoWithText.src}
-                removeWrapper
-                loading='eager'
-                radius='none'
                 alt='Logo'
+                width={192}
+                height={36}
+                priority={true}
             />
         </figure>
     )

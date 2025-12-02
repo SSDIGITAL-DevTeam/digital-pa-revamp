@@ -63,8 +63,8 @@ const config: Config = {
         },
       },
       fontFamily: {
-        heading: ['Sora', 'sans-serif'],
-        body: ['Manrope', 'sans-serif'],
+        heading: ['var(--font-sora)', 'Sora', 'sans-serif'],
+        body: ['var(--font-manrope)', 'Manrope', 'sans-serif'],
       },
       borderRadius: {
         lg: 'var(--radius)',

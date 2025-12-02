@@ -1,4 +1,5 @@
 "use client"
+import { useEffect, useState } from 'react'
 import Hero from './_components/Hero'
 import PayLessGetMore from './_components/PayLessGetMore'
 import WhyUs from './_components/WhyUs'
@@ -10,29 +11,37 @@ import FAQ from './services/_components/FAQ'
 import MeetOurTeam from './_components/MeetOurTeam'
 import { homeFAQ } from '@/constants/services/faq'
 import Script from 'next/script'
-import LocomotiveScroll from "locomotive-scroll";
-import { useEffect } from 'react'
+
+
 
 export default function Home() {
+    const [scrollInstance, setScrollInstance] = useState<any>(null)
 
     useEffect(() => {
-        const locomotiveScroll = new LocomotiveScroll({
-            lenisOptions: {
-                wrapper: window,
-                content: document.documentElement,
-                lerp: 0.1,
-                duration: 1.2,
-                orientation: 'vertical',
-                gestureOrientation: 'vertical',
-                smoothWheel: true,
-                wheelMultiplier: 1,
-                touchMultiplier: 2,
-                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-            },
-        });
+        // Dynamically import and initialize LocomotiveScroll
+        import('locomotive-scroll').then((LocomotiveScroll) => {
+            const locomotiveScroll = new LocomotiveScroll.default({
+                lenisOptions: {
+                    wrapper: window,
+                    content: document.documentElement,
+                    lerp: 0.1,
+                    duration: 1.2,
+                    orientation: 'vertical',
+                    gestureOrientation: 'vertical',
+                    smoothWheel: true,
+                    wheelMultiplier: 1,
+                    touchMultiplier: 2,
+                    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                },
+            })
+            setScrollInstance(locomotiveScroll)
+        })
+
         return () => {
-            locomotiveScroll.destroy();
-        };
+            if (scrollInstance) {
+                scrollInstance.destroy()
+            }
+        }
     }, [])
 
     return (

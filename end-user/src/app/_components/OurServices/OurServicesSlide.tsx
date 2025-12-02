@@ -1,11 +1,11 @@
 import { JSX } from 'react'
 // import LottiePlayer from '@/components/partials/LottieFiles/LottiePlayer'
 import dynamic from 'next/dynamic'
+import OptimizedImage from '@/components/optimized/OptimizedImage'
 
 const LottiePlayer = dynamic(() => import('@/components/partials/LottieFiles/LottiePlayer'), { ssr: false })
 
 import { Service, ServiceDetail } from '@/constants/homepage/service'
-import { Image } from '@nextui-org/react'
 
 type Props = {
     service: Service
@@ -37,11 +37,12 @@ export default function OurServicesSlide({ service }: Props): JSX.Element {
                             className='flex flex-col items-center justify-start gap-2.5 p-4 text-center'
                             key={`detail-${index}`}
                         >
-                            <Image
-                                removeWrapper
+                            <OptimizedImage
                                 src={detail.icon}
                                 alt='icon'
-                                radius='none'
+                                width={64}
+                                height={64}
+                                priority={false}
                             />
 
                             <h4 className='text-lg 2xl:text-2xl'>
