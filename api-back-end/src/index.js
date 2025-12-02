@@ -34,7 +34,11 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 app.use(express.json());
 
-const allowedOrigins = process.env.ORIGIN.split(",");
+// Allow list from env with safe fallback to local dev to prevent .split crash
+const allowedOrigins = (process.env.ORIGIN || "http://localhost:3000")
+  .split(",")
+  .map((origin) => origin.trim())
+  .filter(Boolean);
 
 app.use(
   cors({
