@@ -1,5 +1,5 @@
+// src/app/insights/[slug]/page.tsx
 import BlogContent from "@/components/partials/Blog/BlogContent";
-import { axiosInstance } from "@/lib/axios";
 import dayjs from "dayjs";
 import Image from "next/image";
 import CopyLinkButton from "../_components/ButtonCopyLink";
@@ -9,6 +9,14 @@ import type { Metadata } from "next";
 import { seoMetadata } from "@/constants/metadata/metadata";
 import Script from "next/script";
 
+// ================== TYPES ==================
+
+export type BlogMeta = {
+  key: string;
+  value: string;
+  content: string;
+};
+
 export type Blog = {
   id: string;
   title: string;
@@ -16,13 +24,13 @@ export type Blog = {
   content: string;
   slug: string;
   status: string;
-  favorite: boolean;
+  favorite?: boolean;
   categoryId: string;
   userId: string;
   createdAt: string;
   updatedAt: string;
   publishDate: string;
-  pdf: string | null; // ✅ field baru
+  pdf: string | null;
   author: {
     id: string;
     name: string;
@@ -30,7 +38,9 @@ export type Blog = {
   category: {
     id: string;
     name: string;
+    slug?: string;
   };
+  metas?: BlogMeta[];
 };
 
 export type User = {
@@ -52,37 +62,69 @@ export type BlogDetailResponse = {
 
 export const revalidate = 0; // always fresh for SEO
 
-async function fetchBlog(slug: string) {
-  const base = process.env.NEXT_PUBLIC_API_URL;
+// ================== HELPERS ==================
+
+function getBaseUrl() {
+  if (process.env.NEXT_PUBLIC_SITE_URL) {
+    return process.env.NEXT_PUBLIC_SITE_URL;
+  }
+  if (process.env.VERCEL_URL) {
+    return `https://${process.env.VERCEL_URL}`;
+  }
+  return "http://localhost:3000";
+}
+
+// --- khusus untuk metadata, langsung ke API utama (boleh pakai proxy juga kalau mau)
+async function fetchBlogForMeta(slug: string) {
+  const base =
+    process.env.NEXT_PUBLIC_API_URL || "https://api.digital-pa.com.sg/api/v1";
   const url = `${base}/blog/${slug}`;
   const res = await fetch(url, { cache: "no-store" });
   if (!res.ok) return null;
   return res.json();
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  try {
-    const data: any = await fetchBlog(params.slug);
-    if (!data) return { title: "Insights | Digital PA", description: "Read our insights." };
+// ================== METADATA ==================
 
-    const baseCanonical = (seoMetadata?.home?.alternates?.canonical as string) || "https://digital-pa.com.sg";
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
+  try {
+    const data: any = await fetchBlogForMeta(params.slug);
+    if (!data) {
+      return {
+        title: "Insights | Digital PA",
+        description: "Read our insights.",
+      };
+    }
+
+    const baseCanonical =
+      (seoMetadata?.home?.alternates?.canonical as string) ||
+      "https://digital-pa.com.sg";
     const canonical = `${baseCanonical}/insights/${params.slug}`;
     const imageUrl = `${process.env.NEXT_PUBLIC_API_IMAGE_URL}/${data.image}`;
 
-    // metas coming from API array or flattened
-    const metas = Array.isArray(data.metas) ? data.metas : [];
-    const description = metas.find((m: any) => m.value === "description")?.content || data.description || "";
-    const keywordsRaw = metas.find((m: any) => m.value === "keyword")?.content || metas.find((m: any) => m.value === "tags")?.content || "";
+    const metas: BlogMeta[] = Array.isArray(data.metas) ? data.metas : [];
+
+    const description =
+      metas.find((m) => m.value === "description")?.content ||
+      data.description ||
+      "";
+
+    const keywordsRaw =
+      metas.find((m) => m.value === "keyword")?.content ||
+      metas.find((m) => m.value === "tags")?.content ||
+      "";
+
     const keywords = keywordsRaw
       .split(",")
       .map((s: string) => s.trim())
       .filter(Boolean);
 
-    // Prefer metaTitle, fallback to title meta, then data.title
     const pageTitle =
-   
-      metas.find((m: any) => m.value === "title")?.content ||
-      data.title;
+      metas.find((m) => m.value === "title")?.content || data.title;
 
     return {
       title: pageTitle,
@@ -109,32 +151,59 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       },
       alternates: { canonical },
     };
-  } catch {
-    return { title: "Insights | Digital PA", description: "Read our insights." };
+  } catch (e) {
+    console.error("generateMetadata error:", e);
+    return {
+      title: "Insights | Digital PA",
+      description: "Read our insights.",
+    };
   }
 }
+
+// ================== PAGE ==================
 
 export default async function Page({
   params,
 }: Readonly<{ params: { slug: string } }>) {
   try {
-    // get detail blog
-    const response = await axiosInstance.get(`/blog/${params.slug}`);
-    const data = response.data as Blog;
+    const base = getBaseUrl();
 
-    // get related blogs
-    const res = await axiosInstance.get(`/blog`, {
-      params: {
-        categoryId: data.categoryId,
-        limit: 3,
-        excludeId: data.id,
-      },
+    // 1. DETAIL BLOG via proxy /api/blog/[slug]
+    const detailRes = await fetch(`${base}/api/blog/${params.slug}`, {
+      cache: "no-store",
     });
-    const relatedBlogs = res.data.data as Blog[];
+
+    if (!detailRes.ok) {
+      console.error("Detail blog status:", detailRes.status);
+      return notFound();
+    }
+
+    const data = (await detailRes.json()) as Blog;
+
+    // 2. RELATED BLOGS via proxy /api/blog
+    const relatedParams = new URLSearchParams({
+      categoryId: data.categoryId,
+      limit: "3",
+      excludeId: data.id,
+    });
+
+    const relatedRes = await fetch(
+      `${base}/api/blog?${relatedParams.toString()}`,
+      {
+        cache: "no-store",
+      },
+    );
+
+    const relatedJson = await relatedRes.json();
+    const relatedBlogs = (relatedJson.data || []) as Blog[];
 
     const formattedDate = dayjs(data.publishDate).format("MMM DD, YYYY");
 
-    const metaDesc = (Array.isArray((data as any).metas) ? (data as any).metas.find((m: any) => m.value === "description")?.content : undefined) || "";
+    const metaDesc =
+      (Array.isArray((data as any).metas)
+        ? (data as any).metas.find((m: any) => m.value === "description")
+            ?.content
+        : undefined) || "";
 
     const ld = {
       "@context": "https://schema.org",
@@ -142,15 +211,22 @@ export default async function Page({
       headline: data.title,
       description: metaDesc || undefined,
       image: `${process.env.NEXT_PUBLIC_API_IMAGE_URL}/${data.image}`,
-      author: data.author?.name ? { "@type": "Person", name: data.author.name } : undefined,
+      author: data.author?.name
+        ? { "@type": "Person", name: data.author.name }
+        : undefined,
       datePublished: data.publishDate || data.createdAt,
     };
 
     return (
       <main className="bg-white">
         <div className="max-w-4xl py-12 lg:py-24 px-8 md:px-20 mx-auto flex flex-col space-y-12 lg:space-y-16 bg-white">
-          <Script id="blog-json-ld" type="application/ld+json" strategy="afterInteractive"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} />
+          <Script
+            id="blog-json-ld"
+            type="application/ld+json"
+            strategy="afterInteractive"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }}
+          />
+
           {/* header blog */}
           <section className="w-full flex flex-col gap-8 lg:gap-8">
             <h1 className="text-3xl !leading-[120%]">{data.title}</h1>
@@ -193,8 +269,7 @@ export default async function Page({
           </section>
 
           {/* tombol download pdf */}
-          {data.pdf && <DownloadPdfModal pdf={data.pdf }  slug={params.slug}/>}
-          {/* <DownloadPdfModal /> */}
+          {data.pdf && <DownloadPdfModal pdf={data.pdf} slug={params.slug} />}
 
           {/* related posts */}
           <section className="w-full flex flex-col gap-12">
@@ -210,13 +285,12 @@ export default async function Page({
                       src={`${process.env.NEXT_PUBLIC_API_IMAGE_URL}/${blog.image}`}
                       width={1920}
                       height={1080}
-                      alt={data.title}
+                      alt={blog.title}
                       className="rounded-xl object-cover w-full h-full object-top"
                     />
                   </div>
                   <div className="p-6 flex flex-col gap-4">
                     <h4 className="line-clamp-2 text-xl">{blog.title}</h4>
-                    {/* <BlogContent content={blog.content} className="!leading-[150%] text-sm lg:text-base text-gray-600 line-clamp-5 custom-prose" /> */}
                   </div>
                 </div>
               ))}
