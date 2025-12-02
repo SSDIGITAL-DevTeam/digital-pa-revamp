@@ -8,6 +8,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { seoMetadata } from "@/constants/metadata/metadata";
 import Script from "next/script";
+import { headers } from "next/headers";
 
 // ================== TYPES ==================
 
@@ -64,16 +65,19 @@ export const revalidate = 0; // always fresh for SEO
 
 // ================== HELPERS ==================
 
-function getBaseUrl() {
-  if (process.env.NEXT_PUBLIC_SITE_URL) {
-    return process.env.NEXT_PUBLIC_SITE_URL;
+function getRequestBaseUrl() {
+  const h = headers();
+  const proto = h.get("x-forwarded-proto") ?? "https";
+  const host = h.get("x-forwarded-host") ?? h.get("host");
+  if (!host) {
+    // fallback terakhir kalau entah kenapa header kosong
+    return (
+      process.env.NEXT_PUBLIC_SITE_URL ||
+      "http://localhost:3000"
+    );
   }
-  if (process.env.VERCEL_URL) {
-    return `https://${process.env.VERCEL_URL}`;
-  }
-  return "http://localhost:3000";
+  return `${proto}://${host}`;
 }
-
 // --- khusus untuk metadata, langsung ke API utama (boleh pakai proxy juga kalau mau)
 async function fetchBlogForMeta(slug: string) {
   const base =
@@ -166,7 +170,7 @@ export default async function Page({
   params,
 }: Readonly<{ params: { slug: string } }>) {
   try {
-    const base = getBaseUrl();
+    const base = getRequestBaseUrl();
 
     // 1. DETAIL BLOG via proxy /api/blog/[slug]
     const detailRes = await fetch(`${base}/api/blog/${params.slug}`, {
