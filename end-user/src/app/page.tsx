@@ -7,6 +7,7 @@ import MarketingSkillSets from './_components/MarketingSkillSets'
 import OurServices from './_components/OurServices/OurServices'
 import Particle from '@/components/partials/ParticleJs/Particle'
 import FAQ from './services/_components/FAQ'
+import MeetOurTeam from './_components/MeetOurTeam'
 import { homeFAQ } from '@/constants/services/faq'
 import Script from 'next/script'
 import LocomotiveScroll from "locomotive-scroll";
@@ -76,6 +77,12 @@ export default function Home() {
                 <OurServices />
             </section>
             {/* end of one personal assistant section */}
+
+            {/* meet our team section */}
+            <section className='py-8 md:py-16'>
+                <MeetOurTeam />
+            </section>
+            {/* end of meet our team section */}
 
             {/* faq section */}
             <section className='py-8 pb-32'>
