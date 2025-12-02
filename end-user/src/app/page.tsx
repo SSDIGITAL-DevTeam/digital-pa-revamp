@@ -1,23 +1,33 @@
 "use client"
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import type LocomotiveScroll from 'locomotive-scroll'
+import dynamic from 'next/dynamic'
 import Hero from './_components/Hero'
 import PayLessGetMore from './_components/PayLessGetMore'
 import WhyUs from './_components/WhyUs'
 import BrandPartners from './_components/BrandPartners'
 import MarketingSkillSets from './_components/MarketingSkillSets'
 import OurServices from './_components/OurServices/OurServices'
-import Particle from '@/components/partials/ParticleJs/Particle'
 import FAQ from './services/_components/FAQ'
 import MeetOurTeam from './_components/MeetOurTeam'
 import { homeFAQ } from '@/constants/services/faq'
 import Script from 'next/script'
 
+const Particle = dynamic(() => import('@/components/partials/ParticleJs/Particle'), {
+    ssr: false,
+})
+
 export default function Home() {
     const scrollInstanceRef = useRef<LocomotiveScroll | null>(null)
+    const [shouldRenderParticles, setShouldRenderParticles] = useState(false)
 
     useEffect(() => {
-        // Dynamically import and initialize LocomotiveScroll
+        // Only enable heavier effects (particles & smooth scroll) on desktop
+        const isDesktop = window.matchMedia('(min-width: 1024px)').matches
+        setShouldRenderParticles(isDesktop)
+
+        if (!isDesktop) return
+
         let isMounted = true
 
         // Disable native smooth scroll while Locomotive is active to avoid double-easing jitter
@@ -63,9 +73,11 @@ export default function Home() {
                 strategy="afterInteractive"
             />
             <header className='relative min-h-screen'>
-                <div className='absolute inset-0 z-10'>
-                    <Particle />
-                </div>
+                {shouldRenderParticles && (
+                    <div className='absolute inset-0 z-10'>
+                        <Particle />
+                    </div>
+                )}
                 <Hero />
             </header>
 
