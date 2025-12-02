@@ -1,5 +1,6 @@
 "use client"
-import { useEffect, useState } from 'react'
+import { useEffect, useRef } from 'react'
+import type LocomotiveScroll from 'locomotive-scroll'
 import Hero from './_components/Hero'
 import PayLessGetMore from './_components/PayLessGetMore'
 import WhyUs from './_components/WhyUs'
@@ -11,15 +12,26 @@ import FAQ from './services/_components/FAQ'
 import { homeFAQ } from '@/constants/services/faq'
 import Script from 'next/script'
 
-
-
 export default function Home() {
-    const [scrollInstance, setScrollInstance] = useState<any>(null)
+    const scrollInstanceRef = useRef<LocomotiveScroll | null>(null)
 
     useEffect(() => {
         // Dynamically import and initialize LocomotiveScroll
-        import('locomotive-scroll').then((LocomotiveScroll) => {
-            const locomotiveScroll = new LocomotiveScroll.default({
+        let isMounted = true
+
+        // Disable native smooth scroll while Locomotive is active to avoid double-easing jitter
+        const html = document.documentElement
+        const previousScrollBehavior = html.style.scrollBehavior
+        html.style.scrollBehavior = 'auto'
+
+        import('locomotive-scroll').then((LocomotiveScrollModule) => {
+            if (!isMounted) return
+
+            const LocomotiveClass =
+                (LocomotiveScrollModule as unknown as { default: { new(options?: any): LocomotiveScroll } }).default ??
+                (LocomotiveScrollModule as unknown as { new(options?: any): LocomotiveScroll })
+
+            scrollInstanceRef.current = new LocomotiveClass({
                 lenisOptions: {
                     wrapper: window,
                     content: document.documentElement,
@@ -30,16 +42,16 @@ export default function Home() {
                     smoothWheel: true,
                     wheelMultiplier: 1,
                     touchMultiplier: 2,
-                    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                    easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
                 },
             })
-            setScrollInstance(locomotiveScroll)
         })
 
         return () => {
-            if (scrollInstance) {
-                scrollInstance.destroy()
-            }
+            isMounted = false
+            scrollInstanceRef.current?.destroy()
+            scrollInstanceRef.current = null
+            html.style.scrollBehavior = previousScrollBehavior
         }
     }, [])
 
