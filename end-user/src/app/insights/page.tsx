@@ -96,6 +96,11 @@ export default function Insights() {
                         }),
                     ]
                 )
+
+                console.log("✅ favBlogRes:", favBlog.data);
+                console.log("✅ otherBlogRes:", otherBlog.data);
+                console.log("✅ categoriesRes:", categories.data)
+
                 setFavBlog(favBlog.data.data);
                 setBlog(otherBlog.data.data);
                 setDefPage(otherBlog.data.pagination);
