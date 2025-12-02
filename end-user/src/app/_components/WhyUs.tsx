@@ -1,10 +1,10 @@
 import { JSX } from 'react'
-import { Button, Image, Link } from '@nextui-org/react'
+import { Button, Link } from '@nextui-org/react'
 import { WhyUs as WhyUsType, whyus } from '@/constants/homepage/whyus'
 import FadeInWhenVisible from '@/components/partials/FramerMotion/FadeInWhenVisible'
 import AssetLottieWallet from '@/assets/lottiefiles/asset-lottie-wallet.json'
-// import LottiePlayer from '@/components/partials/LottieFiles/LottiePlayer'
 import dynamic from 'next/dynamic'
+import OptimizedImage from '@/components/optimized/OptimizedImage'
 
 const LottiePlayer = dynamic(() => import('@/components/partials/LottieFiles/LottiePlayer'), { ssr: false })
 
@@ -30,13 +30,13 @@ export default function WhyUs(): JSX.Element {
                         >
                             <div className='flex h-full w-full flex-col items-center gap-2 rounded-2xl bg-white p-8 shadow-2xl shadow-dark/10 duration-150 hover:shadow-2xl hover:shadow-primary/30 sm:w-60 md:max-w-64'>
                                 <div className='w-16 overflow-hidden rounded-full'>
-                                    <Image
-                                        removeWrapper
-                                        className='w-16 bg-primary p-3'
+                                    <OptimizedImage
+                                        className='w-16 bg-primary p-3 rounded-lg'
                                         src={item.icon}
                                         alt='icon'
-                                        radius='lg'
-                                        loading='eager'
+                                        width={64}
+                                        height={64}
+                                        priority={false}
                                     />
                                 </div>
 
@@ -58,13 +58,13 @@ export default function WhyUs(): JSX.Element {
                         >
                             <div className='flex h-full w-full flex-col items-center gap-2 rounded-2xl bg-white p-8 shadow-2xl shadow-dark/10 duration-150 hover:shadow-2xl hover:shadow-primary/30 sm:w-60 md:max-w-64'>
                                 <div className='w-16 overflow-hidden rounded-full'>
-                                    <Image
-                                        removeWrapper
-                                        className='w-16 bg-primary p-3'
+                                    <OptimizedImage
+                                        className='w-16 bg-primary p-3 rounded-lg'
                                         src={item.icon}
                                         alt='icon'
-                                        radius='lg'
-                                        loading='lazy'
+                                        width={64}
+                                        height={64}
+                                        priority={false}
                                     />
                                 </div>
 

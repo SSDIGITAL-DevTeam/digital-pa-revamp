@@ -21,6 +21,7 @@ fbq('track', 'PageView');
             </Script>
 
             <noscript>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img height="1" width="1" style={{ display: 'none' }} alt="fb-pixel"
                     src="https://www.facebook.com/tr?id=2198314697281263&ev=PageView&noscript=1" />
             </noscript>

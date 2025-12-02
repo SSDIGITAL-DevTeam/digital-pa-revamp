@@ -3,7 +3,7 @@ import {
     MarketingSkillSet,
     marketingSkillSets,
 } from '@/constants/homepage/marketing-skill-sets'
-import { Image } from '@nextui-org/react'
+import OptimizedImage from '@/components/optimized/OptimizedImage'
 import { JSX } from 'react'
 
 export default function MarketingSkillSets(): JSX.Element {
@@ -35,13 +35,13 @@ export default function MarketingSkillSets(): JSX.Element {
                                         multiplier={index}
                                     >
                                         <div className='group flex flex-col items-center border border-light bg-white p-8 shadow-2xl shadow-primary/10 duration-300 hover:relative hover:shadow-2xl hover:shadow-primary/50'>
-                                            <Image
-                                                removeWrapper
+                                            <OptimizedImage
                                                 className='w-16 md:ml-auto'
                                                 src={marketingSkillSet.icon}
                                                 alt={marketingSkillSet.title}
-                                                radius='none'
-                                                loading='lazy'
+                                                width={64}
+                                                height={64}
+                                                priority={false}
                                             />
 
                                             <header className='space-y-2 pt-8 text-center md:text-left'>
@@ -76,13 +76,13 @@ export default function MarketingSkillSets(): JSX.Element {
                                         multiplier={index}
                                     >
                                         <div className='group flex flex-col items-center border border-light bg-white p-8 shadow-2xl shadow-primary/10 duration-300 hover:relative hover:shadow-2xl hover:shadow-primary/50'>
-                                            <Image
-                                                removeWrapper
+                                            <OptimizedImage
                                                 className='w-16 md:ml-auto'
                                                 src={marketingSkillSet.icon}
                                                 alt={marketingSkillSet.title}
-                                                radius='none'
-                                                loading='lazy'
+                                                width={64}
+                                                height={64}
+                                                priority={false}
                                             />
 
                                             <header className='space-y-2 pt-8 text-center md:text-left'>
